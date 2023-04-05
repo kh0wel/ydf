@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json.schemastore.org/package",
+  "name": "@voart/discord.js",
+  "description": "🚀 A small, fast and efficient framework for building Discord bots using discord.js",
+  "version": "0.1.0",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "lint": "eslint --ext .ts,.js \".\"",
+    "format": "eslint --fix --ext .ts,.js \".\"",
+    "build": "tsc --project \".\""
+  },
+  "bin": {
+    "vdcd": "./dist/cli.js"
+  },
+  "main": "./dist/core.js",
+  "types": "./typings/core.d.ts",
+  "files": [
+    "./dist/",
+    "./typings/"
+  ],
+  "directories": {
+    "lib": "./dist/"
+  },
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voart/discord.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/voart/discord.js/issues"
+  },
+  "keywords": [
+    "bot",
+    "framework",
+    "discord"
+  ],
+  "engines": {
+    "node": ">=18.*"
+  },
+  "devDependencies": {
+    "@types/node": "*",
+    "@typescript-eslint/eslint-plugin": "^5.57.0",
+    "@typescript-eslint/parser": "^5.57.0",
+    "discord.js": "^14.9.0",
+    "eslint": "^8.37.0",
+    "eslint-config-standard-with-typescript": "^34.0.1",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "typescript": "^5.0.2"
+  },
+  "peerDependencies": {
+    "discord.js": ">=14.9.0"
+  },
+  "peerDependenciesMeta": {
+    "discord.js": {
+      "optional": true
+    }
+  }
+}

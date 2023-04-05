@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json.schemastore.org/eslintrc",
+
+  "root": true,
+
+  "parser": "@typescript-eslint/parser",
+
+  "env": {
+
+    "es2021": true,
+    "node":   true
+  },
+
+  "plugins": [ "@typescript-eslint" ],
+
+  "extends": [
+
+    "eslint:recommended",
+
+    "plugin:@typescript-eslint/recommended"
+  ],
+
+  "parserOptions": {
+
+    "project": "./tsconfig.json",
+
+    "ecmaVersion": "latest",
+    "sourceType":  "module"
+  },
+
+  "rules": {
+
+    "curly":                   "off",
+    "indent":                  "off",
+    "padded-blocks":           "off",
+    "func-call-spacing":       "off",
+    "object-property-newline": "off",
+    "no-case-declarations":    "off",
+    "no-multi-spaces":         "off",
+    "no-extra-semi":           "off",
+    "no-unused-vars":          "off",
+    "rest-spread-spacing":     "off",
+    "return-await":            "off",
+    "no-return-await":         "error",
+
+    "template-curly-spacing":      [ "error", "always" ],
+    "space-before-function-paren": [ "error", "always" ],
+    "array-bracket-spacing":       [ "error", "always" ],
+    "multiline-ternary":           [ "error", "always" ],
+    "semi":                        [ "error", "always" ],
+    "operator-linebreak":          [ "error", "before" ],
+
+    "no-mixed-operators": [
+
+      "error", {
+
+      "groups": [
+
+          [ "==", "!=", "===", "!==", ">", ">=", "<", "<=" ],
+          [ "&&", "||"                                     ],
+          [ "in", "instanceof"                             ]
+        ]
+      }
+    ],
+
+    "padding-line-between-statements": [
+
+      "error",
+
+      { "blankLine": "always", "prev": "class",    "next": "*"        },
+      { "blankLine": "always", "prev": "case",     "next": "*"        },
+      { "blankLine": "always", "prev": "continue", "next": "*"        },
+      { "blankLine": "always", "prev": "return",   "next": "*"        },
+      { "blankLine": "always", "prev": "*",        "next": "class"    },
+      { "blankLine": "always", "prev": "*",        "next": "function" },
+      { "blankLine": "always", "prev": "*",        "next": "switch"   },
+      { "blankLine": "always", "prev": "*",        "next": "try"      },
+      { "blankLine": "always", "prev": "*",        "next": "for"      },
+      { "blankLine": "always", "prev": "*",        "next": "while"    },
+      { "blankLine": "always", "prev": "*",        "next": "case"     },
+      { "blankLine": "always", "prev": "*",        "next": "break"    },
+      { "blankLine": "always", "prev": "*",        "next": "throw"    },
+      { "blankLine": "always", "prev": "*",        "next": "continue" },
+      { "blankLine": "always", "prev": "*",        "next": "return"   }
+    ],
+
+    "key-spacing": [ "error", { "align": "value", "afterColon": true } ],
+
+    "@typescript-eslint/no-non-null-assertion":         "off",
+    "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/func-call-spacing":             "off",
+    "@typescript-eslint/semi":                          "off",
+    "@typescript-eslint/no-extra-semi":                 "off",
+    "@typescript-eslint/no-empty-function":             "off",
+    "@typescript-eslint/no-explicit-any":               "off",
+    "@typescript-eslint/ban-ts-comment":                "off",
+    "@typescript-eslint/strict-boolean-expressions":    "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/promise-function-async":        "off",
+    "@typescript-eslint/no-unused-vars":                "warn",
+
+    "@typescript-eslint/return-await": [ "error", "never" ],
+
+    "@typescript-eslint/no-empty-interface": [ "error", { "allowSingleExtends": true } ],
+
+    "@typescript-eslint/indent": [
+
+      "error", 4, {
+
+        "ImportDeclaration":  "first",
+        "VariableDeclarator": "first",
+        "ArrayExpression":    "first",
+        "ObjectExpression":   "first",
+
+        "FunctionDeclaration": { "parameters": "first" },
+        "FunctionExpression":  { "parameters": "first" },
+ 
+        "SwitchCase":       1,
+        "MemberExpression": 1,
+
+        "flatTernaryExpressions": true
+      }
+    ]
+  }
+}
