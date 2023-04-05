@@ -2,31 +2,25 @@
 
 1. Install [**Node** v18 or later](https://nodejs.org).
 
-2. Install package:
+2. Install core:
 
     ```sh-session
-    npm add disland.js
-    pnpm disland.js
-    yarn disland.js
+    npm add @voart/discord.js
+    yarn add @voart/discord.js
+    pnpm add @voart/discord.js
     ```
-3. Install core:
+3. Install dependences:
 
     ```sh-session
     npm add discord.js
-    pnpm discord.js
-    yarn discord.js
+    yarn add discord.js
+    pnpm add discord.js
     ```
 
-    ```sh-session
-    npm add @biscuitland/core
-    pnpm @biscuitland/core
-    yarn @biscuitland/core
-    ```
-
-4. Run package:
+4. Run command:
 
     ```sh-session
-    npm dld
-    pnpm dld
-    yarn dld
+    npm vdcd
+    pnpm vdcd
+    yarn vdcd
     ```

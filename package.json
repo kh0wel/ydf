@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/package",
   "name": "@voart/discord.js",
-  "description": "🚀 A small, fast and efficient framework for building Discord bots using discord.js",
-  "version": "0.1.0",
+  "description": "🍱 A core for discord.js library",
+  "version": "0.1.1",
   "type": "module",
   "private": false,
   "scripts": {
