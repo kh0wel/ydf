@@ -17,6 +17,7 @@ import ServiceBuilder from './builders/ServiceBuilder.js';
 import ChatInputCommandBuilder from './builders/ChatInputCommandBuilder.js';
 import UserContextMenuCommandBuilder from './builders/UserContextMenuCommandBuilder.js';
 import MessageContextMenuCommandBuilder from './builders/MessageContextMenuCommandBuilder.js';
+import deployment from './deployment.js';
 
 export {
 
@@ -84,91 +85,39 @@ export default async function (options) {
 
     const client = new Client({
 
-        intents:  usedIntents,
-        partials: usedPartials,
+        intents: options?.intents?.force
 
-        ...options?.client
+            ? options.intents.bits
+
+            : usedIntents.concat(options?.intents?.bits),
+
+        partials: options?.partials?.force
+
+            ? options.partials.bits
+
+            : usedPartials.concat(options?.partials?.bits),
+
+        ... options?.client
     });
 
-    for (const loadedEvent of loadedEvents) {
-
-        // Ignora el evento si no fue utilizado
-        if (!usedEvents.has(loadedEvent.name)) continue;
-
-        await loadedEvent.execute({
-
-            client,
-
-            directories: {
-
-                events:   eventsPath,
-                services: servicesPath,
-
-                commands: {
-
-                    chat:    chatInputCommandsPath,
-                    user:    userContextMenuCommandsPath,
-                    message: messageContextMenuCommandsPath
-                }
-            },
-
-            loaded: {
-
-                events:   loadedEvents,
-                services: loadedServices,
-
-                commands: {
-
-                    chat:    loadedChatInputCommands,
-                    user:    loadedUserContextMenuCommands,
-                    message: loadedMessageContextMenuCommands
-                }
-            },
-
-            used: {
-
-                events:   usedEvents,
-                intents:  usedIntents,
-                partials: usedPartials
-            }
-        });
-    };
-
-    return {
+    return deployment({
 
         client,
 
-        directories: {
+        eventsPath,
+        servicesPath,
+        chatInputCommandsPath,
+        userContextMenuCommandsPath,
+        messageContextMenuCommandsPath,
 
-            events:   eventsPath,
-            services: servicesPath,
+        loadedEvents,
+        loadedServices,
+        loadedChatInputCommands,
+        loadedUserContextMenuCommands,
+        loadedMessageContextMenuCommands,
 
-            commands: {
-
-                chat:    chatInputCommandsPath,
-                user:    userContextMenuCommandsPath,
-                message: messageContextMenuCommandsPath
-            }
-        },
-
-        loaded: {
-
-            events:   loadedEvents,
-            services: loadedServices,
-
-            commands: {
-
-                chat:    loadedChatInputCommands,
-                user:    loadedUserContextMenuCommands,
-                message: loadedMessageContextMenuCommands
-            }
-        },
-
-        used: {
-
-            events:   usedEvents,
-            intents:  usedIntents,
-            partials: usedPartials
-        }
-    };
+        usedEvents,
+        usedIntents,
+        usedPartials
+    });
 };
