@@ -5,7 +5,7 @@ import ServiceBuilder from '../builders/ServiceBuilder.js';
 
 export default async function (directory) {
 
-    const serviceFolders = (await fs.readdir(directory)).filter((folder) => !folder.startsWith('.'));
+    const serviceFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedServices = [];
 

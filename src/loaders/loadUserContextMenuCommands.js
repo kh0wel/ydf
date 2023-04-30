@@ -1,11 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import ChatInputCommandBuilder from '../builders/ChatInputCommandBuilder.js';
+import UserContextMenuCommandBuilder from '../builders/UserContextMenuCommandBuilder.js';
 
 export default async function (directory) {
 
-    const commandFolders = (await fs.readdir(directory)).filter((folder) => !folder.startsWith('.'));
+    const commandFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedCommands = [];
 
@@ -13,7 +13,7 @@ export default async function (directory) {
 
         loadedCommands.push(
 
-            new ChatInputCommandBuilder({
+            new UserContextMenuCommandBuilder({
 
                 ... (await import(`file:///${ path.resolve(directory, folder, 'main.js') }`)).default,
 

@@ -1,15 +1,22 @@
-export default function ({ loadedEvents, loadedServices, loadedChatInputCommands, loadedUserContextMenuCommands, loadedMessageContextMenuCommands }) {
+export default function ({
+
+    loadedEvents,
+    loadedServices,
+    loadedChatInputCommands,
+    loadedUserContextMenuCommands,
+    loadedMessageContextMenuCommands
+}) {
 
     const usedEvents = new Map();
 
     for (const loadedEvent of loadedEvents) {
 
-        const inServices = loadedServices.filter((service) => service.events[loadedEvent.name]);
+        const inServices = loadedServices.filter((data) => data.events[loadedEvent.name]);
 
         const inCommands = loadedChatInputCommands
             .concat(loadedUserContextMenuCommands)
             .concat(loadedMessageContextMenuCommands)
-            .filter((command) => command.events[loadedEvent.name]);
+            .filter((data) => data.events[loadedEvent.name]);
 
         const inAll = inServices.concat(inCommands);
 
