@@ -8,11 +8,7 @@ switch (process.argv.at(2)) {
 
     case 'deploy':
 
-        const options = (await import(`file:///${ path.join(process.cwd(), '.voart.config.js') }`)).default;
-
-        const framework = await environment(options);
-
-        await framework.client.login(options.token);
+        await environment((await import(`file:///${ path.join(process.cwd(), '.voart.config.js') }`)).default);
 
         break;
 
