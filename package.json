@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/package",
   "name": "@voart/discord.js",
   "description": "🍱 A core for discord.js library",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "type": "module",
   "private": false,
   "scripts": {

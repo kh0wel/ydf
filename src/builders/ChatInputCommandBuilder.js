@@ -1,3 +1,5 @@
+import deleteProperty from '../utilities/deleteProperty.js';
+
 export default class {
 
     name = undefined;
@@ -16,7 +18,30 @@ export default class {
         name:        { default: undefined },
         description: { default: undefined },
 
-        permissions: { dm: false, member: null }
+        options: [],
+
+        permissions: {
+
+            member: null,
+
+            dm: false, nsfw: false 
+        },
+
+        data: {
+
+            name:        undefined,
+            description: undefined,
+
+            name_localizations:        {},
+            description_localizations: {},
+
+            options: [],
+
+            dm_permission: false,
+            nsfw:          false,
+
+            default_member_permissions: null
+        }
     };
 
     events = undefined;
@@ -32,8 +57,27 @@ export default class {
         this.display.name        = options.display.name;
         this.display.description = options.display.description;
 
+        this.display.options = options.display?.options ?? this.display.options;
+
         this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
+        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
         this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
+
+        ///
+
+        this.display.data.name        = this.display.name.default;
+        this.display.data.description = this.display.description.default;
+
+        this.display.data.name_localizations        = deleteProperty(this.display.name, 'default');
+        this.display.data.description_localizations = deleteProperty(this.display.description, 'default');
+
+        this.display.data.options = this.display.options;
+
+        this.display.data.dm_permission              = this.display.permissions.dm;
+        this.display.data.nsfw                       = this.display.permissions.nsfw;
+        this.display.data.default_member_permissions = this.display.permissions.member;
+
+        ///
 
         this.events = options.events;
     };
