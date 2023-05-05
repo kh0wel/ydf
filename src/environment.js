@@ -2,15 +2,13 @@ import path from 'node:path';
 
 import deployment from './deployment.js';
 
-import EventBuilder from './builders/EventBuilder.js';
-import ServiceBuilder from './builders/ServiceBuilder.js';
-import ChatInputCommandBuilder from './builders/ChatInputCommandBuilder.js';
-import UserContextMenuCommandBuilder from './builders/UserContextMenuCommandBuilder.js';
-import MessageContextMenuCommandBuilder from './builders/MessageContextMenuCommandBuilder.js';
-
-export { EventBuilder, ServiceBuilder, ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder };
-
 export default function (options) {
+
+    if (options?.directories?.events            && typeof options.directories.events           !== 'string') throw new Error('Invalid events directory');
+    if (options?.directories?.services          && typeof options.directories.services         !== 'string') throw new Error('Invalid services directory');
+    if (options?.directories?.commands?.chat    && typeof options.directories.commands.chat    !== 'string') throw new Error('Invalid chat input commands directory');
+    if (options?.directories?.commands?.user    && typeof options.directories.commands.user    !== 'string') throw new Error('Invalid user context menu commands directory');
+    if (options?.directories?.commands?.message && typeof options.directories.commands.message !== 'string') throw new Error('Invalid message context menu commands directory');
 
     const eventsPath                     = options?.directories?.events            ?? path.resolve(process.cwd(), 'src', 'events');
     const servicesPath                   = options?.directories?.services          ?? path.resolve(process.cwd(), 'src', 'services');

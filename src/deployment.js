@@ -21,11 +21,21 @@ export default async function ({
     messageContextMenuCommandsPath
 }) {
 
-    const loadedEvents                     = await loadEvents(eventsPath);
-    const loadedServices                   = await loadServices(servicesPath);
-    const loadedChatInputCommands          = await loadChatInputCommands(chatInputCommandsPath);
-    const loadedUserContextMenuCommands    = await loadUserContextMenuCommands(userContextMenuCommandsPath);
-    const loadedMessageContextMenuCommands = await loadMessageContextMenuCommands(messageContextMenuCommandsPath);
+    if (options?.loaders?.events                     && typeof options.loaders.events           !== 'function') throw new Error('Invalid events loader');
+    if (options?.loaders?.services                   && typeof options.loaders.services         !== 'function') throw new Error('Invalid services loader');
+    if (options?.loaders?.chatInputCommands          && typeof options.loaders.commands.chat    !== 'function') throw new Error('Invalid chat input commands loader');
+    if (options?.loaders?.userContextMenuCommands    && typeof options.loaders.commands.user    !== 'function') throw new Error('Invalid user context menu commands loader');
+    if (options?.loaders?.messageContextMenuCommands && typeof options.loaders.commands.message !== 'function') throw new Error('Invalid message context menu commands loader');
+
+    if (options?.groupers?.events   && typeof options.groupers.events   !== 'function') throw new Error('Invalid events grouper');
+    if (options?.groupers?.intents  && typeof options.groupers.intents  !== 'function') throw new Error('Invalid intents grouper');
+    if (options?.groupers?.partials && typeof options.groupers.partials !== 'function') throw new Error('Invalid partials grouper');
+
+    const loadedEvents                     = await (options?.loaders?.events                     ?? loadEvents)(eventsPath);
+    const loadedServices                   = await (options?.loaders?.services                   ?? loadServices)(servicesPath);
+    const loadedChatInputCommands          = await (options?.loaders?.chatInputCommands          ?? loadChatInputCommands)(chatInputCommandsPath);
+    const loadedUserContextMenuCommands    = await (options?.loaders?.userContextMenuCommands    ?? loadUserContextMenuCommands)(userContextMenuCommandsPath);
+    const loadedMessageContextMenuCommands = await (options?.loaders?.messageContextMenuCommands ?? loadMessageContextMenuCommands)(messageContextMenuCommandsPath);
 
     const usedEvents = (options?.groupers?.events ?? groupEvents)({
 
