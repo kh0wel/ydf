@@ -48,7 +48,7 @@
     "array-bracket-spacing":       [ "error", "always" ],
     "multiline-ternary":           [ "error", "always" ],
     "semi":                        [ "error", "always" ],
-    "operator-linebreak":          [ "error", "before" ],
+    "operator-linebreak":          [ "error", "after"  ],
 
     "no-mixed-operators": [
 
