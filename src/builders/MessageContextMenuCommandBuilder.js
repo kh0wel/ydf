@@ -56,7 +56,8 @@ export default class {
 
             options?.display.permissions.member &&
 
-            typeof options.display.permissions.member !== 'number' && 
+            typeof options.display.permissions.member !== 'number' &&
+            typeof options.display.permissions.member !== 'bigint' &&
             typeof options.display.permissions.member !== 'object'
         )
             throw new Error('Invalid display permissions member property');

@@ -9,13 +9,7 @@ switch (process.argv.at(2)) {
 
     case 'deploy':
 
-        try {
-
-            await environment((await import(`file:///${ path.resolve(process.cwd(), '.voart.config.js') }`)).default);
-        } catch {
-
-            throw new Error('Invalid config file');
-        };
+        await environment((await import(`file:///${ path.resolve(process.cwd(), '.voart.config.js') }`)).default);
 
         break;
 
