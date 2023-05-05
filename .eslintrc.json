@@ -41,6 +41,7 @@
     "no-unused-vars":          "off",
     "rest-spread-spacing":     "off",
     "return-await":            "off",
+    "operator-linebreak":      "off",
     "no-return-await":         "error",
 
     "template-curly-spacing":      [ "error", "always" ],
@@ -48,7 +49,6 @@
     "array-bracket-spacing":       [ "error", "always" ],
     "multiline-ternary":           [ "error", "always" ],
     "semi":                        [ "error", "always" ],
-    "operator-linebreak":          [ "error", "after"  ],
 
     "no-mixed-operators": [
 

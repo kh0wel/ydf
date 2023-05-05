@@ -9,20 +9,34 @@ switch (process.argv.at(2)) {
 
     case 'deploy':
 
-        await environment((await import(`file:///${ path.join(process.cwd(), '.voart.config.js') }`)).default);
+        try {
+
+            await environment((await import(`file:///${ path.resolve(process.cwd(), '.voart.config.js') }`)).default);
+        } catch {
+
+            throw new Error('Invalid config file');
+        };
 
         break;
 
     case 'init':
 
-        await fs.writeFile(path.join(process.cwd(), '.voart.config.js'), 'export default {};');
+        try {
 
-        await fs.mkdir(path.join(process.cwd(), 'src', 'events'), { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), 'src', 'services'), { recursive: true });
+            await fs.writeFile(path.resolve(process.cwd(), '.voart.config.js'), 'export default {};');
 
-        await fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'chat'), { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'user'), { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'message'), { recursive: true });
+            await fs.mkdir(path.resolve(process.cwd(), 'src', 'events'), { recursive: true });
+            await fs.mkdir(path.resolve(process.cwd(), 'src', 'services'), { recursive: true });
+    
+            await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'chat'), { recursive: true });
+            await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'user'), { recursive: true });
+            await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'message'), { recursive: true });
+    
+            console.log('Read the docs in https://github.com/voart/discord.js');    
+        } catch {
+
+            throw new Error('Inaccessible directory');
+        };
 
         break;
 };
