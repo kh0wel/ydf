@@ -1,11 +1,11 @@
-export default function ({
+export default function (
 
     loadedEvents,
     loadedServices,
     loadedChatInputCommands,
     loadedUserContextMenuCommands,
     loadedMessageContextMenuCommands
-}) {
+) {
 
     const usedEvents = new Map();
 

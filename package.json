@@ -1,20 +1,18 @@
 {
-  "$schema": "https://json.schemastore.org/package",
-  "name": "@voart/discord.js",
-  "description": "🍱 A core for discord.js library",
-  "version": "0.1.17",
+  "name": "nard",
+  "description": "🍱 A lightweight discord.js framework",
+  "version": "0.1.5",
   "type": "module",
-  "private": false,
   "scripts": {
     "lint": "eslint --ext .ts,.js \".\"",
     "format": "eslint --fix --ext .ts,.js \".\"",
     "build": "tsc --project \".\""
   },
   "bin": {
-    "vdcd": "./dist/cli.js"
+    "nard": "./dist/cli.js"
   },
-  "main": "./dist/environment.js",
-  "types": "./typings/environment.d.ts",
+  "main": "./dist/environmet.js",
+  "types": "./typings/environmet.d.ts",
   "files": [
     "./dist/",
     "./typings/"
@@ -25,13 +23,14 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/voart/discord.js.git"
+    "url": "https://github.com/knerett/nard"
   },
   "bugs": {
-    "url": "https://github.com/voart/discord.js/issues"
+    "url": "https://github.com/knerett/nard/issues"
   },
   "keywords": [
     "bot",
+    "experiment",
     "framework",
     "discord"
   ],
@@ -39,11 +38,11 @@
     "node": ">=18.*"
   },
   "devDependencies": {
-    "@types/node": "^18.16.3",
-    "@typescript-eslint/eslint-plugin": "^5.59.1",
-    "@typescript-eslint/parser": "^5.59.1",
-    "discord.js": "^14.9.0",
-    "eslint": "^8.39.0",
+    "@types/node": "^18.16.13",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "discord.js": "^14.11.0",
+    "eslint": "^8.40.0",
     "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
@@ -51,7 +50,7 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "discord.js": ">=14.9.0"
+    "discord.js": ">=14.11.0"
   },
   "peerDependenciesMeta": {
     "discord.js": {

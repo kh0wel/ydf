@@ -1,15 +1,15 @@
-## Installation
+## Starting
 
 1. Install [**Node** v18 or later](https://nodejs.org).
 
-2. Install this framework:
+2. Install framework:
 
     ```sh-session
-    npm add @voart/discord.js
-    yarn add @voart/discord.js
-    pnpm add @voart/discord.js
+    npm add nard
+    yarn add nard
+    pnpm add nard
     ```
-3. Install the framework dependences:
+3. Install dependences:
 
     ```sh-session
     npm add discord.js
@@ -17,18 +17,18 @@
     pnpm add discord.js
     ```
 
-4. Initialize you project:
+4. Create a project:
 
     ```sh-session
-    npm vdcd init
-    pnpm vdcd init
-    yarn vdcd init
+    npm nard init
+    pnpm nard init
+    yarn nard init
     ```
 
-5. Deploy you project:
+5. Deploy a project:
 
     ```sh-session
-    npm vdcd deploy
-    pnpm vdcd deploy
-    yarn vdcd deploy
+    npm nard deploy
+    pnpm nard deploy
+    yarn nard deploy
     ```

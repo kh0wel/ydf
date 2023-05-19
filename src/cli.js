@@ -1,36 +1,32 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import environment from './environment.js';
-
-if (!await import('discord.js')) throw new Error('discord.js dependence no installed');
+if (!await import('discord.js')) throw new Error('discord.js no installed');
 
 switch (process.argv.at(2)) {
 
-    case 'deploy':
+    case 'init':
 
-        await environment((await import(`file:///${ path.resolve(process.cwd(), '.voart.config.js') }`)).default);
+        switch (process.argv.at(3)) {
+
+            case 'basic':
+
+                await fs.cp('./templates/basic', path.resolve(process.cwd(), 'src'));
+
+                break;
+
+            case 'complete':
+
+                await fs.cp('./templates/complete', path.resolve(process.cwd(), 'src'));
+
+                break;
+        };
+
+        console.log('Read the docs on https://github.com/nard');
 
         break;
 
-    case 'init':
-
-        try {
-
-            await fs.writeFile(path.resolve(process.cwd(), '.voart.config.js'), 'export default {};');
-
-            await fs.mkdir(path.resolve(process.cwd(), 'src', 'events'), { recursive: true });
-            await fs.mkdir(path.resolve(process.cwd(), 'src', 'services'), { recursive: true });
-    
-            await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'chat'), { recursive: true });
-            await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'user'), { recursive: true });
-            await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'message'), { recursive: true });
-    
-            console.log('Read the docs in https://github.com/voart/discord.js');    
-        } catch {
-
-            throw new Error('Inaccessible directory');
-        };
+    case 'deploy':
 
         break;
 };

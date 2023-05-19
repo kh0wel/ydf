@@ -1,4 +1,4 @@
-export default function ({ loadedEvents, usedEvents }) {
+export default function (loadedEvents, usedEvents) {
 
     let usedIntents = [];
 

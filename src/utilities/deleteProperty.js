@@ -1,6 +1,8 @@
 export default function (property, target) {
 
-    delete property[target];
+    const clonedProperty = { ...property };
 
-    return property;
+    delete clonedProperty[target];
+
+    return clonedProperty;
 };
