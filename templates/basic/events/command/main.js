@@ -2,7 +2,7 @@ import discord from 'discord.js';
 
 export default {
 
-    priority: 1,
+    level: 1,
 
     execute ({
 

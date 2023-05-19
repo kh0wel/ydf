@@ -71,3 +71,7 @@ for (const loadedEvent of loadedEvents) {
         usedPartials
     });
 };
+
+client
+    .login('YOU BOT TOKEN')
+    .then(() => console.log('Bot connected'));

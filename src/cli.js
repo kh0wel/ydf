@@ -1,32 +1,21 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-if (!await import('discord.js')) throw new Error('discord.js no installed');
+if (!await import('discord.js')) throw new Error('Please, install discord.js');
 
 switch (process.argv.at(2)) {
 
     case 'init':
 
-        switch (process.argv.at(3)) {
+        console.log('Coming soon');
 
-            case 'basic':
-
-                await fs.cp('./templates/basic', path.resolve(process.cwd(), 'src'));
-
-                break;
-
-            case 'complete':
-
-                await fs.cp('./templates/complete', path.resolve(process.cwd(), 'src'));
-
-                break;
-        };
-
-        console.log('Read the docs on https://github.com/nard');
+        console.log('Read docs on https://github.com/nard');
 
         break;
 
     case 'deploy':
+
+        console.log('Coming soon');
 
         break;
 };

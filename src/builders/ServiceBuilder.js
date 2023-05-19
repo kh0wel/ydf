@@ -2,7 +2,7 @@ export default class {
 
     name = undefined;
 
-    priority = 0;
+    level = 0;
 
     intents = [];
 
@@ -15,13 +15,13 @@ export default class {
         this.name   = options.name;
         this.events = options.events;
 
-        // Opciones del servicio
-        if (options?.priority && typeof options.priority !== 'number') throw new Error('Invalid priority property');
-        if (options?.intents  && typeof options.intents  !== 'object') throw new Error('Invalid intents property');
-        if (options?.partials && typeof options.partials !== 'object') throw new Error('Invalid partials property');
+        this.level = options.level ?? 0;
 
-        this.priority = options.priority ?? this.priority;
-        this.intents  = options.intents  ?? this.intents;
-        this.partials = options.partials ?? this.partials;
+        this.intents  = options.intents  ?? [];
+        this.partials = options.partials ?? [];
+
+        if (this.level    !== 'number') throw new Error('Invalid level property');
+        if (this.intents  !== 'object') throw new Error('Invalid intents property');
+        if (this.partials !== 'object') throw new Error('Invalid partials property');
     };
 };
