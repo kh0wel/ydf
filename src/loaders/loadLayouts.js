@@ -5,11 +5,11 @@ import LayoutBuilder from '../builders/LayoutBuilder.js';
 
 export default async function (directory) {
 
-    const layoutFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedLayouts = [];
 
-    for (const folder of layoutFolders) {
+    for (const folder of directoryFolders) {
 
         loadedLayouts.push(
 

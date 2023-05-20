@@ -5,11 +5,11 @@ import EventBuilder from '../builders/EventBuilder.js';
 
 export default async function (directory) {
 
-    const eventFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedEvents = [];
 
-    for (const folder of eventFolders) {
+    for (const folder of directoryFolders) {
 
         loadedEvents.push(
 

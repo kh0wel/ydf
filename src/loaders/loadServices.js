@@ -5,11 +5,11 @@ import ServiceBuilder from '../builders/ServiceBuilder.js';
 
 export default async function (directory) {
 
-    const serviceFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedServices = [];
 
-    for (const folder of serviceFolders) {
+    for (const folder of directoryFolders) {
 
         loadedServices.push(
 

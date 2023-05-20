@@ -1,11 +1,11 @@
 export default class {
 
-    name    = undefined;
-    execute = undefined;
+    name     = undefined;
+    template = undefined;
 
     constructor (options) {
 
-        this.name    = options.name;
-        this.execute = options.execute;
+        this.name     = options.name;
+        this.template = options.template;
     };
 };

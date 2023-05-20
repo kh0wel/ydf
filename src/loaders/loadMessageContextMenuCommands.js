@@ -5,11 +5,11 @@ import MessageContextMenuCommandBuilder from '../builders/MessageContextMenuComm
 
 export default async function (directory) {
 
-    const commandFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedCommands = [];
 
-    for (const folder of commandFolders) {
+    for (const folder of directoryFolders) {
 
         loadedCommands.push(
 
