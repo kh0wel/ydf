@@ -7,28 +7,28 @@ export default function (
     loadedMessageContextMenuCommands
 ) {
 
-    const usedEvents = new Map();
+    const usedEvents = {};
 
     for (const loadedEvent of loadedEvents) {
 
-        const inServices = loadedServices.filter((service) => service.events[loadedEvent.name]);
+        const byServices = loadedServices.filter((service) => service.events[loadedEvent.name]);
 
-        const inCommands = loadedChatInputCommands
+        const byCommands = loadedChatInputCommands
             .concat(loadedUserContextMenuCommands)
             .concat(loadedMessageContextMenuCommands)
             .filter((command) => command.events[loadedEvent.name]);
 
-        const inAll = inServices.concat(inCommands);
+        const byAll = byServices.concat(byCommands);
 
         // Si el evento no es utilizado, lo ignora
-        if (!inAll.length) continue;
+        if (!byAll.length) continue;
 
-        usedEvents.set(loadedEvent.name, {
+        usedEvents[loadedEvent.name] = {
 
-            services: inServices,
-            commands: inCommands,
-            all:      inAll
-        });
+            services: byServices,
+            commands: byCommands,
+            all:      byAll
+        };
     };
 
     return usedEvents;

@@ -26,9 +26,9 @@ switch (process.argv.at(2)) {
 
     case 'deploy':
 
-        const configuration = await import(`file:///${ path.resolve(process.cwd(), '.nard.config.js') }`);
+        const config = await import(`file:///${ path.resolve(process.cwd(), '.nard.config.js') }`);
 
-        await deployment(configuration.default);
+        await deployment(config.default);
 
         break;
 };

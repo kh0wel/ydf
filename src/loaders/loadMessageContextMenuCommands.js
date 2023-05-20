@@ -5,21 +5,15 @@ import MessageContextMenuCommandBuilder from '../builders/MessageContextMenuComm
 
 export default async function (directory) {
 
-    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const commandFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedCommands = [];
 
-    for (const folder of directoryFolders) {
+    for (const folder of commandFolders) {
 
-        loadedCommands.push(
+        const loadedCommand = await import(`file:///${ path.resolve(directory, folder, 'main.js') }`);
 
-            new MessageContextMenuCommandBuilder({
-
-                ... (await import(`file:///${ path.resolve(directory, folder, 'main.js') }`)).default,
-
-                name: folder
-            })
-        );
+        loadedCommands.push(new MessageContextMenuCommandBuilder({ ...loadedCommand.default, name: folder }));
     };
 
     return loadedCommands;

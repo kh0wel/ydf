@@ -5,21 +5,15 @@ import UserContextMenuCommandBuilder from '../builders/UserContextMenuCommandBui
 
 export default async function (directory) {
 
-    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const commandFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedCommands = [];
 
-    for (const folder of directoryFolders) {
+    for (const folder of commandFolders) {
 
-        loadedCommands.push(
+        const loadedCommand = await import(`file:///${ path.resolve(directory, folder, 'main.js') }`);
 
-            new UserContextMenuCommandBuilder({
-
-                ... (await import(`file:///${ path.resolve(directory, folder, 'main.js') }`)).default,
-
-                name: folder
-            })
-        );
+        loadedCommands.push(new UserContextMenuCommandBuilder({ ...loadedCommand.default, name: folder }));
     };
 
     return loadedCommands;

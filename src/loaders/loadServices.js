@@ -5,21 +5,15 @@ import ServiceBuilder from '../builders/ServiceBuilder.js';
 
 export default async function (directory) {
 
-    const directoryFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
+    const serviceFolders = (await fs.readdir(directory)).filter((name) => !name.startsWith('.'));
 
     const loadedServices = [];
 
-    for (const folder of directoryFolders) {
+    for (const folder of serviceFolders) {
 
-        loadedServices.push(
+        const loadedService = await import(`file:///${ path.resolve(directory, folder, 'main.js') }`);
 
-            new ServiceBuilder({
-
-                ... (await import(`file:///${ path.resolve(directory, folder, 'main.js') }`)).default,
-
-                name: folder
-            })
-        );
+        loadedServices.push(new ServiceBuilder({ ...loadedService.default, name: folder }));
     };
 
     return loadedServices;
