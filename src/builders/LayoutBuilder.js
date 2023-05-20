@@ -2,7 +2,7 @@ export default class {
 
     name = undefined;
 
-    execute  = undefined;
+    execute = undefined;
 
     constructor (options) {
 

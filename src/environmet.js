@@ -50,7 +50,7 @@ export default async function (options) {
 
             layout (name, options) {
 
-                return loadedLayouts.find((layout) => layout.name === name)?.execute(options);
+                return loadedLayouts.find((layout) => layout.name === name)?.execute({ options });
             },
 
             options, client,

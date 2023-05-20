@@ -9,14 +9,12 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'events'), { recursive: true });
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'services'), { recursive: true });
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'chat'), { recursive: true });
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'user'), { recursive: true });
+        await fs.mkdir(path.resolve(process.cwd(), 'src', 'layouts'),             { recursive: true });
+        await fs.mkdir(path.resolve(process.cwd(), 'src', 'events'),              { recursive: true });
+        await fs.mkdir(path.resolve(process.cwd(), 'src', 'services'),            { recursive: true });
+        await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'chat'),    { recursive: true });
+        await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'user'),    { recursive: true });
         await fs.mkdir(path.resolve(process.cwd(), 'src', 'commands', 'message'), { recursive: true });
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'layouts', 'embeds'), { recursive: true });
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'layouts', 'components'), { recursive: true });
-        await fs.mkdir(path.resolve(process.cwd(), 'src', 'layouts', 'modals'), { recursive: true });
 
         await fs.writeFile(path.resolve(process.cwd(), '.nard.config.js'), 'export default {};');
 
