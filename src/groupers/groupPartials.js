@@ -9,7 +9,7 @@ export default function (loadedEvents, usedEvents) {
 
         usedPartials = usedPartials.concat(loadedEvent.partials);
 
-        for (const loadedFile of usedEvents.get(loadedEvent.name).all) {
+        for (const loadedFile of usedEvents[loadedEvent.name].all) {
 
             usedPartials = usedPartials.concat(loadedFile.partials);
         };

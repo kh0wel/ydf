@@ -9,7 +9,7 @@ export default function (loadedEvents, usedEvents) {
 
         usedIntents = usedIntents.concat(loadedEvent.intents);
 
-        for (const loadedFile of usedEvents.get(loadedEvent.name).all) {
+        for (const loadedFile of usedEvents[loadedEvent.name].all) {
 
             usedIntents = usedIntents.concat(loadedFile.intents);
         };

@@ -1,7 +1,7 @@
 {
   "name": "nard",
   "description": "🍱 A lightweight discord.js framework",
-  "version": "0.1.19",
+  "version": "0.1.21",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .ts,.js \".\"",
