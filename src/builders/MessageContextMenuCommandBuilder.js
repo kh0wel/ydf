@@ -2,12 +2,15 @@ import deleteProperty from '../utilities/deleteProperty.js';
 
 export default class {
 
-    name     = undefined;
-    level    = undefined;
-    intents  = undefined;
-    partials = undefined;
+    name = undefined;
 
-    type = undefined;
+    // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+    type = 3;
+
+    level = 0;
+
+    intents  = [];
+    partials = [];
 
     display = {
         
@@ -15,18 +18,20 @@ export default class {
 
         permissions: {
 
-            member: undefined,
-            dm:     undefined,
-            nsfw:   undefined 
+            dm: false, nsfw: false,
+
+            member: null
         },
 
         data: {
 
-            name:                       undefined,
-            name_localizations:         undefined,
-            dm_permission:              undefined,
-            nsfw:                       undefined,
-            default_member_permissions: undefined
+            name: undefined,
+
+            name_localizations: {},
+
+            default_member_permissions: null,
+
+            dm_permission: false, nsfw: false
         }
     };
 
@@ -34,40 +39,35 @@ export default class {
 
     constructor (options) {
 
-        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
-        this.type = 3;
+        this.name = options.name;
 
-        this.name   = options.name;
+        this.level    = options.level    ?? this.level;
+        this.intents  = options.intents  ?? this.intents;
+        this.partials = options.partials ?? this.partials;
+
+        this.display = {
+
+            name: options.display.name,
+
+            permissions: {
+
+                member: options.display.permissions?.member ?? this.display.permissions.member,
+                dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
+                nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+            },
+
+            data: {
+
+                name: options.display.name.default,
+
+                name_localizations: deleteProperty(options.display.name, 'default'),
+
+                default_member_permissions: options.display.permissions?.member ?? this.display.data.default_member_permissions,
+                dm_permission:              options.display.permissions?.dm     ?? this.display.data.dm_permission,
+                nsfw:                       options.display.permissions?.nsfw   ?? this.display.data.nsfw
+            }
+        };
+
         this.events = options.events;
-
-        this.level = options.level ?? 0;
-
-        this.intents  = options.intents  ?? [];
-        this.partials = options.partials ?? [];
-
-        this.display.name = options.display.name;
-
-        this.display.permissions.dm   = options.display.permissions?.dm   ?? false
-        this.display.permissions.nsfw = options.display.permissions?.nsfw ?? false;
-
-        this.display.permissions.member = options.display.permissions?.member ?? null;
-
-        if (this.level                    !== 'number')  throw new Error('Invalid level property');
-        if (this.intents                  !== 'number')  throw new Error('Invalid intents property');
-        if (this.partials                 !== 'number')  throw new Error('Invalid partials property');
-        if (this.display.name             !== 'object')  throw new Error('Invalid display.name property');
-        if (this.display.permissions.dm   !== 'boolean') throw new Error('Invalid display.permissions.dm property');
-        if (this.display.permissions.nsfw !== 'boolean') throw new Error('Invalid display.permissions.nsfw property');
-
-        if (this.display.permissions.member !== 'number'
-        &&  this.display.permissions.member !== 'object') throw new Error('Invalid display.permissions.member property');
-
-        this.display.data.name = this.display.name.default;
-
-        this.display.data.name_localizations        = deleteProperty(this.display.name, 'default');
-
-        this.display.data.dm_permission              = this.display.permissions.dm;
-        this.display.data.nsfw                       = this.display.permissions.nsfw;
-        this.display.data.default_member_permissions = this.display.permissions.member;
     };
 };

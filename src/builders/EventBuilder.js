@@ -1,23 +1,22 @@
 export default class {
 
-    name     = undefined;
-    level    = undefined;
-    intents  = undefined;
-    partials = undefined;
+    name = undefined;
+
+    level = 0;
+
+    intents  = [];
+    partials = [];
+
     execute  = undefined;
 
     constructor (options) {
 
-        this.name    = options.name;
+        this.name = options.name;
+
+        this.level    = options.level    ?? this.level;
+        this.intents  = options.intents  ?? this.intents;
+        this.partials = options.partials ?? this.partials;
+
         this.execute = options.execute;
-
-        this.level = options.level ?? 0;
-
-        this.intents  = options.intents  ?? [];
-        this.partials = options.partials ?? [];
-
-        if (this.level    !== 'number') throw new Error('Invalid level property');
-        if (this.intents  !== 'object') throw new Error('Invalid intents property');
-        if (this.partials !== 'object') throw new Error('Invalid partials property');
     };
 };

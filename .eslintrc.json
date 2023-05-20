@@ -1,26 +1,15 @@
 {
   "root": true,
 
-  "parser": "@typescript-eslint/parser",
-
   "env": {
 
     "es2021": true,
     "node":   true
   },
 
-  "plugins": [ "@typescript-eslint" ],
-
-  "extends": [
-
-    "eslint:recommended",
-
-    "plugin:@typescript-eslint/recommended"
-  ],
+  "extends": [ "eslint:recommended" ],
 
   "parserOptions": {
-
-    "project": "./tsconfig.json",
 
     "ecmaVersion": "latest",
     "sourceType":  "module"
@@ -82,42 +71,6 @@
       { "blankLine": "always", "prev": "*",        "next": "return"   }
     ],
 
-    "key-spacing": [ "error", { "align": "value", "afterColon": true } ],
-
-    "@typescript-eslint/no-non-null-assertion":         "off",
-    "@typescript-eslint/restrict-template-expressions": "off",
-    "@typescript-eslint/func-call-spacing":             "off",
-    "@typescript-eslint/semi":                          "off",
-    "@typescript-eslint/no-extra-semi":                 "off",
-    "@typescript-eslint/no-empty-function":             "off",
-    "@typescript-eslint/no-explicit-any":               "off",
-    "@typescript-eslint/ban-ts-comment":                "off",
-    "@typescript-eslint/strict-boolean-expressions":    "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/promise-function-async":        "off",
-    "@typescript-eslint/no-unused-vars":                "warn",
-
-    "@typescript-eslint/return-await": [ "error", "never" ],
-
-    "@typescript-eslint/no-empty-interface": [ "error", { "allowSingleExtends": true } ],
-
-    "@typescript-eslint/indent": [
-
-      "error", 4, {
-
-        "ImportDeclaration":  "first",
-        "VariableDeclarator": "first",
-        "ArrayExpression":    "first",
-        "ObjectExpression":   "first",
-
-        "FunctionDeclaration": { "parameters": "first" },
-        "FunctionExpression":  { "parameters": "first" },
- 
-        "SwitchCase":       1,
-        "MemberExpression": 1,
-
-        "flatTernaryExpressions": true
-      }
-    ]
+    "key-spacing": [ "error", { "align": "value", "afterColon": true } ]
   }
 }

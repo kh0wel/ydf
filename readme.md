@@ -17,10 +17,18 @@
     pnpm add discord.js
     ```
 
-4. Create a minimal or full project:
+4. Create a project:
 
     ```sh-session
-    npm nard init minimal
-    pnpm nard init minimal
-    yarn nard init minimal
+    npm nard init
+    pnpm nard init
+    yarn nard init
+    ```
+
+4. Deploy a project:
+
+    ```sh-session
+    npm nard deploy
+    pnpm nard deploy
+    yarn nard deploy
     ```
