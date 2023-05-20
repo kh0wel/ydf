@@ -48,19 +48,41 @@ export default async function (options) {
 
         loadedEvent.execute({
 
-            layout (name, options) {
+            layout (name, customization) {
 
-                return loadedLayouts.find((layout) => layout.name === name)?.execute({ options });
+                return loadedLayouts.find((layout) => layout.name === name)?.execute({
+
+                    client, options, customization,
+
+                    layoutsPath,
+                    eventsPath,
+                    servicesPath,
+                    chatInputCommandsPath,
+                    userContextMenuCommandsPath,
+                    messageContextMenuCommandsPath,
+
+                    loadedLayouts,
+                    loadedEvents,
+                    loadedServices,
+                    loadedChatInputCommands,
+                    loadedUserContextMenuCommands,
+                    loadedMessageContextMenuCommands,
+
+                    usedEvents,
+                    usedGateways
+                });
             },
 
-            options, client,
+            client, options,
 
+            layoutsPath,
             eventsPath,
             servicesPath,
             chatInputCommandsPath,
             userContextMenuCommandsPath,
             messageContextMenuCommandsPath,
 
+            loadedLayouts,
             loadedEvents,
             loadedServices,
             loadedChatInputCommands,

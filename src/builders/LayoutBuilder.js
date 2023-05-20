@@ -1,13 +1,11 @@
 export default class {
 
-    name = undefined;
-
+    name    = undefined;
     execute = undefined;
 
     constructor (options) {
 
-        this.name = options.name;
-
+        this.name    = options.name;
         this.execute = options.execute;
     };
 };
