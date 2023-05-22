@@ -1,15 +1,19 @@
-## Starting
+## Features
+
+
+
+## Installation
 
 1. Install [**Node** v18 or later](https://nodejs.org).
 
-2. Install framework:
+2. Install nard:
 
     ```sh-session
     npm add nard
     yarn add nard
     pnpm add nard
     ```
-3. Install dependences:
+3. Install discord.js:
 
     ```sh-session
     npm add discord.js
@@ -17,18 +21,6 @@
     pnpm add discord.js
     ```
 
-4. Create a project:
+## Starting
 
-    ```sh-session
-    npm nard init
-    pnpm nard init
-    yarn nard init
-    ```
-
-4. Deploy a project:
-
-    ```sh-session
-    npm nard deploy
-    pnpm nard deploy
-    yarn nard deploy
-    ```
+1. Run `nard init`.

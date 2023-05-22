@@ -7,8 +7,6 @@ export default class {
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 2;
 
-    level = 0;
-
     intents  = [];
     partials = [];
 
@@ -41,7 +39,6 @@ export default class {
 
         this.name = options.name;
 
-        this.level    = options.level    ?? this.level;
         this.intents  = options.intents  ?? this.intents;
         this.partials = options.partials ?? this.partials;
 
