@@ -2,17 +2,17 @@ import path from 'node:path';
 
 import { Client } from 'discord.js';
 
-import groupEvents from '../groupers/groupEvents.js';
-import groupIntents from '../groupers/groupIntents.js';
-import groupPartials from '../groupers/groupPartials.js';
+import groupEvents from './groupers/groupEvents.js';
+import groupIntents from './groupers/groupIntents.js';
+import groupPartials from './groupers/groupPartials.js';
 
-import loadFiles from '../utils/loadFiles.js';
+import loadFiles from './utils/loadFiles.js';
 
-import EventBuilder from '../builders/EventBuilder.js';
-import ServiceBuilder from '../builders/ServiceBuilder.js';
-import ChatInputCommandBuilder from '../builders/ChatInputCommandBuilder.js';
-import UserContextMenuCommandBuilder from '../builders/UserContextMenuCommandBuilder.js';
-import MessageContextMenuCommandBuilder from '../builders/MessageContextMenuCommandBuilder.js';
+import EventBuilder from './builders/EventBuilder.js';
+import ServiceBuilder from './builders/ServiceBuilder.js';
+import ChatInputCommandBuilder from './builders/ChatInputCommandBuilder.js';
+import UserContextMenuCommandBuilder from './builders/UserContextMenuCommandBuilder.js';
+import MessageContextMenuCommandBuilder from './builders/MessageContextMenuCommandBuilder.js';
 
 export default async function (options) {
 

@@ -1,22 +1,24 @@
 {
   "name": "nard-prev",
   "description": "🍱 A lightweight discord.js framework",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .ts,.js \".\"",
     "format": "eslint --fix --ext .ts,.js \".\"",
     "build": "tsc --project \".\""
   },
-  "bin": {
-    "nard": "./dist/cli.js"
-  },
+  "main": "./dist/env.js",
+  "types": "./typings/env.d.ts",
   "files": [
     "./dist/",
     "./typings/"
   ],
   "directories": {
     "lib": "./dist/"
+  },
+  "bin": {
+    "nard": "./dist/cli.js"
   },
   "license": "Apache-2.0",
   "repository": {
