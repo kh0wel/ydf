@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const searcher = async (directory, target, Builder) => {
+const searcher = async (directory, targets, Builder) => {
 
     const directoryItems = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -14,17 +14,17 @@ const searcher = async (directory, target, Builder) => {
         // Si es un directorio
         if (itemStat.isDirectory()) {
 
-            loadedFiles = loadedFiles.concat(await searcher(path.resolve(directory, item)));
+            loadedFiles = loadedFiles.concat(await searcher(path.resolve(directory, item), targets, Builder));
 
             continue;
         };
 
         // Si no es un archivo objetivo
-        if (!target.includes(item)) continue;
+        if (!targets.includes(item)) continue;
 
         const data = await import(`file:///${ path.resolve(directory, item) }`);
 
-        loadedFiles.push(new Builder({ ...data.default, name: item }));
+        loadedFiles.push(new Builder({ ...data.default, name: directory.split(path.sep).at(-1) }));
 
         break;
     };
