@@ -1,6 +1,8 @@
 ## Features
 
-
+- 🧼 Light weight.
+- 🧱 Scalable structure.
+- 💪🏻 Optimized performance.
 
 ## Installation
 
@@ -24,3 +26,5 @@
 ## Starting
 
 1. Run `nard init`.
+
+2. Run `nard deploy`.
