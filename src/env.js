@@ -2,25 +2,25 @@ import path from 'node:path';
 
 import { Client } from 'discord.js';
 
-import groupEvents from './groupers/groupEvents.js';
-import groupIntents from './groupers/groupIntents.js';
-import groupPartials from './groupers/groupPartials.js';
+import groupEvents from '../groupers/groupEvents.js';
+import groupIntents from '../groupers/groupIntents.js';
+import groupPartials from '../groupers/groupPartials.js';
 
-import loadFiles from './utilities/loadFiles.js';
+import loadFiles from '../utils/loadFiles.js';
 
-import EventBuilder from './builders/EventBuilder.js';
-import ServiceBuilder from './builders/ServiceBuilder.js';
-import ChatInputCommandBuilder from './builders/ChatInputCommandBuilder.js';
-import UserContextMenuCommandBuilder from './builders/UserContextMenuCommandBuilder.js';
-import MessageContextMenuCommandBuilder from './builders/MessageContextMenuCommandBuilder.js';
+import EventBuilder from '../builders/EventBuilder.js';
+import ServiceBuilder from '../builders/ServiceBuilder.js';
+import ChatInputCommandBuilder from '../builders/ChatInputCommandBuilder.js';
+import UserContextMenuCommandBuilder from '../builders/UserContextMenuCommandBuilder.js';
+import MessageContextMenuCommandBuilder from '../builders/MessageContextMenuCommandBuilder.js';
 
 export default async function (options) {
 
-    const eventsPath                     = options.directories?.events            ?? path.resolve(process.cwd(), 'src', 'events');
-    const servicesPath                   = options.directories?.services          ?? path.resolve(process.cwd(), 'src', 'services');
-    const chatInputCommandsPath          = options.directories?.commands?.chat    ?? path.resolve(process.cwd(), 'src', 'commands', 'chat');
-    const userContextMenuCommandsPath    = options.directories?.commands?.user    ?? path.resolve(process.cwd(), 'src', 'commands', 'user');
-    const messageContextMenuCommandsPath = options.directories?.commands?.message ?? path.resolve(process.cwd(), 'src', 'commands', 'message');
+    const eventsPath                     = options.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
+    const servicesPath                   = options.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
+    const chatInputCommandsPath          = options.directories?.commands?.chat    ?? path.join(process.cwd(), 'src', 'commands', 'chat');
+    const userContextMenuCommandsPath    = options.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
+    const messageContextMenuCommandsPath = options.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
 
     const loadedEvents                     = await loadFiles(eventsPath,                     [ 'main.js', 'main.ts' ], EventBuilder);
     const loadedServices                   = await loadFiles(servicesPath,                   [ 'main.js', 'main.ts' ], ServiceBuilder);

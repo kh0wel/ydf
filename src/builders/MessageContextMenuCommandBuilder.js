@@ -1,4 +1,4 @@
-import deleteProperty from '../utilities/deleteProperty.js';
+import deleteProperty from '../utils/deleteProperty.js';
 
 export default class {
 
