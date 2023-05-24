@@ -3,17 +3,17 @@ import path from 'node:path';
 
 import { Client } from 'discord.js';
 
-import getUsedEvents from './handlers/usedEvents.js';
-import getUsedIntents from './handlers/usedIntents.js';
-import getUsedPartials from './handlers/usedPartials.js';
+import loadFiles from './loadFiles.js';
+import getDefaultEvents from './getDefaultEvents.js';
+import getUsedEvents from './getUsedEvents.js';
+import getUsedIntents from './getUsedIntents.js';
+import getUsedPartials from './getUsedPartials.js';
 
-import importResources from './utils/importResources.js';
-
-import EventBuilder from './builders/Event.js';
-import ServiceBuilder from './builders/Service.js';
-import ChatInputCommandBuilder from './builders/ChatInputCommand.js';
-import UserContextMenuCommandBuilder from './builders/UserContextMenuCommand.js';
-import MessageContextMenuCommandBuilder from './builders/MessageContextMenuCommand.js';
+import EventBuilder from './builders/EventBuilder.js';
+import ServiceBuilder from './builders/ServiceBuilder.js';
+import ChatInputCommandBuilder from './builders/ChatInputCommandBuilder.js';
+import UserContextMenuCommandBuilder from './builders/UserContextMenuCommandBuilder.js';
+import MessageContextMenuCommandBuilder from './builders/MessageContextMenuCommandBuilder.js';
 
 if (!await import('discord.js')) throw new Error('Please, install discord.js');
 
@@ -21,10 +21,10 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
-        fs.mkdir(path.join(process.cwd(), 'src', 'events'),              { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'services'),            { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'chat'),    { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'user'),    { recursive: true });
+        fs.mkdir(path.join(process.cwd(), 'src', 'events'), { recursive: true });
+        fs.mkdir(path.join(process.cwd(), 'src', 'services'), { recursive: true });
+        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'chat'), { recursive: true });
+        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'user'), { recursive: true });
         fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'message'), { recursive: true });
 
         fs.writeFile(path.join(process.cwd(), '.nard.config.js'), 'export default {};');
@@ -43,11 +43,12 @@ switch (process.argv.at(2)) {
         const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
         const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
 
-        const loadedEvents                     = await importResources(eventsPath, EventBuilder);
-        const loadedServices                   = await importResources(servicesPath, ServiceBuilder);
-        const loadedChatInputCommands          = await importResources(chatInputCommandsPath, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await importResources(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await importResources(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
+        const loadedEvents = getDefaultEvents().concat(await loadFiles(eventsPath, EventBuilder));
+
+        const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
 
         const usedEvents = getUsedEvents(
 
