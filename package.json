@@ -1,15 +1,13 @@
 {
   "name": "nard-prev",
   "description": "🍱 A lightweight discord.js framework",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .ts,.js \".\"",
     "format": "eslint --fix --ext .ts,.js \".\"",
     "build": "tsc --project \".\""
   },
-  "main": "./dist/env.js",
-  "types": "./typings/env.d.ts",
   "files": [
     "./dist/",
     "./typings/"
@@ -20,13 +18,14 @@
   "bin": {
     "nard": "./dist/cli.js"
   },
+  "author": "kh0wel",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/knerett/nard"
+    "url": "https://github.com/kh0wel/nard"
   },
   "bugs": {
-    "url": "https://github.com/knerett/nard/issues"
+    "url": "https://github.com/kh0wel/nard/issues"
   },
   "keywords": [
     "bot",

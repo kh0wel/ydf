@@ -66,7 +66,7 @@ export default class {
                 name:        options.display.name.default,
                 description: options.display.description.default,
 
-                name_localizations:        deleteProperty(options.display.name,        'default'),
+                name_localizations:        deleteProperty(options.display.name, 'default'),
                 description_localizations: deleteProperty(options.display.description, 'default'),
 
                 options: options.display.options ?? this.display.data.options,
