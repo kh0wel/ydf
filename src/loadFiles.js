@@ -9,27 +9,28 @@ const loader = async (directory, targets, Builder) => {
 
     for (const item of items) {
 
-        if (!path.extname(item)) {
+        const itemStat = await fs.stat(path.join(directory, item));
+
+        if (itemStat.isDirectory()) {
+
+            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), targets, Builder));
+
+            continue;
+        };
+
+        if (targets.includes(item)) {
 
             try {
 
                 const loadedFile = await import(`file:///${ path.join(directory, item) }`);
 
-                loadedFiles.push(
+                loadedFiles.push(new Builder({ ...loadedFile.default, name: directory.split(path.sep).at(-1) }));
+            } catch (err) {
 
-                    new Builder({
-
-                        ...loadedFile.default,
-
-                        name: directory.split(path.sep).at(-1)
-                    })
-                );
-
-                break;
-            } catch {
-
-                loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), targets, Builder));
+                console.log(err);
             };
+
+            break;
         };
     };
 

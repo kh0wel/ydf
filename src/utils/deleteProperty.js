@@ -1,8 +1,8 @@
-export default function (previusObject, target) {
+export default function (obj, prop) {
 
-    const currentObject = { ...previusObject };
+    const createdObj = { ...obj };
 
-    delete currentObject[target];
+    delete createdObj[prop];
 
-    return currentObject;
+    return createdObj;
 };

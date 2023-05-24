@@ -36,36 +36,36 @@ export default class {
 
     events = undefined;
 
-    constructor (data) {
+    constructor (opt) {
 
-        this.name = data.name;
+        this.name = opt.name;
 
-        this.intents  = data.intents  ?? this.intents;
-        this.partials = data.partials ?? this.partials;
+        this.intents  = opt.intents  ?? this.intents;
+        this.partials = opt.partials ?? this.partials;
 
         this.display = {
 
-            name: data.display.name,
+            name: opt.display.name,
 
             permissions: {
 
-                member: data.display.permissions?.member ?? this.display.permissions.member,
-                dm:     data.display.permissions?.dm     ?? this.display.permissions.dm,
-                nsfw:   data.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                member: opt.display.permissions?.member ?? this.display.permissions.member,
+                dm:     opt.display.permissions?.dm     ?? this.display.permissions.dm,
+                nsfw:   opt.display.permissions?.nsfw   ?? this.display.permissions.nsfw
             },
 
             data: {
 
-                name: data.display.name.default,
+                name: opt.display.name.default,
 
-                name_localizations: deleteProperty(data.display.name, 'default'),
+                name_localizations: deleteProperty(opt.display.name, 'default'),
 
-                default_member_permissions: data.display.permissions?.member ?? this.display.data.default_member_permissions,
-                dm_permission:              data.display.permissions?.dm     ?? this.display.data.dm_permission,
-                nsfw:                       data.display.permissions?.nsfw   ?? this.display.data.nsfw
+                default_member_permissions: opt.display.permissions?.member ?? this.display.data.default_member_permissions,
+                dm_permission:              opt.display.permissions?.dm     ?? this.display.data.dm_permission,
+                nsfw:                       opt.display.permissions?.nsfw   ?? this.display.data.nsfw
             }
         };
 
-        this.events = data.events;
+        this.events = opt.events;
     };
 };

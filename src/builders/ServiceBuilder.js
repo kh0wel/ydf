@@ -7,13 +7,13 @@ export default class {
 
     events = undefined;
 
-    constructor (data) {
+    constructor (opt) {
 
-        this.name = data.name;
+        this.name = opt.name;
 
-        this.intents  = data.intents  ?? this.intents;
-        this.partials = data.partials ?? this.partials;
+        this.intents  = opt.intents  ?? this.intents;
+        this.partials = opt.partials ?? this.partials;
 
-        this.events = data.events;
+        this.events = opt.events;
     };
 };
