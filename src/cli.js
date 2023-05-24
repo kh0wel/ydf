@@ -43,12 +43,12 @@ switch (process.argv.at(2)) {
         const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
         const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
 
-        const loadedEvents = getDefaultEvents().concat(await loadFiles(eventsPath, EventBuilder));
+        const loadedEvents = getDefaultEvents().concat(await loadFiles(eventsPath, [ 'main.js', 'main.ts' ], EventBuilder));
 
-        const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
-        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
+        const loadedServices                   = await loadFiles(servicesPath,                   [ 'main.js', 'main.ts' ], ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath,          [ 'main.js', 'main.ts' ], ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath,    [ 'main.js', 'main.ts' ], UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, [ 'main.js', 'main.ts' ], MessageContextMenuCommandBuilder);
 
         const usedEvents = getUsedEvents(
 

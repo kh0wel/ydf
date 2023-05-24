@@ -1,24 +1,39 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-export default async function (directory, Builder) {
+const loader = async (directory, targets, Builder) => {
 
-    const loadedFiles = [];
+    const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
-    const priorityFolders = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
+    let loadedFiles = [];
 
-    for (const priority of priorityFolders) {
+    for (const item of items) {
 
-        const itemFolders = (await fs.readdir(path.join(directory, priority), 'utf-8')).filter((name) => !name.startsWith('.'));
+        if (!path.extname(item)) {
 
-        for (const item of itemFolders) {
+            try {
 
-            const data = await import(`file:///${ path.join(directory, priority, item, 'main.js') }`);
+                const loadedFile = await import(`file:///${ path.join(directory, item) }`);
 
-            loadedFiles.push(new Builder({ ...data.default, name: item }));
+                loadedFiles.push(
+
+                    new Builder({
+
+                        ...loadedFile.default,
+
+                        name: directory.split(path.sep).at(-1)
+                    })
+                );
+
+                break;
+            } catch {
+
+                loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), targets, Builder));
+            };
         };
     };
 
     return loadedFiles;
 };
 
+export default loader;
