@@ -42,10 +42,10 @@ switch (process.argv.at(2)) {
         const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
 
         const loadedEvents                     = defaultEvents.concat(await loadFiles(eventsPath, EventBuilder));
-        const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
-        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
+        const loadedServices                   =                      await loadFiles(servicesPath, ServiceBuilder);
+        const loadedChatInputCommands          =                      await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    =                      await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands =                      await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
 
         const usedEvents = getUsedEvents(
 

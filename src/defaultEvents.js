@@ -4,6 +4,7 @@ import EventBuilder from './builders/EventBuilder.js';
 
 export default [
 
+    // Prioridad: 0
     new EventBuilder({
 
         name: 'summon',
@@ -55,6 +56,7 @@ export default [
         }
     }),
 
+    // Prioridad: 1
     new EventBuilder({
 
         name: 'clientReady',
@@ -109,6 +111,170 @@ export default [
         }
     }),
 
+    // Prioridad: 2
+    new EventBuilder({
+
+        name: 'debug',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.Debug, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'error',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.Error, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'warn',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.Warn, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    // Prioridad: 3
     new EventBuilder({
 
         name: 'interactionCommand',
@@ -169,6 +335,763 @@ export default [
                     });
     
                     break;
+                };
+            });
+        }
+    }),
+
+    // Prioridad: 4
+    new EventBuilder({
+
+        name: 'channelCreate',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.ChannelCreate, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'channelDelete',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.ChannelDelete, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildCreate',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildCreate, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildDelete',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildDelete, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildBanAdd',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildBanAdd, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildBanRemove',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildBanRemove, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildRoleCreate',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildRoleCreate, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildRoleDelete',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildRoleDelete, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildScheduledEventCreate',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildScheduledEventCreate, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildScheduledEventDelete',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildScheduledEventDelete, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildStickerCreate',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildStickerCreate, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'guildStickerDelete',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.GuildStickerDelete, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'messageCreate',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.MessageCreate, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
+                };
+            });
+        }
+    }),
+
+    new EventBuilder({
+
+        name: 'mssageDelete',
+
+        execute ({
+
+            config, client,
+
+            eventsPath,
+            servicesPath,
+            chatInputCommandsPath,
+            userContextMenuCommandsPath,
+            messageContextMenuCommandsPath,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+            usedPartials
+        }) {
+
+            client.on(discord.Events.MessageDelete, (event) => {
+
+                for (const loadedFile of usedEvents[this.name].all) {
+
+                    loadedFile.events[this.name]({
+
+                        config, client, event,
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents,
+                        usedPartials
+                    });
                 };
             });
         }
