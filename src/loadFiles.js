@@ -17,15 +17,21 @@ const loader = async (directory, Builder) => {
 
             if (!item.startsWith('main')) continue;
 
-            const loadedFile = await import(`file:///${ path.join(directory, item) }`);
+            loadedFiles.push(
 
-            loadedFiles.push(new Builder({ ...loadedFile.default, name: directory.split(path.sep).at(-1) }));
+                new Builder({
+
+                    ... (await import(`file:///${ path.join(directory, item) }`)).default,
+
+                    name: directory.split(path.sep).at(-1)
+                })
+            );
 
             break;
         };
     };
 
-    return loadedFiles;
+    return loadedFiles.sort((a, b) => a.level - b.level);
 };
 
 export default loader;

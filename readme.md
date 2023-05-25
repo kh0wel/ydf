@@ -8,12 +8,12 @@
 
 1. Install [**Node** v18 or later](https://nodejs.org).
 
-2. Install nard:
+2. Install yotrd:
 
     ```sh-session
-    npm add nard
-    yarn add nard
-    pnpm add nard
+    npm add yotrd
+    yarn add yotrd
+    pnpm add yotrd
     ```
 3. Install discord.js:
 
@@ -25,6 +25,6 @@
 
 ## Starting
 
-1. Run `nard init`.
+1. Run `yotrd init`.
 
-2. Run `nard deploy`.
+2. Run `yotrd deploy`.

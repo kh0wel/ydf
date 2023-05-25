@@ -1,5 +1,6 @@
-import fs from 'node:fs/promises';
 import path from 'node:path';
+
+import { exec } from 'node:child_process';
 
 import { Client } from 'discord.js';
 
@@ -7,7 +8,6 @@ import loadFiles from './loadFiles.js';
 import getUsedEvents from './getUsedEvents.js';
 import getUsedIntents from './getUsedIntents.js';
 import getUsedPartials from './getUsedPartials.js';
-import defaultEvents from './defaultEvents.js';
 
 import EventBuilder from './builders/EventBuilder.js';
 import ServiceBuilder from './builders/ServiceBuilder.js';
@@ -19,21 +19,15 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
-        fs.mkdir(path.join(process.cwd(), 'src', 'events'), { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'services'), { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'chat'), { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'user'), { recursive: true });
-        fs.mkdir(path.join(process.cwd(), 'src', 'commands', 'message'), { recursive: true });
-        
-        fs.writeFile(path.join(process.cwd(), '.nard.config.js'), 'export default {}\n');
+        exec('git clone https://github.com/yotrd/example.git new-yotrd-project');
 
-        console.log('Read the documentation on https://github.com/nard');
+        console.log('Read the documentation on https://github.com/yotrd/cli');
 
         break;
 
     case 'deploy':
 
-        const config = await import(`file:///${ path.join(process.cwd(), '.nard.config.js') }`);
+        const config = (await import(`file:///${ path.join(process.cwd(), '.yotrd.config.js') }`)).default;
 
         const eventsPath                     = config.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
         const servicesPath                   = config.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
@@ -41,11 +35,11 @@ switch (process.argv.at(2)) {
         const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
         const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
 
-        const loadedEvents                     = defaultEvents.concat(await loadFiles(eventsPath, EventBuilder));
-        const loadedServices                   =                      await loadFiles(servicesPath, ServiceBuilder);
-        const loadedChatInputCommands          =                      await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    =                      await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands =                      await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
+        const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
 
         const usedEvents = getUsedEvents(
 
