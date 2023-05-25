@@ -5,15 +5,15 @@ export default class {
     intents  = [];
     partials = [];
 
-    execute  = undefined;
+    execute = undefined;
 
-    constructor (opt) {
+    constructor (data) {
 
-        this.name = opt.name;
+        this.name = data.name;
 
-        this.intents  = opt.intents  ?? this.intents;
-        this.partials = opt.partials ?? this.partials;
+        this.intents  = data.intents  ?? this.intents;
+        this.partials = data.partials ?? this.partials;
 
-        this.execute = opt.execute;
+        this.execute = data.execute;
     };
 };

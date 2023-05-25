@@ -41,43 +41,43 @@ export default class {
 
     events = undefined;
 
-    constructor (opt) {
+    constructor (data) {
 
-        this.name = opt.name;
+        this.name = data.name;
 
-        this.intents  = opt.intents  ?? this.intents;
-        this.partials = opt.partials ?? this.partials;
+        this.intents  = data.intents  ?? this.intents;
+        this.partials = data.partials ?? this.partials;
 
         this.display = {
 
-            name:        opt.display.name,
-            description: opt.display.description,
+            name:        data.display.name,
+            description: data.display.description,
 
-            options: opt.display.options ?? this.display.options,
+            options: data.display.options ?? this.display.options,
 
             permissions: {
 
-                member: opt.display.permissions?.member ?? this.display.permissions.member,
-                dm:     opt.display.permissions?.dm     ?? this.display.permissions.dm,
-                nsfw:   opt.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                member: data.display.permissions?.member ?? this.display.permissions.member,
+                dm:     data.display.permissions?.dm     ?? this.display.permissions.dm,
+                nsfw:   data.display.permissions?.nsfw   ?? this.display.permissions.nsfw
             },
 
             data: {
 
-                name:        opt.display.name.default,
-                description: opt.display.description.default,
+                name:        data.display.name.default,
+                description: data.display.description.default,
 
-                name_localizations:        deleteProperty(opt.display.name, 'default'),
-                description_localizations: deleteProperty(opt.display.description, 'default'),
+                name_localizations:        deleteProperty(data.display.name, 'default'),
+                description_localizations: deleteProperty(data.display.description, 'default'),
 
-                options: opt.display.options ?? this.display.data.options,
+                options: data.display.options ?? this.display.data.options,
 
-                default_member_permissions: opt.display.permissions?.member ?? this.display.data.default_member_permissions,
-                dm_permission:              opt.display.permissions?.dm     ?? this.display.data.dm_permission,
-                nsfw:                       opt.display.permissions?.nsfw   ?? this.display.data.nsfw
+                default_member_permissions: data.display.permissions?.member ?? this.display.data.default_member_permissions,
+                dm_permission:              data.display.permissions?.dm     ?? this.display.data.dm_permission,
+                nsfw:                       data.display.permissions?.nsfw   ?? this.display.data.nsfw
             }
         };
 
-        this.events = opt.events;
+        this.events = data.events;
     };
 };

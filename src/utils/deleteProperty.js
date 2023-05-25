@@ -1,8 +1,8 @@
-export default function (obj, prop) {
+export default function (properties, target) {
 
-    const createdObj = { ...obj };
+    const clonedProperties = { ...properties };
 
-    delete createdObj[prop];
+    delete clonedProperties[target];
 
-    return createdObj;
+    return clonedProperties;
 };

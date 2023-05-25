@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const loader = async (directory, targets, Builder) => {
+const loader = async (directory, Builder) => {
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -11,24 +11,15 @@ const loader = async (directory, targets, Builder) => {
 
         const itemStat = await fs.stat(path.join(directory, item));
 
-        if (itemStat.isDirectory()) {
+        if (itemStat.isDirectory()) loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), Builder));
 
-            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), targets, Builder));
+        if (itemStat.isFile()) {
 
-            continue;
-        };
+            if (!item.startsWith('main')) continue;
 
-        if (targets.includes(item)) {
+            const loadedFile = await import(`file:///${ path.join(directory, item) }`);
 
-            try {
-
-                const loadedFile = await import(`file:///${ path.join(directory, item) }`);
-
-                loadedFiles.push(new Builder({ ...loadedFile.default, name: directory.split(path.sep).at(-1) }));
-            } catch (err) {
-
-                console.log(err);
-            };
+            loadedFiles.push(new Builder({ ...loadedFile.default, name: directory.split(path.sep).at(-1) }));
 
             break;
         };
