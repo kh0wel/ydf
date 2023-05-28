@@ -1,7 +1,7 @@
 import path from 'node:path';
 import readline from 'node:readline/promises';
 
-import { execSync } from 'node:child_process';
+import { exec } from 'node:child_process';
 
 switch (process.argv.at(2)) {
 
@@ -19,24 +19,7 @@ switch (process.argv.at(2)) {
 
                 cli.close();
 
-                name ||= 'new-yotrd-project';
-
-                execSync(`git clone --depth=1 https://github.com/yotrd/template.git ${ name }`);
-
-                switch (process.platform) {
-
-                    case 'win32':
-
-                        execSync(`rmdir -r -Force ${ path.join(process.cwd(), name, '.git') }`);
-
-                        break;
-
-                    default:
-
-                        execSync(`rmdir -rf ${ path.join(process.cwd(), name, '.git') }`);
-
-                        break;
-                };
+                exec(`git clone --depth=1 https://github.com/yotrd/template.git ${ name || 'new-yotrd-project' }`);
             });
 
         console.log('Read the documentation on https://github.com/yotrd/core');
