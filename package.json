@@ -1,7 +1,7 @@
 {
   "name": "@yotrd/cli",
-  "description": "🍁 A framework to build bots in discord.js quickly and efficiently",
-  "version": "0.7.10",
+  "description": "🍁 A framework for building Discord bots quickly and efficiently",
+  "version": "0.8.0",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .js \".\""
@@ -41,10 +41,10 @@
     "eslint-plugin-promise": "^6.1.1"
   },
   "peerDependencies": {
-    "discord.js": ">=14.11.0"
+    "@biscuitland/core": ">=2.3.0"
   },
   "peerDependenciesMeta": {
-    "discord.js": {
+    "@biscuitland/core": {
       "optional": true
     }
   }
