@@ -19,30 +19,21 @@ switch (process.argv.at(2)) {
 
                 cli.close();
 
-                const templatePath = path.join(
+                name ||= 'new-yotrd-project';
 
-                    process.cwd(),
-
-                    name.length
-
-                        ? name
-
-                        : 'new-yotrd-project'
-                );
-
-                execSync(`git clone --depth=1 https://github.com/yotrd/template.git ${ templatePath }`);
+                execSync(`git clone --depth=1 https://github.com/yotrd/template.git ${ name }`);
 
                 switch (process.platform) {
 
                     case 'win32':
 
-                        execSync(`rmdir -r -Force ${ path.join(templatePath), '.git' }`);
+                        execSync(`rmdir -r -Force ${ path.join(process.cwd(), name, '.git') }`);
 
                         break;
 
                     default:
 
-                        execSync(`rmdir -rf ${ path.join(templatePath), '.git' }`);
+                        execSync(`rmdir -rf ${ path.join(process.cwd(), name, '.git') }`);
 
                         break;
                 };
