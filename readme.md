@@ -1,30 +1,17 @@
 ## Features
 
-- 🧼 Light weight.
-- 🧱 Scalable structure.
-- 💪🏻 Optimized performance.
+- ⚡ Performance:
 
-## Installation
+A structure was implemented that allows algorithms to be used to evaluate and determine if one or more resources are needed.
 
-1. Install [**Node** v18 or later](https://nodejs.org).
+- 🧱 Flexibility:
 
-2. Install yotrd:
+Implemented the possibility of using different versions of discord.js.
 
-    ```sh-session
-    npm add yotrd
-    yarn add yotrd
-    pnpm add yotrd
-    ```
-3. Install discord.js:
+- 💪🏻 Productivity:
 
-    ```sh-session
-    npm add discord.js
-    yarn add discord.js
-    pnpm add discord.js
-    ```
+Useful resources are included when creating a new project.
 
-## Starting
+## Documentation
 
-1. Run `yotrd init`.
-
-2. Run `yotrd deploy`.
+Read the documentation [here](https://github.com/yotrd/core).

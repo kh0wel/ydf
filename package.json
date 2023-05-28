@@ -1,25 +1,22 @@
 {
-  "name": "yotrd",
-  "description": "🍱 A lightweight discord.js framework",
-  "version": "0.4.4",
+  "name": "@yotrd/cli",
+  "description": "🍁 A framework to build bots in discord.js quickly and efficiently",
+  "version": "0.7.2",
   "type": "module",
   "scripts": {
-    "lint": "eslint --ext .ts,.js \".\"",
-    "format": "eslint --fix --ext .ts,.js \".\"",
-    "build": "tsc --project \".\""
-  },
-  "files": [
-    "./dist/",
-    "./typings/"
-  ],
-  "directories": {
-    "lib": "./dist/"
+    "lint": "eslint --ext .js \".\""
   },
   "bin": {
-    "yotrd": "./dist/cli.js"
+    "yotrd": "./src/index.js"
+  },
+  "files": [
+    "./src/"
+  ],
+  "directories": {
+    "lib": "./src/"
   },
   "author": "kh0wel",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/yotrd/cli"
@@ -28,9 +25,8 @@
     "url": "https://github.com/yotrd/cli/issues"
   },
   "keywords": [
-    "bot",
-    "experiment",
     "framework",
+    "bot",
     "discord"
   ],
   "engines": {
@@ -38,12 +34,11 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.13",
-    "discord.js": "^14.11.0",
+    "@yotrd/core": "^0.4.1",
     "eslint": "^8.40.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "typescript": "^5.0.4"
+    "eslint-plugin-promise": "^6.1.1"
   },
   "peerDependencies": {
     "discord.js": ">=14.11.0"
