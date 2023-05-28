@@ -1,7 +1,7 @@
 {
   "name": "@yotrd/cli",
   "description": "🍁 A framework for building Discord bots quickly and efficiently",
-  "version": "0.8.0",
+  "version": "0.9.0",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .js \".\""
@@ -33,19 +33,11 @@
     "node": ">=18.*"
   },
   "devDependencies": {
+    "@yotrd/core": "*",
     "@types/node": "^18.16.13",
-    "@yotrd/core": "^0.4.1",
     "eslint": "^8.40.0",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-n": "^15.7.0",
     "eslint-plugin-promise": "^6.1.1"
-  },
-  "peerDependencies": {
-    "@biscuitland/core": ">=2.3.0"
-  },
-  "peerDependenciesMeta": {
-    "@biscuitland/core": {
-      "optional": true
-    }
   }
 }
