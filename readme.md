@@ -12,6 +12,10 @@ Implemented the possibility of using different versions of discord.js.
 
 Useful resources are included when creating a new project.
 
+- 🚀 Compatibility
+
+You can use [Bun](https://bun.sh) or [Node](https://nodejs.org).
+
 ## Documentation
 
 Read the documentation [here](https://github.com/yotrd/core).

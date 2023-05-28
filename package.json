@@ -1,7 +1,7 @@
 {
   "name": "@yotrd/cli",
   "description": "🍁 A framework to build bots in discord.js quickly and efficiently",
-  "version": "0.7.2",
+  "version": "0.7.10",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .js \".\""

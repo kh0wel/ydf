@@ -17,16 +17,34 @@ switch (process.argv.at(2)) {
 
             .then((name) => {
 
-                exec(`git clone https://github.com/yotrd/template.git ${
+                cli.close();
+
+                const templatePath = path.join(
+
+                    process.cwd(),
 
                     name.length
 
                         ? name
 
                         : 'new-yotrd-project'
-                }`);
+                );
 
-                cli.close();
+                switch (process.platform) {
+
+                    case 'win32':
+
+                        exec(`git clone --depth=1 https://github.com/yotrd/template.git ${ templatePath } && rmdir -r -Force ${ path.join(templatePath), '.git' }`);
+
+                        break;
+
+                    default:
+
+                        exec(`git clone --depth=1 https://github.com/yotrd/template.git ${ templatePath } && rmdir -rf ${ path.join(templatePath), '.git' }`);
+
+                        break;
+                };
+
             });
 
         console.log('Read the documentation on https://github.com/yotrd/core');
