@@ -1,4 +1,3 @@
-import readline from 'node:readline/promises';
 import path from 'node:path';
 
 import { exec } from 'node:child_process';
@@ -19,63 +18,35 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
-        const cli = readline.createInterface({
-
-            input:  process.stdin,
-            output: process.stdout,
-        });
-
-        await cli.question('Project name: (new-yotrd-project) ')
-
-            .then((name) => {
-
-                cli.close();
-
-                name ||= 'new-yotrd-project';
-
-                switch (process.platform) {
-
-                    case 'win32':
-
-                        exec(`git clone --depth=1 https://github.com/yotrd/template.git ${ name } && rmdir -Force ${ path.join(process.cwd(), name, '.git') }`);
-
-                        break;
-
-                    default: 
-
-                        exec(`git clone --depth=1 https://github.com/yotrd/template.git ${ name } && rmdir -rf ${ path.join(process.cwd(), name, '.git') }`);
-
-                        break;
-                };
-            });
+        exec(`wget https://github.com/yotrd/template/archive/refs/heads/main.zip -O .template.zip; tar -xf .template.zip; rm .template.zip; mv template-main ${ process.argv.at(3) ?? 'new-yotrd-project' }`);
 
         break;
 
     case 'deploy':
 
-        const config = (await import(`file:///${ path.join(process.cwd(), '.yotrd.config.js') }`)).default;
+        const config = await import(`file:///${ process.argv.at(3) ?? path.join(process.cwd(), '.yotrd.config.js') }`);
 
-        const eventsPath                     = config.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
-        const servicesPath                   = config.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
-        const chatInputCommandsPath          = config.directories?.commands?.chat    ?? path.join(process.cwd(), 'src', 'commands', 'chat');
-        const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
-        const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
-    
+        const eventsPath                     = config.default.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
+        const servicesPath                   = config.default.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
+        const chatInputCommandsPath          = config.default.directories?.commands?.chat    ?? path.join(process.cwd(), 'src', 'commands', 'chat');
+        const userContextMenuCommandsPath    = config.default.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
+        const messageContextMenuCommandsPath = config.default.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
+
         const loadedEvents                     = await getUsedFiles(eventsPath, EventBuilder);
         const loadedServices                   = await getUsedFiles(servicesPath, ServiceBuilder);
         const loadedChatInputCommands          = await getUsedFiles(chatInputCommandsPath, ChatInputCommandBuilder);
         const loadedUserContextMenuCommands    = await getUsedFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
         const loadedMessageContextMenuCommands = await getUsedFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
-    
+
         const usedEvents = getUsedEvents(
-    
+
             loadedEvents,
             loadedServices,
             loadedChatInputCommands,
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
         );
-    
+
         const usedIntents = getUsedIntents(loadedEvents, usedEvents);
 
         for (const loadedEvent of loadedEvents) {
@@ -85,13 +56,11 @@ switch (process.argv.at(2)) {
 
             loadedEvent.execute({
 
-                config,
-
                 session: new Session({
 
                     intents: usedIntents,
 
-                    ...config.session?.({
+                    ...config.default.session?.({
 
                         loadedEvents,
                         loadedServices,
@@ -103,6 +72,8 @@ switch (process.argv.at(2)) {
                         usedIntents
                     })
                 }),
+
+                config: config.default,
 
                 eventsPath,
                 servicesPath,

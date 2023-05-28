@@ -1,5 +1,7 @@
 export default function (properties) {
 
+    const usedLocales = {};
+
     const locales = [
 
         'id', 'da', 'de',    'en-GB', 'en-US', 'es-ES',
@@ -9,8 +11,6 @@ export default function (properties) {
         'uk', 'hi', 'th',    'zh-CN', 'ja',    'zh-TW',
         'ko'
     ];
-
-    const usedLocales = {};
 
     for (const locale of locales) {
 

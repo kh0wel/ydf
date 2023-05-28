@@ -5,17 +5,13 @@ export default async function (directory, Builder) {
 
     let usedFiles = [];
 
-    for (const folder of (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'))) {
+    const folders = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
-        usedFiles.push(
-            
-            new Builder({
-                
-                ... (await import(`file:///${ path.join(directory, folder, 'main.js') }`)).default,
-                
-                name: folder
-            })
-        );
+    for (const folder of folders) {
+
+        const data = await import(`file:///${ path.join(directory, folder, 'main.js') }`);
+
+        usedFiles.push(new Builder({ ...data.default, name: folder }));
     };
 
     // Ordena los archivos de mayor a menor segun su nivel

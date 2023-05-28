@@ -6,7 +6,7 @@ A structure was implemented that allows algorithms to be used to evaluate and de
 
 - 🧱 Flexibility:
 
-Implemented the possibility of using different versions of discord.js.
+Implemented the possibility of using different versions of [biscuit.js](https://www.biscuitjs.com).
 
 - 💪🏻 Productivity:
 

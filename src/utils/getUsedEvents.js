@@ -11,12 +11,12 @@ export default function (
 
     for (const loadedEvent of loadedEvents) {
 
-        const services = loadedServices.filter((data) => data.events[loadedEvent.name]);
+        const services = loadedServices.filter((service) => service.events[loadedEvent.name]);
 
         const commands = loadedChatInputCommands
             .concat(loadedUserContextMenuCommands)
             .concat(loadedMessageContextMenuCommands)
-            .filter((data) => data.events[loadedEvent.name]);
+            .filter((command) => command.events[loadedEvent.name]);
 
         const all = services.concat(commands);
 

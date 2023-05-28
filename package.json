@@ -1,7 +1,7 @@
 {
-  "name": "yotrd",
+  "name": "yotrd-prev",
   "description": "🍁 A framework for building Discord bots quickly and efficiently",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .js \".\""
@@ -15,7 +15,6 @@
   "directories": {
     "lib": "./src/"
   },
-  "author": "kh0wel",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -41,10 +40,5 @@
   },
   "peerDependencies": {
     "@biscuitland/core": ">=2.3.0"
-  },
-  "peerDependenciesMeta": {
-    "@biscuitland/core": {
-      "optional": true
-    }
   }
 }
