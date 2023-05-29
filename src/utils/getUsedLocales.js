@@ -1,6 +1,6 @@
 export default function (properties) {
 
-    const usedLocales = {};
+    const used = {};
 
     const locales = [
 
@@ -14,8 +14,8 @@ export default function (properties) {
 
     for (const locale of locales) {
 
-        if (properties[locale]) usedLocales[locale] = properties[locale];
+        if (properties[locale]) used[locale] = properties[locale];
     };
 
-    return usedLocales;
+    return used;
 };
