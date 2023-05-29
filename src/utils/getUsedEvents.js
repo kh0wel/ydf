@@ -11,19 +11,24 @@ export default function (
 
     for (const loadedEvent of loadedEvents) {
 
-        const services = loadedServices.filter((data) => data.events[loadedEvent.name]);
+        const byServices = loadedServices.filter((data) => data.events[loadedEvent.name]);
 
-        const commands = loadedChatInputCommands
+        const byCommands = loadedChatInputCommands
             .concat(loadedUserContextMenuCommands)
             .concat(loadedMessageContextMenuCommands)
             .filter((data) => data.events[loadedEvent.name]);
 
-        const all = services.concat(commands);
+        const byAll = byServices.concat(byCommands);
 
         // Si el evento no es utilizado, lo ignora
-        if (!all.length) continue;
+        if (!byAll.length) continue;
 
-        used[loadedEvent.name] = { services, commands, all };
+        used[loadedEvent.name] = {
+
+            services: byServices,
+            commands: byCommands,
+            all:      byAll
+        };
     };
 
     return used;

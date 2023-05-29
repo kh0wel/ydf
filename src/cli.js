@@ -3,7 +3,7 @@ import { exec    } from 'node:child_process';
 
 import { Session } from '@biscuitland/core';
 
-import getUsedFiles from './utils/getUsedFiles.js';
+import loadFiles from './utils/loadFiles.js';
 import getUsedEvents from './utils/getUsedEvents.js';
 import getUsedIntents from './utils/getUsedIntents.js';
 
@@ -39,11 +39,11 @@ switch (process.argv.at(2)) {
         const userContextMenuCommandsPath    = resolve(config.directories?.commands?.user    ?? (process.cwd(), 'src', 'commands', 'user'));
         const messageContextMenuCommandsPath = resolve(config.directories?.commands?.message ?? (process.cwd(), 'src', 'commands', 'message'));
 
-        const loadedEvents                     = await getUsedFiles(eventsPath, EventBuilder);
-        const loadedServices                   = await getUsedFiles(servicesPath, ServiceBuilder);
-        const loadedChatInputCommands          = await getUsedFiles(chatInputCommandsPath, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await getUsedFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await getUsedFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
+        const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
 
         const usedEvents = getUsedEvents(
 
