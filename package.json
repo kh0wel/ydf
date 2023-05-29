@@ -1,13 +1,13 @@
 {
-  "name": "yotrd-prev",
-  "description": "🍁 A framework for building Discord bots quickly and efficiently",
-  "version": "0.10.1",
+  "name": "otrd",
+  "description": "🍁 A framework for building fast and efficient Discord bots with biscuit.js",
+  "version": "0.11.0",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .js \".\""
   },
   "bin": {
-    "yotrd": "./src/index.js"
+    "yotrd": "./src/cli.js"
   },
   "files": [
     "./src/"
@@ -18,10 +18,10 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yotrd/cli"
+    "url": "https://github.com/yotrd/core"
   },
   "bugs": {
-    "url": "https://github.com/yotrd/cli/issues"
+    "url": "https://github.com/yotrd/core/issues"
   },
   "keywords": [
     "framework",

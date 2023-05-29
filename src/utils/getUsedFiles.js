@@ -9,9 +9,9 @@ export default async function (directory, Builder) {
 
     for (const folder of folders) {
 
-        const data = await import(`file:///${ path.join(directory, folder, 'main.js') }`);
+        const { default: data } = await import(`file:///${ path.join(directory, folder, 'main.js') }`);
 
-        usedFiles.push(new Builder({ ...data.default, name: folder }));
+        usedFiles.push(new Builder({ ...data, name: folder }));
     };
 
     // Ordena los archivos de mayor a menor segun su nivel

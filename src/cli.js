@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import { exec } from 'node:child_process';
+// import { exec } from 'node:child_process';
 
 import { Session } from '@biscuitland/core';
 
@@ -18,19 +18,21 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
-        exec(`wget https://github.com/yotrd/template/archive/refs/heads/main.zip -O .template.zip; tar -xf .template.zip; rm .template.zip; mv template-main ${ process.argv.at(3) ?? 'new-yotrd-project' }`);
+        const name = process.argv.at(3) ?? 'new-yotrd-project';
+
+        // exec(`git clone --depth=1 https://github.com/yotrd/template.git ${ name }; rm -rf ${ path.join(process.cwd(), name, '.git') }`);
 
         break;
 
     case 'deploy':
 
-        const config = await import(`file:///${ process.argv.at(3) ?? path.join(process.cwd(), '.yotrd.config.js') }`);
+        const { default: config } = await import(`file:///${ process.argv.at(3) ?? path.join(process.cwd(), '.yotrd.config.js') }`);
 
-        const eventsPath                     = config.default.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
-        const servicesPath                   = config.default.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
-        const chatInputCommandsPath          = config.default.directories?.commands?.chat    ?? path.join(process.cwd(), 'src', 'commands', 'chat');
-        const userContextMenuCommandsPath    = config.default.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
-        const messageContextMenuCommandsPath = config.default.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
+        const eventsPath                     = config.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
+        const servicesPath                   = config.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
+        const chatInputCommandsPath          = config.directories?.commands?.chat    ?? path.join(process.cwd(), 'src', 'commands', 'chat');
+        const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(process.cwd(), 'src', 'commands', 'user');
+        const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(process.cwd(), 'src', 'commands', 'message');
 
         const loadedEvents                     = await getUsedFiles(eventsPath, EventBuilder);
         const loadedServices                   = await getUsedFiles(servicesPath, ServiceBuilder);
@@ -56,11 +58,13 @@ switch (process.argv.at(2)) {
 
             loadedEvent.execute({
 
+                config,
+
                 session: new Session({
 
                     intents: usedIntents,
 
-                    ...config.default.session?.({
+                    ...config.session?.({
 
                         loadedEvents,
                         loadedServices,
@@ -72,8 +76,6 @@ switch (process.argv.at(2)) {
                         usedIntents
                     })
                 }),
-
-                config: config.default,
 
                 eventsPath,
                 servicesPath,
