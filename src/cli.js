@@ -16,6 +16,12 @@ import MessageContextMenuCommandBuilder from './builders/MessageContextMenuComma
 
 switch (process.argv.at(2)) {
 
+    default:
+
+        console.log('Repository on https://github.com/yotrd');
+
+        break;
+
     case 'init':
 
         const name = process.argv.at(3) ?? 'new-yotrd-project';
@@ -26,7 +32,7 @@ switch (process.argv.at(2)) {
 
     case 'deploy':
 
-        const { default: config } = await import(`file:///${ process.argv.at(3) ?? path.join(process.cwd(), '.yotrd.config.js') }`);
+        const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3)) ?? path.join(process.cwd(), '.yotrd.config.js') }`);
 
         const eventsPath                     = config.directories?.events            ?? path.join(process.cwd(), 'src', 'events');
         const servicesPath                   = config.directories?.services          ?? path.join(process.cwd(), 'src', 'services');
