@@ -8,17 +8,13 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     A structure was implemented that allows algorithms to be used to evaluate and determine if one or more resources are needed.
 
-- 🧱 **Scalability**:
+- 💪🏻 **Productivity**:
 
     Recursive file and directory load.
 
-- ⌛ **Flexibility**:
+- 🧱 **Scalability**:
 
     Implemented the possibility of using different versions of [biscuit.js](https://www.biscuitjs.com).
-
-- 💪🏻 **Productivity**:
-
-    Useful resources are included when creating a new project.
 
 - 🚀 **Compatibility**:
 
