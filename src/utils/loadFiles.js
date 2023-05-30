@@ -3,7 +3,7 @@ import path from 'node:path';
 
 async function loader (directory, Builder) {
 
-    let used = [];
+    let loadedFiles = [];
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -15,7 +15,7 @@ async function loader (directory, Builder) {
 
         if (isDirectory()) {
 
-            used = used.concat(await loader(itemPath, Builder));
+            loadedFiles = loadedFiles.concat(await loader(itemPath, Builder));
 
             continue;
         };
@@ -24,13 +24,13 @@ async function loader (directory, Builder) {
 
             const { default: data } = await import(`file:///${ itemPath }`);
 
-            used.push(new Builder({ ...data, name: item }));
+            loadedFiles.push(new Builder({ ...data, name: item }));
 
             break;
         };
     };
 
-    return used;
+    return loadedFiles;
 };
 
 export default loader;

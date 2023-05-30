@@ -23,16 +23,18 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
+        const directoryPath = path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'));
+
         await Promise.all([
 
-            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'events'),              { recursive: true }),
-            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'services'),            { recursive: true }),
-            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'chat'),    { recursive: true }),
-            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'user'),    { recursive: true }),
-            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'message'), { recursive: true })
+            fs.mkdir(path.join(directoryPath, 'src', 'events'),              { recursive: true }),
+            fs.mkdir(path.join(directoryPath, 'src', 'services'),            { recursive: true }),
+            fs.mkdir(path.join(directoryPath, 'src', 'commands', 'chat'),    { recursive: true }),
+            fs.mkdir(path.join(directoryPath, 'src', 'commands', 'user'),    { recursive: true }),
+            fs.mkdir(path.join(directoryPath, 'src', 'commands', 'message'), { recursive: true })
         ]);
 
-        fs.writeFile(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
+        fs.writeFile(path.join(directoryPath, '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
 
         break;
 
@@ -65,7 +67,6 @@ switch (process.argv.at(2)) {
 
         for (const loadedEvent of loadedEvents) {
 
-            // Ignora el evento si no fue utilizado
             if (!usedEvents[loadedEvent.name]) continue;
 
             loadedEvent.execute({

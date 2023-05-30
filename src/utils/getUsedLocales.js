@@ -1,6 +1,6 @@
 export default function (properties) {
 
-    const used = {};
+    const usedLocales = {};
 
     // https://discord.com/developers/docs/reference#locales
     const locales = [
@@ -15,8 +15,8 @@ export default function (properties) {
 
     for (const locale of locales) {
 
-        if (properties[locale]) used[locale] = properties[locale];
+        if (properties[locale]) usedLocales[locale] = properties[locale];
     };
 
-    return used;
+    return usedLocales;
 };
