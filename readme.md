@@ -20,9 +20,11 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     You can use [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-## Template
+## Commands
 
-Download template [here](https://github.com/kh0wel/yotrd/tree/main/template).
+- `yotrd init [<new-project-folder-name>]`.
+
+- `yotrd deploy [<config-file-path>]`.
 
 ## Workspace
 
@@ -44,6 +46,10 @@ Download template [here](https://github.com/kh0wel/yotrd/tree/main/template).
     |
     |_ message/
 ```
+
+## Template
+
+Download template [here](https://github.com/kh0wel/yotrd/tree/main/template).
 
 ## Build
 

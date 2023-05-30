@@ -2,8 +2,6 @@
 	"private": true,
 	"type": "module",
 	"dependencies": {
-		"@biscuitland/core": "*",
-		"yotrd": "*",
 		"dotenv": "*"
 	}
 }

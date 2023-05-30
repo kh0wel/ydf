@@ -1,4 +1,5 @@
-import { resolve } from 'node:path';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join, resolve    } from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
@@ -16,9 +17,22 @@ switch (process.argv.at(2)) {
 
     default:
 
-        console.log('yotrd deploy [<config-file-path>]');
-        console.log();
         console.log('Repository on https://github.com/kh0wel/yotrd');
+
+        break;
+
+    case 'init':
+
+        await Promise.all([
+
+            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'events'),              { recursive: true }),
+            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'services'),            { recursive: true }),
+            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'chat'),    { recursive: true }),
+            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'user'),    { recursive: true }),
+            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'message'), { recursive: true })
+        ]);
+
+        writeFile(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
 
         break;
 
