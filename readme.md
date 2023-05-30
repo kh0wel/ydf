@@ -22,11 +22,14 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Template
 
-Download template [here](https://github.com/kh0wel/yotrd/template).
+Download template [here](https://github.com/kh0wel/yotrd/tree/main/template).
 
 ## Workspace
 
+> These are the directories and files necessary for the correct functioning of the framework.
+
 ```
+.
 |_ .yotrd.config.js
 |
 |_ events/
@@ -34,7 +37,7 @@ Download template [here](https://github.com/kh0wel/yotrd/template).
 |_ services/
 |
 |_ commands/
-
+    .
     |_ chat/
     |
     |_ user/
