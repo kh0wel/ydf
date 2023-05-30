@@ -16,15 +16,9 @@
 
     You can use [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-## Start
+## Template
 
-1. Install [Bun](https://bun.sh) or [Node](https://nodejs.org).
-
-2. Download [this template](https://github.com/kh0wel/yotrd/template)
-
-3. Configure `BOT_TOKEN` on `.env` file.
-
-4. Run `yotrd deploy` command.
+Download template [here](https://github.com/kh0wel/yotrd/template).
 
 ## Workspace
 
