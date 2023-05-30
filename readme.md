@@ -1,3 +1,7 @@
+# Yet another Discord framework
+
+A framework for building fast and efficient Discord bots with [biscuit.js](https://www.biscuitjs.com).
+
 ## Features
 
 - ⚡ **Performance**:
