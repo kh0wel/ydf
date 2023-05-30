@@ -1,21 +1,36 @@
-import { readdir } from 'node:fs/promises';
-import { join    } from 'node:path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
-export default async function (directory, Builder) {
+async function loader (directory, Builder) {
 
     let used = [];
 
-    const folders = (await readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
+    const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
-    for (const folder of folders) {
+    for (const item of items) {
 
-        const { default: data } = await import(`file:///${ join(directory, folder, 'main.js') }`);
+        const itemPath = path.join(directory, item);
 
-        used.push(new Builder({ ...data, name: folder }));
+        const { isDirectory } = await fs.stat(itemPath);
+
+        if (isDirectory()) {
+
+            used = used.concat(await loader(itemPath, Builder));
+
+            continue;
+        };
+
+        if (item.startsWith('main')) {
+
+            const { default: data } = await import(`file:///${ itemPath }`);
+
+            used.push(new Builder({ ...data, name: item }));
+
+            break;
+        };
     };
-
-    // Ordena los archivos de mayor a menor segun su nivel
-    used = used.sort((a, b) => a.level - b.level);
 
     return used;
 };
+
+export default loader;

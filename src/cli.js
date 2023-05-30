@@ -1,5 +1,5 @@
-import { mkdir, writeFile } from 'node:fs/promises';
-import { join, resolve    } from 'node:path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
@@ -25,26 +25,26 @@ switch (process.argv.at(2)) {
 
         await Promise.all([
 
-            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'events'),              { recursive: true }),
-            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'services'),            { recursive: true }),
-            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'chat'),    { recursive: true }),
-            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'user'),    { recursive: true }),
-            mkdir(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'message'), { recursive: true })
+            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'events'),              { recursive: true }),
+            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'services'),            { recursive: true }),
+            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'chat'),    { recursive: true }),
+            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'user'),    { recursive: true }),
+            fs.mkdir(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), 'src', 'commands', 'message'), { recursive: true })
         ]);
 
-        writeFile(join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
+        fs.writeFile(path.join(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'), '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
 
         break;
 
     case 'deploy':
 
-        const { default: config } = await import(`file:///${ resolve(process.argv.at(3) ?? ('.', '.yotrd.config.js')) }`);
+        const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3) ?? ('.', '.yotrd.config.js')) }`);
 
-        const eventsPath                     = resolve(config.directories?.events            ?? ('.', 'src', 'events'));
-        const servicesPath                   = resolve(config.directories?.services          ?? ('.', 'src', 'services'));
-        const chatInputCommandsPath          = resolve(config.directories?.commands?.chat    ?? ('.', 'src', 'commands', 'chat'));
-        const userContextMenuCommandsPath    = resolve(config.directories?.commands?.user    ?? ('.', 'src', 'commands', 'user'));
-        const messageContextMenuCommandsPath = resolve(config.directories?.commands?.message ?? ('.', 'src', 'commands', 'message'));
+        const eventsPath                     = path.resolve(config.directories?.events            ?? ('.', 'src', 'events'));
+        const servicesPath                   = path.resolve(config.directories?.services          ?? ('.', 'src', 'services'));
+        const chatInputCommandsPath          = path.resolve(config.directories?.commands?.chat    ?? ('.', 'src', 'commands', 'chat'));
+        const userContextMenuCommandsPath    = path.resolve(config.directories?.commands?.user    ?? ('.', 'src', 'commands', 'user'));
+        const messageContextMenuCommandsPath = path.resolve(config.directories?.commands?.message ?? ('.', 'src', 'commands', 'message'));
 
         const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
         const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
@@ -77,6 +77,12 @@ switch (process.argv.at(2)) {
                     intents: usedIntents,
 
                     ...config.session?.({
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
 
                         loadedEvents,
                         loadedServices,

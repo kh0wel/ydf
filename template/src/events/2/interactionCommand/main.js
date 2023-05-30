@@ -1,7 +1,5 @@
 export default {
 
-    level: 2,
-
     execute ({
 
         config, session,
@@ -22,13 +20,20 @@ export default {
         usedIntents
     }) {
 
-        session.events.once('ready', () => {
+        session.events.on('interactionCreate', (interaction) => {
 
-            for (const loadedFile of usedEvents[this.name].all) {
+            if (!interaction.isCommand()) return;
 
-                loadedFile.events[this.name]({
+            for (const loadedCommand of usedEvents[this.name].commands) {
+
+                if (interaction.commandType !== loadedCommand.type
+                ||  interaction.commandName !== loadedCommand.display.name.default) continue;
+
+                loadedCommand.events[this.name]({
 
                     config, session,
+
+                    event: { interaction },
 
                     eventsPath,
                     servicesPath,
@@ -45,6 +50,8 @@ export default {
                     usedEvents,
                     usedIntents
                 });
+
+                break;
             };
         });
     }

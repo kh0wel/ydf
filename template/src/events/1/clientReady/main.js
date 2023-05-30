@@ -1,7 +1,5 @@
 export default {
 
-    level: 1,
-
     execute ({
 
         config, session,
@@ -22,15 +20,13 @@ export default {
         usedIntents
     }) {
 
-        session.events.on('interactionCreate', (interaction) => {
+        session.events.once('ready', () => {
 
             for (const loadedFile of usedEvents[this.name].all) {
 
                 loadedFile.events[this.name]({
 
                     config, session,
-
-                    event: { interaction },
 
                     eventsPath,
                     servicesPath,

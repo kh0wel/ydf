@@ -22,7 +22,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Commands
 
-- `yotrd init [<new-project-folder-name>]`.
+- `yotrd init [<folder-name>]`.
 
 - `yotrd deploy [<config-file-path>]`.
 
@@ -61,9 +61,6 @@ export default {
     // Folder name (Automatic)
     name: 'example',
 
-    // Event level (Optional)
-    level: 0,
-
     // Event intents (Optional)
     intents: 0,
 
@@ -100,9 +97,6 @@ export default {
 
     // Folder name (Automatic)
     name: 'example',
-
-    // Service level (Optional)
-    level: 0,
 
     // Service intents (Optional)
     intents: 0,
@@ -146,9 +140,6 @@ export default {
 
     // Command type (Automatic)
     type: 1,
-
-    // Command level (Optional)
-    level: 0,
 
     // Command intents (Optional)
     intents: 0,
@@ -223,9 +214,6 @@ export default {
     // Command type (Automatic)
     type: 2,
 
-    // Command level (Optional)
-    level: 0,
-
     // Command intents (Optional)
     intents: 0,
 
@@ -281,9 +269,6 @@ export default {
 
     // Command type (Automatic)
     type: 3,
-
-    // Command level (Optional)
-    level: 0,
 
     // Command intents (Optional)
     intents: 0,

@@ -2,6 +2,7 @@ export default function (properties) {
 
     const used = {};
 
+    // https://discord.com/developers/docs/reference#locales
     const locales = [
 
         'id', 'da', 'de',    'en-GB', 'en-US', 'es-ES',

@@ -1,7 +1,5 @@
 export default {
 
-    level: 1,
-
     events: {
 
         summon ({ session }) {

@@ -1,7 +1,5 @@
 export default {
 
-    level: 3,
-
     execute ({
 
         config, session,

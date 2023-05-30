@@ -1,7 +1,5 @@
 export default {
 
-    level: 1,
-
     execute ({
 
         config, session,
@@ -24,14 +22,9 @@ export default {
 
         session.events.on('interactionCreate', (interaction) => {
 
-            if (!interaction.isCommand()) return;
+            for (const loadedFile of usedEvents[this.name].all) {
 
-            for (const loadedCommand of usedEvents[this.name].commands) {
-
-                if (interaction.commandType !== loadedCommand.type
-                ||  interaction.commandName !== loadedCommand.display.name.default) continue;
-
-                loadedCommand.events[this.name]({
+                loadedFile.events[this.name]({
 
                     config, session,
 
@@ -52,8 +45,6 @@ export default {
                     usedEvents,
                     usedIntents
                 });
-
-                break;
             };
         });
     }
