@@ -20,6 +20,22 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     You can use [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
+## Install
+
+1. Install [Bun](https://bun.sh) or [Node](https://nodejs.org).
+
+2. Install [biscuit.js](https://www.biscuitjs.com):
+
+    ```bash
+    npm add @biscuitland/core -g
+    ```
+
+3. Install this framework:
+
+    ```bash
+    npm add yotrd -g
+    ```
+
 ## Commands
 
 - `yotrd init [<folder-name>]`.
