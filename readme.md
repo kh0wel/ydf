@@ -1,20 +1,30 @@
 ## Features
 
-- ⚡ **Performance**
+- ⚡ **Performance**:
 
     A structure was implemented that allows algorithms to be used to evaluate and determine if one or more resources are needed.
 
-- 🧱 **Flexibility**
+- 🧱 **Flexibility**:
 
     Implemented the possibility of using different versions of [biscuit.js](https://www.biscuitjs.com).
 
-- 💪🏻 **Productivity**
+- 💪🏻 **Productivity**:
 
     Useful resources are included when creating a new project.
 
-- 🚀 **Compatibility**
+- 🚀 **Compatibility**:
 
     You can use [Bun](https://bun.sh) or [Node](https://nodejs.org).
+
+## Start
+
+1. Install [Bun](https://bun.sh) or [Node](https://nodejs.org).
+
+2. Download [this template](https://github.com/kh0wel/yotrd/template)
+
+3. Configure `BOT_TOKEN` on `.env` file.
+
+4. Run `yotrd deploy` command.
 
 ## Workspace
 
@@ -36,7 +46,7 @@
 
 ## Build
 
-### Event
+### Building a event
 
 ```js
 export default {
@@ -76,7 +86,7 @@ export default {
 };
 ```
 
-### Service
+### Building a service
 
 ```js
 export default {
@@ -119,7 +129,7 @@ export default {
 };
 ```
 
-### Slash Command
+### Building a slash command
 
 ```js
 export default {
@@ -195,7 +205,7 @@ export default {
 };
 ```
 
-### User Context Menu Command
+### Building a user context menu command
 
 ```js
 export default {
@@ -254,7 +264,7 @@ export default {
 };
 ```
 
-### Message Context Menu Command
+### Building a message context menu command
 
 ```js
 export default {

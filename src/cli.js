@@ -1,5 +1,4 @@
 import { resolve } from 'node:path';
-import { exec    } from 'node:child_process';
 
 import { Session } from '@biscuitland/core';
 
@@ -17,27 +16,21 @@ switch (process.argv.at(2)) {
 
     default:
 
-        console.log('Repository on https://github.com/yotrd');
-
-        break;
-
-    case 'init':
-
-        exec(`git clone --depth=1 https://github.com/yotrd/example.git ${ process.argv.at(3) ?? 'new-yotrd-project' }`);
-
-        console.log('Documentation on https://github.com/yotrd/core#readme');
+        console.log('yotrd deploy [<config-file-path>]');
+        console.log();
+        console.log('Repository on https://github.com/kh0wel/yotrd');
 
         break;
 
     case 'deploy':
 
-        const { default: config } = await import(`file:///${ resolve(process.argv.at(3) ?? (process.cwd(), '.yotrd.config.js')) }`);
+        const { default: config } = await import(`file:///${ resolve(process.argv.at(3) ?? ('.', '.yotrd.config.js')) }`);
 
-        const eventsPath                     = resolve(config.directories?.events            ?? (process.cwd(), 'src', 'events'));
-        const servicesPath                   = resolve(config.directories?.services          ?? (process.cwd(), 'src', 'services'));
-        const chatInputCommandsPath          = resolve(config.directories?.commands?.chat    ?? (process.cwd(), 'src', 'commands', 'chat'));
-        const userContextMenuCommandsPath    = resolve(config.directories?.commands?.user    ?? (process.cwd(), 'src', 'commands', 'user'));
-        const messageContextMenuCommandsPath = resolve(config.directories?.commands?.message ?? (process.cwd(), 'src', 'commands', 'message'));
+        const eventsPath                     = resolve(config.directories?.events            ?? ('.', 'src', 'events'));
+        const servicesPath                   = resolve(config.directories?.services          ?? ('.', 'src', 'services'));
+        const chatInputCommandsPath          = resolve(config.directories?.commands?.chat    ?? ('.', 'src', 'commands', 'chat'));
+        const userContextMenuCommandsPath    = resolve(config.directories?.commands?.user    ?? ('.', 'src', 'commands', 'user'));
+        const messageContextMenuCommandsPath = resolve(config.directories?.commands?.message ?? ('.', 'src', 'commands', 'message'));
 
         const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
         const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
