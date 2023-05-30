@@ -8,7 +8,11 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     A structure was implemented that allows algorithms to be used to evaluate and determine if one or more resources are needed.
 
-- 🧱 **Flexibility**:
+- 🧱 **Scalability**:
+
+    Recursive file and directory load.
+
+- ⌛ **Flexibility**:
 
     Implemented the possibility of using different versions of [biscuit.js](https://www.biscuitjs.com).
 
@@ -24,28 +28,28 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 - `yotrd init [<folder-name>]`.
 
+    This command will create the necessary directories and files for the correct functioning of the framework.
+
+    ```
+    .
+    |_ .yotrd.config.js
+    |
+    |_ events/
+    |
+    |_ services/
+    |
+    |_ commands/
+        .
+        |_ chat/
+        |
+        |_ user/
+        |
+        |_ message/
+    ```
+
 - `yotrd deploy [<config-file-path>]`.
 
-## Workspace
-
-> These are the directories and files necessary for the correct functioning of the framework.
-
-```
-.
-|_ .yotrd.config.js
-|
-|_ events/
-|
-|_ services/
-|
-|_ commands/
-    .
-    |_ chat/
-    |
-    |_ user/
-    |
-    |_ message/
-```
+    This command will run the framework.
 
 ## Template
 
