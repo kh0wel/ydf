@@ -51,9 +51,9 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 Download template [here](https://github.com/kh0wel/yotrd/tree/main/template).
 
-## Build
+## Structures
 
-### Building a event
+### Event
 
 ```js
 export default {
@@ -90,7 +90,7 @@ export default {
 };
 ```
 
-### Building a service
+### Service
 
 ```js
 export default {
@@ -130,7 +130,7 @@ export default {
 };
 ```
 
-### Building a slash command
+### Slash Command
 
 ```js
 export default {
@@ -152,7 +152,6 @@ export default {
 
             default: 'example',
 
-            // 'en-US': 'example',
             // 'es-ES': 'ejemplo',
             // ...
         },
@@ -203,7 +202,7 @@ export default {
 };
 ```
 
-### Building a user context menu command
+### User Context Menu Command
 
 ```js
 export default {
@@ -225,7 +224,6 @@ export default {
 
             default: 'Example',
 
-            // 'en-US': 'Example',
             // 'es-ES': 'Ejemplo',
             // ...
         },
@@ -259,7 +257,7 @@ export default {
 };
 ```
 
-### Building a message context menu command
+### Message Context Menu Command
 
 ```js
 export default {
@@ -281,7 +279,6 @@ export default {
 
             default: 'Example',
 
-            // 'en-US': 'Example',
             // 'es-ES': 'Ejemplo',
             // ...
         },
