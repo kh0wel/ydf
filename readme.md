@@ -1,6 +1,6 @@
 # Yet another Discord framework
 
-A framework for building fast and efficient Discord bots with [biscuit.js](https://www.biscuitjs.com).
+A framework for building fast and efficient Discord bots with [biscuit.js](https://biscuitjs.com).
 
 ## Features
 
@@ -14,23 +14,21 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 - 🧱 **Scalability**:
 
-    Implemented the possibility of using different versions of [biscuit.js](https://www.biscuitjs.com).
+    Implemented the possibility of using different versions of [biscuit.js](https://biscuitjs.com).
 
 - 🚀 **Compatibility**:
 
     You can use [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-## Install
+## Installation
 
-1. Install [Bun](https://bun.sh) or [Node](https://nodejs.org).
-
-2. Install [biscuit.js](https://www.biscuitjs.com):
+1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core):
 
     ```bash
     npm add @biscuitland/core -g
     ```
 
-3. Install this framework:
+2. Install [yord](https://npmjs.com/package/yotrd):
 
     ```bash
     npm add yotrd -g
