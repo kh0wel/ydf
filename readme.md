@@ -47,9 +47,9 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     This command will run the framework.
 
-## Template
+## Example
 
-Download template [here](https://github.com/kh0wel/yotrd/tree/main/template).
+See example [here](https://github.com/kh0wel/kobalt).
 
 ## Structures
 
