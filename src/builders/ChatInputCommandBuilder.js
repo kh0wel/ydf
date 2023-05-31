@@ -7,6 +7,8 @@ export default class {
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 1;
 
+    level = 0;
+
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
     intents = 0;
 
@@ -45,6 +47,7 @@ export default class {
 
         this.name = data.name;
 
+        this.level   = data.level   ?? this.level;
         this.intents = data.intents ?? this.intents;
 
         this.display = {
