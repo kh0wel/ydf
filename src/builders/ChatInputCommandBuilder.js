@@ -1,4 +1,4 @@
-import getUsedLocales from '../utils/getUsedLocales.js';
+import getOnlyLocales from '../utils/getOnlyLocales.js';
 
 export default class {
 
@@ -66,8 +66,8 @@ export default class {
                 name:        data.display.name.default,
                 description: data.display.description.default,
 
-                name_localizations:        getUsedLocales(data.display.name),
-                description_localizations: getUsedLocales(data.display.description),
+                name_localizations:        getOnlyLocales(data.display.name),
+                description_localizations: getOnlyLocales(data.display.description),
 
                 options: data.display.options ?? this.display.data.options,
 
