@@ -37,15 +37,15 @@ switch (process.argv.at(2)) {
 
     case 'deploy':
 
-        const directory = process.argv.at(3) ?? '.';
+        const directory = path.resolve(process.argv.at(3) ?? '.');
 
-        const { default: config } = await import(`file:///${ path.resolve(directory, '.yotrd.config.js') }`);
+        const { default: config } = await import(`file:///${ path.join(directory, '.yotrd.config.js') }`);
 
-        const eventsPath                     = path.resolve(config.directories?.events            ?? ('.', 'src', 'events'));
-        const servicesPath                   = path.resolve(config.directories?.services          ?? ('.', 'src', 'services'));
-        const chatInputCommandsPath          = path.resolve(config.directories?.commands?.chat    ?? ('.', 'src', 'commands', 'chat'));
-        const userContextMenuCommandsPath    = path.resolve(config.directories?.commands?.user    ?? ('.', 'src', 'commands', 'user'));
-        const messageContextMenuCommandsPath = path.resolve(config.directories?.commands?.message ?? ('.', 'src', 'commands', 'message'));
+        const eventsPath                     = config.directories?.events            ?? path.join(directory, 'src', 'events');
+        const servicesPath                   = config.directories?.services          ?? path.join(directory, 'src', 'services');
+        const chatInputCommandsPath          = config.directories?.commands?.chat    ?? path.join(directory, 'src', 'commands', 'chat');
+        const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(directory, 'src', 'commands', 'user');
+        const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(directory, 'src', 'commands', 'message');
 
         const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
         const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
