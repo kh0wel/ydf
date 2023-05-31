@@ -1,7 +1,7 @@
 {
   "name": "yotrd",
   "description": "🍁 A framework for building fast and efficient Discord bots with biscuit.js",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "type": "module",
   "scripts": {
     "lint": "eslint --ext .js \".\""
