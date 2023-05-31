@@ -1,10 +1,5 @@
-import { writeFile, mkdir as createDirectory } from 'node:fs/promises';
-
-import {
-
-    join    as joinPath,
-    resolve as resolvePath
-} from 'node:path';
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
@@ -28,27 +23,29 @@ switch (process.argv.at(2)) {
 
     case 'init':
 
-        const path = joinPath(process.cwd(), (process.argv.at(3) ?? 'new-yotrd-project'));
+        const folder = process.argv.at(3) ?? 'new-yotrd-project';
 
-        await createDirectory(joinPath(path, 'src', 'events'),              { recursive: true });
-        await createDirectory(joinPath(path, 'src', 'services'),            { recursive: true });
-        await createDirectory(joinPath(path, 'src', 'commands', 'chat'),    { recursive: true });
-        await createDirectory(joinPath(path, 'src', 'commands', 'user'),    { recursive: true });
-        await createDirectory(joinPath(path, 'src', 'commands', 'message'), { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'events'),              { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'),            { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'chat'),    { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user'),    { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'), { recursive: true });
 
-        await writeFile(joinPath(path, '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.yotrd.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
 
         break;
 
     case 'deploy':
 
-        const { default: config } = await import(`file:///${ resolvePath(process.argv.at(3) ?? ('.', '.yotrd.config.js')) }`);
+        const directory = process.argv.at(3) ?? '.';
 
-        const eventsPath                     = resolvePath(config.directories?.events            ?? ('.', 'src', 'events'));
-        const servicesPath                   = resolvePath(config.directories?.services          ?? ('.', 'src', 'services'));
-        const chatInputCommandsPath          = resolvePath(config.directories?.commands?.chat    ?? ('.', 'src', 'commands', 'chat'));
-        const userContextMenuCommandsPath    = resolvePath(config.directories?.commands?.user    ?? ('.', 'src', 'commands', 'user'));
-        const messageContextMenuCommandsPath = resolvePath(config.directories?.commands?.message ?? ('.', 'src', 'commands', 'message'));
+        const { default: config } = await import(`file:///${ path.resolve(directory, '.yotrd.config.js') }`);
+
+        const eventsPath                     = path.resolve(config.directories?.events            ?? ('.', 'src', 'events'));
+        const servicesPath                   = path.resolve(config.directories?.services          ?? ('.', 'src', 'services'));
+        const chatInputCommandsPath          = path.resolve(config.directories?.commands?.chat    ?? ('.', 'src', 'commands', 'chat'));
+        const userContextMenuCommandsPath    = path.resolve(config.directories?.commands?.user    ?? ('.', 'src', 'commands', 'user'));
+        const messageContextMenuCommandsPath = path.resolve(config.directories?.commands?.message ?? ('.', 'src', 'commands', 'message'));
 
         const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
         const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
