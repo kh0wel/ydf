@@ -1,4 +1,4 @@
-# Yet another Discord framework
+# Yet another Discord Framework
 
 A framework for building fast and efficient Discord bots with [biscuit.js](https://biscuitjs.com).
 
