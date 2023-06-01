@@ -21,13 +21,14 @@ export class ChatInputCommandBuilder {
             name:        data.display.name,
             description: data.display.description,
 
-            options: data.display.options ?? this.display.options,
+            options: data.display.options ?? [],
 
             permissions: {
 
-                member: data.display.permissions?.member ?? this.display.permissions.member,
-                dm:     data.display.permissions?.dm     ?? this.display.permissions.dm,
-                nsfw:   data.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                member: data.display.permissions?.member ?? null,
+
+                dm:   data.display.permissions?.dm   ?? false,
+                nsfw: data.display.permissions?.nsfw ?? false
             },
 
             // https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
@@ -39,11 +40,12 @@ export class ChatInputCommandBuilder {
                 name_localizations:        findUsedLocales(data.display.name),
                 description_localizations: findUsedLocales(data.display.description),
 
-                options: data.display.options ?? this.display.data.options,
+                options: data.display.options ?? [],
 
-                default_member_permissions: data.display.permissions?.member ?? this.display.data.default_member_permissions,
-                dm_permission:              data.display.permissions?.dm     ?? this.display.data.dm_permission,
-                nsfw:                       data.display.permissions?.nsfw   ?? this.display.data.nsfw
+                default_member_permissions: data.display.permissions?.member ?? null,
+
+                dm_permission: data.display.permissions?.dm   ?? false,
+                nsfw:          data.display.permissions?.nsfw ?? false
             }
         };
 

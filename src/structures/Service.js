@@ -1,4 +1,4 @@
-export class EventBuilder {
+export class ServiceBuilder {
 
     name; level; intents; events;
 

@@ -22,9 +22,10 @@ export class MessageContextMenuCommandBuilder {
 
             permissions: {
 
-                member: data.display.permissions?.member ?? this.display.permissions.member,
-                dm:     data.display.permissions?.dm     ?? this.display.permissions.dm,
-                nsfw:   data.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                member: data.display.permissions?.member ?? null,
+
+                dm:   data.display.permissions?.dm   ?? false,
+                nsfw: data.display.permissions?.nsfw ?? false
             },
 
             // https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
@@ -34,9 +35,10 @@ export class MessageContextMenuCommandBuilder {
 
                 name_localizations: findUsedLocales(data.display.name),
 
-                default_member_permissions: data.display.permissions?.member ?? this.display.data.default_member_permissions,
-                dm_permission:              data.display.permissions?.dm     ?? this.display.data.dm_permission,
-                nsfw:                       data.display.permissions?.nsfw   ?? this.display.data.nsfw
+                default_member_permissions: data.display.permissions?.member ?? null,
+
+                dm_permission: data.display.permissions?.dm   ?? false,
+                nsfw:          data.display.permissions?.nsfw ?? false
             }
         };
 
