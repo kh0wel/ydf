@@ -2,7 +2,7 @@ import findUsedLocales from '../findUsedLocales.js';
 
 export class MessageContextMenuCommandBuilder {
 
-    name; intents; display; events;
+    name; level; intents; display; events;
 
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 3;
@@ -10,6 +10,8 @@ export class MessageContextMenuCommandBuilder {
     constructor (data) {
 
         this.name = data.name;
+
+        this.level = data.level ?? 0;
 
         // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? 0;

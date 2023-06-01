@@ -16,10 +16,6 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     Possibility of using of [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-- 💪🏻 **Productivity**:
-
-    Recursive resource load.
-
 ## Installation
 
 1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core):
