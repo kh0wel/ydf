@@ -6,46 +6,46 @@ settings:
 
 devDependencies:
   '@biscuitland/core':
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^3.0.1
+    version: 3.0.1
   '@types/node':
-    specifier: ^18.16.13
-    version: 18.16.13
+    specifier: ^18.16.16
+    version: 18.16.16
   rome:
     specifier: ^12.1.3
     version: 12.1.3
 
 packages:
 
-  /@biscuitland/common@0.0.1:
-    resolution: {integrity: sha512-UGbUK6/Pus8qkYNlZHyEDT5Oc4VjzVBg+DgSSAO/aQWlYt0wa93NAaRq4KtlaKIAbnP2XocA7cIeeETQvHpuWg==}
+  /@biscuitland/common@0.0.2:
+    resolution: {integrity: sha512-x5J54iq/8umMfFbv9kUBmxk9CRvly6XexL5FzEOm9ICXdb8xRNd4WcxxEm+66d81mM48UXTntrj47LIeqZ+3QQ==}
     dependencies:
       discord-api-types: 0.37.43
     dev: true
 
-  /@biscuitland/core@3.0.0:
-    resolution: {integrity: sha512-JEBVXkC+hqcklBx73qfpJ9wgyGt5UHK8gvi+AsIsEwSZo+4s3+uER1JdrC2yUQb1w7JZ+H4jlzJNoF8gz+/R+w==}
+  /@biscuitland/core@3.0.1:
+    resolution: {integrity: sha512-mXzcP4OMY73R8NPu64XVNEXBndwGFdIIZKjDA+dIE8bwgJfVKm0neC6mSgrMIGKEWzUhJtUKqFOLM9/DzRZJHg==}
     dependencies:
-      '@biscuitland/common': 0.0.1
-      '@biscuitland/rest': 3.0.0
-      '@biscuitland/ws': 3.0.0
+      '@biscuitland/common': 0.0.2
+      '@biscuitland/rest': 3.0.1
+      '@biscuitland/ws': 3.0.1
       eventemitter2: 6.4.9
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
     dev: true
 
-  /@biscuitland/rest@3.0.0:
-    resolution: {integrity: sha512-3p94VvwAK+mv22U4a/fUdevLn6pRZYUr6KT2mNSMGXErzR+GSCs0WWbug4cF0FyAizfZf9XUn7pRQb5g+QiEmw==}
+  /@biscuitland/rest@3.0.1:
+    resolution: {integrity: sha512-iZtJUJ0ptRprmX7Jgu7rpetoSqO+sBG6rBG+BDcVaIBjchYanLZNbBAlTSXp0/x3Y1TB4HvvktD9ErRx61Ku0Q==}
     dependencies:
       '@discordjs/rest': 1.7.1
     dev: true
 
-  /@biscuitland/ws@3.0.0:
-    resolution: {integrity: sha512-XShKbnPclKGIiTbg2qRVZb6VHyE2I+1JDq9L+TqRd8VWXNpmMV/1qRzPf2J2J8x4THOdCh2/8ze5NFjJTTg7yQ==}
+  /@biscuitland/ws@3.0.1:
+    resolution: {integrity: sha512-6MV0cf7OHs+9b8mpFYUXSkH5a/PGZ825tD6hd8KPgfSID3JDWYiyd7CxQdMQEEHcJHQRo8yjcpztEgyDVX6JeQ==}
     dependencies:
-      '@biscuitland/common': 0.0.1
-      '@biscuitland/rest': 3.0.0
+      '@biscuitland/common': 0.0.2
+      '@biscuitland/rest': 3.0.1
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
@@ -138,8 +138,8 @@ packages:
     resolution: {integrity: sha512-OvjF+z51L3ov0OyAU0duzsYuvO01PH7x4t6DJx+guahgTnBHkhJdG7soQeTSFLWN3efnHyibZ4Z8l2EuWwJN3A==}
     dev: true
 
-  /@types/node@18.16.13:
-    resolution: {integrity: sha512-uZRomboV1vBL61EBXneL4j9/hEn+1Yqa4LQdpGrKmXFyJmVfWc9JV9+yb2AlnOnuaDnb2PDO3hC6/LKmzJxP1A==}
+  /@types/node@18.16.16:
+    resolution: {integrity: sha512-NpaM49IGQQAUlBhHMF82QH80J08os4ZmyF9MkpCzWAGuOHqE4gTEbhzd7L3l5LmWuZ6E0OiC1FweQ4tsiW35+g==}
     dev: true
 
   /busboy@1.6.0:
