@@ -5,7 +5,7 @@ export default async function (directory, Builder) {
 
     let loaded = [];
 
-    const folders = (await fs.readdir(directory, 'utf-8')).filter((name) => name.startsWith('.'));
+    const folders = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
     for (const folder of folders) {
 

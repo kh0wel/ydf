@@ -72,7 +72,7 @@ switch (process.argv.at(2)) {
 
                 config,
 
-                session: new Session({ intents: usedIntents, ...config }),
+                session: new Session({ intents: usedIntents, ...config.session }),
 
                 eventsPath,
                 servicesPath,
