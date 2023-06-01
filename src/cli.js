@@ -25,7 +25,7 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user'),    { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } } };\n');
 
         break;
     }
@@ -67,7 +67,26 @@ switch (process.argv.at(2)) {
 
                 config,
 
-                session: new Session({ intents: usedIntents, ...config.session }),
+                session: new Session(
+
+                    config.session({
+
+                        eventsPath,
+                        servicesPath,
+                        chatInputCommandsPath,
+                        userContextMenuCommandsPath,
+                        messageContextMenuCommandsPath,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedUserContextMenuCommands,
+                        loadedMessageContextMenuCommands,
+
+                        usedEvents,
+                        usedIntents
+                    })
+                ),
 
                 eventsPath,
                 servicesPath,
