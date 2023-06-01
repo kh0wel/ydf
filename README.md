@@ -24,15 +24,15 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
     npm add @biscuitland/core -g
     ```
 
-2. Install [yord](https://npmjs.com/package/yotrd):
+2. Install [ydf](https://npmjs.com/package/ydf):
 
     ```bash
-    npm add yotrd -g
+    npm add ydf -g
     ```
 
 ## Commands
 
-- `yotrd init [<new-folder-name>]`.
+- `ydf init [<new-folder-name>]`.
 
     This command will create the necessary directories and files for the correct functioning of the framework.
 
@@ -47,7 +47,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
             └── message
     ```
 
-- `yotrd deploy [<config-file-path>]`.
+- `ydf deploy [<config-file-path>]`.
 
     This command will run the framework.
 
