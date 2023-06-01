@@ -1,17 +1,17 @@
 {
   "name": "ydf",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "🍁 A framework for building fast and efficient Discord bots with biscuit.js ",
   "type": "module",
   "preview": true,
   "scripts": {
-    "lint": "eslint --ext .ts \".\""
+    "lint": "eslint --ext .js \".\""
   },
   "bin": {
-    "ydf": "./dist/cli.js"
+    "ydf": "./src/cli.js"
   },
   "files": [
-    "./dist/"
+    "./src/"
   ],
   "keywords": [
     "framework",
