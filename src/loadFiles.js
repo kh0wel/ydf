@@ -3,7 +3,7 @@ import path from 'node:path';
 
 export default async function (directory, Builder) {
 
-    let used = [];
+    let loaded = [];
 
     const folders = (await fs.readdir(directory, 'utf-8')).filter((name) => name.startsWith('.'));
 
@@ -11,10 +11,10 @@ export default async function (directory, Builder) {
 
         const { default: data } = await import(`file:///${ path.join(directory, folder, 'index.js') }`);
 
-        used.push(new Builder({ ...data, name: folder }));
+        loaded.push(new Builder({ ...data, name: folder }));
     };
 
-    used = used.sort((a, b) => a.level - b.level);
+    loaded = loaded.sort((a, b) => a.level - b.level);
 
-    return used;
+    return loaded;
 };
