@@ -38,22 +38,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 - `ydf init [<new-folder-name>]`.
 
-    This command will create the necessary directories and files for the correct functioning of the framework.
-
-    ```
-    ├── .ydf.config.js
-    └── src
-        ├── events
-        ├── services
-        └── commands
-            ├── chat
-            ├── user
-            └── message
-    ```
-
 - `ydf deploy [<config-file-path>]`.
-
-    This command will run the framework.
 
 ## Configuration
 
@@ -80,29 +65,29 @@ export default {
     }) {
 
         // https://docs.biscuitjs.com/classes/core_src.Biscuit.html
-        return { token: '...' };
+        return { token: 'XXXX-XXXX-XXXX-XXXX' };
     },
 
     // Directory options (Optional)
     directories: {
 
         // Events directory (Optional)
-        events: '...',
+        events: './events',
 
         // Services directory (Optional)
-        services: '...',
+        services: './services',
 
         // Commands directory (Optional)
         commands: {
 
             // Slash Commands directory (Optional)
-            chat: '...',
+            chat: './commands/chat',
 
             // User Context Menu Commands directory (Optional)
-            user: '...',
+            user: './commands/user',
 
             // Message Context Menu Commands directory (Optional)
-            message: '...'
+            message: './commands/message'
         }
     }
 };
@@ -121,9 +106,6 @@ export default {
 
     // Folder name (Automatic)
     name: 'example',
-
-    // Event level (Optional)
-    level: 0,
 
     // Event intents (Optional)
     intents: 0,
@@ -161,9 +143,6 @@ export default {
 
     // Folder name (Automatic)
     name: 'example',
-
-    // Service level (Optional)
-    level: 0,
 
     // Service intents (Optional)
     intents: 0,
@@ -207,9 +186,6 @@ export default {
 
     // Command type (Automatic)
     type: 1,
-
-    // Command level (Optional)
-    level: 0,
 
     // Command intents (Optional)
     intents: 0,
@@ -283,9 +259,6 @@ export default {
     // Command type (Automatic)
     type: 2,
 
-    // Command level (Optional)
-    level: 0,
-
     // Command intents (Optional)
     intents: 0,
 
@@ -340,9 +313,6 @@ export default {
 
     // Command type (Automatic)
     type: 3,
-
-    // Command level (Optional)
-    level: 0,
 
     // Command intents (Optional)
     intents: 0,
