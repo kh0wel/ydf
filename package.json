@@ -5,9 +5,7 @@
   "type": "module",
   "preview": true,
   "scripts": {
-    "lint": "eslint --ext .ts \".\"",
-    "format": "eslint --fix --ext .ts \".\"",
-    "build": "tsc --project \".\""
+    "lint": "eslint --ext .ts \".\""
   },
   "bin": {
     "ydf": "./dist/cli.js"
@@ -36,14 +34,10 @@
   "devDependencies": {
     "@biscuitland/core": "^3.0.0",
     "@types/node": "^18.16.13",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
     "eslint": "^8.37.0",
-    "eslint-config-standard-with-typescript": "^34.0.1",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "typescript": "^5.0.2"
+    "eslint-plugin-promise": "^6.0.0"
   },
   "peerDependencies": {
     "@biscuitland/core": ">=2.3.0"
