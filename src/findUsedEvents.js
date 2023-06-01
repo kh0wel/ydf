@@ -28,7 +28,7 @@ export default function (
             commands: byCommands,
             all:      byAll
         };
-    };
+    }
 
     return used;
-};
+}

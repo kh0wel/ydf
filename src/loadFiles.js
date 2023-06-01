@@ -12,9 +12,9 @@ export default async function (directory, Builder) {
         const { default: data } = await import(`file:///${ path.join(directory, folder, 'index.js') }`);
 
         loaded.push(new Builder({ ...data, name: folder }));
-    };
+    }
 
     loaded = loaded.sort((a, b) => a.level - b.level);
 
     return loaded;
-};
+}

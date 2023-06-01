@@ -16,7 +16,7 @@ export default function (properties) {
     for (const locale of locales) {
 
         if (properties[locale]) used[locale] = properties[locale];
-    };
+    }
 
     return used;
-};
+}

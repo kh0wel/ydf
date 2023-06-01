@@ -43,5 +43,5 @@ export class MessageContextMenuCommandBuilder {
         };
 
         this.events = data.events;
-    };
-};
+    }
+}

@@ -50,5 +50,5 @@ export class ChatInputCommandBuilder {
         };
 
         this.events = data.events;
-    };
-};
+    }
+}

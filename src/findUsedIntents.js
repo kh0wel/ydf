@@ -11,8 +11,8 @@ export default function (loadedEvents, usedEvents) {
         for (const loadedFile of usedEvents[loadedEvent.name].all) {
 
             used |= loadedFile.intents;
-        };
-    };
+        }
+    }
 
     return used;
-};
+}

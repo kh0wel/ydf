@@ -43,5 +43,5 @@ export class UserContextMenuCommandBuilder {
         };
 
         this.events = data.events;
-    };
-};
+    }
+}

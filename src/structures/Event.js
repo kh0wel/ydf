@@ -12,5 +12,5 @@ export class EventBuilder {
         this.intents = data.intents ?? this.intents;
 
         this.execute = data.execute;
-    };
-};
+    }
+}

@@ -15,13 +15,7 @@ import { MessageContextMenuCommandBuilder } from './structures/MessageContextMen
 
 switch (process.argv.at(2)) {
 
-    default:
-
-        console.log('Repository on https://github.com/kh0wel/ydf');
-
-        break;
-
-    case 'init':
+    case 'init': {
 
         const folder = process.argv.at(3) ?? 'new-ydf-project';
 
@@ -34,8 +28,9 @@ switch (process.argv.at(2)) {
         await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session () { return { token: \'BOT TOKEN\' } } } };\n');
 
         break;
+    }
 
-    case 'deploy':
+    case 'deploy': {
 
         const directory = path.resolve(process.argv.at(3) ?? '.');
 
@@ -89,7 +84,14 @@ switch (process.argv.at(2)) {
                 usedEvents,
                 usedIntents
             });
-        };
+        }
 
         break;
-};
+    }
+
+    default:
+
+        console.log('Repository on https://github.com/kh0wel/ydf');
+
+        break;
+}

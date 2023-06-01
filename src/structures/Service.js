@@ -12,5 +12,5 @@ export class ServiceBuilder {
         this.intents = data.intents ?? this.intents;
 
         this.events = data.events;
-    };
-};
+    }
+}
