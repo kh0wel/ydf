@@ -2,52 +2,19 @@ import findUsedLocales from '../findUsedLocales.js';
 
 export class ChatInputCommandBuilder {
 
-    name = undefined;
+    name; level; intents; display; events;
 
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 1;
-
-    level = 0;
-
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0;
-
-    display = {
-
-        name: { default: undefined }, description: { default: undefined },
-
-        options: [],
-
-        permissions: {
-
-            dm: false, nsfw: false,
-
-            member: null
-        },
-
-        // https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
-        data: {
-
-            name: undefined, description: undefined,
-
-            name_localizations: {}, description_localizations: {},
-
-            options: [],
-
-            default_member_permissions: null,
-
-            dm_permission: false, nsfw: false
-        }
-    };
-
-    events = {};
 
     constructor (data) {
 
         this.name = data.name;
 
-        this.level   = data.level   ?? this.level;
-        this.intents = data.intents ?? this.intents;
+        this.level = data.level ?? 0;
+
+        // https://discord.com/developers/docs/topics/gateway#gateway-intents
+        this.intents = data.intents ?? 0;
 
         this.display = {
 
@@ -63,6 +30,7 @@ export class ChatInputCommandBuilder {
                 nsfw:   data.display.permissions?.nsfw   ?? this.display.permissions.nsfw
             },
 
+            // https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
             data: {
 
                 name:        data.display.name.default,

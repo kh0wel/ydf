@@ -1,19 +1,14 @@
 export class EventBuilder {
 
-    name = undefined;
-
-    level = 0;
-
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0;
-
-    execute () {};
+    name; level; intents; execute;
 
     constructor (data) {
 
         this.name = data.name;
 
-        this.level   = data.level   ?? this.level;
+        this.level = data.level ?? this.level;
+
+        // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? this.intents;
 
         this.execute = data.execute;
