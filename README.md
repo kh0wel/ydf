@@ -4,31 +4,31 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- ⚡ **Performance**:
+- ⚡ **Performance**.
 
     Algorithms to evaluate and determine whether one or more resources are needed.
 
-- 🧱 **Scalability**:
+- 🧱 **Scalability**.
 
     Possibility of using different versions of [biscuit.js](https://biscuitjs.com).
 
-- 🚀 **Compatibility**:
+- 🚀 **Compatibility**.
 
     Possibility of using of [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-- 💪🏻 **Productivity**:
+- 💪🏻 **Productivity**.
 
     Recursive load.
 
 ## Installation
 
-1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core):
+1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core).
 
     ```bash
     npm add @biscuitland/core -g
     ```
 
-2. Install [ydf](https://npmjs.com/package/ydf):
+2. Install [ydf](https://npmjs.com/package/ydf).
 
     ```bash
     npm add ydf -g
@@ -36,16 +36,15 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Commands
 
-- `ydf init [<new-folder-name>]`.
+### `ydf init [<new-folder-name>]`
 
-- `ydf deploy [<config-file-path>]`.
+### `ydf deploy [<config-file-path>]`
 
 ## Configuration
 
 ```js
 export default {
 
-    // Session options
     session ({
 
         config,
@@ -64,7 +63,6 @@ export default {
         return { intents: usedIntents, token: 'XXXX-XXXX-XXXX-XXXX' };
     },
 
-    // Directory options (Optional)
     directories: {
 
         // Events directory (Optional)
@@ -73,7 +71,6 @@ export default {
         // Services directory (Optional)
         services: 'services',
 
-        // Commands directory (Optional)
         commands: {
 
             // Slash Commands directory (Optional)
@@ -87,7 +84,6 @@ export default {
         }
     },
 
-    // Extensions file options (Optional)
     extensions: {
 
         // Events file (Optional)
@@ -96,7 +92,6 @@ export default {
         // Services file (Optional)
         services: '.service.js',
 
-        // Commands file (Optional)
         commands: {
 
             // Slash Commands file (Optional)

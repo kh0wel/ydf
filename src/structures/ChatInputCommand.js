@@ -1,6 +1,6 @@
 export class ChatInputCommandBuilder {
 
-    name; level; intents; display; events;
+    name; intents; display; events;
 
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 1;
@@ -8,8 +8,6 @@ export class ChatInputCommandBuilder {
     constructor (data) {
 
         this.name = data.name;
-
-        this.level = data.level ?? 0;
 
         // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? 0;
