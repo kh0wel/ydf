@@ -68,24 +68,47 @@ export default {
     directories: {
 
         // Events directory (Optional)
-        events: './events',
+        events: 'events',
 
         // Services directory (Optional)
-        services: './services',
+        services: 'services',
 
         // Commands directory (Optional)
         commands: {
 
             // Slash Commands directory (Optional)
-            chat: './commands/chat',
+            chat: 'commands',
 
             // User Context Menu Commands directory (Optional)
-            user: './commands/user',
+            user: 'commands',
 
             // Message Context Menu Commands directory (Optional)
-            message: './commands/message'
+            message: 'commands'
         }
-    }
+    },
+
+    // Extensions file options (Optional)
+    extensions: {
+
+        // Events file (Optional)
+        events: '.event.js ',
+
+        // Services file (Optional)
+        services: '.service.js',
+
+        // Commands file (Optional)
+        commands: {
+
+            // Slash Commands file (Optional)
+            chat: '.command.chat.js',
+
+            // User Context Menu Commands file (Optional)
+            chat: '.command.user.js',
+
+            // Message Context Menu Commands file (Optional)
+            chat: '.command.message.js',
+        }
+    },
 };
 ```
 
@@ -187,7 +210,6 @@ export default {
 
             default: 'Example command',
 
-            // 'en-US': 'Example command',
             // 'es-ES': 'Comando de ejemplo',
             // ...
         },
@@ -206,23 +228,6 @@ export default {
 
             // Required member permissions (Optional)
             member: null
-        },
-
-        // Command display data with API format (Automatic)
-        data: {
-
-            name:        'example', 
-            description: 'Example',
-
-            name_localizations:        {},
-            description_localizations: {},
-
-            options: [],
-
-            dm_permission: false,
-            nsfw:          false,
-
-            default_member_permissions: null
         }
     }
 };
@@ -265,19 +270,6 @@ export default {
 
             // Required member permissions (Optional)
             member: null
-        },
-
-        // Command display data with API format (Automatic)
-        data: {
-
-            name: 'Example', 
-
-            name_localizations: {},
-
-            dm_permission: false,
-            nsfw:          false,
-
-            default_member_permissions: null
         }
     }
 };
@@ -320,19 +312,6 @@ export default {
 
             // Required member permissions (Optional)
             member: null
-        },
-
-        // Command display data with API format (Automatic)
-        data: {
-
-            name: 'Example', 
-
-            name_localizations: {},
-
-            dm_permission: false,
-            nsfw:          false,
-
-            default_member_permissions: null
         }
     }
 };
