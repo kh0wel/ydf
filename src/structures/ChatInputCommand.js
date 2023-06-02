@@ -1,5 +1,3 @@
-import findUsedLocales from '../findUsedLocales.js';
-
 export class ChatInputCommandBuilder {
 
     name; level; intents; display; events;
@@ -29,23 +27,6 @@ export class ChatInputCommandBuilder {
 
                 dm:   data.display.permissions?.dm   ?? false,
                 nsfw: data.display.permissions?.nsfw ?? false
-            },
-
-            // https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
-            data: {
-
-                name:        data.display.name.default,
-                description: data.display.description.default,
-
-                name_localizations:        findUsedLocales(data.display.name),
-                description_localizations: findUsedLocales(data.display.description),
-
-                options: data.display.options ?? [],
-
-                default_member_permissions: data.display.permissions?.member ?? null,
-
-                dm_permission: data.display.permissions?.dm   ?? false,
-                nsfw:          data.display.permissions?.nsfw ?? false
             }
         };
 
