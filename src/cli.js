@@ -43,11 +43,11 @@ switch (process.argv.at(2)) {
 
         const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.'));
 
-        const loadedEvents                     = await loadSources(config.directories.events,           EventBuilder);
-        const loadedServices                   = await loadSources(config.directories.services,         ServiceBuilder);
-        const loadedChatInputCommands          = await loadSources(config.directories.commands.chat,    ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadSources(config.directories.commands.user,    UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadSources(config.directories.commands.message, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadSources(config.directories.events,           config.extensions.events,           EventBuilder);
+        const loadedServices                   = await loadSources(config.directories.services,         config.extensions.services,         ServiceBuilder);
+        const loadedChatInputCommands          = await loadSources(config.directories.commands.chat,    config.extensions.commands.chat,    ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadSources(config.directories.commands.user,    config.extensions.commands.user,    UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadSources(config.directories.commands.message, config.extensions.commands.message, MessageContextMenuCommandBuilder);
 
         const usedEvents = findUsedEvents(
 

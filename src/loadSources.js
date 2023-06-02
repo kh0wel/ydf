@@ -1,20 +1,35 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-export default async function (directory, Builder) {
+const loader = async function (directory, extension, Builder) {
 
     let loaded = [];
 
-    const folders = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
+    const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
-    for (const folder of folders) {
+    for (const item of items) {
 
-        const { default: data } = await import(`file:///${ path.join(directory, folder, 'index.js') }`);
+        const { isDirectory } = await fs.stat(path.join(directory, item));
 
-        loaded.push(new Builder({ ... data, name: folder }));
+        if (isDirectory()) {
+
+
+            loaded = loaded.concat(await loader(path.join(directory, item), extension, Builder));
+
+            continue;
+        }
+
+        if (item.endsWith(extension)) {
+
+            const { default: data } = await import(`file:///${ path.join(directory, item) }`);
+
+            loaded.push(new Builder({ ... data, name: item }));
+
+            break;
+        }
     }
-
-    loaded = loaded.sort((a, b) => a.level - b.level);
 
     return loaded;
 }
+
+export default loader;
