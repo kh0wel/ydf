@@ -46,14 +46,14 @@ export default async function (directory) {
 
         extensions: {
 
-            events:   data.directories?.events   ?? '.event.js',
-            services: data.directories?.services ?? '.service.js',
+            events:   data.extensions?.events   ?? '.event.js',
+            services: data.extensions?.services ?? '.service.js',
 
             commands: {
 
-                chat:    data.directories?.commands?.chat    ?? '.command.chat.js',
-                user:    data.directories?.commands?.user    ?? '.command.user.js',
-                message: data.directories?.commands?.message ?? '.command.message.js'
+                chat:    data.extensions?.commands?.chat    ?? '.command.chat.js',
+                user:    data.extensions?.commands?.user    ?? '.command.user.js',
+                message: data.extensions?.commands?.message ?? '.command.message.js'
             }
         }
     };
