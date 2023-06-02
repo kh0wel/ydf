@@ -103,12 +103,6 @@ export default {
 
         config, session,
 
-        eventsPath,
-        servicesPath,
-        chatInputCommandsPath,
-        userContextMenuCommandsPath,
-        messageContextMenuCommandsPath,
-
         loadedEvents,
         loadedServices,
         loadedChatInputCommands,
@@ -141,12 +135,6 @@ export default {
         example ({
 
             config, session,
-
-            eventsPath,
-            servicesPath,
-            chatInputCommandsPath,
-            userContextMenuCommandsPath,
-            messageContextMenuCommandsPath,
 
             loadedEvents,
             loadedServices,
