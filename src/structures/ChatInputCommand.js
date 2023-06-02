@@ -1,13 +1,14 @@
 export class ChatInputCommandBuilder {
 
-    name; intents; display; events;
+    name; directory; intents; display; events;
 
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 1;
 
     constructor (data) {
 
-        this.name = data.name;
+        this.name      = data.name;
+        this.directory = data.directory;
 
         // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? 0;
