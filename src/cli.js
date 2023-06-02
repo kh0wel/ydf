@@ -4,7 +4,7 @@ import path from 'node:path';
 import { Session } from '@biscuitland/core';
 
 import loadConfig from './loadConfig.js';
-import loadFiles from './loadFiles.js';
+import loadSources from './loadSources.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedIntents from './findUsedIntents.js';
 
@@ -43,11 +43,11 @@ switch (process.argv.at(2)) {
 
         const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.'));
 
-        const loadedEvents                     = await loadFiles(config.directories.events,           EventBuilder);
-        const loadedServices                   = await loadFiles(config.directories.services,         ServiceBuilder);
-        const loadedChatInputCommands          = await loadFiles(config.directories.commands.chat,    ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadFiles(config.directories.commands.user,    UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadFiles(config.directories.commands.message, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadSources(config.directories.events,           EventBuilder);
+        const loadedServices                   = await loadSources(config.directories.services,         ServiceBuilder);
+        const loadedChatInputCommands          = await loadSources(config.directories.commands.chat,    ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadSources(config.directories.commands.user,    UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadSources(config.directories.commands.message, MessageContextMenuCommandBuilder);
 
         const usedEvents = findUsedEvents(
 
