@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
-import getConfig from './getConfig.js';
+import loadConfig from './loadConfig.js';
 import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedIntents from './findUsedIntents.js';
@@ -41,7 +41,7 @@ switch (process.argv.at(2)) {
 
     case 'deploy': {
 
-        const config = await getConfig(path.resolve(process.argv.at(3) ?? '.'));
+        const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.'));
 
         const loadedEvents                     = await loadFiles(config.directories.events, EventBuilder);
         const loadedServices                   = await loadFiles(config.directories.services, ServiceBuilder);

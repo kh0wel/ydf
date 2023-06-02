@@ -6,7 +6,7 @@ export default async function (directory) {
 
     return {
 
-        ...data,
+        ... data,
 
         directories: {
 
