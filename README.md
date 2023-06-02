@@ -44,11 +44,7 @@ export default {
     // Session options
     session ({
 
-        eventsPath,
-        servicesPath,
-        chatInputCommandsPath,
-        userContextMenuCommandsPath,
-        messageContextMenuCommandsPath,
+        config,
 
         loadedEvents,
         loadedServices,
@@ -61,7 +57,7 @@ export default {
     }) {
 
         // https://docs.biscuitjs.com/classes/core_src.Biscuit.html
-        return { token: 'XXXX-XXXX-XXXX-XXXX' };
+        return { intents: usedIntents, token: 'XXXX-XXXX-XXXX-XXXX' };
     },
 
     // Directory options (Optional)
@@ -88,10 +84,6 @@ export default {
     }
 };
 ```
-
-## Examples
-
-See examples [here](https://github.com/kh0wel/kobalt).
 
 ## Structures
 

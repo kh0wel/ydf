@@ -3,6 +3,7 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
+import getConfig from './getConfig.js';
 import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedIntents from './findUsedIntents.js';
@@ -19,11 +20,19 @@ switch (process.argv.at(2)) {
 
         const folder = process.argv.at(3) ?? 'new-ydf-project';
 
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'events'),              { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'),            { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'chat'),    { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user'),    { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'), { recursive: true });
+        await Promise.all([
+
+            fs.mkdir(path.join(process.cwd(), folder, 'src', 'events')),
+            fs.mkdir(path.join(process.cwd(), folder, 'src', 'services')),
+            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'))
+        ]);
+
+        await Promise.all([
+
+            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'chat')),
+            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user')),
+            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'))
+        ]);
 
         await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } } };\n');
 
@@ -32,21 +41,13 @@ switch (process.argv.at(2)) {
 
     case 'deploy': {
 
-        const directory = path.resolve(process.argv.at(3) ?? '.');
+        const config = await getConfig(path.resolve(process.argv.at(3) ?? '.'));
 
-        const { default: config } = await import(`file:///${ path.join(directory, '.ydf.config.js') }`);
-
-        const eventsPath                     = config.directories?.events            ?? path.join(directory, 'src', 'events');
-        const servicesPath                   = config.directories?.services          ?? path.join(directory, 'src', 'services');
-        const chatInputCommandsPath          = config.directories?.commands?.chat    ?? path.join(directory, 'src', 'commands', 'chat');
-        const userContextMenuCommandsPath    = config.directories?.commands?.user    ?? path.join(directory, 'src', 'commands', 'user');
-        const messageContextMenuCommandsPath = config.directories?.commands?.message ?? path.join(directory, 'src', 'commands', 'message');
-
-        const loadedEvents                     = await loadFiles(eventsPath, EventBuilder);
-        const loadedServices                   = await loadFiles(servicesPath, ServiceBuilder);
-        const loadedChatInputCommands          = await loadFiles(chatInputCommandsPath, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadFiles(userContextMenuCommandsPath, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadFiles(messageContextMenuCommandsPath, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadFiles(config.directories.events, EventBuilder);
+        const loadedServices                   = await loadFiles(config.directories.services, ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(config.directories.commands.chat, ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(config.directories.commands.user, UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(config.directories.commands.message, MessageContextMenuCommandBuilder);
 
         const usedEvents = findUsedEvents(
 
@@ -71,11 +72,7 @@ switch (process.argv.at(2)) {
 
                     config.session({
 
-                        eventsPath,
-                        servicesPath,
-                        chatInputCommandsPath,
-                        userContextMenuCommandsPath,
-                        messageContextMenuCommandsPath,
+                        config,
 
                         loadedEvents,
                         loadedServices,
@@ -87,12 +84,6 @@ switch (process.argv.at(2)) {
                         usedIntents
                     })
                 ),
-
-                eventsPath,
-                servicesPath,
-                chatInputCommandsPath,
-                userContextMenuCommandsPath,
-                messageContextMenuCommandsPath,
 
                 loadedEvents,
                 loadedServices,
