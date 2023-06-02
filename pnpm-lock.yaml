@@ -6,8 +6,8 @@ settings:
 
 devDependencies:
   '@biscuitland/core':
-    specifier: ^3.0.1
-    version: 3.0.1
+    specifier: ^3.0.2
+    version: 3.0.2
   '@types/node':
     specifier: ^18.16.16
     version: 18.16.16
@@ -17,35 +17,35 @@ devDependencies:
 
 packages:
 
-  /@biscuitland/common@0.0.2:
-    resolution: {integrity: sha512-x5J54iq/8umMfFbv9kUBmxk9CRvly6XexL5FzEOm9ICXdb8xRNd4WcxxEm+66d81mM48UXTntrj47LIeqZ+3QQ==}
+  /@biscuitland/common@0.0.3:
+    resolution: {integrity: sha512-sZZmO/iVlfAQw1V2TZBjzKcrvWuV8pMvtsCohsXfYhQQErkTcjeYU6q3T6bSXMizSLVqLy4ZzUN0mB1vBjul5A==}
     dependencies:
       discord-api-types: 0.37.43
     dev: true
 
-  /@biscuitland/core@3.0.1:
-    resolution: {integrity: sha512-mXzcP4OMY73R8NPu64XVNEXBndwGFdIIZKjDA+dIE8bwgJfVKm0neC6mSgrMIGKEWzUhJtUKqFOLM9/DzRZJHg==}
+  /@biscuitland/core@3.0.2:
+    resolution: {integrity: sha512-WLY2TZ2UGgZmwpNt7qFTPGHbA2ZXfl35hXFAqEIaEmCifFcMXJm90FH1e/5MtPmIlt4tgObjPYhBQlkFeKI6xQ==}
     dependencies:
-      '@biscuitland/common': 0.0.2
-      '@biscuitland/rest': 3.0.1
-      '@biscuitland/ws': 3.0.1
+      '@biscuitland/common': 0.0.3
+      '@biscuitland/rest': 3.0.2
+      '@biscuitland/ws': 3.0.2
       eventemitter2: 6.4.9
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
     dev: true
 
-  /@biscuitland/rest@3.0.1:
-    resolution: {integrity: sha512-iZtJUJ0ptRprmX7Jgu7rpetoSqO+sBG6rBG+BDcVaIBjchYanLZNbBAlTSXp0/x3Y1TB4HvvktD9ErRx61Ku0Q==}
+  /@biscuitland/rest@3.0.2:
+    resolution: {integrity: sha512-zRzcc7CoP4fjWtWh3JAPKBzymGB2V9pZpxm6nMHr5FSSFJXJKfPplLFLUjaPaXDib5HFrqyt57Zz4d68sJ5lYw==}
     dependencies:
       '@discordjs/rest': 1.7.1
     dev: true
 
-  /@biscuitland/ws@3.0.1:
-    resolution: {integrity: sha512-6MV0cf7OHs+9b8mpFYUXSkH5a/PGZ825tD6hd8KPgfSID3JDWYiyd7CxQdMQEEHcJHQRo8yjcpztEgyDVX6JeQ==}
+  /@biscuitland/ws@3.0.2:
+    resolution: {integrity: sha512-OqKZ1GffLpd6GRQ44wegug2sXo2PRBM3Cchk3NiSSNcHCexYjcVhw+88li/RIHKhCf0U3Hv2EPL6pV55hzhJJQ==}
     dependencies:
-      '@biscuitland/common': 0.0.2
-      '@biscuitland/rest': 3.0.1
+      '@biscuitland/common': 0.0.3
+      '@biscuitland/rest': 3.0.2
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil

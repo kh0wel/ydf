@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "description": "🍁 A framework for building fast and efficient Discord bots with biscuit.js ",
   "type": "module",
   "bin": "./src/cli.js",
@@ -29,7 +29,7 @@
     "bun": ">=0.6.*"
   },
   "devDependencies": {
-    "@biscuitland/core": "^3.0.1",
+    "@biscuitland/core": "^3.0.2",
     "@types/node": "^18.16.16",
     "rome": "^12.1.3"
   },

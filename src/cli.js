@@ -4,7 +4,7 @@ import path from 'node:path';
 import { Session } from '@biscuitland/core';
 
 import loadConfig from './loadConfig.js';
-import loadSource from './loadSource.js';
+import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedIntents from './findUsedIntents.js';
 
@@ -34,7 +34,7 @@ switch (process.argv.at(2)) {
             fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'))
         ]);
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
 
         break;
     }
@@ -43,11 +43,11 @@ switch (process.argv.at(2)) {
 
         const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.'));
 
-        const loadedEvents                     = await loadSource(config.directories.events, EventBuilder);
-        const loadedServices                   = await loadSource(config.directories.services, ServiceBuilder);
-        const loadedChatInputCommands          = await loadSource(config.directories.commands.chat, ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadSource(config.directories.commands.user, UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadSource(config.directories.commands.message, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadFiles(config.directories.events,           EventBuilder);
+        const loadedServices                   = await loadFiles(config.directories.services,         ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(config.directories.commands.chat,    ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(config.directories.commands.user,    UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(config.directories.commands.message, MessageContextMenuCommandBuilder);
 
         const usedEvents = findUsedEvents(
 
