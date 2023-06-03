@@ -22,7 +22,7 @@ const loader = async function (directory, target, Builder) {
 
             const { default: data } = await import(`file:///${ path.join(directory, item) }`);
 
-            loaded.push(new Builder({ ... data, directory, name: item }));
+            loaded.push(new Builder({ ... data, directory, name: item.slice(item.length - target.length) }));
 
             break;
         }
