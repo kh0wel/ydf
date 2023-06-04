@@ -1,4 +1,4 @@
-![logo](https://raw.githubusercontent.com/kh0wel/ydf/main/assets/icon.png ':id=banner')
+![banner](https://raw.githubusercontent.com/kh0wel/ydf/main/assets/icon.png)
 
 <div align="center">
 	<br />
@@ -8,6 +8,8 @@
 	</p>
 	<br />
 </div>
+
+## About
 
 A framework for building fast and efficient Discord bots with [biscuit.js](https://biscuitjs.com).
 
