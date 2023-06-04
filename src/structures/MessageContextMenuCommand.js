@@ -1,14 +1,14 @@
 export class MessageContextMenuCommandBuilder {
 
-    name; directory; intents; display; events;
+    name; path; intents; display; events;
 
     // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
     type = 3;
 
     constructor (data) {
 
-        this.name      = data.name
-        this.directory = data.directory;
+        this.name = data.name
+        this.path = data.path;
 
         // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? 0;

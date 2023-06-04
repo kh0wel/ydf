@@ -1,11 +1,11 @@
 export class ServiceBuilder {
 
-    name; directory; intents; events;
+    name; path; intents; events;
 
     constructor (data) {
 
-        this.name      = data.name;
-        this.directory = data.directory;
+        this.name = data.name;
+        this.path = data.path;
 
         // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? 0;

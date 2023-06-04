@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const loader = async function (directory, target, Builder) {
 
-    let loaded = [];
+    let loadedFiles = [];
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -13,7 +13,7 @@ const loader = async function (directory, target, Builder) {
 
         if (isDirectory()) {
 
-            loaded = loaded.concat(await loader(path.join(directory, item), target, Builder));
+            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), target, Builder));
 
             continue;
         }
@@ -22,13 +22,23 @@ const loader = async function (directory, target, Builder) {
 
             const { default: data } = await import(`file:///${ path.join(directory, item) }`);
 
-            loaded.push(new Builder({ ... data, directory, name: item.slice(item.length - target.length) }));
+            loadedFiles.push(
+
+                new Builder({
+
+                    ... data,
+
+                    name: item.slice(item.length - target.length),
+
+                    path: path.join(directory, item)
+                })
+            );
 
             break;
         }
     }
 
-    return loaded;
+    return loadedFiles;
 }
 
 export default loader;
