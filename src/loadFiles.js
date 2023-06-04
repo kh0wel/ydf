@@ -1,12 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { EventBuilder } from './structures/Event.js';
-import { ServiceBuilder } from './structures/Service.js';
-import { ChatInputCommandBuilder } from './structures/ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './structures/UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './structures/MessageContextMenuCommand.js';
-
 export default async function (config) {
 
     const laodedEvents                     = [];

@@ -4,10 +4,6 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- 📐 **Opinionated**.
-
-    Flexible and strict infrastructure.
-
 - 💪🏻 **Productivity**.
 
     Recursive resource load.
@@ -68,7 +64,7 @@ export default {
         return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
-    exclude: [ 'src/**/*.json' ],
+    exclude: [ '**/*.json' ],
 
     include: [
 
@@ -88,8 +84,7 @@ export default {
 ```js
 export default {
 
-    name: 'example', // (Automatic)
-
+    name: 'example',              // (Automatic)
     path: 'C://example.event.js', // (Automatic)
 
     intents: 0, // (Optional)
@@ -106,7 +101,10 @@ export default {
 
         usedEvents,
         usedIntents
-    }) { /* ... */ }
+    }) {
+
+        console.log('Hello world');
+    }
 };
 ```
 
@@ -115,8 +113,7 @@ export default {
 ```js
 export default {
 
-    name: 'example', // (Automatic)
-
+    name: 'example',                // (Automatic)
     path: 'C://example.service.js', // (Automatic)
 
     intents: 0, // (Optional)
@@ -135,9 +132,10 @@ export default {
 
             usedEvents,
             usedIntents
-        }) { /* ... */ },
+        }) {
 
-        // ...
+            console.log('Hello world');
+        }
     }
 };
 ```
@@ -147,15 +145,14 @@ export default {
 ```js
 export default {
 
-    name: 'example', // (Automatic)
-
+    name: 'example',                     // (Automatic)
     path: 'C://example.command.chat.js', // (Automatic)
-
-    type: 1, // (Automatic)
 
     intents: 0, // (Optional)
 
     display: {
+
+        type: 1, // (Automatic)
 
         name: {
 
@@ -177,8 +174,7 @@ export default {
 
         permissions: {
 
-            dm: false, // (Optional)
-
+            dm:   false, // (Optional)
             nsfw: false, // (Optional)
 
             member: null // (Optional)
@@ -199,9 +195,10 @@ export default {
 
             usedEvents,
             usedIntents
-        }) { /* ... */ },
+        }) {
 
-        // ...
+            console.log('Hello world');
+        }
     }
 };
 ```
@@ -211,15 +208,14 @@ export default {
 ```js
 export default {
 
-    name: 'example', // (Automatic)
-
+    name: 'example',                     // (Automatic)
     path: 'C://example.command.user.js', // (Automatic)
-
-    type: 2, // (Automatic)
 
     intents: 0, // (Optional)
 
     display: {
+
+        type: 2, // (Automatic)
 
         name: {
 
@@ -231,8 +227,7 @@ export default {
 
         permissions: {
 
-            dm: false, // (Optional)
-
+            dm:   false, // (Optional)
             nsfw: false, // (Optional)
 
             member: null // (Optional)
@@ -253,9 +248,10 @@ export default {
 
             usedEvents,
             usedIntents
-        }) { /* ... */ },
+        }) {
 
-        // ...
+            console.log('Hello world');
+        }
     }
 };
 ```
@@ -265,15 +261,14 @@ export default {
 ```js
 export default {
 
-    name: 'example', // (Automatic)
-
+    name: 'example',                        // (Automatic)
     path: 'C://example.command.message.js', // (Automatic)
-
-    type: 3, // (Automatic)
 
     intents: 0, // (Optional)
 
     display: {
+
+        type: 3, // (Automatic)
 
         name: {
 
@@ -285,8 +280,7 @@ export default {
 
         permissions: {
 
-            dm: false, // (Optional)
-
+            dm:   false, // (Optional)
             nsfw: false, // (Optional)
 
             member: null // (Optional)
@@ -307,9 +301,10 @@ export default {
 
             usedEvents,
             usedIntents
-        }) { /* ... */ },
+        }) {
 
-        // ...
+            console.log('Hello world');
+        }
     }
 };
 ```

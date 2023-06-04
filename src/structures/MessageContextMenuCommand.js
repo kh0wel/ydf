@@ -2,9 +2,6 @@ export class MessageContextMenuCommandBuilder {
 
     name; path; intents; display; events;
 
-    // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
-    type = 3;
-
     constructor (data) {
 
         this.name = data.name
@@ -14,6 +11,9 @@ export class MessageContextMenuCommandBuilder {
         this.intents = data.intents ?? 0;
 
         this.display = {
+
+            // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+            type: 3,
 
             name: data.display.name,
 
