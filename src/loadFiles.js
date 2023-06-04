@@ -30,9 +30,9 @@ const loader = async function (directory, target, Builder) {
 
                     ... data,
 
-                    path: current,
-
                     name: item.slice(item.length - target.length),
+
+                    path: current
                 })
             );
 
