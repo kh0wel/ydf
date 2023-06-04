@@ -4,7 +4,7 @@ import path from 'node:path';
 import { Session } from '@biscuitland/core';
 
 import loadSettings from './loadSettings.js';
-import loadFiles from './loadFiles.js';
+import loadSources from './loadSources.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedIntents from './findUsedIntents.js';
 
@@ -26,7 +26,7 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user'),    { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydfrc.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
 
         break;
     }
@@ -35,11 +35,11 @@ switch (process.argv.at(2)) {
 
         const settings = await loadSettings(path.resolve(process.argv.at(3) ?? '.'));
 
-        const loadedEvents                     = await loadFiles(settings.directories.events,           settings.extensions.events,           EventBuilder);
-        const loadedServices                   = await loadFiles(settings.directories.services,         settings.extensions.services,         ServiceBuilder);
-        const loadedChatInputCommands          = await loadFiles(settings.directories.commands.chat,    settings.extensions.commands.chat,    ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadFiles(settings.directories.commands.user,    settings.extensions.commands.user,    UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadFiles(settings.directories.commands.message, settings.extensions.commands.message, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadSources(settings.directories.events,           settings.extensions.events,           EventBuilder);
+        const loadedServices                   = await loadSources(settings.directories.services,         settings.extensions.services,         ServiceBuilder);
+        const loadedChatInputCommands          = await loadSources(settings.directories.commands.chat,    settings.extensions.commands.chat,    ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadSources(settings.directories.commands.user,    settings.extensions.commands.user,    UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadSources(settings.directories.commands.message, settings.extensions.commands.message, MessageContextMenuCommandBuilder);
 
         const usedEvents = findUsedEvents(
 
