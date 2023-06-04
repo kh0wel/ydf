@@ -80,7 +80,7 @@ export default {
 
     name: 'example', // (Automatic)
 
-    path: '/abc/example.event.js', // (Automatic)
+    path: 'C://example.event.js', // (Automatic)
 
     intents: 0, // (Optional)
 
@@ -95,7 +95,7 @@ export default {
 
     name: 'example', // (Automatic)
 
-    path: '/abc/example.service.js', // (Automatic)
+    path: 'C://example.service.js', // (Automatic)
 
     intents: 0, // (Optional)
 
@@ -116,7 +116,7 @@ export default {
 
     name: 'example', // (Automatic)
 
-    path: '/abc/example.command.chat.js', // (Automatic)
+    path: 'C://example.command.chat.js', // (Automatic)
 
     type: 1, // (Automatic)
 
@@ -169,7 +169,7 @@ export default {
 
     name: 'example', // (Automatic)
 
-    path: '/abc/example.command.user.js', // (Automatic)
+    path: 'C://example.command.user.js', // (Automatic)
 
     type: 2, // (Automatic)
 
@@ -212,7 +212,7 @@ export default {
 
     name: 'example', // (Automatic)
 
-    path: '/abc/example.command.message.js', // (Automatic)
+    path: 'C://example.command.message.js', // (Automatic)
 
     type: 3, // (Automatic)
 

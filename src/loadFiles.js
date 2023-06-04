@@ -7,13 +7,13 @@ import { ChatInputCommandBuilder } from './structures/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './structures/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './structures/MessageContextMenuCommand.js';
 
-const loader = async function (config) {
+export default async function (config) {
 
-    const files = { events: [], services: [], commands: { chat: [], user: [], message: [] } };
-
-
-
-
+    const laodedEvents                     = [];
+    const laodedServices                   = [];
+    const laodedChatInputCommands          = [];
+    const loadedUserContextMenuCommands    = [];
+    const loadedMessageContextMenuCommands = [];
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -48,7 +48,12 @@ const loader = async function (config) {
         }
     }
 
-    return files;
+    return {
+        
+        laodedEvents,
+        laodedServices,
+        laodedChatInputCommands,
+        loadedUserContextMenuCommands,
+        loadedMessageContextMenuCommands
+    };
 }
-
-export default loader;

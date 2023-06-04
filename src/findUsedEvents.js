@@ -1,6 +1,6 @@
 export default function (loadedFiles) {
 
-    const events = {};
+    const usedEvents = {};
 
     for (const loadedEvent of loadedFiles.events) {
 
@@ -15,7 +15,7 @@ export default function (loadedFiles) {
 
         if (!byAll.length) continue;
 
-        events[loadedEvent.name] = {
+        usedEvents[loadedEvent.name] = {
 
             services: byServices,
             commands: byCommands,
@@ -23,5 +23,5 @@ export default function (loadedFiles) {
         };
     }
 
-    return events;
+    return usedEvents;
 }
