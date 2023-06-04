@@ -11,9 +11,11 @@
     "./src/"
   ],
   "keywords": [
-    "framework",
     "bot",
-    "discord"
+    "framework",
+    "tools",
+    "discord",
+    "biscuit"
   ],
   "author": "kh0wel",
   "license": "MIT",
