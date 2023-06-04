@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const loader = async function (directory, target, Builder) {
 
-    let loaded = [];
+    let files = [];
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -15,7 +15,7 @@ const loader = async function (directory, target, Builder) {
 
         if (isDirectory()) {
 
-            loaded = loaded.concat(await loader(current, target, Builder));
+            files = files.concat(await loader(current, target, Builder));
 
             continue;
         }
@@ -24,7 +24,7 @@ const loader = async function (directory, target, Builder) {
 
             const { default: data } = await import(`file:///${ current }`);
 
-            loaded.push(
+            files.push(
 
                 new Builder({
 
@@ -40,7 +40,7 @@ const loader = async function (directory, target, Builder) {
         }
     }
 
-    return loaded;
+    return files;
 }
 
 export default loader;

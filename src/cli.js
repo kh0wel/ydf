@@ -20,19 +20,11 @@ switch (process.argv.at(2)) {
 
         const folder = process.argv.at(3) ?? 'new-ydf-project';
 
-        await Promise.all([
-
-            fs.mkdir(path.join(process.cwd(), folder, 'src', 'events')),
-            fs.mkdir(path.join(process.cwd(), folder, 'src', 'services')),
-            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'))
-        ]);
-
-        await Promise.all([
-
-            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'chat')),
-            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user')),
-            fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'))
-        ]);
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'events'),              { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'),            { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'chat'),    { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user'),    { recursive: true });
+        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'), { recursive: true });
 
         await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
 
