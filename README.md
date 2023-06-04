@@ -53,9 +53,19 @@ ydf deploy [<config-file-path>]
 ```js
 export default {
 
-    session ({ config, loadedFiles, usedEvents, usedGateways }) {
+    session ({
 
-        return { intents: usedGateways.intents, token: 'TOKEN' };
+        laodedEvents,
+        laodedServices,
+        laodedChatInputCommands,
+        loadedMessageContextMenuCommands,
+        loadedUserContextMenuCommands,
+
+        usedEvents,
+        usedIntents
+    }) {
+
+        return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
     exclude: [ 'src/**/*.json' ],
@@ -84,7 +94,19 @@ export default {
 
     intents: 0, // (Optional)
 
-    execute ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ }
+    execute ({
+
+        config, session,
+
+        laodedEvents,
+        laodedServices,
+        laodedChatInputCommands,
+        loadedMessageContextMenuCommands,
+        loadedUserContextMenuCommands,
+
+        usedEvents,
+        usedIntents
+    }) { /* ... */ }
 };
 ```
 
@@ -101,9 +123,20 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+        example ({
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+            config, session,
+
+            laodedEvents,
+            laodedServices,
+            laodedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands,
+
+            usedEvents,
+            usedIntents
+        }) { /* ... */ },
+
         // ...
     }
 };
@@ -154,9 +187,20 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+        example ({
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+            config, session,
+
+            laodedEvents,
+            laodedServices,
+            laodedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands,
+
+            usedEvents,
+            usedIntents
+        }) { /* ... */ },
+
         // ...
     }
 };
@@ -197,9 +241,20 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+        example ({
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+            config, session,
+
+            laodedEvents,
+            laodedServices,
+            laodedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands,
+
+            usedEvents,
+            usedIntents
+        }) { /* ... */ },
+
         // ...
     }
 };
@@ -240,9 +295,20 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+        example ({
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
+            config, session,
+
+            laodedEvents,
+            laodedServices,
+            laodedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands,
+
+            usedEvents,
+            usedIntents
+        }) { /* ... */ },
+
         // ...
     }
 };

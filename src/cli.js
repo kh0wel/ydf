@@ -19,7 +19,7 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'user'),    { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands', 'message'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydfrc.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
 
         break;
     }
@@ -28,20 +28,58 @@ switch (process.argv.at(2)) {
 
         const { default: config } = await import(`file:///${ process.argv.at(3) ? path.resolve(process.argv.at(3)) : path.join(process.cwd(), '.ydf.config.js') }`);
 
-        const loadedFiles = await loadFiles(config);
+        const {
 
-        const usedEvents   = findUsedEvents(loadedFiles);
-        const usedGateways = findUsedGateways(loadedFiles, usedEvents);
+            laodedEvents,
+            laodedServices,
+            laodedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands
+        }
+            = await loadFiles(config);
 
-        for (const loadedEvent of loadedFiles.events) {
+        const usedEvents = findUsedEvents(
+
+            laodedEvents,
+            laodedServices,
+            laodedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands
+        );
+
+        const { usedIntents } = findUsedGateways(laodedEvents, usedEvents);
+
+        for (const loadedEvent of laodedEvents) {
 
             if (!usedEvents[loadedEvent.name]) continue;
 
             loadedEvent.execute({
 
-                config, loadedFiles, usedEvents, usedGateways,
+                config,
 
-                session: new Session(config.session({ config, loadedFiles, usedEvents, usedGateways }))
+                laodedEvents,
+                laodedServices,
+                laodedChatInputCommands,
+                loadedMessageContextMenuCommands,
+                loadedUserContextMenuCommands,
+
+                usedEvents,
+                usedIntents,
+
+                session: new Session(
+                    
+                    config.session({
+        
+                        laodedEvents,
+                        laodedServices,
+                        laodedChatInputCommands,
+                        loadedMessageContextMenuCommands,
+                        loadedUserContextMenuCommands,
+        
+                        usedEvents,
+                        usedIntents,
+                    })
+                )
             });
         }
 
