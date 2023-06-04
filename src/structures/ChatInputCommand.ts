@@ -1,11 +1,45 @@
+export interface ChatInputCommandOptions {
+
+    intents?: number;
+
+    display: {
+
+        name: {
+
+            default: string;
+
+            [locale: string]: string;
+        };
+
+        description: {
+
+            default: string;
+
+            [locale: string]: string;
+        };
+
+        options?: any;
+
+        permissions?: {
+
+            member?: bigint | null;
+
+            dm?:   boolean
+            nsfw?: boolean
+        }
+    }
+
+    events: {
+
+        [event: string]: (parameters) => Promise<void> | void;
+    }
+}
+
 export class ChatInputCommandBuilder {
 
-    name; path; intents; display; events;
+    intents; display; events;
 
     constructor (data) {
-
-        this.name = data.name;
-        this.path = data.path;
 
         // https://discord.com/developers/docs/topics/gateway#gateway-intents
         this.intents = data.intents ?? 0;
