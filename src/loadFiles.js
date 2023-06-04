@@ -3,34 +3,36 @@ import path from 'node:path';
 
 const loader = async function (directory, target, Builder) {
 
-    let loadedFiles = [];
+    let loaded = [];
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
     for (const item of items) {
 
-        const { isDirectory } = await fs.stat(path.join(directory, item));
+        const current = path.join(directory, item);
+
+        const { isDirectory } = await fs.stat(current);
 
         if (isDirectory()) {
 
-            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), target, Builder));
+            loaded = loaded.concat(await loader(current, target, Builder));
 
             continue;
         }
 
         if (item.endsWith(target)) {
 
-            const { default: data } = await import(`file:///${ path.join(directory, item) }`);
+            const { default: data } = await import(`file:///${ current }`);
 
-            loadedFiles.push(
+            loaded.push(
 
                 new Builder({
 
                     ... data,
 
-                    name: item.slice(item.length - target.length),
+                    path: current,
 
-                    path: path.join(directory, item)
+                    name: item.slice(item.length - target.length),
                 })
             );
 
@@ -38,7 +40,7 @@ const loader = async function (directory, target, Builder) {
         }
     }
 
-    return loadedFiles;
+    return loaded;
 }
 
 export default loader;

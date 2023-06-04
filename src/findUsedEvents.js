@@ -7,7 +7,7 @@ export default function (
     loadedMessageContextMenuCommands
 ) {
 
-    const usedEvents = {};
+    const used = {};
 
     for (const loadedEvent of loadedEvents) {
 
@@ -22,7 +22,7 @@ export default function (
 
         if (!byAll.length) continue;
 
-        usedEvents[loadedEvent.name] = {
+        used[loadedEvent.name] = {
 
             services: byServices,
             commands: byCommands,
@@ -30,5 +30,5 @@ export default function (
         };
     }
 
-    return usedEvents;
+    return used;
 }

@@ -1,18 +1,18 @@
 export default function (loadedEvents, usedEvents) {
 
-    let usedIntents = 0;
+    let used = 0;
 
     for (const loadedEvent of loadedEvents) {
 
         if (!usedEvents[loadedEvent.name]) continue;
 
-        usedIntents |= loadedEvent.intents;
+        used |= loadedEvent.intents;
 
         for (const loadedFile of usedEvents[loadedEvent.name].all) {
 
-            usedIntents |= loadedFile.intents;
+            used |= loadedFile.intents;
         }
     }
 
-    return usedIntents;
+    return used;
 }
