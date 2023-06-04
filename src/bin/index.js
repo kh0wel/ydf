@@ -3,9 +3,9 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
-import loadFiles from './loadFiles.js';
-import findUsedEvents from './findUsedEvents.js';
-import findUsedGateways from './findUsedGateways.js';
+import loadFiles from '../loadFiles.js';
+import findUsedEvents from '../findUsedEvents.js';
+import findUsedGateways from '../findUsedGateways.js';
 
 switch (process.argv.at(2)) {
 
@@ -17,7 +17,7 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'), { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' } } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' }; } };\n');
 
         break;
     }
@@ -28,9 +28,9 @@ switch (process.argv.at(2)) {
 
         const {
 
-            laodedEvents,
-            laodedServices,
-            laodedChatInputCommands,
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
             loadedMessageContextMenuCommands,
             loadedUserContextMenuCommands
         }
@@ -38,16 +38,16 @@ switch (process.argv.at(2)) {
 
         const usedEvents = findUsedEvents(
 
-            laodedEvents,
-            laodedServices,
-            laodedChatInputCommands,
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
             loadedMessageContextMenuCommands,
             loadedUserContextMenuCommands
         );
 
-        const { usedIntents } = findUsedGateways(laodedEvents, usedEvents);
+        const { usedIntents } = findUsedGateways(loadedEvents, usedEvents);
 
-        for (const loadedEvent of laodedEvents) {
+        for (const loadedEvent of loadedEvents) {
 
             if (!usedEvents[loadedEvent.name]) continue;
 
@@ -55,9 +55,9 @@ switch (process.argv.at(2)) {
 
                 config,
 
-                laodedEvents,
-                laodedServices,
-                laodedChatInputCommands,
+                loadedEvents,
+                loadedServices,
+                loadedChatInputCommands,
                 loadedMessageContextMenuCommands,
                 loadedUserContextMenuCommands,
 
@@ -67,13 +67,13 @@ switch (process.argv.at(2)) {
                 session: new Session(
                     
                     config.session({
-        
-                        laodedEvents,
-                        laodedServices,
-                        laodedChatInputCommands,
+
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
                         loadedMessageContextMenuCommands,
                         loadedUserContextMenuCommands,
-        
+
                         usedEvents,
                         usedIntents,
                     })

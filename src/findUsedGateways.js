@@ -1,8 +1,8 @@
-export default function (laodedEvents, usedEvents) {
+export default function (loadedEvents, usedEvents) {
 
     let usedIntents = 0;
 
-    for (const loadedEvent of laodedEvents) {
+    for (const loadedEvent of loadedEvents) {
 
         if (!usedEvents[loadedEvent.name]) continue;
 

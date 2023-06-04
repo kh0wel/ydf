@@ -84,10 +84,7 @@ export default {
 ```js
 export default {
 
-    name: 'example',              // (Automatic)
-    path: 'C://example.event.js', // (Automatic)
-
-    intents: 0, // (Optional)
+    intents: 0,
 
     execute ({
 
@@ -113,10 +110,7 @@ export default {
 ```js
 export default {
 
-    name: 'example',                // (Automatic)
-    path: 'C://example.service.js', // (Automatic)
-
-    intents: 0, // (Optional)
+    intents: 0,
 
     events: {
 
@@ -145,14 +139,9 @@ export default {
 ```js
 export default {
 
-    name: 'example',                     // (Automatic)
-    path: 'C://example.command.chat.js', // (Automatic)
-
-    intents: 0, // (Optional)
+    intents: 0,
 
     display: {
-
-        type: 1, // (Automatic)
 
         name: {
 
@@ -170,14 +159,14 @@ export default {
             // ...
         },
 
-        options: [], // (Optional)
+        options: [],
 
         permissions: {
 
-            dm:   false, // (Optional)
-            nsfw: false, // (Optional)
+            dm:   false,
+            nsfw: false,
 
-            member: null // (Optional)
+            member: null
         }
     },
 
@@ -208,14 +197,9 @@ export default {
 ```js
 export default {
 
-    name: 'example',                     // (Automatic)
-    path: 'C://example.command.user.js', // (Automatic)
-
-    intents: 0, // (Optional)
+    intents: 0,
 
     display: {
-
-        type: 2, // (Automatic)
 
         name: {
 
@@ -227,10 +211,10 @@ export default {
 
         permissions: {
 
-            dm:   false, // (Optional)
-            nsfw: false, // (Optional)
+            dm:   false,
+            nsfw: false,
 
-            member: null // (Optional)
+            member: null
         }
     },
 
@@ -261,14 +245,9 @@ export default {
 ```js
 export default {
 
-    name: 'example',                        // (Automatic)
-    path: 'C://example.command.message.js', // (Automatic)
-
-    intents: 0, // (Optional)
+    intents: 0,
 
     display: {
-
-        type: 3, // (Automatic)
 
         name: {
 
@@ -280,10 +259,10 @@ export default {
 
         permissions: {
 
-            dm:   false, // (Optional)
-            nsfw: false, // (Optional)
+            dm:   false,
+            nsfw: false,
 
-            member: null // (Optional)
+            member: null
         }
     },
 

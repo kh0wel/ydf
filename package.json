@@ -3,7 +3,8 @@
   "version": "2.1.4",
   "description": "🍁 A framework for building fast and efficient Discord bots with biscuit.js ",
   "type": "module",
-  "bin": "./src/cli.js",
+  "main": "./src/index.js",
+  "bin": "./src/bin/index.js",
   "scripts": {
     "lint": "rome check \".\""
   },
