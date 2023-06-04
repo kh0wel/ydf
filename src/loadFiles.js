@@ -9,20 +9,18 @@ const loader = async function (directory, target, Builder) {
 
     for (const item of items) {
 
-        const current = path.join(directory, item);
+        const stat = await fs.stat(path.join(directory, item));
 
-        const { isDirectory } = await fs.stat(current);
+        if (stat.isDirectory()) {
 
-        if (isDirectory()) {
-
-            files = files.concat(await loader(current, target, Builder));
+            files = files.concat(await loader(path.join(directory, item), target, Builder));
 
             continue;
         }
 
         if (item.endsWith(target)) {
 
-            const { default: data } = await import(`file:///${ current }`);
+            const { default: data } = await import(`file:///${ path.join(directory, item) }`);
 
             files.push(
 
@@ -30,9 +28,9 @@ const loader = async function (directory, target, Builder) {
 
                     ... data,
 
-                    name: item.slice(item.length - target.length),
+                    name: item.slice(0, item.length - target.length),
 
-                    path: current
+                    path: path.join(directory, item)
                 })
             );
 
