@@ -1,5 +1,17 @@
 # Yet another Discord Framework
 
+<div align="center">
+	<br />
+	<p style="background-color: #ffffff">
+		<img src="C:\Users\Gabriel\Documents\ydf\assets\icon.png" width="546" alt="Yet another Discord Framework" /></a>
+	</p>
+	<br />
+	<p>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg?maxAge=3600" alt="npm version" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg?maxAge=3600" alt="npm downloads" /></a>
+	</p>
+</div>
+
 A framework for building fast and efficient Discord bots with [biscuit.js](https://biscuitjs.com).
 
 ## Features
