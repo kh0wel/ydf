@@ -14,7 +14,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 - 🚀 **Compatibility**.
 
-    Different versions of dasdasda [biscuit.js](https://biscuitjs.com).
+    Different versions of [biscuit.js](https://biscuitjs.com).
 
 - 🧱 **Multiplatform**.
 
