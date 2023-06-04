@@ -4,21 +4,25 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- ⚡ **Performance**.
+- 📐 **Opinionated**.
 
-    Algorithms to evaluate and determine whether one or more resources are needed.
-
-- 🧱 **Scalability**.
-
-    Possibility of using different versions of [biscuit.js](https://biscuitjs.com).
-
-- 🚀 **Compatibility**.
-
-    Possibility of using of [Bun](https://bun.sh) or [Node](https://nodejs.org).
+    Flexible and strict infrastructure.
 
 - 💪🏻 **Productivity**.
 
-    Recursive load.
+    Recursive resource load.
+
+- ⚡ **Performance**.
+
+    Smart resource management.
+
+- 🚀 **Compatibility**.
+
+    Different versions of dasdasda [biscuit.js](https://biscuitjs.com).
+
+- 🧱 **Multiplatform**.
+
+    Different environments of [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
 ## Installation
 
@@ -36,74 +40,34 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Commands
 
-### `ydf init [<new-folder-name>]`
+```bash
+ydf init [<new-folder-name>]
+```
 
-### `ydf deploy [<config-file-path>]`
-
+```bash
+ydf deploy [<config-file-path>]
+```
+ 
 ## Configuration
 
 ```js
 export default {
 
-    session ({
+    session ({ config, loadedFiles, usedEvents, usedIntents }) {
 
-        config,
-
-        loadedEvents,
-        loadedServices,
-        loadedChatInputCommands,
-        loadedUserContextMenuCommands,
-        loadedMessageContextMenuCommands,
-
-        usedEvents,
-        usedIntents
-    }) {
-
-        // https://docs.biscuitjs.com/classes/core_src.Biscuit.html
-        return { intents: usedIntents, token: 'XXXX-XXXX-XXXX-XXXX' };
+        return { intents: usedIntents, token: 'TOKEN' };
     },
 
-    directories: {
+    exclude: [ 'src/**/*.json' ],
 
-        // Events directory (Optional)
-        events: 'events',
+    include: [
 
-        // Services directory (Optional)
-        services: 'services',
-
-        commands: {
-
-            // Slash Commands directory (Optional)
-            chat: 'commands',
-
-            // User Context Menu Commands directory (Optional)
-            user: 'commands',
-
-            // Message Context Menu Commands directory (Optional)
-            message: 'commands'
-        }
-    },
-
-    extensions: {
-
-        // Events file (Optional)
-        events: '.event.js ',
-
-        // Services file (Optional)
-        services: '.service.js',
-
-        commands: {
-
-            // Slash Commands file (Optional)
-            chat: '.command.chat.js',
-
-            // User Context Menu Commands file (Optional)
-            chat: '.command.user.js',
-
-            // Message Context Menu Commands file (Optional)
-            chat: '.command.message.js',
-        }
-    },
+        'src/**/*.event.*',
+        'src/**/*.service.*',
+        'src/**/*.command.chat.*',
+        'src/**/*.command.user.*',
+        'src/**/*.command.message.*'
+    ]
 };
 ```
 
@@ -114,29 +78,13 @@ export default {
 ```js
 export default {
 
-    // Folder name (Automatic)
-    name: 'example',
+    name: 'example', // (Automatic)
 
-    // Event intents (Optional)
-    intents: 0,
+    path: '/abc/example.event.js', // (Automatic)
 
-    // Event function
-    execute ({
+    intents: 0, // (Optional)
 
-        config, session,
-
-        loadedEvents,
-        loadedServices,
-        loadedChatInputCommands,
-        loadedUserContextMenuCommands,
-        loadedMessageContextMenuCommands,
-
-        usedEvents,
-        usedIntents
-    }) {
-
-        // ...
-    }
+    execute ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ }
 };
 ```
 
@@ -145,31 +93,18 @@ export default {
 ```js
 export default {
 
-    // Folder name (Automatic)
-    name: 'example',
+    name: 'example', // (Automatic)
 
-    // Service intents (Optional)
-    intents: 0,
+    path: '/abc/example.service.js', // (Automatic)
 
-    // Service events
+    intents: 0, // (Optional)
+
     events: {
 
-        example ({
+        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
 
-            config, session,
-
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedUserContextMenuCommands,
-            loadedMessageContextMenuCommands,
-
-            usedEvents,
-            usedIntents
-        }) {
-
-            // ...
-        }
+        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ...
     }
 };
 ```
@@ -179,19 +114,16 @@ export default {
 ```js
 export default {
 
-    // Folder name (Automatic)
-    name: 'example',
+    name: 'example', // (Automatic)
 
-    // Command type (Automatic)
-    type: 1,
+    path: '/abc/example.command.chat.js', // (Automatic)
 
-    // Command intents (Optional)
-    intents: 0,
+    type: 1, // (Automatic)
 
-    // Command display options
+    intents: 0, // (Optional)
+
     display: {
 
-        // Command name
         name: {
 
             default: 'example',
@@ -200,7 +132,6 @@ export default {
             // ...
         },
 
-        // Command description
         description: {
 
             default: 'Example command',
@@ -209,21 +140,24 @@ export default {
             // ...
         },
 
-        // Command options (Optional)
-        options: [],
+        options: [], // (Optional)
 
-        // Command permissions (Optional)
         permissions: {
 
-            // Allow dm channels (Optional)
-            dm: false,
+            dm: false, // (Optional)
 
-            // Require adult member age (Optional)
-            nsfw: false,
+            nsfw: false, // (Optional)
 
-            // Required member permissions (Optional)
-            member: null
+            member: null // (Optional)
         }
+    },
+
+    events: {
+
+        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+
+        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ...
     }
 };
 ```
@@ -233,39 +167,40 @@ export default {
 ```js
 export default {
 
-    // Folder name (Automatic)
-    name: 'example',
+    name: 'example', // (Automatic)
 
-    // Command type (Automatic)
-    type: 2,
+    path: '/abc/example.command.user.js', // (Automatic)
 
-    // Command intents (Optional)
-    intents: 0,
+    type: 2, // (Automatic)
 
-    // Command display options
+    intents: 0, // (Optional)
+
     display: {
 
-        // Command name
         name: {
 
-            default: 'Example',
+            default: 'example',
 
-            // 'es-ES': 'Ejemplo',
+            // 'es-ES': 'ejemplo',
             // ...
         },
 
-        // Command permissions (Optional)
         permissions: {
 
-            // Allow dm channels (Optional)
-            dm: false,
+            dm: false, // (Optional)
 
-            // Require adult member age (Optional)
-            nsfw: false,
+            nsfw: false, // (Optional)
 
-            // Required member permissions (Optional)
-            member: null
+            member: null // (Optional)
         }
+    },
+
+    events: {
+
+        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+
+        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ...
     }
 };
 ```
@@ -275,39 +210,40 @@ export default {
 ```js
 export default {
 
-    // Folder name (Automatic)
-    name: 'example',
+    name: 'example', // (Automatic)
 
-    // Command type (Automatic)
-    type: 3,
+    path: '/abc/example.command.message.js', // (Automatic)
 
-    // Command intents (Optional)
-    intents: 0,
+    type: 3, // (Automatic)
 
-    // Command display options
+    intents: 0, // (Optional)
+
     display: {
 
-        // Command name
         name: {
 
-            default: 'Example',
+            default: 'example',
 
-            // 'es-ES': 'Ejemplo',
+            // 'es-ES': 'ejemplo',
             // ...
         },
 
-        // Command permissions (Optional)
         permissions: {
 
-            // Allow dm channels (Optional)
-            dm: false,
+            dm: false, // (Optional)
 
-            // Require adult member age (Optional)
-            nsfw: false,
+            nsfw: false, // (Optional)
 
-            // Required member permissions (Optional)
-            member: null
+            member: null // (Optional)
         }
+    },
+
+    events: {
+
+        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+
+        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ...
     }
 };
 ```
