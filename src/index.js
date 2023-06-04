@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
-import loadConfig from './loadConfig.js';
+import loadSettings from './loadSettings.js';
 import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedIntents from './findUsedIntents.js';
@@ -33,13 +33,13 @@ switch (process.argv.at(2)) {
 
     case 'deploy': {
 
-        const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.'));
+        const settings = await loadSettings(path.resolve(process.argv.at(3) ?? '.'));
 
-        const loadedEvents                     = await loadFiles(config.directories.events,           config.extensions.events,           EventBuilder);
-        const loadedServices                   = await loadFiles(config.directories.services,         config.extensions.services,         ServiceBuilder);
-        const loadedChatInputCommands          = await loadFiles(config.directories.commands.chat,    config.extensions.commands.chat,    ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands    = await loadFiles(config.directories.commands.user,    config.extensions.commands.user,    UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands = await loadFiles(config.directories.commands.message, config.extensions.commands.message, MessageContextMenuCommandBuilder);
+        const loadedEvents                     = await loadFiles(settings.directories.events,           settings.extensions.events,           EventBuilder);
+        const loadedServices                   = await loadFiles(settings.directories.services,         settings.extensions.services,         ServiceBuilder);
+        const loadedChatInputCommands          = await loadFiles(settings.directories.commands.chat,    settings.extensions.commands.chat,    ChatInputCommandBuilder);
+        const loadedUserContextMenuCommands    = await loadFiles(settings.directories.commands.user,    settings.extensions.commands.user,    UserContextMenuCommandBuilder);
+        const loadedMessageContextMenuCommands = await loadFiles(settings.directories.commands.message, settings.extensions.commands.message, MessageContextMenuCommandBuilder);
 
         const usedEvents = findUsedEvents(
 
@@ -58,13 +58,13 @@ switch (process.argv.at(2)) {
 
             loadedEvent.execute({
 
-                config,
+                settings,
 
                 session: new Session(
 
-                    config.session({
+                    settings.session({
 
-                        config,
+                        settings,
 
                         loadedEvents,
                         loadedServices,

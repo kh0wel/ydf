@@ -2,7 +2,7 @@ import path from 'node:path';
 
 export default async function (directory) {
 
-    const { default: data } = await import(`file:///${ path.join(directory, '.ydf.config.js') }`);
+    const { default: data } = await import(`file:///${ path.join(directory, '.ydfrc.js') }`);
 
     return {
 
