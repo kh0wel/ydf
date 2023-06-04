@@ -1,17 +1,13 @@
+![logo](https://raw.githubusercontent.com/kh0wel/ydf/main/assets/icon.png ':id=banner')
+
 <div align="center">
-    <h1>Yet another Discord Framework</h1>
-	<br />
-	<p style="background-color: #ffffff">
-		<img src="https://raw.githubusercontent.com/kh0wel/ydf/main/assets/icon.png" width="120" alt="Yet another Discord Framework" /></a>
-	</p>
 	<br />
 	<p>
 		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg?maxAge=3600" alt="npm version" /></a>
 		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg?maxAge=3600" alt="npm downloads" /></a>
 	</p>
+	<br />
 </div>
-
-## About
 
 A framework for building fast and efficient Discord bots with [biscuit.js](https://biscuitjs.com).
 
