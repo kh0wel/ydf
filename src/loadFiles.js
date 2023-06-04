@@ -15,38 +15,50 @@ export default async function (config) {
     const loadedUserContextMenuCommands    = [];
     const loadedMessageContextMenuCommands = [];
 
-    const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
+    async function loader (directory) {
 
-    for (const item of items) {
+        let loaded = [];
 
-        const stat = await fs.stat(path.join(directory, item));
+        const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
-        if (stat.isDirectory()) {
-
-            files = files.concat(await loader(path.join(directory, item), target, Builder));
-
-            continue;
+        for (const item of items) {
+    
+            const stat = await fs.stat(path.join(directory, item));
+    
+            if (stat.isDirectory()) {
+    
+                loaded = loaded.concat(await loader(path.join(directory, item)));
+    
+                continue;
+            }
+    
+            if (item.endsWith()) {
+    
+                const { default: data } = await import(`file:///${ path.join(directory, item) }`);
+    
+                loaded.push(
+    
+                    new Builder({
+    
+                        ... data,
+    
+                        name: item.slice(0, item.length - target.length),
+    
+                        path: path.join(directory, item)
+                    })
+                );
+    
+                break;
+            }
         }
 
-        if (item.endsWith(target)) {
+        return loaded;
+    };
 
-            const { default: data } = await import(`file:///${ path.join(directory, item) }`);
+    for (const included of config.include) {
 
-            files.push(
-
-                new Builder({
-
-                    ... data,
-
-                    name: item.slice(0, item.length - target.length),
-
-                    path: path.join(directory, item)
-                })
-            );
-
-            break;
-        }
-    }
+        await loader(path.resolve(included));
+    };
 
     return {
         
