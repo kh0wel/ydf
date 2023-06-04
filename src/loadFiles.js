@@ -1,9 +1,19 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-const loader = async function (directory, target, Builder) {
+import { EventBuilder } from './structures/Event.js';
+import { ServiceBuilder } from './structures/Service.js';
+import { ChatInputCommandBuilder } from './structures/ChatInputCommand.js';
+import { UserContextMenuCommandBuilder } from './structures/UserContextMenuCommand.js';
+import { MessageContextMenuCommandBuilder } from './structures/MessageContextMenuCommand.js';
 
-    let files = [];
+const loader = async function (config) {
+
+    const files = { events: [], services: [], commands: { chat: [], user: [], message: [] } };
+
+
+
+
 
     const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 

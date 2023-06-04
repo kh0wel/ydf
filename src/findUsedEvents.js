@@ -1,21 +1,14 @@
-export default function (
-
-    loadedEvents,
-    loadedServices,
-    loadedChatInputCommands,
-    loadedUserContextMenuCommands,
-    loadedMessageContextMenuCommands
-) {
+export default function (loadedFiles) {
 
     const events = {};
 
-    for (const loadedEvent of loadedEvents) {
+    for (const loadedEvent of loadedFiles.events) {
 
-        const byServices = loadedServices.filter((data) => data.events[loadedEvent.name]);
+        const byServices = loadedFiles.services.filter((data) => data.events[loadedEvent.name]);
 
-        const byCommands = loadedChatInputCommands
-            .concat(loadedUserContextMenuCommands)
-            .concat(loadedMessageContextMenuCommands)
+        const byCommands = loadedFiles.commands.chat
+            .concat(loadedFiles.commands.user)
+            .concat(loadedFiles.commands.message)
             .filter((data) => data.events[loadedEvent.name]);
 
         const byAll = byServices.concat(byCommands);

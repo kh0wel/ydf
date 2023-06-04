@@ -53,9 +53,9 @@ ydf deploy [<config-file-path>]
 ```js
 export default {
 
-    session ({ config, loadedFiles, usedEvents, usedIntents }) {
+    session ({ config, loadedFiles, usedEvents, usedGateways }) {
 
-        return { intents: usedIntents, token: 'TOKEN' };
+        return { intents: usedGateways.intents, token: 'TOKEN' };
     },
 
     exclude: [ 'src/**/*.json' ],
@@ -71,7 +71,7 @@ export default {
 };
 ```
 
-## Structures
+## Building
 
 ### Event
 
@@ -84,7 +84,7 @@ export default {
 
     intents: 0, // (Optional)
 
-    execute ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ }
+    execute ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ }
 };
 ```
 
@@ -101,9 +101,9 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
         // ...
     }
 };
@@ -154,9 +154,9 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
         // ...
     }
 };
@@ -197,9 +197,9 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
         // ...
     }
 };
@@ -240,9 +240,9 @@ export default {
 
     events: {
 
-        example ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        example ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
 
-        // ejemplo ({ config, loadedFiles, usedEvents, usedIntents }) { /* ... */ },
+        // ejemplo ({ config, loadedFiles, usedEvents, usedGateways }) { /* ... */ },
         // ...
     }
 };
