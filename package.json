@@ -1,7 +1,7 @@
 {
   "name": "ydf",
-  "version": "2.1.4",
-  "description": "🍁 A framework for building fast and efficient Discord bots with biscuit.js ",
+  "version": "2.1.5",
+  "description": "🚀 A framework for building fast and efficient Discord bots with biscuit.js ",
   "type": "module",
   "main": "./src/index.js",
   "bin": "./src/bin/index.js",
