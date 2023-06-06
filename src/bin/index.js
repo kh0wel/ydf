@@ -65,7 +65,7 @@ switch (process.argv.at(2)) {
                 usedIntents,
 
                 session: new Session(
-                    
+
                     config.session({
 
                         loadedEvents,
