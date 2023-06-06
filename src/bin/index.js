@@ -86,6 +86,11 @@ switch (process.argv.at(2)) {
 
     default:
 
+        console.log('ydf init [<new-folder-name>]');
+        console.log('ydf deploy [<config-file-path>]');
+
+        console.log();
+
         console.log('Repository on https://github.com/kh0wel/ydf');
 
         break;

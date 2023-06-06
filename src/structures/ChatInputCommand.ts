@@ -18,7 +18,7 @@ export interface ChatInputCommandOptions {
             [locale: string]: string;
         };
 
-        options?: object[];
+        options?: [];
 
         permissions?: {
 
@@ -58,7 +58,7 @@ export class ChatInputCommandBuilder {
             [locale: string]: string;
         };
 
-        options: object[]
+        options: []
 
         permissions: {
 

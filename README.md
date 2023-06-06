@@ -30,7 +30,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     Different environments of [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-## Installation
+## Start
 
 1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core).
 
@@ -44,45 +44,8 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
     npm add ydf -g
     ```
 
-## Commands
+3. Run [ydf](https://npmjs.com/package/ydf).
 
-```bash
-ydf init [<new-folder-name>]
-```
-
-```bash
-ydf deploy [<config-file-path>]
-```
- 
-## Configuration
-
-```js
-export default {
-
-    session ({
-
-        laodedEvents,
-        laodedServices,
-        laodedChatInputCommands,
-        loadedMessageContextMenuCommands,
-        loadedUserContextMenuCommands,
-
-        usedEvents,
-        usedIntents
-    }) {
-
-        return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
-    },
-
-    exclude: [ '**/*.json' ],
-
-    include: [
-
-        'src/**/*.event.*',
-        'src/**/*.service.*',
-        'src/**/*.command.chat.*',
-        'src/**/*.command.user.*',
-        'src/**/*.command.message.*'
-    ]
-};
-```
+    ```bash
+    npm ydf
+    ```
