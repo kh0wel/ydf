@@ -18,14 +18,14 @@ export interface ChatInputCommandOptions {
             [locale: string]: string;
         };
 
-        options?: any;
+        options?: object[];
 
         permissions?: {
 
             member?: bigint | null;
 
-            dm?:   boolean
-            nsfw?: boolean
+            dm?:   boolean;
+            nsfw?: boolean;
         }
     }
 
@@ -37,31 +37,67 @@ export interface ChatInputCommandOptions {
 
 export class ChatInputCommandBuilder {
 
-    intents; display; events;
+    // https://discord.com/developers/docs/topics/gateway#gateway-intents
+    intents = 0; 
 
-    constructor (data) {
+    display: {
 
-        // https://discord.com/developers/docs/topics/gateway#gateway-intents
-        this.intents = data.intents ?? 0;
+        type: number;
 
-        this.display = {
+        name: {
 
-            // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
-            type: 1,
+            default: string;
 
-            name:        data.display.name,
-            description: data.display.description,
-
-            options: data.display.options ?? [],
-
-            permissions: {
-
-                member: data.display.permissions?.member ?? null,
-
-                dm:   data.display.permissions?.dm   ?? false,
-                nsfw: data.display.permissions?.nsfw ?? false
-            }
+            [locale: string]: string;
         };
+
+        description: {
+
+            default: string;
+
+            [locale: string]: string;
+        };
+
+        options: object[]
+
+        permissions: {
+
+            member: bigint | null;
+
+            dm:   boolean;
+            nsfw: boolean;
+        };
+    } = {
+
+        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+        type: 1,
+
+        name: { default: 'empty' }, description: { default: 'empty' },
+
+        options: [],
+
+        permissions: {
+
+            member: null,
+
+            dm: false, nsfw: false
+        }
+    };
+
+    events = {};
+
+    constructor (data: ChatInputCommandOptions) {
+
+        this.intents = data.intents ?? this.intents;
+
+        this.display.name        = data.display.name;
+        this.display.description = data.display.description;
+
+        this.display.options = data.display.options ?? this.display.options;
+
+        this.display.permissions.member = data.display.permissions?.member ?? this.display.permissions.member;
+        this.display.permissions.dm     = data.display.permissions?.dm     ?? this.display.permissions.dm;
+        this.display.permissions.nsfw   = data.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
 
         this.events = data.events;
     }
