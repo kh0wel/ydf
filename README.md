@@ -30,7 +30,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
     Different environments of [Bun](https://bun.sh) or [Node](https://nodejs.org).
 
-## Start
+## Installation
 
 1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core).
 
@@ -44,8 +44,6 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
     npm add ydf -g
     ```
 
-3. Run [ydf](https://npmjs.com/package/ydf).
+## Template
 
-    ```bash
-    npm ydf
-    ```
+Download [here](https://github.com/kh0wel/kobalt).
