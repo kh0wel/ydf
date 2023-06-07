@@ -73,19 +73,6 @@ export default {
         return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
-    directories: {
-
-        events:   'src/events',
-        services: 'src/services',
-
-        commands: {
-
-            chat:    'src/commands',
-            user:    'src/commands',
-            message: 'src/commands'
-        }
-    },
-
     files: {
 
         events:   '.event.',
@@ -96,6 +83,19 @@ export default {
             chat:    '.command.chat.',
             user:    '.command.user.',
             message: '.command.message.'
+        }
+    },
+
+    directories: {
+
+        events:   'src/events',
+        services: 'src/services',
+
+        commands: {
+
+            chat:    'src/commands',
+            user:    'src/commands',
+            message: 'src/commands'
         }
     }
 };
