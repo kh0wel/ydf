@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-async function loader (directory, extension) {
+async function loader (directory, extensions) {
 
     let loadedFiles = [];
 
@@ -13,12 +13,12 @@ async function loader (directory, extension) {
 
         if (stat.isDirectory()) {
 
-            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), extension));
+            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), extensions));
 
             continue;
         }
 
-        if (item.endsWith(extension)) {
+        if (extensions.some((extension) => item.endsWith(extension))) {
 
             const { default: data } = await import(`file:///${ path.join(directory, item) }`);
 
@@ -28,13 +28,11 @@ async function loader (directory, extension) {
 
                 metadata: {
 
-                    name: item.slice(0, item.length - extension.length),
+                    name: item.slice(0, item.length - extensions.length),
 
                     path: path.join(directory, item)
                 }
             });
-
-            break;
         }
     }
 

@@ -106,14 +106,14 @@ export default {
     // Extensions of files (is optional)
     extensions: {
 
-        events:   '.event.js',
-        services: '.service.js',
+        events:   [ '.event.js'   ],
+        services: [ '.service.js' ],
 
         commands: {
 
-            chat:    '.command.chat.js',
-            user:    '.command.user.js',
-            message: '.command.message.js'
+            chat:    [ '.command.chat.js'   ],
+            user:    [ '.command.user.js'   ],
+            message: [ '.command.message.js']
         }
     }
 };

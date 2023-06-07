@@ -22,7 +22,7 @@ export default function (
 
         if (!byAll.length) continue;
 
-        usedEvents[loadedEvent.name] = {
+        usedEvents[loadedEvent.metadata.name] = {
 
             services: byServices,
             commands: byCommands,
