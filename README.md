@@ -48,6 +48,11 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 Download [here](https://github.com/kh0wel/kobalt).
 
+## Commands
+
+```ydf init```
+```ydf deploy```
+
 ## Configuration
 
 ```js
@@ -68,15 +73,30 @@ export default {
         return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
-    exclude: [],
+    directories: {
 
-    include: [
+        events:   'src/events',
+        services: 'src/services',
 
-        'src/**/*.event.*',
-        'src/**/*.service.*',
-        'src/**/*.command.chat.*',
-        'src/**/*.command.user.*',
-        'src/**/*.command.message.*'
-    ]
+        commands: {
+
+            chat:    'src/commands',
+            user:    'src/commands',
+            message: 'src/commands'
+        }
+    },
+
+    files: {
+
+        events:   '.event.',
+        services: '.service.',
+
+        commands: {
+
+            chat:    '.command.chat.',
+            user:    '.command.user.',
+            message: '.command.message.'
+        }
+    }
 };
 ```

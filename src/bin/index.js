@@ -24,7 +24,7 @@ switch (process.argv.at(2)) {
 
     case 'deploy': {
 
-        const { default: config } = await import(`file:///${ process.argv.at(3) ? path.resolve(process.argv.at(3)) : path.join(process.cwd(), '.ydf.config.js') }`);
+        const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
 
         const {
 
@@ -85,11 +85,6 @@ switch (process.argv.at(2)) {
     }
 
     default:
-
-        console.log('ydf init [<new-folder-name>]');
-        console.log('ydf deploy [<config-file-path>]');
-
-        console.log();
 
         console.log('Repository on https://github.com/kh0wel/ydf');
 

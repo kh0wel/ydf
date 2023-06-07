@@ -3,15 +3,9 @@ import path from 'node:path';
 
 export default async function (config) {
 
-    const loadedEvents                     = [];
-    const loadedServices                   = [];
-    const loadedChatInputCommands          = [];
-    const loadedUserContextMenuCommands    = [];
-    const loadedMessageContextMenuCommands = [];
+    async function loader (directory, target) {
 
-    async function parser (directory) {
-
-        const parsedItems = [];
+        let loadedFiles = [];
 
         const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -21,52 +15,37 @@ export default async function (config) {
 
             if (stat.isDirectory()) {
 
-                await parser(path.join(directory, item));
+                loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), target));
 
                 continue;
             }
 
-            parsedItems.push(path.join(directory, item));
-        }
+            if (item.includes(target)) {
 
-        return parsedItems;
-    }
-
-    async function loader (directory) {
-
-        const parsedFiles = await parser(directory);
-
-        for (const parsedFile of parsedFiles) {
-
-            if (item.endsWith('XD')) {
-
-                const { default: data } = await import(`file:///${ parsedFile }`);
+                const { default: data } = await import(`file:///${ path.join(directory, item) }`);
 
                 loadedEvents.push({
 
                     ... data,
 
-                    name: path.basename(parsedFile),
+                    name: item.slice(item.length - target.length),
 
-                    path: parsedFile
+                    path: path.join(directory, item)
                 });
 
                 break;
             }
         }
-    }
 
-    for (const included of config.include) {
-
-        await loader(path.resolve(included));
+        return loadedFiles;
     }
 
     return {
-        
-        loadedEvents,
-        loadedServices,
-        loadedChatInputCommands,
-        loadedUserContextMenuCommands,
-        loadedMessageContextMenuCommands
+
+        loadedEvents:                     await loader(path.resolve(config.directories?.events            ?? 'src/events'),   config.files?.events            ?? '.event.'),
+        loadedServices:                   await loader(path.resolve(config.directories?.services          ?? 'src/services'), config.files?.services          ?? '.service.'),
+        loadedChatInputCommands:          await loader(path.resolve(config.directories?.commands?.chat    ?? 'src/commands'), config.files?.commands?.chat    ?? '.command.chat.'),
+        loadedUserContextMenuCommands:    await loader(path.resolve(config.directories?.commands?.user    ?? 'src/commands'), config.files?.commands?.user    ?? '.command.user.'),
+        loadedMessageContextMenuCommands: await loader(path.resolve(config.directories?.commands?.message ?? 'src/commands'), config.files?.commands?.message ?? '.command.message.')
     };
 }
