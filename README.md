@@ -52,7 +52,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ### `init [<new-folder-name>]` 
 
-This command creates the following directories and files.
+This command create the following directories and files.
 
 ```
 │
@@ -69,7 +69,7 @@ This command creates the following directories and files.
 
 ### `deploy [<config-file-path>]`
 
-This command deploys the framework by loading the `.ydf.config.js` file along with its resources.
+This command will deploy the framework loading the `.ydf.config.js` file and its resources.
 
 ## Configuration
 
