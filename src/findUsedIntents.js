@@ -14,5 +14,5 @@ export default function (loadedEvents, usedEvents) {
         }
     }
 
-    return { usedIntents };
+    return usedIntents;
 }

@@ -5,7 +5,7 @@ import { Session } from '@biscuitland/core';
 
 import loadFiles from '../loadFiles.js';
 import findUsedEvents from '../findUsedEvents.js';
-import findUsedGateways from '../findUsedGateways.js';
+import findUsedIntents from '../findUsedIntents.js';
 
 switch (process.argv.at(2)) {
 
@@ -26,15 +26,11 @@ switch (process.argv.at(2)) {
 
         const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
 
-        const {
-
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands
-        }
-            = await loadFiles(config);
+        const loadedEvents                      = await loadFiles(path.resolve(config.directories?.events            ?? 'src/events'),   config.files?.events            ?? '.event.');
+        const loadedServices                    = await loadFiles(path.resolve(config.directories?.services          ?? 'src/services'), config.files?.services          ?? '.service.');
+        const loadedChatInputCommands           = await loadFiles(path.resolve(config.directories?.commands?.chat    ?? 'src/commands'), config.files?.commands?.chat    ?? '.command.chat.');
+        const loadedUserContextMenuCommands     = await loadFiles(path.resolve(config.directories?.commands?.user    ?? 'src/commands'), config.files?.commands?.user    ?? '.command.user.');
+        const loadedMessageContextMenuCommands  = await loadFiles(path.resolve(config.directories?.commands?.message ?? 'src/commands'), config.files?.commands?.message ?? '.command.message.');
 
         const usedEvents = findUsedEvents(
 
@@ -45,7 +41,7 @@ switch (process.argv.at(2)) {
             loadedUserContextMenuCommands
         );
 
-        const { usedIntents } = findUsedGateways(loadedEvents, usedEvents);
+        const usedIntents = findUsedIntents(loadedEvents, usedEvents);
 
         for (const loadedEvent of loadedEvents) {
 
