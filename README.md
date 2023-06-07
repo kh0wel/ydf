@@ -47,3 +47,36 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 ## Template
 
 Download [here](https://github.com/kh0wel/kobalt).
+
+## Configuration
+
+```js
+export default {
+
+    session ({
+
+        laodedEvents,
+        laodedServices,
+        laodedChatInputCommands,
+        loadedMessageContextMenuCommands,
+        loadedUserContextMenuCommands,
+
+        usedEvents,
+        usedIntents
+    }) {
+
+        return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
+    },
+
+    exclude: [],
+
+    include: [
+
+        'src/**/*.event.*',
+        'src/**/*.service.*',
+        'src/**/*.command.chat.*',
+        'src/**/*.command.user.*',
+        'src/**/*.command.message.*'
+    ]
+};
+```
