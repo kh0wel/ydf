@@ -18,7 +18,9 @@ async function loader (directory, extensions) {
             continue;
         }
 
-        if (extensions.some((extension) => item.endsWith(extension))) {
+        for (const extension of extensions) {
+
+            if (!item.endsWith(extension)) continue;
 
             const { default: data } = await import(`file:///${ path.join(directory, item) }`);
 
@@ -28,7 +30,7 @@ async function loader (directory, extensions) {
 
                 metadata: {
 
-                    name: item.slice(0, item.length - extensions.length),
+                    name: item.slice(0, item.length - extension.length),
 
                     path: path.join(directory, item)
                 }
