@@ -48,14 +48,15 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
     npm add ydf -g
     ```
 
-## Template
-
-Download [here](https://github.com/kh0wel/kobalt).
-
 ## Commands
 
-```ydf init```
-```ydf deploy```
+```bash
+ydf init [<new-folder-name>]
+```
+
+```bash
+ydf deploy [<config-file-path>]
+```
 
 ## Configuration
 
