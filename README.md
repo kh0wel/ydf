@@ -55,16 +55,13 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 This command create the following directories and files.
 
 ```
-│
 ├── .ydf.config.js
 │
-└── src
-    │
-    ├── events
-    │
-    ├── services
-    │
-    └── commands
+└── src/
+
+    ├── events/
+    ├── services/
+    └── commands/
 ```
 
 ### `deploy [<config-file-path>]`
