@@ -1,4 +1,4 @@
-![banner](https://raw.githubusercontent.com/kh0wel/ydf/main/assets/icon.png)
+![banner](https://raw.githubusercontent.com/kh0wel/ydf/main/assets/banner.png)
 
 <div align="center">
 	<br />
@@ -13,6 +13,10 @@
 A framework for building fast and efficient Discord bots with [biscuit.js](https://biscuitjs.com).
 
 ## Features
+
+- 🧼 **Small**
+
+    Fulfills essential requirements.
 
 - 💪🏻 **Productivity**.
 
@@ -58,6 +62,7 @@ Download [here](https://github.com/kh0wel/kobalt).
 ```js
 export default {
 
+    // Session class options (is required)
     session ({
 
         laodedEvents,
@@ -73,6 +78,7 @@ export default {
         return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
+    // Extensions of files (is optional)
     files: {
 
         events:   '.event.',
@@ -86,6 +92,7 @@ export default {
         }
     },
 
+    // Directories of files (is optional)
     directories: {
 
         events:   'src/events',
