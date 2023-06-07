@@ -83,10 +83,11 @@ export default {
         loadedUserContextMenuCommands,
 
         usedEvents,
-        usedIntents
+        usedIntents,
+        usedPartials
     }) {
 
-        return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
+        return { intents: usedIntents, partials: usedPartials, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
     // Directories of files (is optional)

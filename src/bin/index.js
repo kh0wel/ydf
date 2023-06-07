@@ -6,6 +6,7 @@ import { Session } from '@biscuitland/core';
 import loadFiles from '../loadFiles.js';
 import findUsedEvents from '../findUsedEvents.js';
 import findUsedIntents from '../findUsedIntents.js';
+import findUsedPartials from '../findUsedPartials.js';
 
 switch (process.argv.at(2)) {
 
@@ -17,7 +18,7 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'), { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents }) { return { intents: usedIntents, token: \'BOT TOKEN\' }; } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } };\n');
 
         break;
     }
@@ -41,7 +42,8 @@ switch (process.argv.at(2)) {
             loadedUserContextMenuCommands
         );
 
-        const usedIntents = findUsedIntents(loadedEvents, usedEvents);
+        const usedIntents  = findUsedIntents(loadedEvents, usedEvents);
+        const usedPartials = findUsedPartials(loadedEvents, usedEvents);
 
         for (const loadedEvent of loadedEvents) {
 
@@ -59,6 +61,7 @@ switch (process.argv.at(2)) {
 
                 usedEvents,
                 usedIntents,
+                usedPartials,
 
                 session: new Session(
 
@@ -72,6 +75,7 @@ switch (process.argv.at(2)) {
 
                         usedEvents,
                         usedIntents,
+                        usedPartials
                     })
                 )
             });
