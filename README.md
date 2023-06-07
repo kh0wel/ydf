@@ -56,9 +56,7 @@ This command create the following directories and files.
 
 ```
 ├── .ydf.config.js
-│
 └── src/
-
     ├── events/
     ├── services/
     └── commands/
