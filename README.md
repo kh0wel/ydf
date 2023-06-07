@@ -89,20 +89,6 @@ export default {
         return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
-    // Extensions of files (is optional)
-    files: {
-
-        events:   '.event.',
-        services: '.service.',
-
-        commands: {
-
-            chat:    '.command.chat.',
-            user:    '.command.user.',
-            message: '.command.message.'
-        }
-    },
-
     // Directories of files (is optional)
     directories: {
 
@@ -114,6 +100,20 @@ export default {
             chat:    'src/commands',
             user:    'src/commands',
             message: 'src/commands'
+        }
+    },
+
+    // Extensions of files (is optional)
+    extensions: {
+
+        events:   '.event.js',
+        services: '.service.js',
+
+        commands: {
+
+            chat:    '.command.chat.js',
+            user:    '.command.user.js',
+            message: '.command.message.js'
         }
     }
 };
