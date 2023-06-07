@@ -50,6 +50,8 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Commands
 
+### `init` 
+
 ```bash
 ydf init [<new-folder-name>]
 ```
@@ -68,6 +70,8 @@ This command creates the following directories and files.
     │
     └── commands
 ```
+
+### `deploy`
 
 ```bash
 ydf deploy [<config-file-path>]
