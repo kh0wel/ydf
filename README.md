@@ -14,7 +14,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- 🧼 **Small**
+- 🧼 **Simplified**.
 
     Fulfills essential requirements.
 
