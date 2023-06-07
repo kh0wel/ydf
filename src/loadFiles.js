@@ -1,12 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import { EventBuilder } from './structures/Event.js';
-import { ServiceBuilder } from './structures/Service.js';
-import { ChatInputCommandBuilder } from './structures/ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './structures/UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './structures/MessageContextMenuCommand.js';
-
 export default async function (config) {
 
     const loadedEvents                     = [];
@@ -15,7 +9,9 @@ export default async function (config) {
     const loadedUserContextMenuCommands    = [];
     const loadedMessageContextMenuCommands = [];
 
-    async function loader (directory) {
+    async function parser (directory) {
+
+        const parsedItems = [];
 
         const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
 
@@ -25,58 +21,34 @@ export default async function (config) {
 
             if (stat.isDirectory()) {
 
-                await loader(path.join(directory, item))
+                await parser(path.join(directory, item));
 
                 continue;
             }
 
-            if (item.endsWith()) {
+            parsedItems.push(path.join(directory, item));
+        }
 
-                const { default: data } = await import(`file:///${ path.join(directory, item) }`);
+        return parsedItems;
+    }
 
-                if (data instanceof EventBuilder) loadedEvents.push({
+    async function loader (directory) {
 
-                    ... data,
+        const parsedFiles = await parser(directory);
 
-                    name: item.slice(0, item.length - target.length),
+        for (const parsedFile of parsedFiles) {
 
-                    path: path.join(directory, item)
-                });
+            if (item.endsWith('XD')) {
 
-                if (data instanceof ServiceBuilder) loadedServices.push({
+                const { default: data } = await import(`file:///${ parsedFile }`);
 
-                    ... data,
-
-                    name: item.slice(0, item.length - target.length),
-
-                    path: path.join(directory, item)
-                });
-
-                if (data instanceof ChatInputCommandBuilder) loadedChatInputCommands.push({
+                loadedEvents.push({
 
                     ... data,
 
-                    name: item.slice(0, item.length - target.length),
+                    name: path.basename(parsedFile),
 
-                    path: path.join(directory, item)
-                });
-
-                if (data instanceof UserContextMenuCommandBuilder) loadedUserContextMenuCommands.push({
-
-                    ... data,
-
-                    name: item.slice(0, item.length - target.length),
-
-                    path: path.join(directory, item)
-                });
-
-                if (data instanceof MessageContextMenuCommandBuilder) loadedMessageContextMenuCommands.push({
-
-                    ... data,
-
-                    name: item.slice(0, item.length - target.length),
-
-                    path: path.join(directory, item)
+                    path: parsedFile
                 });
 
                 break;
