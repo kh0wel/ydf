@@ -54,11 +54,31 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 ydf init [<new-folder-name>]
 ```
 
+This command creates the following directories and files.
+
+```
+├── .ydf.config.js
+│
+└── src
+
+    ├── events
+    │
+    ├── services
+    │
+    └── commands
+```
+
+#
+
 ```bash
 ydf deploy [<config-file-path>]
 ```
 
+This command deploys the framework by loading the `.ydf.config.js` file along with its resources.
+
 ## Configuration
+
+Content of the `.ydf.config.js` file.
 
 ```js
 export default {
