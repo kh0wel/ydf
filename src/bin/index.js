@@ -3,7 +3,7 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
-import loadUsedFiles from '../loadUsedFiles.js';
+import loadFiles from '../loadFiles.js';
 import findUsedEvents from '../findUsedEvents.js';
 import findUsedGateways from '../findUsedGateways.js';
 
@@ -34,7 +34,7 @@ switch (process.argv.at(2)) {
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
         }
-            = await loadUsedFiles(config.include, config.exclude);
+            = await loadFiles(config.include, config.exclude);
 
         const usedEvents = findUsedEvents(
 
