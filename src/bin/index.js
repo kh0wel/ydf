@@ -34,7 +34,19 @@ switch (process.argv.at(2)) {
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
         }
-            = await loadFiles(config);
+            = await loadFiles(
+
+                config.include ?? [
+
+                    'src/**/*.event.*',
+                    'src/**/*.service.*',
+                    'src/**/*.command.chat.*',
+                    'src/**/*.command.user.*',
+                    'src/**/*.command.message.*',
+                ],
+
+                    config.exclude
+            );
 
         const usedEvents = findUsedEvents(
 

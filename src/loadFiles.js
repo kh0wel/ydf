@@ -1,6 +1,6 @@
 import fg from 'fast-glob';
 
-export default async function (config) {
+export default async function (include, exclude) {
 
     const loadedEvents                     = [];
     const loadedServices                   = [];
@@ -8,11 +8,11 @@ export default async function (config) {
     const loadedUserContextMenuCommands    = [];
     const loadedMessageContextMenuCommands = [];
 
-    const mapedFiles = await fg(config.include ?? [ 'src/**/*.js' ], {
+    const mapedFiles = await fg(include, {
 
         dot: true, absolute: true,
 
-        ignore: config.exclude
+        ignore: exclude
     });
 
     for (const mapedFile of mapedFiles) {
