@@ -1,4 +1,4 @@
-import fg from 'fast-glob';
+import fglob from 'fast-glob';
 
 export default async function (include, exclude) {
 
@@ -8,7 +8,7 @@ export default async function (include, exclude) {
     const loadedUserContextMenuCommands    = [];
     const loadedMessageContextMenuCommands = [];
 
-    const mapedFiles = await fg(include, {
+    const mapedFiles = await fglob(include, {
 
         dot: true, absolute: true,
 
@@ -101,7 +101,6 @@ export default async function (include, exclude) {
 
                 break;
         }
-
     }
 
     return {

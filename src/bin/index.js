@@ -3,7 +3,8 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
-import loadFiles from '../loadFiles.js';
+import loadConfig from '../loadConfig.js';
+import loadUsedFiles from '../loadUsedFiles.js';
 import findUsedEvents from '../findUsedEvents.js';
 import findUsedGateways from '../findUsedGateways.js';
 
@@ -24,7 +25,7 @@ switch (process.argv.at(2)) {
 
     case 'deploy': {
 
-        const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
+        const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.ydf.config.js'));
 
         const {
 
@@ -34,19 +35,7 @@ switch (process.argv.at(2)) {
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
         }
-            = await loadFiles(
-
-                config.include ?? [
-
-                    'src/**/*.event.*',
-                    'src/**/*.service.*',
-                    'src/**/*.command.chat.*',
-                    'src/**/*.command.user.*',
-                    'src/**/*.command.message.*',
-                ],
-
-                    config.exclude
-            );
+            = await loadUsedFiles(config.include, config.exclude);
 
         const usedEvents = findUsedEvents(
 
