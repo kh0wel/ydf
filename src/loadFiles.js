@@ -21,41 +21,82 @@ export default async function (config) {
 
         switch (data.type) {
 
-            case 'event':
+            case 1:
 
                 loadedEvents.push({
 
                     ... data,
 
-                    name: mapedFile.replace(/\..+$/g, ''),
+                    metadata: {
 
-                    path: mapedFile
+                        name: mapedFile.replace(/\..+$/g, ''),
+
+                        path: mapedFile
+                    }
                 });
 
                 break;
 
-            case 'service':
+            case 2:
 
                 loadedServices.push({
 
                     ... data,
 
-                    name: mapedFile.replace(/\..+$/g, ''),
+                    metadata: {
 
-                    path: mapedFile
+                        name: mapedFile.replace(/\..+$/g, ''),
+
+                        path: mapedFile
+                    }
                 });
 
                 break;
 
-            case 'command':
+            case 3:
 
-                loadedServices.push({
+                loadedChatInputCommands.push({
 
                     ... data,
 
-                    name: mapedFile.replace(/\..+$/g, ''),
+                    metadata: {
 
-                    path: mapedFile
+                        name: mapedFile.replace(/\..+$/g, ''),
+
+                        path: mapedFile
+                    }
+                });
+
+                break;
+
+            case 4:
+
+                loadedUserContextMenuCommands.push({
+
+                    ... data,
+
+                    metadata: {
+
+                        name: mapedFile.replace(/\..+$/g, ''),
+
+                        path: mapedFile
+                    }
+                });
+
+                break;
+
+            case 5:
+
+                loadedMessageContextMenuCommands.push({
+
+                    ... data,
+
+                    metadata: {
+
+                        name: mapedFile.replace(/\..+$/g, ''),
+
+                        path: mapedFile
+                    }
                 });
 
                 break;
