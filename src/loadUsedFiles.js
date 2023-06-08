@@ -1,3 +1,5 @@
+import path from 'node:path';
+
 import fglob from 'fast-glob';
 
 export default async function (include, exclude) {
@@ -29,7 +31,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: mapedFile.replace(/\..+$/g, ''),
+                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -45,7 +47,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: mapedFile.replace(/\..+$/g, ''),
+                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -61,7 +63,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: mapedFile.replace(/\..+$/g, ''),
+                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -77,7 +79,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: mapedFile.replace(/\..+$/g, ''),
+                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -93,7 +95,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: mapedFile.replace(/\..+$/g, ''),
+                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
