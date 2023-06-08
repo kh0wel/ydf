@@ -83,39 +83,23 @@ export default {
         loadedUserContextMenuCommands,
 
         usedEvents,
-        usedIntents,
-        usedPartials
+        usedIntents
     }) {
 
-        return { intents: usedIntents, partials: usedPartials, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
+        return { intents: usedIntents, token: 'XXXXX-XXXXX-XXXXX-XXXXX' };
     },
 
-    // Directories of files (is optional)
-    directories: {
+    // Files to load (is optional)
+    include: [
 
-        events:   'src/events',
-        services: 'src/services',
+        'src/**/*.event.*',
+        'src/**/*.service.*',
+        'src/**/*.command.chat.*',
+        'src/**/*.command.user.*',
+        'src/**/*.command.message.*'
+    ],
 
-        commands: {
-
-            chat:    'src/commands',
-            user:    'src/commands',
-            message: 'src/commands'
-        }
-    },
-
-    // Extensions of files (is optional)
-    extensions: {
-
-        events:   [ '.event.js'   ],
-        services: [ '.service.js' ],
-
-        commands: {
-
-            chat:    [ '.command.chat.js'    ],
-            user:    [ '.command.user.js'    ],
-            message: [ '.command.message.js' ]
-        }
-    }
+    // Files not to load (is optional)
+    exclude: []
 };
 ```

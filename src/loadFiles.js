@@ -1,44 +1,74 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
+import fg from 'fast-glob';
 
-async function loader (directory, extensions) {
+export default async function (config) {
 
-    let loadedFiles = [];
+    const loadedEvents                     = [];
+    const loadedServices                   = [];
+    const loadedChatInputCommands          = [];
+    const loadedUserContextMenuCommands    = [];
+    const loadedMessageContextMenuCommands = [];
 
-    const items = (await fs.readdir(directory, 'utf-8')).filter((name) => !name.startsWith('.'));
+    const mapedFiles = await fg(config.include ?? [ 'src/**/*.js' ], {
 
-    for (const item of items) {
+        dot: true, absolute: true,
 
-        const stat = await fs.stat(path.join(directory, item));
+        ignore: config.exclude
+    });
 
-        if (stat.isDirectory()) {
+    for (const mapedFile of mapedFiles) {
 
-            loadedFiles = loadedFiles.concat(await loader(path.join(directory, item), extensions));
+        const { default: data } = await import(`file:///${ mapedFile }`);
 
-            continue;
+        switch (data.type) {
+
+            case 'event':
+
+                loadedEvents.push({
+
+                    ... data,
+
+                    name: mapedFile.replace(/\..+$/g, ''),
+
+                    path: mapedFile
+                });
+
+                break;
+
+            case 'service':
+
+                loadedServices.push({
+
+                    ... data,
+
+                    name: mapedFile.replace(/\..+$/g, ''),
+
+                    path: mapedFile
+                });
+
+                break;
+
+            case 'command':
+
+                loadedServices.push({
+
+                    ... data,
+
+                    name: mapedFile.replace(/\..+$/g, ''),
+
+                    path: mapedFile
+                });
+
+                break;
         }
 
-        for (const extension of extensions) {
-
-            if (!item.endsWith(extension)) continue;
-
-            const { default: data } = await import(`file:///${ path.join(directory, item) }`);
-
-            loadedFiles.push({
-
-                ... data,
-
-                metadata: {
-
-                    name: item.slice(0, item.length - extension.length),
-
-                    path: path.join(directory, item)
-                }
-            });
-        }
     }
 
-    return loadedFiles;
-}
+    return {
 
-export default loader;
+        loadedEvents,
+        loadedServices,
+        loadedChatInputCommands,
+        loadedUserContextMenuCommands,
+        loadedMessageContextMenuCommands
+    };
+}

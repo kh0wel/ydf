@@ -5,8 +5,7 @@ import { Session } from '@biscuitland/core';
 
 import loadFiles from '../loadFiles.js';
 import findUsedEvents from '../findUsedEvents.js';
-import findUsedIntents from '../findUsedIntents.js';
-import findUsedPartials from '../findUsedPartials.js';
+import findUsedGateways from '../findUsedGateways.js';
 
 switch (process.argv.at(2)) {
 
@@ -27,11 +26,15 @@ switch (process.argv.at(2)) {
 
         const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
 
-        const loadedEvents                      = await loadFiles(path.resolve(config.directories?.events            ?? 'src/events'),   config.extensions?.events            ?? [ '.event.js'           ]);
-        const loadedServices                    = await loadFiles(path.resolve(config.directories?.services          ?? 'src/services'), config.extensions?.services          ?? [ '.service.js'         ]);
-        const loadedChatInputCommands           = await loadFiles(path.resolve(config.directories?.commands?.chat    ?? 'src/commands'), config.extensions?.commands?.chat    ?? [ '.command.chat.js'    ]);
-        const loadedUserContextMenuCommands     = await loadFiles(path.resolve(config.directories?.commands?.user    ?? 'src/commands'), config.extensions?.commands?.user    ?? [ '.command.user.js'    ]);
-        const loadedMessageContextMenuCommands  = await loadFiles(path.resolve(config.directories?.commands?.message ?? 'src/commands'), config.extensions?.commands?.message ?? [ '.command.message.js' ]);
+        const {
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands
+        }
+            = await loadFiles(config);
 
         const usedEvents = findUsedEvents(
 
@@ -42,8 +45,7 @@ switch (process.argv.at(2)) {
             loadedUserContextMenuCommands
         );
 
-        const usedIntents  = findUsedIntents(loadedEvents, usedEvents);
-        const usedPartials = findUsedPartials(loadedEvents, usedEvents);
+        const { usedIntents } = findUsedGateways(loadedEvents, usedEvents);
 
         for (const loadedEvent of loadedEvents) {
 
@@ -61,7 +63,6 @@ switch (process.argv.at(2)) {
 
                 usedEvents,
                 usedIntents,
-                usedPartials,
 
                 session: new Session(
 
@@ -74,8 +75,7 @@ switch (process.argv.at(2)) {
                         loadedUserContextMenuCommands,
 
                         usedEvents,
-                        usedIntents,
-                        usedPartials
+                        usedIntents
                     })
                 )
             });
