@@ -3,7 +3,6 @@ import path from 'node:path';
 
 import { Session } from '@biscuitland/core';
 
-import loadConfig from '../loadConfig.js';
 import loadUsedFiles from '../loadUsedFiles.js';
 import findUsedEvents from '../findUsedEvents.js';
 import findUsedGateways from '../findUsedGateways.js';
@@ -18,14 +17,14 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'), { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'export default { session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } };\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\n\tsession ({ usedIntents, usedPartials }) {\n\n\t\treturn { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' };\n\t}\n});\n');
 
         break;
     }
 
     case 'deploy': {
 
-        const config = await loadConfig(path.resolve(process.argv.at(3) ?? '.ydf.config.js'));
+        const { default: config } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
 
         const {
 
