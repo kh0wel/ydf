@@ -10,10 +10,12 @@ export interface ServiceOptions {
 
 export class ServiceBuilder {
 
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0; 
+    events;
 
-    events = {};
+    type = 2;
+
+    // https://discord.com/developers/docs/topics/gateway#gateway-intents
+    intents = 0;
 
     constructor (data: ServiceOptions) {
 

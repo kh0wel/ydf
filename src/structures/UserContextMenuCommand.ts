@@ -28,6 +28,10 @@ export interface UserContextMenuCommandOptions {
 
 export class UserContextMenuCommandBuilder {
 
+    events;
+
+    type = 4;
+
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
     intents = 0; 
 
@@ -63,8 +67,6 @@ export class UserContextMenuCommandBuilder {
             dm: false, nsfw: false
         }
     };
-
-    events = {};
 
     constructor (data: UserContextMenuCommandOptions) {
 

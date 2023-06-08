@@ -37,6 +37,10 @@ export interface ChatInputCommandOptions {
 
 export class ChatInputCommandBuilder {
 
+    events;
+
+    type = 3;
+
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
     intents = 0; 
 
@@ -83,8 +87,6 @@ export class ChatInputCommandBuilder {
             dm: false, nsfw: false
         }
     };
-
-    events = {};
 
     constructor (data: ChatInputCommandOptions) {
 

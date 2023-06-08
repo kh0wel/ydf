@@ -28,6 +28,10 @@ export interface MessageContextMenuCommandOptions {
 
 export class MessageContextMenuCommandBuilder {
 
+    events;
+
+    type = 5;
+
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
     intents = 0; 
 
@@ -63,8 +67,6 @@ export class MessageContextMenuCommandBuilder {
             dm: false, nsfw: false
         }
     };
-
-    events = {};
 
     constructor (data: MessageContextMenuCommandOptions) {
 

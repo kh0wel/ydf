@@ -7,10 +7,12 @@ export interface EventOptions {
 
 export class EventBuilder {
 
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0; 
+    execute;
 
-    execute (parameters) {}
+    type = 1;
+
+    // https://discord.com/developers/docs/topics/gateway#gateway-intents
+    intents = 0;
 
     constructor (data: EventOptions) {
 
