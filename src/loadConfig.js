@@ -4,7 +4,7 @@ export default async function (path) {
 
     return {
 
-        ... data,
+        session: data.session,
 
         include: data.include ?? [
 
