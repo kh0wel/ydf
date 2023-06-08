@@ -1,14 +1,23 @@
+export interface ServiceOptions {
+
+    intents?: number;
+
+    events: {
+
+        [event: string]: (parameters) => Promise<void> | void;
+    }
+}
+
 export class ServiceBuilder {
 
-    name; path; intents; events;
+    // https://discord.com/developers/docs/topics/gateway#gateway-intents
+    intents = 0; 
 
-    constructor (data) {
+    events = {};
 
-        this.name = data.name;
-        this.path = data.path;
+    constructor (data: ServiceOptions) {
 
-        // https://discord.com/developers/docs/topics/gateway#gateway-intents
-        this.intents = data.intents ?? 0;
+        this.intents = data.intents ?? this.intents;
 
         this.events = data.events;
     }
