@@ -17,18 +17,13 @@ export interface MessageContextMenuCommandOptions {
 
             dm?:   boolean;
             nsfw?: boolean;
-        }
-    }
+        };
+    };
 
-    events: {
-
-        [event: string]: (parameters) => Promise<void> | void;
-    }
+    events: { [event: string]: (parameters) => Promise<void> | void; };
 }
 
 export class MessageContextMenuCommandBuilder {
-
-    events;
 
     type = 5;
 
@@ -67,6 +62,8 @@ export class MessageContextMenuCommandBuilder {
             dm: false, nsfw: false
         }
     };
+
+    events;
 
     constructor (data: MessageContextMenuCommandOptions) {
 

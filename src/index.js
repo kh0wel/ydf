@@ -4,14 +4,14 @@ import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedGateways from './findUsedGateways.js';
 
-export * from './structures/Config.js';
+export * from './structures/Configuration.js';
 export * from './structures/Event.js';
 export * from './structures/Service.js';
 export * from './structures/ChatInputCommand.js';
 export * from './structures/UserContextMenuCommand.js';
 export * from './structures/MessageContextMenuCommand.js';
 
-export default async function (config) {
+export default async function (configuration) {
 
     const {
 
@@ -21,7 +21,7 @@ export default async function (config) {
         loadedUserContextMenuCommands,
         loadedMessageContextMenuCommands
     }
-        = await loadFiles(config);
+        = await loadFiles(configuration);
 
     const usedEvents = findUsedEvents(
 
@@ -40,7 +40,7 @@ export default async function (config) {
 
         loadedEvent.execute({
 
-            config,
+            configuration,
 
             loadedEvents,
             loadedServices,
@@ -53,7 +53,7 @@ export default async function (config) {
 
             session: new Session(
 
-                config.session({
+                configuration.session({
 
                     loadedEvents,
                     loadedServices,

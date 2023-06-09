@@ -1,4 +1,4 @@
-export interface ConfigOptions {
+export interface ConfigurationOptions {
 
     session ({
 
@@ -17,11 +17,11 @@ export interface ConfigOptions {
     exclude?: string[];
 }
 
-export class ConfigBuilder {
+export class ConfigurationBuilder {
 
     session;
 
-    include: string[] = [
+    include = [
 
         'src/**/*.event.*',
         'src/**/*.service.*',
@@ -32,7 +32,7 @@ export class ConfigBuilder {
 
     exclude: string[] = [];
 
-    constructor (data: ConfigOptions) {
+    constructor (data: ConfigurationOptions) {
 
         this.session = data.session;
 

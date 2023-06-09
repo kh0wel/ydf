@@ -17,18 +17,13 @@ export interface UserContextMenuCommandOptions {
 
             dm?:   boolean;
             nsfw?: boolean;
-        }
-    }
+        };
+    };
 
-    events: {
-
-        [event: string]: (parameters) => Promise<void> | void;
-    }
+    events: { [event: string]: (parameters) => Promise<void> | void; };
 }
 
 export class UserContextMenuCommandBuilder {
-
-    events;
 
     type = 4;
 
@@ -67,6 +62,8 @@ export class UserContextMenuCommandBuilder {
             dm: false, nsfw: false
         }
     };
+
+    events;
 
     constructor (data: UserContextMenuCommandOptions) {
 

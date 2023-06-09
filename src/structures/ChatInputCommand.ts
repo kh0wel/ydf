@@ -18,7 +18,7 @@ export interface ChatInputCommandOptions {
             [locale: string]: string;
         };
 
-        options?: [];
+        options?;
 
         permissions?: {
 
@@ -26,18 +26,13 @@ export interface ChatInputCommandOptions {
 
             dm?:   boolean;
             nsfw?: boolean;
-        }
-    }
+        };
+    };
 
-    events: {
-
-        [event: string]: (parameters) => Promise<void> | void;
-    }
+    events: { [event: string]: (parameters) => Promise<void> | void; };
 }
 
 export class ChatInputCommandBuilder {
-
-    events;
 
     type = 3;
 
@@ -62,7 +57,7 @@ export class ChatInputCommandBuilder {
             [locale: string]: string;
         };
 
-        options: []
+        options;
 
         permissions: {
 
@@ -87,6 +82,8 @@ export class ChatInputCommandBuilder {
             dm: false, nsfw: false
         }
     };
+
+    events;
 
     constructor (data: ChatInputCommandOptions) {
 
