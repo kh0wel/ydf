@@ -14,7 +14,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- `🧼` **Simplified**.
+- `🧭` **Simplified**.
 
     Fulfills the essentials.
 
@@ -24,13 +24,13 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 - `⚡` **Performance**.
 
-    Smart data management.
+    Intelligent data management.
 
-- `🚀` **Compatibility**.
+- `🔌` **Compatibility**.
 
     Support multiple versions of [biscuit.js](https://biscuitjs.com).
 
-- `🧱` **Multiplatform**.
+- `🧳` **Multiplatform**.
 
     Support [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
 
