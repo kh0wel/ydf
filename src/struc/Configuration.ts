@@ -1,6 +1,6 @@
-import { BiscuitOptions } from "@biscuitland/core";
+import { BiscuitOptions } from '@biscuitland/core';
 
-export interface SettingsOptions {
+export interface ConfigOptions {
 
     session ({
 
@@ -19,7 +19,7 @@ export interface SettingsOptions {
     exclude?: string[];
 }
 
-export class SettingsBuilder {
+export class ConfigBuilder {
 
     session;
 
@@ -34,7 +34,7 @@ export class SettingsBuilder {
 
     exclude: string[] = [];
 
-    constructor (data: SettingsOptions) {
+    constructor (data: ConfigOptions) {
 
         this.session = data.session;
 
