@@ -1,7 +1,7 @@
 import loadFiles from './utils/loadFiles.js';
 import findUsedEvents from './utils/findUsedEvents.js';
 import findUsedGateways from './utils/findUsedGateways.js';
-import deployment from './utils/deployment.js';
+import deploy from './utils/deploy.js';
 
 export * from './structures/Configuration.js';
 export * from './structures/Event.js';
@@ -17,5 +17,5 @@ export default async function (configuration) {
     const usedEvents   = findUsedEvents(loadedFiles);
     const usedGateways = findUsedGateways(loadedFiles, usedEvents);
 
-    deployment(configuration, loadedFiles, usedEvents, usedGateways);
+    deploy(configuration, loadedFiles, usedEvents, usedGateways);
 }
