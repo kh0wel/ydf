@@ -8,11 +8,11 @@
   "bin": "dist/bin/index.js",
   "scripts": {
     "lint": "rome check \".\"",
-    "build": "swc src/ -d dist/"
+    "build": "swc src -d dist"
   },
   "files": [
-    "dist/",
-    "typings/"
+    "dist",
+    "typings"
   ],
   "keywords": [
     "bot",
