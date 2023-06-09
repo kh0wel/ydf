@@ -1,35 +1,36 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-switch (process.argv.at(2)) {
+import cac from 'cac';
 
-    case 'init': {
+const cli = cac();
 
-        const folder = process.argv.at(3) ?? 'new-ydf-project';
+cli
+    .command('init', 'Create a new project')
 
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'events'),   { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'), { recursive: true });
-        await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'), { recursive: true });
+    .option('--dir <path>', 'Project directory path', { default: 'new-ydf-project' })
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'import { SettingsBuilder } from \'ydf\';\n\nexport default new SettingsBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
+    .action(async (options) => {
 
-        break;
-    }
+        await fs.mkdir(path.resolve(options.path, 'src', 'events'),   { recursive: true });
+        await fs.mkdir(path.resolve(options.path, 'src', 'services'), { recursive: true });
+        await fs.mkdir(path.resolve(options.path, 'src', 'commands'), { recursive: true });
 
-    case 'deploy': {
+        await fs.writeFile(path.resolve(options.path, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
+    });
 
-        const { default: settings } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
+cli
+    .command('deploy', 'Deploy the framework')
 
-        const { default: environment } = await import('../index.js');
+    .option('--config <path>', 'Config file path', { default: '.ydf.config.js' })
 
-        await environment(settings);
+    .action(async ({ config: configPath }) => {
 
-        break;
-    }
+        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-    default:
+        const { default: env } = await import('../index.js');
 
-        console.log('Repository on https://github.com/kh0wel/ydf');
+        await env(config);
+    });
 
-        break;
-}
+cli.parse();

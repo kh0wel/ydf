@@ -4,14 +4,14 @@ import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedGateways from './findUsedGateways.js';
 
-import { SettingsOptions } from './structures/Settings.js';
+import { SettingsOptions } from './struc/Settings.js';
 
-export * from './structures/Settings.js';
-export * from './structures/Event.js';
-export * from './structures/Service.js';
-export * from './structures/ChatInputCommand.js';
-export * from './structures/UserContextMenuCommand.js';
-export * from './structures/MessageContextMenuCommand.js';
+export * from './struc/Settings.js';
+export * from './struc/Event.js';
+export * from './struc/Service.js';
+export * from './struc/ChatInputCommand.js';
+export * from './struc/UserContextMenuCommand.js';
+export * from './struc/MessageContextMenuCommand.js';
 
 export default async function (settings: Required<SettingsOptions>) {
 
