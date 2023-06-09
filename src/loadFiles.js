@@ -1,8 +1,8 @@
-import path from 'node:path';
+import { basename } from 'node:path';
 
 import fglob from 'fast-glob';
 
-export default async function (include, exclude) {
+export default async function (config) {
 
     const loadedEvents                     = [];
     const loadedServices                   = [];
@@ -10,11 +10,11 @@ export default async function (include, exclude) {
     const loadedUserContextMenuCommands    = [];
     const loadedMessageContextMenuCommands = [];
 
-    const mapedFiles = await fglob(include, {
+    const mapedFiles = await fglob(config.include, {
 
         dot: true, absolute: true,
 
-        ignore: exclude
+        ignore: config.exclude
     });
 
     for (const mapedFile of mapedFiles) {
@@ -31,7 +31,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
+                        name: basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -47,7 +47,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
+                        name: basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -63,7 +63,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
+                        name: basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -79,7 +79,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
+                        name: basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }
@@ -95,7 +95,7 @@ export default async function (include, exclude) {
 
                     metadata: {
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
+                        name: basename(mapedFile).replace(/\..+$/g, ''),
 
                         path: mapedFile
                     }

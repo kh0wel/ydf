@@ -15,8 +15,6 @@ export interface ConfigOptions {
     include?: string[];
 
     exclude?: string[];
-    
-    refresh?: boolean;
 }
 
 export class ConfigBuilder {
@@ -34,14 +32,11 @@ export class ConfigBuilder {
 
     exclude: string[] = [];
 
-    refresh = true;
-
     constructor (data: ConfigOptions) {
 
         this.session = data.session;
 
         this.include = data.include ?? this.include;
         this.exclude = data.exclude ?? this.exclude;
-        this.refresh = data.refresh ?? this.refresh;
     }
 }
