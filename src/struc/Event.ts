@@ -4,7 +4,7 @@ export interface EventOptions {
 
     execute ({
 
-        settings,
+        config,
 
         loadedEvents,
         loadedServices,
