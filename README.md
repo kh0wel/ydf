@@ -26,14 +26,7 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Installation
 
-1. Install [biscuit.js](https://npmjs.com/package/@biscuitland/core).
-
-    ```bash
-    npm add @biscuitland/core -g
-    ```
-
-2. Install [ydf](https://npmjs.com/package/ydf).
-
-    ```bash
-    npm add ydf -g
-    ```
+```bash
+npm add ydf -g
+npm add @biscuitland/core -g
+```
