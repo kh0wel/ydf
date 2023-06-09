@@ -1,11 +1,11 @@
-export default function (
+export default function ({
 
     loadedEvents,
     loadedServices,
     loadedChatInputCommands,
     loadedMessageContextMenuCommands,
     loadedUserContextMenuCommands
-) {
+}) {
 
     const usedEvents = {};
 

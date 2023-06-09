@@ -20,7 +20,9 @@ switch (process.argv.at(2)) {
 
         const { default: configuration } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
 
-        (await import('../index.js')).default(configuration);
+        const { default: environment } = await import('../index.js');
+
+        await environment(configuration);
 
         break;
     }
