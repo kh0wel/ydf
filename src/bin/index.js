@@ -11,18 +11,18 @@ switch (process.argv.at(2)) {
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'services'), { recursive: true });
         await fs.mkdir(path.join(process.cwd(), folder, 'src', 'commands'), { recursive: true });
 
-        await fs.writeFile(path.join(process.cwd(), folder, '.ydf.config.js'), 'import { ConfigurationBuilder } from \'ydf\';\n\nexport default new ConfigurationBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
+        await fs.writeFile(path.join(process.cwd(), folder, '.ydfrc'), 'import { SettingsBuilder } from \'ydf\';\n\nexport default new SettingsBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
 
         break;
     }
 
     case 'deploy': {
 
-        const { default: configuration } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydf.config.js') }`);
+        const { default: settings } = await import(`file:///${ path.resolve(process.argv.at(3) ?? '.ydfrc') }`);
 
         const { default: environment } = await import('../index.js');
 
-        await environment(configuration);
+        await environment(settings);
 
         break;
     }

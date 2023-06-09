@@ -1,23 +1,25 @@
-export interface ConfigurationOptions {
+import { BiscuitOptions } from "@biscuitland/core";
+
+export interface SettingsOptions {
 
     session ({
 
-        laodedEvents,
-        laodedServices,
-        laodedChatInputCommands,
+        loadedEvents,
+        loadedServices,
+        loadedChatInputCommands,
         loadedMessageContextMenuCommands,
         loadedUserContextMenuCommands,
 
         usedEvents,
         usedIntents
-    }): Promise<void> | void;
+    }): BiscuitOptions;
 
     include?: string[];
 
     exclude?: string[];
 }
 
-export class ConfigurationBuilder {
+export class SettingsBuilder {
 
     session;
 
@@ -32,7 +34,7 @@ export class ConfigurationBuilder {
 
     exclude: string[] = [];
 
-    constructor (data: ConfigurationOptions) {
+    constructor (data: SettingsOptions) {
 
         this.session = data.session;
 

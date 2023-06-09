@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "🚀 A framework for building fast and efficient Discord bots with biscuit.js ",
   "type": "module",
   "main": "dist/index.js",
@@ -47,6 +47,6 @@
     "rome": "^12.1.3"
   },
   "peerDependencies": {
-    "@biscuitland/core": ">=2.3.0"
+    "@biscuitland/core": ">=1.3.1"
   }
 }

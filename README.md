@@ -14,25 +14,25 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- 🧼 **Simplified**.
+- `🧼` **Simplified**.
 
-    Fulfills essential requirements.
+    Fulfills the essentials.
 
-- 💪🏻 **Productivity**.
+- `💪🏻` **Productivity**.
 
-    Recursive resource load.
+    Recursive loading of directories and files.
 
-- ⚡ **Performance**.
+- `⚡` **Performance**.
 
-    Smart resource management.
+    Smart data management.
 
-- 🚀 **Compatibility**.
+- `🚀` **Compatibility**.
 
-    Different versions of [biscuit.js](https://biscuitjs.com).
+    Support multiple versions of [biscuit.js](https://biscuitjs.com).
 
-- 🧱 **Multiplatform**.
+- `🧱` **Multiplatform**.
 
-    Different environments of [Bun](https://bun.sh) or [Node](https://nodejs.org).
+    Support [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
 
 ## Installation
 
@@ -50,18 +50,18 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Commands
 
-### `init [<new-folder-name>]` 
+### `init [<folder-name>]` 
 
 This command create the following directories and files.
 
 ```
-├── .ydf.config.js
+├── .ydfrc
 └── src/
     ├── events/
     ├── services/
     └── commands/
 ```
 
-### `deploy [<config-file-path>]`
+### `deploy [<settings-path>]`
 
-This command will deploy the framework loading the `.ydf.config.js` file and its resources.
+This command will deploy the framework loading the `.ydfrc` file and its resources.
