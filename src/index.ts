@@ -4,16 +4,16 @@ import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedGateways from './findUsedGateways.js';
 
-import { SettingsOptions } from './struc/Settings.js';
+import { ConfigOptions } from './struc/Configuration.js';
 
-export * from './struc/Settings.js';
+export * from './struc/Configuration.js';
 export * from './struc/Event.js';
 export * from './struc/Service.js';
 export * from './struc/ChatInputCommand.js';
 export * from './struc/UserContextMenuCommand.js';
 export * from './struc/MessageContextMenuCommand.js';
 
-export default async function (settings: Required<SettingsOptions>) {
+export default async function (config: Required<ConfigOptions>) {
 
     const {
 
@@ -22,7 +22,7 @@ export default async function (settings: Required<SettingsOptions>) {
         loadedChatInputCommands,
         loadedUserContextMenuCommands,
         loadedMessageContextMenuCommands
-    } = await loadFiles(settings.include, settings.exclude);
+    } = await loadFiles(config);
 
     const usedEvents = findUsedEvents(
 
@@ -41,7 +41,7 @@ export default async function (settings: Required<SettingsOptions>) {
 
         loadedEvent.execute({
 
-            settings,
+            config,
 
             loadedEvents,
             loadedServices,
@@ -54,7 +54,7 @@ export default async function (settings: Required<SettingsOptions>) {
 
             session: new Session(
 
-                settings.session({
+                config.session({
 
                     loadedEvents,
                     loadedServices,

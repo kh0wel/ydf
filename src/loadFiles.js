@@ -2,7 +2,7 @@ import path from 'node:path';
 
 import fglob from 'fast-glob';
 
-export default async function (target, ignore) {
+export default async function ({ target, ignore }) {
 
     const loadedEvents                     = [];
     const loadedServices                   = [];
