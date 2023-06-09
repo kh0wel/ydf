@@ -14,15 +14,15 @@ A framework for building fast and efficient Discord bots with [biscuit.js](https
 
 ## Features
 
-- 🧭 **Simplified**: Fulfills the essentials.
+- 🧭 **Simplified**: Satisfies essentials.
 
-- 💪🏻 **Productivity**: Recursive load of directories and files.
+- 💪🏻 **Productivity**: Recursive load.
 
-- ⚡ **Performance**: Intelligent data management.
+- ⚡ **Performance**: Intelligent management.
 
 - 🔌 **Compatibility**: Support for various [biscuit.js](https://biscuitjs.com) versions.
 
-- 🧳 **Multiplatform**: Support [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
+- 🧳 **Multiplatform**: Support with [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
 
 ## Installation
 
