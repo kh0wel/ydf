@@ -10,13 +10,13 @@ cli
 
     .option('--dir <path>', 'Project directory path', { default: 'new-ydf-project' })
 
-    .action(async ({ dir: dirPath }) => {
+    .action(async (params) => {
 
-        await fs.mkdir(path.resolve(dirPath, 'src', 'events'),   { recursive: true });
-        await fs.mkdir(path.resolve(dirPath, 'src', 'services'), { recursive: true });
-        await fs.mkdir(path.resolve(dirPath, 'src', 'commands'), { recursive: true });
+        await fs.mkdir(path.resolve(params.dir, 'src', 'events'),   { recursive: true });
+        await fs.mkdir(path.resolve(params.dir, 'src', 'services'), { recursive: true });
+        await fs.mkdir(path.resolve(params.dir, 'src', 'commands'), { recursive: true });
 
-        await fs.writeFile(path.resolve(dirPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
+        await fs.writeFile(path.resolve(params.dir, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
     });
 
 cli
@@ -24,13 +24,13 @@ cli
 
     .option('--config <path>', 'Config file path', { default: '.ydf.config.js' })
 
-    .action(async ({ config: configPath }) => {
+    .action(async (params) => {
 
-        const { default: configContent } = await import(`file:///${ path.resolve(configPath) }`);
+        const { default: config } = await import(`file:///${ path.resolve(params.config) }`);
 
         const { default: env } = await import('../index.js');
 
-        await env(configContent);
+        await env(config);
     });
 
 cli.parse();

@@ -14,16 +14,16 @@ export interface ConfigOptions {
         usedIntents
     }): BiscuitOptions;
 
-    target?: string[];
+    include?: string[];
 
-    ignore?: string[];
+    exclude?: string[];
 }
 
 export class ConfigBuilder {
 
     session;
 
-    target = [
+    include = [
 
         'src/**/*.event.*',
         'src/**/*.service.*',
@@ -32,13 +32,13 @@ export class ConfigBuilder {
         'src/**/*.command.message.*',
     ];
 
-    ignore: string[] = [];
+    exclude: string[] = [];
 
     constructor (data: ConfigOptions) {
 
         this.session = data.session;
 
-        this.target = data.target ?? this.target;
-        this.ignore = data.ignore ?? this.ignore;
+        this.include = data.include ?? this.include;
+        this.exclude = data.exclude ?? this.exclude;
     }
 }

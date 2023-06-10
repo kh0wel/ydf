@@ -2,7 +2,7 @@ import path from 'node:path';
 
 import fglob from 'fast-glob';
 
-export default async function ({ target, ignore }) {
+export default async function ({ include, exclude }) {
 
     const loadedEvents                     = [];
     const loadedServices                   = [];
@@ -10,7 +10,12 @@ export default async function ({ target, ignore }) {
     const loadedUserContextMenuCommands    = [];
     const loadedMessageContextMenuCommands = [];
 
-    const mapedFiles = await fglob(target, { ignore, dot: true, absolute: true });
+    const mapedFiles = await fglob(include, {
+
+        ignore: exclude,
+
+        dot: true, absolute: true
+    });
 
     for (const mapedFile of mapedFiles) {
 
