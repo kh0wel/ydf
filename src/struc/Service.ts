@@ -7,6 +7,9 @@ export interface ServiceOptions {
 
 export class ServiceBuilder {
 
+    name = 'empty';
+    path = 'empty';
+
     type = 2;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents

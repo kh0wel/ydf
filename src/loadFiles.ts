@@ -2,13 +2,14 @@ import path from 'node:path';
 
 import fglob from 'fast-glob';
 
+import { ConfigBuilder } from './struc/Configuration.js';
 import { EventBuilder } from './struc/Event.js';
 import { ServiceBuilder } from './struc/Service.js';
 import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
 
-export default async function ({ include, exclude }: { include: string[], exclude: string[] }) {
+export default async function ({ include, exclude }: ConfigBuilder) {
 
     const loadedEvents:                     EventBuilder[]                     = [];
     const loadedServices:                   ServiceBuilder[]                   = [];
@@ -35,13 +36,10 @@ export default async function ({ include, exclude }: { include: string[], exclud
 
                     ... data,
 
-                    metadata: {
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                        path: mapedFile
-                    }
-                });
+                    path: mapedFile
+                } as EventBuilder);
 
                 break;
 
@@ -51,13 +49,10 @@ export default async function ({ include, exclude }: { include: string[], exclud
 
                     ... data,
 
-                    metadata: {
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                        path: mapedFile
-                    }
-                });
+                    path: mapedFile
+                } as ServiceBuilder);
 
                 break;
 
@@ -67,13 +62,10 @@ export default async function ({ include, exclude }: { include: string[], exclud
 
                     ... data,
 
-                    metadata: {
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                        path: mapedFile
-                    }
-                });
+                    path: mapedFile
+                } as ChatInputCommandBuilder);
 
                 break;
 
@@ -83,13 +75,10 @@ export default async function ({ include, exclude }: { include: string[], exclud
 
                     ... data,
 
-                    metadata: {
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                        path: mapedFile
-                    }
-                });
+                    path: mapedFile
+                } as UserContextMenuCommandBuilder);
 
                 break;
 
@@ -99,13 +88,10 @@ export default async function ({ include, exclude }: { include: string[], exclud
 
                     ... data,
 
-                    metadata: {
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                        name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                        path: mapedFile
-                    }
-                });
+                    path: mapedFile
+                } as MessageContextMenuCommandBuilder);
 
                 break;
         }

@@ -19,6 +19,9 @@ export interface EventOptions {
 
 export class EventBuilder {
 
+    name = 'empty';
+    path = 'empty';
+
     type = 1;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents

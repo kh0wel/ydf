@@ -4,7 +4,7 @@ import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedGateways from './findUsedGateways.js';
 
-import { ConfigOptions } from './struc/Configuration.js';
+import { ConfigBuilder } from './struc/Configuration.js';
 
 export * from './struc/Configuration.js';
 export * from './struc/Event.js';
@@ -13,7 +13,7 @@ export * from './struc/ChatInputCommand.js';
 export * from './struc/UserContextMenuCommand.js';
 export * from './struc/MessageContextMenuCommand.js';
 
-export default async function (config: Required<ConfigOptions>) {
+export default async function (config: ConfigBuilder) {
 
     const {
 
@@ -37,7 +37,7 @@ export default async function (config: Required<ConfigOptions>) {
 
     for (const loadedEvent of loadedEvents) {
 
-        if (!usedEvents[loadedEvent.metadata.name]) continue;
+        if (!usedEvents[loadedEvent.name]) continue;
 
         loadedEvent.execute({
 
