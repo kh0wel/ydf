@@ -3,8 +3,6 @@ import path from 'node:path';
 
 import cac from 'cac';
 
-import { ConfigBuilder } from '../struc/Configuration.js';
-
 const cli = cac();
 
 cli
@@ -30,7 +28,7 @@ cli
 
         (await import('../index.js')).default(
 
-            (await import(`file:///${ path.resolve(configPath) }`)).default as ConfigBuilder
+            (await import(`file:///${ path.resolve(configPath) }`)).default
         );
     });
 
