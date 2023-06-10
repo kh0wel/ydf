@@ -33,3 +33,7 @@ npm add ydf -g
 ```bash
 npm add @biscuitland/core -g
 ```
+
+## Examples
+
+See an example [here](https://github.com/kh0wel/kobalt).

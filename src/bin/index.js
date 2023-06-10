@@ -26,11 +26,11 @@ cli
 
     .action(async ({ config: configPath }) => {
 
-        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
+        const { default: configContent } = await import(`file:///${ path.resolve(configPath) }`);
 
-        const { default: core } = await import('../index.js');
+        const { default: env } = await import('../index.js');
 
-        await core(config);
+        await env(configContent);
     });
 
 cli.parse();
