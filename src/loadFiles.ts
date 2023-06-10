@@ -2,13 +2,19 @@ import path from 'node:path';
 
 import fglob from 'fast-glob';
 
-export default async function ({ include, exclude }) {
+import { EventBuilder } from './struc/Event.js';
+import { ServiceBuilder } from './struc/Service.js';
+import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
+import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
+import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
 
-    const loadedEvents                     = [];
-    const loadedServices                   = [];
-    const loadedChatInputCommands          = [];
-    const loadedUserContextMenuCommands    = [];
-    const loadedMessageContextMenuCommands = [];
+export default async function ({ include, exclude }: { include: string[], exclude: string[] }) {
+
+    const loadedEvents:                     EventBuilder[]                     = [];
+    const loadedServices:                   ServiceBuilder[]                   = [];
+    const loadedChatInputCommands:          ChatInputCommandBuilder[]          = [];
+    const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
+    const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
     const mapedFiles = await fglob(include, {
 
@@ -19,7 +25,7 @@ export default async function ({ include, exclude }) {
 
     for (const mapedFile of mapedFiles) {
 
-        const { default: data } = await import(`file:///${ mapedFile }`);
+        const { default: data }: { default: EventBuilder | ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder } = await import(`file:///${ mapedFile }`);
 
         switch (data.type) {
 

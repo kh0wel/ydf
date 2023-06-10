@@ -3,6 +3,8 @@ import path from 'node:path';
 
 import cac from 'cac';
 
+import { ConfigBuilder } from '../struc/Configuration.js';
+
 const cli = cac();
 
 cli
@@ -10,7 +12,7 @@ cli
 
     .option('--dir <path>', 'Project directory path', { default: 'new-ydf-project' })
 
-    .action(async (params) => {
+    .action(async (params: { dir: string }) => {
 
         await fs.mkdir(path.resolve(params.dir, 'src', 'events'),   { recursive: true });
         await fs.mkdir(path.resolve(params.dir, 'src', 'services'), { recursive: true });
@@ -24,13 +26,12 @@ cli
 
     .option('--config <path>', 'Config file path', { default: '.ydf.config.js' })
 
-    .action(async (params) => {
+    .action(async (params: { config: string }) => {
 
-        const { default: config } = await import(`file:///${ path.resolve(params.config) }`);
+        (await import('../index.js')).default(
 
-        const { default: env } = await import('../index.js');
-
-        await env(config);
+            (await import(`file:///${ path.resolve(params.config) }`)).default as ConfigBuilder
+        );
     });
 
 cli.parse();
