@@ -1,6 +1,13 @@
-export interface EventOptions {
 
-    intents?: number;
+import { ConfigBuilder } from './Configuration.js';
+import { ServiceBuilder } from './Service.js';
+import { ChatInputCommandBuilder } from './ChatInputCommand.js';
+import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
+import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
+
+import { BaseType, BaseOptions, BaseBuilder } from './Base.js';
+
+export interface EventOptions extends BaseOptions {
 
     execute ({
 
@@ -14,24 +21,41 @@ export interface EventOptions {
 
         usedEvents,
         usedIntents
+    }: {
+
+        config: ConfigBuilder,
+
+        loadedEvents:                     EventBuilder[],
+        loadedServices:                   ServiceBuilder[],
+        loadedChatInputCommands:          ChatInputCommandBuilder[],
+        loadedMessageContextMenuCommands: UserContextMenuCommandBuilder[],
+        loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[],
+
+        usedEvents: {
+
+            [event: string]: {
+    
+                services: ServiceBuilder[],
+    
+                commands: (ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder)[]
+    
+                all: (ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder)[]
+            }
+        },
+
+        usedIntents: number
     }): Promise<void> | void
 }
 
-export class EventBuilder {
+export class EventBuilder extends BaseBuilder {
 
-    name = 'empty';
-    path = 'empty';
-
-    type = 1;
-
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0;
+    type = BaseType.EVENT;
 
     execute;
 
     constructor (data: EventOptions) {
 
-        this.intents = data.intents ?? this.intents;
+        super (data);
 
         this.execute = data.execute;
     }
