@@ -12,9 +12,9 @@ cli
 
     .action(async ({ project: projectPath }) => {
 
-        await fs.mkdir(path.resolve(projectPath, 'src', 'events'),   { recursive: true });
-        await fs.mkdir(path.resolve(projectPath, 'src', 'services'), { recursive: true });
-        await fs.mkdir(path.resolve(projectPath, 'src', 'commands'), { recursive: true });
+        await fs.mkdir(path.resolve(projectPath, 'src', 'events'));
+        await fs.mkdir(path.resolve(projectPath, 'src', 'services'));
+        await fs.mkdir(path.resolve(projectPath, 'src', 'commands'));
 
         await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
     });
