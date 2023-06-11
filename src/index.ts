@@ -1,8 +1,8 @@
 import { Session } from '@biscuitland/core';
 
 import loadFiles from './loadFiles.js';
-import findUsedEvents from './findUsedEvents.js';
-import findUsedGateways from './findUsedGateways.js';
+import findEvents from './findEvents.js';
+import findGateways from './findGateways.js';
 
 import { ConfigurationBuilder } from './struc/Configuration.js';
 
@@ -17,7 +17,7 @@ export default async function (configuration: ConfigurationBuilder) {
         loadedMessageContextMenuCommands
     } = await loadFiles(configuration);
 
-    const usedEvents = findUsedEvents(
+    const usedEvents = findEvents(
 
         loadedEvents,
         loadedServices,
@@ -26,7 +26,7 @@ export default async function (configuration: ConfigurationBuilder) {
         loadedMessageContextMenuCommands
     );
 
-    const { usedIntents } = findUsedGateways(loadedEvents, usedEvents);
+    const { usedIntents } = findGateways(loadedEvents, usedEvents);
 
     for (const loadedEvent of loadedEvents) {
 

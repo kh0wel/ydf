@@ -8,9 +8,9 @@ const cli = cac();
 cli
     .command('init', 'Create a new project')
 
-    .option('-p, --project-path <path>', 'Project directory path', { default: 'new-ydf-project' })
+    .option('-P, --project <path>', 'Project directory path', { default: 'new-ydf-project' })
 
-    .action(async ({ projectPath }) => {
+    .action(async ({ project: projectPath }) => {
 
         await fs.mkdir(path.resolve(projectPath, 'src', 'events'),   { recursive: true });
         await fs.mkdir(path.resolve(projectPath, 'src', 'services'), { recursive: true });
@@ -22,9 +22,9 @@ cli
 cli
     .command('deploy', 'Deploy the framework')
 
-    .option('-c, --config-path <path>', 'Config file path', { default: '.ydf.config.js' })
+    .option('-C, --config <path>', 'Config file path', { default: '.ydf.config.js' })
 
-    .action(async ({ configPath }) => {
+    .action(async ({ config: configPath }) => {
 
         (await import('../index.js')).default((await import(`file:///${ path.resolve(configPath) }`)).default);
     });
