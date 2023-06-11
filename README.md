@@ -27,11 +27,11 @@ A framework for build fast and efficient Discord bots with [biscuit.js](https://
 ## Installation
 
 ```bash
-npm add ydf -g
+npm install ydf
 ```
 
 ```bash
-npm add @biscuitland/core -g
+npm install @biscuitland/core
 ```
 
 ## Examples

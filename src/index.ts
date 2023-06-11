@@ -4,16 +4,9 @@ import loadFiles from './loadFiles.js';
 import findUsedEvents from './findUsedEvents.js';
 import findUsedGateways from './findUsedGateways.js';
 
-import { ConfigBuilder } from './struc/Configuration.js';
+import { ConfigurationBuilder } from './struc/Configuration.js';
 
-export * from './struc/Configuration.js';
-export * from './struc/Event.js';
-export * from './struc/Service.js';
-export * from './struc/ChatInputCommand.js';
-export * from './struc/UserContextMenuCommand.js';
-export * from './struc/MessageContextMenuCommand.js';
-
-export default async function (config: ConfigBuilder) {
+export default async function (configuration: ConfigurationBuilder) {
 
     const {
 
@@ -22,7 +15,7 @@ export default async function (config: ConfigBuilder) {
         loadedChatInputCommands,
         loadedUserContextMenuCommands,
         loadedMessageContextMenuCommands
-    } = await loadFiles(config);
+    } = await loadFiles(configuration);
 
     const usedEvents = findUsedEvents(
 
@@ -41,7 +34,7 @@ export default async function (config: ConfigBuilder) {
 
         loadedEvent.execute({
 
-            config,
+            configuration,
 
             loadedEvents,
             loadedServices,
@@ -54,7 +47,7 @@ export default async function (config: ConfigBuilder) {
 
             session: new Session(
 
-                config.session({
+                configuration.session({
 
                     loadedEvents,
                     loadedServices,
@@ -69,3 +62,10 @@ export default async function (config: ConfigBuilder) {
         });
     }
 }
+
+export * from './struc/Configuration.js';
+export * from './struc/Event.js';
+export * from './struc/Service.js';
+export * from './struc/ChatInputCommand.js';
+export * from './struc/UserContextMenuCommand.js';
+export * from './struc/MessageContextMenuCommand.js';

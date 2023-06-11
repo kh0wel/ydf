@@ -4,6 +4,8 @@ import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
 
+import { UsedEvents } from './struc/inter/Util.js';
+
 export default function (
 
     loadedEvents:                     EventBuilder[],
@@ -13,17 +15,7 @@ export default function (
     loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[]
 ) {
 
-    const usedEvents: {
-
-        [event: string]: {
-
-            services: ServiceBuilder[],
-
-            commands: (ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder)[]
-
-            all: (ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder)[]
-        }
-    } = {};
+    const usedEvents: UsedEvents = {};
 
     for (const loadedEvent of loadedEvents) {
 

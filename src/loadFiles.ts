@@ -1,15 +1,15 @@
 import path from 'node:path';
 
-import fglob from 'fast-glob';
+import glob from 'fast-glob';
 
-import { ConfigBuilder } from './struc/Configuration.js';
+import { ConfigurationBuilder } from './struc/Configuration.js';
 import { EventBuilder } from './struc/Event.js';
 import { ServiceBuilder } from './struc/Service.js';
 import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
 
-export default async function ({ include, exclude }: ConfigBuilder) {
+export default async function ({ include, exclude }: ConfigurationBuilder) {
 
     const loadedEvents:                     EventBuilder[]                     = [];
     const loadedServices:                   ServiceBuilder[]                   = [];
@@ -17,7 +17,7 @@ export default async function ({ include, exclude }: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await fglob(include, {
+    const mapedFiles = await glob(include, {
 
         ignore: exclude,
 

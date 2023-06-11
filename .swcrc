@@ -1,11 +1,11 @@
 {
-    "jsc": {
-        "parser": {
-            "syntax": "typescript",
-            "dynamicImport": true
-        },
-        "target": "esnext",
-        // Requires v1.2.50 or upper and requires target to be es2016 or upper.
-        "keepClassNames": true
-    }
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "dynamicImport": true
+    },
+    "target": "esnext",
+    // Requires v1.2.50 or upper and requires target to be es2016 or upper.
+    "keepClassNames": true
+  }
 }

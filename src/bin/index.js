@@ -26,10 +26,7 @@ cli
 
     .action(async ({ configPath }) => {
 
-        (await import('../index.js')).default(
-
-            (await import(`file:///${ path.resolve(configPath) }`)).default
-        );
+        (await import('../index.js')).default((await import(`file:///${ path.resolve(configPath) }`)).default);
     });
 
 cli.help();
