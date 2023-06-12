@@ -2,7 +2,7 @@ import { BiscuitOptions } from '@biscuitland/core';
 
 export interface ConfigOptions {
 
-    session: () => BiscuitOptions;
+    session: (params: any) => BiscuitOptions;
 
     include?: string[];
 
@@ -11,7 +11,7 @@ export interface ConfigOptions {
 
 export class ConfigBuilder {
 
-    session: () => BiscuitOptions = undefined!;
+    session: (params: any) => BiscuitOptions = undefined!;
 
     include: string[] = [
 
