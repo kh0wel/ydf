@@ -2,9 +2,9 @@ import loadFiles from './loadFiles.js';
 import findEvents from './findEvents.js';
 import findGateways from './findGateways.js';
 
-import { ConfigurationBuilder } from './struc/Configuration.js';
+import { ConfigBuilder } from './struc/Configuration.js';
 
-export default async function (config: ConfigurationBuilder) {
+export default async function (config: ConfigBuilder) {
 
     const {
 
@@ -34,17 +34,7 @@ export default async function (config: ConfigurationBuilder) {
 
         usedEvents,
 
-        ... findGateways(loadedEvents, usedEvents),
-
-        deploy (parameters) {
-
-            for (const loadedEvent of loadedEvents) {
-
-                if (!usedEvents[loadedEvent.name]) continue;
-
-                loadedEvent.execute(parameters);
-            }
-        }
+        ... findGateways(loadedEvents, usedEvents)
     }
 }
 

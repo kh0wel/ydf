@@ -30,9 +30,9 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-        const {
+        const { default: env } = await import('../index.js');
 
-            deploy,
+        const {
 
             loadedEvents,
             loadedServices,
@@ -42,36 +42,42 @@ cli
 
             usedEvents,
             usedIntents
-        } = await (await import('../index.js')).default(config);
+        }
+            = await env(config);
 
-        deploy({
+        for (const loadedEvent of loadedEvents) {
 
-            config,
+            if (!usedEvents[loadedEvent.name]) continue;
 
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands,
+            loadedEvent.execute({
 
-            usedEvents,
-            usedIntents,
-
-            session: new Session(
-
-                config.session({
-
-                    loadedEvents,
-                    loadedServices,
-                    loadedChatInputCommands,
-                    loadedMessageContextMenuCommands,
-                    loadedUserContextMenuCommands,
-
-                    usedEvents,
-                    usedIntents
-                })
-            )
-        });
+                config,
+    
+                loadedEvents,
+                loadedServices,
+                loadedChatInputCommands,
+                loadedMessageContextMenuCommands,
+                loadedUserContextMenuCommands,
+    
+                usedEvents,
+                usedIntents,
+    
+                session: new Session(
+    
+                    config.session({
+    
+                        loadedEvents,
+                        loadedServices,
+                        loadedChatInputCommands,
+                        loadedMessageContextMenuCommands,
+                        loadedUserContextMenuCommands,
+    
+                        usedEvents,
+                        usedIntents
+                    })
+                )
+            });
+        }
     });
 
 cli.help();
