@@ -23,13 +23,13 @@ export default function (
 
         const byCommands = [
             
-            ...loadedChatInputCommands,
-            ...loadedUserContextMenuCommands,
-            ...loadedMessageContextMenuCommands
+            ... loadedChatInputCommands,
+            ... loadedUserContextMenuCommands,
+            ... loadedMessageContextMenuCommands
         ]
             .filter((data) => data.events[loadedEvent.name]);
 
-        const byAll = [ ...byServices, ...byCommands ];
+        const byAll = [ ... byServices, ... byCommands ];
 
         if (!byAll.length) continue;
 
