@@ -13,7 +13,8 @@ export default async function (config: ConfigBuilder) {
         loadedChatInputCommands,
         loadedUserContextMenuCommands,
         loadedMessageContextMenuCommands
-    } = await loadFiles(config);
+    }
+        = await loadFiles(config);
 
     const usedEvents = findEvents(
 
