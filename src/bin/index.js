@@ -3,6 +3,8 @@ import path from 'node:path';
 
 import cac from 'cac';
 
+import { Session } from '@biscuitland/core';
+
 const cli = cac();
 
 cli
@@ -26,7 +28,50 @@ cli
 
     .action(async ({ config: configPath }) => {
 
-        (await import('../index.js')).default((await import(`file:///${ path.resolve(configPath) }`)).default);
+        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
+
+        const {
+
+            deploy,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands,
+
+            usedEvents,
+            usedIntents
+        } = await (await import('../index.js')).default(config);
+
+        deploy({
+
+            config,
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands,
+
+            usedEvents,
+            usedIntents,
+
+            session: new Session(
+
+                config.session({
+
+                    loadedEvents,
+                    loadedServices,
+                    loadedChatInputCommands,
+                    loadedMessageContextMenuCommands,
+                    loadedUserContextMenuCommands,
+
+                    usedEvents,
+                    usedIntents
+                })
+            )
+        });
     });
 
 cli.help();

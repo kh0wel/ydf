@@ -1,12 +1,10 @@
-import { Session } from '@biscuitland/core';
-
 import loadFiles from './loadFiles.js';
 import findEvents from './findEvents.js';
 import findGateways from './findGateways.js';
 
 import { ConfigurationBuilder } from './struc/Configuration.js';
 
-export default async function (configuration: ConfigurationBuilder) {
+export default async function (config: ConfigurationBuilder) {
 
     const {
 
@@ -15,7 +13,7 @@ export default async function (configuration: ConfigurationBuilder) {
         loadedChatInputCommands,
         loadedUserContextMenuCommands,
         loadedMessageContextMenuCommands
-    } = await loadFiles(configuration);
+    } = await loadFiles(config);
 
     const usedEvents = findEvents(
 
@@ -26,40 +24,27 @@ export default async function (configuration: ConfigurationBuilder) {
         loadedMessageContextMenuCommands
     );
 
-    const { usedIntents } = findGateways(loadedEvents, usedEvents);
+    return {
 
-    for (const loadedEvent of loadedEvents) {
+        loadedEvents,
+        loadedServices,
+        loadedChatInputCommands,
+        loadedUserContextMenuCommands,
+        loadedMessageContextMenuCommands,
 
-        if (!usedEvents[loadedEvent.name]) continue;
+        usedEvents,
 
-        loadedEvent.execute({
+        ... findGateways(loadedEvents, usedEvents),
 
-            configuration,
+        deploy (parameters) {
 
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands,
+            for (const loadedEvent of loadedEvents) {
 
-            usedEvents,
-            usedIntents,
+                if (!usedEvents[loadedEvent.name]) continue;
 
-            session: new Session(
-
-                configuration.session({
-
-                    loadedEvents,
-                    loadedServices,
-                    loadedChatInputCommands,
-                    loadedMessageContextMenuCommands,
-                    loadedUserContextMenuCommands,
-
-                    usedEvents,
-                    usedIntents
-                })
-            )
-        });
+                loadedEvent.execute(parameters);
+            }
+        }
     }
 }
 
