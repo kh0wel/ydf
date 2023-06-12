@@ -2,14 +2,14 @@ import path from 'node:path';
 
 import glob from 'fast-glob';
 
-import { ConfigurationBuilder } from './struc/Configuration.js';
+import { ConfigBuilder } from './struc/Configuration.js';
 import { EventBuilder } from './struc/Event.js';
 import { ServiceBuilder } from './struc/Service.js';
 import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
 
-export default async function ({ include, exclude }: ConfigurationBuilder) {
+export default async function ({ include, exclude }: ConfigBuilder) {
 
     const loadedEvents:                     EventBuilder[]                     = [];
     const loadedServices:                   ServiceBuilder[]                   = [];
