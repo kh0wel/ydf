@@ -12,7 +12,7 @@ const cli = cac();
 cli
     .command('init', 'Create a new project')
 
-    .option('-P, --project <path>', 'Project directory path', { default: 'new-ydf-project' })
+    .option('-P, --project <path>', 'Project directory path (default is "new-ydf-project")', { default: 'new-ydf-project' })
 
     .action(async ({ project: projectPath }) => {
 
@@ -26,7 +26,7 @@ cli
 cli
     .command('deploy', 'Deploy the framework')
 
-    .option('-C, --settings <path>', 'Settings file path', { default: '.ydfrc' })
+    .option('-C, --settings <path>', 'Settings file path (default is ".ydfrc")', { default: '.ydfrc' })
 
     .action(async ({ settings: settingsPath }) => {
 
