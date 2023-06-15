@@ -4,7 +4,7 @@ import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
 
-import { UsedEvents } from './struc/inter/Util.js';
+import { UsedEvents } from './struc/Util.js';
 
 export default function (
 
