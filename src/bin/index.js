@@ -5,6 +5,8 @@ import cac from 'cac';
 
 import { Session } from '@biscuitland/core';
 
+import loadSettings from '../loadSettings.js';
+
 const cli = cac();
 
 cli
@@ -28,7 +30,7 @@ cli
 
     .action(async ({ settings: settingsPath }) => {
 
-        const { default: settings } = await import(`file:///${ path.resolve(settingsPath) }`);
+        const settings = await loadSettings(settingsPath);
 
         const { default: environment } = await import('../index.js');
 
