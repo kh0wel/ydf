@@ -30,7 +30,7 @@ cli
 
         const { default: settings } = await import(`file:///${ path.resolve(settingsPath) }`);
 
-        const { default: env } = await import('../index.js');
+        const { default: environment } = await import('../index.js');
 
         const {
 
@@ -43,7 +43,7 @@ cli
             usedEvents,
             usedIntents
         }
-            = await env(settings);
+            = await environment(settings);
 
         for (const loadedEvent of loadedEvents) {
 
