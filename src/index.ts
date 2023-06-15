@@ -2,9 +2,9 @@ import loadFiles from './loadFiles.js';
 import findEvents from './findEvents.js';
 import findGateways from './findGateways.js';
 
-import { ConfigBuilder } from './struc/Configuration.js';
+import { SettingsBuilder } from './struc/Settings.js';
 
-export default async function (config: ConfigBuilder) {
+export default async function (settings: SettingsBuilder) {
 
     const {
 
@@ -14,7 +14,7 @@ export default async function (config: ConfigBuilder) {
         loadedUserContextMenuCommands,
         loadedMessageContextMenuCommands
     }
-        = await loadFiles(config);
+        = await loadFiles(settings);
 
     const usedEvents = findEvents(
 
@@ -39,7 +39,7 @@ export default async function (config: ConfigBuilder) {
     }
 }
 
-export * from './struc/Configuration.js';
+export * from './struc/Settings.js';
 export * from './struc/Event.js';
 export * from './struc/Service.js';
 export * from './struc/ChatInputCommand.js';

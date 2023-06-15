@@ -18,17 +18,17 @@ cli
         await fs.mkdir(path.resolve(projectPath, 'src', 'services'));
         await fs.mkdir(path.resolve(projectPath, 'src', 'commands'));
 
-        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
+        await fs.writeFile(path.resolve(projectPath, '.ydfrc'), 'import { SettingsBuilder } from \'ydf\';\n\nexport default new SettingsBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
     });
 
 cli
     .command('deploy', 'Deploy the framework')
 
-    .option('-C, --config <path>', 'Config file path', { default: '.ydf.config.js' })
+    .option('-C, --settings <path>', 'Settings file path', { default: '.ydfrc' })
 
-    .action(async ({ config: configPath }) => {
+    .action(async ({ settings: settingsPath }) => {
 
-        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
+        const { default: settings } = await import(`file:///${ path.resolve(settingsPath) }`);
 
         const { default: env } = await import('../index.js');
 
@@ -43,7 +43,7 @@ cli
             usedEvents,
             usedIntents
         }
-            = await env(config);
+            = await env(settings);
 
         for (const loadedEvent of loadedEvents) {
 
@@ -51,7 +51,7 @@ cli
 
             loadedEvent.execute({
 
-                config,
+                settings,
     
                 loadedEvents,
                 loadedServices,
@@ -64,7 +64,7 @@ cli
     
                 session: new Session(
     
-                    config.session({
+                    settings.session({
     
                         loadedEvents,
                         loadedServices,
