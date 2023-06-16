@@ -1,5 +1,3 @@
-import { DefaultEventFunction } from './Util.js';
-
 export interface ChatInputCommandOptions {
 
     intents?: number;
@@ -31,15 +29,19 @@ export interface ChatInputCommandOptions {
         };
     };
 
-    events: { [event: string]: DefaultEventFunction };
+    events: { [event: string]: (parameters: any) => Promise<void> | void };
 }
 
 export class ChatInputCommandBuilder {
 
-    type = 3;
+    name: string = null!;
+
+    path: string = null!;
+
+    type: number = 3;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0; 
+    intents: number = 0; 
 
     display: {
 
@@ -85,7 +87,7 @@ export class ChatInputCommandBuilder {
         }
     };
 
-    events: { [event: string]: DefaultEventFunction } = null!;
+    events: { [event: string]: (parameters: any) => Promise<void> | void } = null!;
 
     constructor (options: ChatInputCommandOptions) {
 
