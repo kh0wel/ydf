@@ -9,10 +9,14 @@ export interface ServiceOptions {
 
 export class ServiceBuilder {
 
-    type = 2;
+    name: string = null!;
+
+    path: string = null!;
+
+    type: number = 2;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents = 0;
+    intents: number = 0;
 
     events: { [event: string]: DefaultEventFunction } = null!;
 
