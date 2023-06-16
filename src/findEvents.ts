@@ -22,7 +22,7 @@ export default function (
         const byServices = loadedServices.filter((data) => data.events[loadedEvent.name]);
 
         const byCommands = [
-            
+
             ... loadedChatInputCommands,
             ... loadedUserContextMenuCommands,
             ... loadedMessageContextMenuCommands

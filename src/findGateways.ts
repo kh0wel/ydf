@@ -1,8 +1,8 @@
 import { EventBuilder } from './struc/Event.js';
 
-import { UsedEvents } from './struc/Util.js';
+import findEvents from './findEvents.js';
 
-export default function (loadedEvents: EventBuilder[], usedEvents: UsedEvents) {
+export default function (loadedEvents: EventBuilder[], usedEvents: ) {
 
     let usedIntents = 0;
 
