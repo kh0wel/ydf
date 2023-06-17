@@ -18,11 +18,19 @@ export type LoadedFile <Builder extends
     path: string;
 };
 
+export type GroupedService = ServiceBuilder;
+
+export type GroupedCommand = ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder;
+
+export type GroupedAll = GroupedService | GroupedCommand;
+
 export type GroupedEvent = {
 
-    services: ServiceBuilder[],
+    services: GroupedService[],
 
-    commands: (ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder)[]
+    commands: GroupedCommand[]
 
-    all: (ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder)[]
+    all: GroupedAll[]
 };
+
+export type EventsGroup = { [event: string]: GroupedEvent };

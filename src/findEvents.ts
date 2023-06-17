@@ -4,24 +4,24 @@ import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
 
-import { UsedEvents } from './structs/Util.js';
+import { EventsGroup, GroupedAll, GroupedCommand, GroupedService, LoadedFile } from './structs/Util.js';
 
 export default function (
 
-    loadedEvents:                     EventBuilder[],
-    loadedServices:                   ServiceBuilder[],
-    loadedChatInputCommands:          ChatInputCommandBuilder[],
-    loadedMessageContextMenuCommands: UserContextMenuCommandBuilder[],
-    loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[]
+    loadedEvents:                     LoadedFile<EventBuilder>[],
+    loadedServices:                   LoadedFile<ServiceBuilder>[],
+    loadedChatInputCommands:          LoadedFile<ChatInputCommandBuilder>[],
+    loadedMessageContextMenuCommands: LoadedFile<UserContextMenuCommandBuilder>[],
+    loadedUserContextMenuCommands:    LoadedFile<MessageContextMenuCommandBuilder>[]
 ) {
 
-    const usedEvents: UsedEvents = {};
+    const usedEvents: EventsGroup = {};
 
     for (const loadedEvent of loadedEvents) {
 
-        const byServices = loadedServices.filter((data) => data.events[loadedEvent.name]);
+        const byServices: GroupedService[] = loadedServices.filter((data) => data.events[loadedEvent.name]);
 
-        const byCommands = [
+        const byCommands: GroupedCommand[] = [
 
             ... loadedChatInputCommands,
             ... loadedUserContextMenuCommands,
@@ -29,7 +29,7 @@ export default function (
         ]
             .filter((data) => data.events[loadedEvent.name]);
 
-        const byAll = [ ... byServices, ... byCommands ];
+        const byAll: GroupedAll[] = [ ... byServices, ... byCommands ];
 
         if (!byAll.length) continue;
 
