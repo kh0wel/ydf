@@ -6,6 +6,9 @@ import cac from 'cac';
 import { Session } from '@biscuitland/core';
 
 import loadSettings from '../loadSettings.js';
+import loadFiles from '../loadFiles.js';
+import findEvents from '../findEvents.js';
+import findGateways from '../findGateways.js';
 
 const cli = cac();
 
@@ -32,20 +35,26 @@ cli
 
         const settings = await loadSettings(settingsPath);
 
-        const { default: environment } = await import('../index.js');
-
         const {
 
             loadedEvents,
             loadedServices,
             loadedChatInputCommands,
             loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands,
-
-            usedEvents,
-            usedIntents
+            loadedUserContextMenuCommands
         }
-            = await environment(settings);
+            = await loadFiles(settings);
+
+        const usedEvents = findEvents(
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands
+        );
+
+        const { usedIntents } = findGateways(loadedEvents, usedEvents);
 
         for (const loadedEvent of loadedEvents) {
 

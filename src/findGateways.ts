@@ -1,4 +1,4 @@
-import { EventBuilder } from './struc/Event.js';
+import { EventBuilder } from './structs/Event.js';
 
 import findEvents from './findEvents.js';
 

@@ -1,10 +1,10 @@
-import { EventBuilder } from './struc/Event.js';
-import { ServiceBuilder } from './struc/Service.js';
-import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
+import { EventBuilder } from './structs/Event.js';
+import { ServiceBuilder } from './structs/Service.js';
+import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
+import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
+import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
 
-import { UsedEvents } from './struc/Util.js';
+import { UsedEvents } from './structs/Util.js';
 
 export default function (
 

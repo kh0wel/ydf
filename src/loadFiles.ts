@@ -2,31 +2,32 @@ import path from 'node:path';
 
 import glob from 'fast-glob';
 
-import { SettingsBuilder } from './struc/Settings.js';
-import { EventBuilder } from './struc/Event.js';
-import { ServiceBuilder } from './struc/Service.js';
-import { ChatInputCommandBuilder } from './struc/ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './struc/UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './struc/MessageContextMenuCommand.js';
+import { SettingsBuilder } from './structs/Settings.js';
+import { EventBuilder } from './structs/Event.js';
+import { ServiceBuilder } from './structs/Service.js';
+import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
+import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
+import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
+import { LoadedFile } from './structs/Util.js';
 
-export default async function ({ include, exclude }: SettingsBuilder) {
+export default async function (settings: SettingsBuilder) {
 
-    const loadedEvents:                     EventBuilder[]                     = [];
-    const loadedServices:                   ServiceBuilder[]                   = [];
-    const loadedChatInputCommands:          ChatInputCommandBuilder[]          = [];
-    const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
-    const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
+    const loadedEvents:                     LoadedFile<EventBuilder>[]                     = [];
+    const loadedServices:                   LoadedFile<ServiceBuilder>[]                   = [];
+    const loadedChatInputCommands:          LoadedFile<ChatInputCommandBuilder>[]          = [];
+    const loadedUserContextMenuCommands:    LoadedFile<UserContextMenuCommandBuilder>[]    = [];
+    const loadedMessageContextMenuCommands: LoadedFile<MessageContextMenuCommandBuilder>[] = [];
 
-    const mapedFiles = await glob(include, {
+    const mapedFiles = await glob(settings.include, {
 
-        ignore: exclude,
+        ignore: settings.exclude,
 
         dot: true, absolute: true
     });
 
     for (const mapedFile of mapedFiles) {
 
-        const { default: data }: { default: EventBuilder | ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder } = await import(`file:///${ mapedFile }`);
+        const { default: data } = await import(`file:///${ mapedFile }`);
 
         switch (data.type) {
 
@@ -34,12 +35,12 @@ export default async function ({ include, exclude }: SettingsBuilder) {
 
                 loadedEvents.push({
 
-                    ... data,
+                    ... data as EventBuilder,
 
                     name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
-                } as EventBuilder);
+                });
 
                 break;
 
@@ -47,12 +48,12 @@ export default async function ({ include, exclude }: SettingsBuilder) {
 
                 loadedServices.push({
 
-                    ... data,
+                    ... data as ServiceBuilder,
 
                     name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
-                } as ServiceBuilder);
+                });
 
                 break;
 
@@ -60,12 +61,12 @@ export default async function ({ include, exclude }: SettingsBuilder) {
 
                 loadedChatInputCommands.push({
 
-                    ... data,
+                    ... data as ChatInputCommandBuilder,
 
                     name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
-                } as ChatInputCommandBuilder);
+                });
 
                 break;
 
@@ -73,12 +74,12 @@ export default async function ({ include, exclude }: SettingsBuilder) {
 
                 loadedUserContextMenuCommands.push({
 
-                    ... data,
+                    ... data as UserContextMenuCommandBuilder,
 
                     name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
-                } as UserContextMenuCommandBuilder);
+                });
 
                 break;
 
@@ -86,12 +87,12 @@ export default async function ({ include, exclude }: SettingsBuilder) {
 
                 loadedMessageContextMenuCommands.push({
 
-                    ... data,
+                    ... data as MessageContextMenuCommandBuilder,
 
                     name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
-                } as MessageContextMenuCommandBuilder);
+                });
 
                 break;
         }

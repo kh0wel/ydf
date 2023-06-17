@@ -1,6 +1,6 @@
 import { SettingsBuilder } from './Settings.js';
 
-export type DefaultExecuteParameters = {
+export type ExecuteParameters = {
 
     settings: SettingsBuilder,
 
@@ -14,27 +14,23 @@ export type DefaultExecuteParameters = {
     usedIntents
 };
 
-export type DefaultExecuteFunction = (parameters: DefaultExecuteParameters) => Promise<void> | void;
+export type ExecuteFunction = (parameters: ExecuteParameters) => Promise<void> | void;
 
 export interface EventOptions {
 
     intents?: number;
 
-    execute: DefaultExecuteFunction;
+    execute: ExecuteFunction;
 }
 
 export class EventBuilder {
-
-    name: string = null!;
-
-    path: string = null!;
 
     type: number = 1;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
     intents: number = 0;
 
-    execute: DefaultExecuteFunction = null!;
+    execute: ExecuteFunction = null!;
 
     constructor (options: EventOptions) {
 

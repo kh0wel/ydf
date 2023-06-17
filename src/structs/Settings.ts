@@ -1,6 +1,6 @@
 import { BiscuitOptions } from '@biscuitland/core';
 
-export type DefaultSessionParameters = {
+export type SessionParameters = {
 
     loadedEvents,
     loadedServices,
@@ -12,11 +12,11 @@ export type DefaultSessionParameters = {
     usedIntents
 }
 
-export type DefaultSessionFunction = (parameters: DefaultSessionParameters) => BiscuitOptions;
+export type SessionFunction = (parameters: SessionParameters) => BiscuitOptions;
 
 export interface SettingsOptions {
 
-    session: DefaultSessionFunction;
+    session: SessionFunction;
 
     include?: string[];
 
@@ -25,7 +25,7 @@ export interface SettingsOptions {
 
 export class SettingsBuilder {
 
-    session: DefaultSessionFunction = null!;
+    session: SessionFunction = null!;
 
     include: string[] = [
 
@@ -42,7 +42,7 @@ export class SettingsBuilder {
 
         this.session = options.session;
 
-        this.include = options.include ?? this.include;
-        this.exclude = options.exclude ?? this.exclude;
+        this.include  = options.include  ?? this.include;
+        this.exclude  = options.exclude  ?? this.exclude;
     }
 }

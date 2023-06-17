@@ -1,76 +1,47 @@
+export type ChatInputCommandDisplay = {
+
+    name: {
+
+        default: string;
+
+        [locale: string]: string;
+    };
+
+    description: {
+
+        default: string;
+
+        [locale: string]: string;
+    };
+
+    options?: any[];
+
+    permissions?: {
+
+        member?: bigint | null;
+
+        dm?:   boolean;
+        nsfw?: boolean;
+    };
+};
+
 export interface ChatInputCommandOptions {
 
     intents?: number;
 
-    display: {
-
-        name: {
-
-            default: string;
-
-            [locale: string]: string;
-        };
-
-        description: {
-
-            default: string;
-
-            [locale: string]: string;
-        };
-
-        options?;
-
-        permissions?: {
-
-            member?: bigint | null;
-
-            dm?:   boolean;
-            nsfw?: boolean;
-        };
-    };
+    display: ChatInputCommandDisplay;
 
     events: { [event: string]: (parameters: any) => Promise<void> | void };
 }
 
 export class ChatInputCommandBuilder {
 
-    name: string = null!;
-
-    path: string = null!;
-
     type: number = 3;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
     intents: number = 0; 
 
-    display: {
-
-        type: number;
-
-        name: {
-
-            default: string;
-
-            [locale: string]: string;
-        };
-
-        description: {
-
-            default: string;
-
-            [locale: string]: string;
-        };
-
-        options;
-
-        permissions: {
-
-            member: bigint | null;
-
-            dm:   boolean;
-            nsfw: boolean;
-        };
-    } = {
+    display: Required<ChatInputCommandDisplay> & { type: number } = {
 
         // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 1,
