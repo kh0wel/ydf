@@ -10,6 +10,7 @@ import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
 import findGateways from '../findGateways.js';
 
+// @ts-expect-error
 const cli = cac();
 
 cli
