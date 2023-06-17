@@ -1,14 +1,14 @@
 {
   "name": "ydf",
   "version": "2.8.0",
-  "description": "🍻 A framework for build fast and efficient Discord bots with biscuit.js",
+  "description": "🧿 A development tool for build Discord bots using biscuit.js",
   "type": "module",
   "main": "dist/index.js",
   "types": "typings/index.d.ts",
   "bin": "dist/bin/index.js",
   "scripts": {
     "lint": "rome check \".\"",
-    "build": "swc src -d dist"
+    "make": "swc src -d dist"
   },
   "files": [
     "dist",

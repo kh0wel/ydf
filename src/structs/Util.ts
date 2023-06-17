@@ -4,14 +4,17 @@ import { ChatInputCommandBuilder } from './ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
 
-export type LoadedFile <Builder extends 
+export type LoadedFile <
 
-    EventBuilder |
-    ServiceBuilder |
-    ChatInputCommandBuilder |
-    UserContextMenuCommandBuilder |
+    Builder extends 
+
+    EventBuilder                     |
+    ServiceBuilder                   |
+    ChatInputCommandBuilder          |
+    UserContextMenuCommandBuilder    |
     MessageContextMenuCommandBuilder
-> = Builder & {
+>
+    = Builder & {
 
     name: string;
 
