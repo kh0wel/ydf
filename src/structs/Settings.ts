@@ -10,7 +10,7 @@ export type SessionParameters = {
 
     usedEvents,
     usedIntents
-}
+};
 
 export type SessionFunction = (parameters: SessionParameters) => BiscuitOptions;
 
