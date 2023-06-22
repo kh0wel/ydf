@@ -29,16 +29,16 @@ export type GroupedCommand = ChatInputCommandBuilder | UserContextMenuCommandBui
 
 export type GroupedAll = GroupedService | GroupedCommand;
 
-export type GroupedEvent = {
+export interface GroupedEvent {
 
     services: GroupedService[],
 
     commands: GroupedCommand[]
 
     all: GroupedAll[]
-};
+}
 
-export type EventsGroup = {
+export interface EventsGroup {
 
     [event: string]: GroupedEvent
-};
+}
