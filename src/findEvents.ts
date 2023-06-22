@@ -5,12 +5,13 @@ import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.
 import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
 
 import {
-    
+
     EventsGroup,
     GroupedCommand,
     GroupedService,
     GroupedAll
-} from './structs/Util.js';
+}
+    from './structs/Util.js';
 
 export default function (
 

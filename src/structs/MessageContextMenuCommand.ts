@@ -1,5 +1,13 @@
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEvents, CommandLocalizations, CommandPermissions, DataFrom } from './Util.js';
+
+import {
+
+    HandledEvents,
+    CommandLocalizations,
+    CommandPermissions,
+    DataFrom
+}
+    from './Util.js';
 
 export interface MessageContextMenuCommandDisplay {
 
