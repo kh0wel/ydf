@@ -2,15 +2,7 @@ import { Session } from '@biscuitland/core';
 
 import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
-
-import {
-
-    ChatInputCommandBuilder,
-    UserContextMenuCommandBuilder,
-    MessageContextMenuCommandBuilder
-}
-    from './Command.js';
-
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { EventsGroup } from './Util.js';
 
 export interface DeployerParameters {

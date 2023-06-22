@@ -1,8 +1,6 @@
 import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
-import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
 
 import {
 

@@ -3,15 +3,7 @@ import { Session } from '@biscuitland/core';
 import { ConfigurationBuilder } from './Configuration.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
-
-import {
-
-    ChatInputCommandBuilder,
-    UserContextMenuCommandBuilder,
-    MessageContextMenuCommandBuilder
-}
-    from './Command.js';
-
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { DataFrom, EventsGroup } from './Util.js';
 
 export interface ExecuteParameters {
@@ -35,6 +27,9 @@ export type ExecuteFunction = (parameters: ExecuteParameters) => Promise<void> |
 
 export interface EventOptions extends BaseOptions {
 
+    /**
+     * Function executed on deployment
+     */
     execute: ExecuteFunction;
 }
 
@@ -42,6 +37,9 @@ export class EventBuilder extends BaseBuilder {
 
     from = DataFrom.EVENT;
 
+    /**
+     * Function executed on deployment
+     */
     execute: ExecuteFunction = null!;
 
     constructor (options: EventOptions) {
