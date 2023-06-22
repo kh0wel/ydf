@@ -21,11 +21,11 @@ export default function (
     loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[]
 ) {
 
-    const usedEvents: EventsGroup = {};
+    const groupedEvents: EventsGroup = {};
 
     for (const loadedEvent of loadedEvents) {
 
-        const byServices: GroupedService[] = loadedServices.filter((data) => data.events[loadedEvent.name]);
+        const byServices: GroupedService[] = loadedServices.filter((serv) => serv.events[loadedEvent.name]);
 
         const byCommands: GroupedCommand[] = [
 
@@ -33,13 +33,17 @@ export default function (
             ... loadedUserContextMenuCommands,
             ... loadedMessageContextMenuCommands
         ]
-            .filter((data) => data.events[loadedEvent.name]);
+            .filter((comm) => comm.events[loadedEvent.name]);
 
-        const byAll: GroupedAll[] = [ ... byServices, ... byCommands ];
+        const byAll: GroupedAll[] = [
+
+            ... byServices,
+            ... byCommands
+        ];
 
         if (!byAll.length) continue;
 
-        usedEvents[loadedEvent.name] = {
+        groupedEvents[loadedEvent.name] = {
 
             services: byServices,
             commands: byCommands,
@@ -47,5 +51,5 @@ export default function (
         };
     }
 
-    return usedEvents;
+    return groupedEvents;
 }

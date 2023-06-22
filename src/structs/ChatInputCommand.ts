@@ -1,5 +1,5 @@
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEvents, CommandLocalizations, CommandPermissions } from './Util.js';
+import { HandledEvents, CommandLocalizations, CommandPermissions, BuilderFrom } from './Util.js';
 
 export interface ChatInputCommandDisplay {
 
@@ -22,6 +22,8 @@ export interface ChatInputCommandOptions extends BaseOptions {
 }
 
 export class ChatInputCommandBuilder extends BaseBuilder {
+
+    from = BuilderFrom.CHAT_INPUT_COMMAND;
 
     display: Required<ChatInputCommandDisplay> = {
 

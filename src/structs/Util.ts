@@ -3,6 +3,15 @@ import { ChatInputCommandBuilder } from './ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
 
+export enum BuilderFrom {
+
+    EVENT                        = 0,
+    SERVICE                      = 1,
+    CHAT_INPUT_COMMAND           = 2,
+    USER_CONTEXT_MENU_COMMAND    = 3,
+    MESSAGE_CONTEXT_MENU_COMMAND = 4
+}
+
 export interface CommandLocalizations {
 
     default: string;

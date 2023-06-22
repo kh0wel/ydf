@@ -31,7 +31,7 @@ cli
     });
 
 cli
-    .command('deploy', 'Deploy the framework')
+    .command('deploy', 'Deploy the bot')
 
     .option('-C, --config <path>', 'Configuration file path (default is ".ydf.config.js")', { default: '.ydf.config.js' })
 

@@ -1,11 +1,12 @@
 import { Session } from '@biscuitland/core';
 
-import { ConfigBuilder } from './Configuration.js';
+import { ConfigurationBuilder } from './Configuration.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
+import { BuilderFrom } from './Util.js';
 
 export interface ExecuteParameters {
 
-    config: ConfigBuilder;
+    config: ConfigurationBuilder;
 
     session: Session<boolean>;
 
@@ -27,6 +28,8 @@ export interface EventOptions extends BaseOptions {
 }
 
 export class EventBuilder extends BaseBuilder {
+
+    from = BuilderFrom.EVENT;
 
     execute: ExecuteFunction = null!;
 

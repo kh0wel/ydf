@@ -26,66 +26,31 @@ export interface ConfigurationOptions {
 
     deployer: DeployerFunction;
 
-    include?: Targets;
+    include?: string[];
 
-    exclude?: Targets;
-}
-
-export interface Targets {
-
-    events: string[];
-
-    services: string[];
-
-    chatInputCommands: string[];
-
-    userContextMenuCommands: string[];
-
-    messageContextMenuCommands: string[];
+    exclude?: string[];
 }
 
 export class ConfigurationBuilder {
 
     deployer: DeployerFunction = null!;
 
-    include: Targets = {
+    include: string[] = [
 
-        events:                     [ 'src/**/*.event.*'           ],
-        services:                   [ 'src/**/*.service.*'         ],
-        chatInputCommands:          [ 'src/**/*.command.chat.*'    ],
-        userContextMenuCommands:    [ 'src/**/*.command.user.*'    ],
-        messageContextMenuCommands: [ 'src/**/*.command.message.*' ]
-    };
+        'src/**/*.event.*',
+        'src/**/*.service.*',
+        'src/**/*.command.chat.*',
+        'src/**/*.command.user.*',
+        'src/**/*.command.message.*'
+    ];
 
-    exclude: Targets = {
-
-        events:                     [],
-        services:                   [],
-        chatInputCommands:          [],
-        userContextMenuCommands:    [],
-        messageContextMenuCommands: []
-    };
+    exclude: string[] = [];
 
     constructor (options: ConfigurationOptions) {
 
         this.deployer = options.deployer;
 
-        this.include = {
-
-            events:                     options.include?.events                     ?? this.include.events,
-            services:                   options.include?.services                   ?? this.include.services,
-            chatInputCommands:          options.include?.chatInputCommands          ?? this.include.chatInputCommands,
-            userContextMenuCommands:    options.include?.userContextMenuCommands    ?? this.include.userContextMenuCommands,
-            messageContextMenuCommands: options.include?.messageContextMenuCommands ?? this.include.messageContextMenuCommands,
-        };
-
-        this.exclude = {
-
-            events:                     options.exclude?.events                     ?? this.exclude.events,
-            services:                   options.exclude?.services                   ?? this.exclude.services,
-            chatInputCommands:          options.exclude?.chatInputCommands          ?? this.exclude.chatInputCommands,
-            userContextMenuCommands:    options.exclude?.userContextMenuCommands    ?? this.exclude.userContextMenuCommands,
-            messageContextMenuCommands: options.exclude?.messageContextMenuCommands ?? this.exclude.messageContextMenuCommands,
-        };
+        this.include = options.include ?? this.include;
+        this.exclude = options.exclude ?? this.exclude;
     }
 }
