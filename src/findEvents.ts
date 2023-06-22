@@ -4,15 +4,15 @@ import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
 
-import { EventsGroup, GroupedAll, GroupedCommand, GroupedService, LoadedFile } from './structs/Util.js';
+import { EventsGroup, GroupedAll, GroupedCommand, GroupedService } from './structs/Util.js';
 
 export default function (
 
-    loadedEvents:                     LoadedFile<EventBuilder>[],
-    loadedServices:                   LoadedFile<ServiceBuilder>[],
-    loadedChatInputCommands:          LoadedFile<ChatInputCommandBuilder>[],
-    loadedMessageContextMenuCommands: LoadedFile<UserContextMenuCommandBuilder>[],
-    loadedUserContextMenuCommands:    LoadedFile<MessageContextMenuCommandBuilder>[]
+    loadedEvents:                     EventBuilder[],
+    loadedServices:                   ServiceBuilder[],
+    loadedChatInputCommands:          ChatInputCommandBuilder[],
+    loadedMessageContextMenuCommands: UserContextMenuCommandBuilder[],
+    loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[]
 ) {
 
     const usedEvents: EventsGroup = {};

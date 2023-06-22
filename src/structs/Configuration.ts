@@ -1,6 +1,6 @@
-import { BiscuitOptions } from '@biscuitland/core';
+import { Session } from '@biscuitland/core';
 
-export type SessionParameters = {
+export type DeployerParameters = {
 
     loadedEvents,
     loadedServices,
@@ -12,20 +12,20 @@ export type SessionParameters = {
     usedIntents
 };
 
-export type SessionFunction = (parameters: SessionParameters) => BiscuitOptions;
+export type DeployerFunction = (parameters: DeployerParameters) => Session;
 
-export interface SettingsOptions {
+export interface ConfigOptions {
 
-    session: SessionFunction;
+    deployer: DeployerFunction;
 
     include?: string[];
 
     exclude?: string[];
 }
 
-export class SettingsBuilder {
+export class ConfigBuilder {
 
-    session: SessionFunction = null!;
+    deployer: DeployerFunction = null!;
 
     include: string[] = [
 
@@ -38,9 +38,9 @@ export class SettingsBuilder {
 
     exclude: string[] = [];
 
-    constructor (options: SettingsOptions) {
+    constructor (options: ConfigOptions) {
 
-        this.session = options.session;
+        this.deployer = options.deployer;
 
         this.include  = options.include  ?? this.include;
         this.exclude  = options.exclude  ?? this.exclude;

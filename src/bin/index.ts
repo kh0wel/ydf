@@ -1,11 +1,6 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-import cac from 'cac';
-
-import { Session } from '@biscuitland/core';
-
-import loadSettings from '../loadSettings.js';
 import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
 import findGateways from '../findGateways.js';
@@ -24,17 +19,17 @@ cli
         await fs.mkdir(path.resolve(projectPath, 'src', 'services'));
         await fs.mkdir(path.resolve(projectPath, 'src', 'commands'));
 
-        await fs.writeFile(path.resolve(projectPath, '.ydfrc'), 'import { SettingsBuilder } from \'ydf\';\n\nexport default new SettingsBuilder ({ session ({ usedIntents, usedPartials }) { return { intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }; } });\n');
+        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ deployer ({ usedIntents, usedPartials }) { return new Session({ intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }); } });\n');
     });
 
 cli
     .command('deploy', 'Deploy the framework')
 
-    .option('-C, --settings <path>', 'Settings file path (default is ".ydfrc")', { default: '.ydfrc' })
+    .option('-C, --config <path>', 'Configuration file path (default is ".ydf.config.js")', { default: '.ydf.config.js' })
 
-    .action(async ({ settings: settingsPath }) => {
+    .action(async ({ config: configPath }) => {
 
-        const settings = await loadSettings(settingsPath);
+        const { default: config } = await import(`file:///${ configPath }`);
 
         const {
 
@@ -44,7 +39,7 @@ cli
             loadedMessageContextMenuCommands,
             loadedUserContextMenuCommands
         }
-            = await loadFiles(settings);
+            = await loadFiles(config);
 
         const usedEvents = findEvents(
 
@@ -63,31 +58,28 @@ cli
 
             loadedEvent.execute({
 
-                settings,
-    
+                config,
+
                 loadedEvents,
                 loadedServices,
                 loadedChatInputCommands,
                 loadedMessageContextMenuCommands,
                 loadedUserContextMenuCommands,
-    
+
                 usedEvents,
                 usedIntents,
-    
-                session: new Session(
-    
-                    settings.session({
-    
-                        loadedEvents,
-                        loadedServices,
-                        loadedChatInputCommands,
-                        loadedMessageContextMenuCommands,
-                        loadedUserContextMenuCommands,
-    
-                        usedEvents,
-                        usedIntents
-                    })
-                )
+
+                session: config.deployer({
+
+                    loadedEvents,
+                    loadedServices,
+                    loadedChatInputCommands,
+                    loadedMessageContextMenuCommands,
+                    loadedUserContextMenuCommands,
+
+                    usedEvents,
+                    usedIntents
+                })
             });
         }
     });

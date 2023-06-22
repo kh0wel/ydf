@@ -2,25 +2,24 @@ import path from 'node:path';
 
 import glob from 'fast-glob';
 
-import { SettingsBuilder } from './structs/Settings.js';
+import { ConfigBuilder } from './structs/Configuration.js';
 import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
-import { LoadedFile } from './structs/Util.js';
 
-export default async function (settings: SettingsBuilder) {
+export default async function (config: ConfigBuilder) {
 
-    const loadedEvents:                     LoadedFile<EventBuilder>[]                     = [];
-    const loadedServices:                   LoadedFile<ServiceBuilder>[]                   = [];
-    const loadedChatInputCommands:          LoadedFile<ChatInputCommandBuilder>[]          = [];
-    const loadedUserContextMenuCommands:    LoadedFile<UserContextMenuCommandBuilder>[]    = [];
-    const loadedMessageContextMenuCommands: LoadedFile<MessageContextMenuCommandBuilder>[] = [];
+    const loadedEvents:                     EventBuilder[]                     = [];
+    const loadedServices:                   ServiceBuilder[]                   = [];
+    const loadedChatInputCommands:          ChatInputCommandBuilder[]          = [];
+    const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
+    const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await glob(settings.include, {
+    const mapedFiles = await glob(config.include, {
 
-        ignore: settings.exclude,
+        ignore: config.exclude,
 
         dot: true, absolute: true
     });

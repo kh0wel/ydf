@@ -1,7 +1,7 @@
 import { EventBuilder } from './structs/Event.js';
-import { LoadedFile, EventsGroup } from './structs/Util.js';
+import { EventsGroup } from './structs/Util.js';
 
-export default function (loadedEvents: LoadedFile<EventBuilder>[], usedEvents: EventsGroup) {
+export default function (loadedEvents: EventBuilder[], usedEvents: EventsGroup) {
 
     let usedIntents = 0;
 

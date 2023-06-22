@@ -1,10 +1,10 @@
 import { Session } from '@biscuitland/core';
 
-import { SettingsBuilder } from './Settings.js';
+import { ConfigBuilder } from './Configuration.js';
 
 export type ExecuteParameters = {
 
-    settings: SettingsBuilder;
+    config: ConfigBuilder;
 
     session: Session<boolean>;
 
@@ -28,6 +28,10 @@ export interface EventOptions {
 }
 
 export class EventBuilder {
+
+    name: string = null!;
+
+    path: string = null!;
 
     type: number = 1;
 

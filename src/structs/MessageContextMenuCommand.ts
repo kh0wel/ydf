@@ -27,6 +27,10 @@ export interface MessageContextMenuCommandOptions {
 
 export class MessageContextMenuCommandBuilder {
 
+    name: string = null!;
+
+    path: string = null!;
+
     type: number = 5;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents

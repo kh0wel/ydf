@@ -36,6 +36,10 @@ export interface ChatInputCommandOptions {
 
 export class ChatInputCommandBuilder {
 
+    name: string = null!;
+
+    path: string = null!;
+
     type: number = 3;
 
     // https://discord.com/developers/docs/topics/gateway#gateway-intents
