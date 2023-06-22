@@ -1,12 +1,5 @@
 import { ServiceBuilder } from './Service.js';
-
-import {
-
-    ChatInputCommandBuilder,
-    UserContextMenuCommandBuilder,
-    MessageContextMenuCommandBuilder
-}
-    from './Command.js';
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
 export enum DataFrom {
 
@@ -17,10 +10,10 @@ export enum DataFrom {
     MESSAGE_CONTEXT_MENU_COMMAND = 4
 }
 
-export type HandledEvents = {
+export interface HandledEvents {
 
     [event: string]: (parameters: any) => Promise<void> | void
-};
+}
 
 export type GroupedService = ServiceBuilder;
 

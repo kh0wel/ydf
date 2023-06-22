@@ -3,7 +3,7 @@ export interface BaseOptions {
     /**
      * Used intents
      * 
-     * More information on https://discord.com/developers/docs/topics/gateway#gateway-intents
+     * https://discord.com/developers/docs/topics/gateway#gateway-intents
      */
     intents?: number;
 }
@@ -17,9 +17,9 @@ export class BaseBuilder {
     /**
      * Used intents
      * 
-     * More information on https://discord.com/developers/docs/topics/gateway#gateway-intents
+     * https://discord.com/developers/docs/topics/gateway#gateway-intents
      */
-    intents: number = 0;
+    intents = 0;
 
     constructor (options: BaseOptions) {
 
