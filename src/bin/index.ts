@@ -29,7 +29,7 @@ cli
 
     .action(async ({ config: configPath }) => {
 
-        const { default: config } = await import(`file:///${ configPath }`);
+        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
         const {
 

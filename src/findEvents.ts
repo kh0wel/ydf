@@ -4,7 +4,13 @@ import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
 
-import { EventsGroup, GroupedAll, GroupedCommand, GroupedService } from './structs/Util.js';
+import {
+    
+    EventsGroup,
+    GroupedCommand,
+    GroupedService,
+    GroupedAll
+} from './structs/Util.js';
 
 export default function (
 

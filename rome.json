@@ -1,4 +1,9 @@
 {
+  "formatter": {
+    "enabled": true,
+    "indentSize": 4,
+    "indentStyle": "space"
+  },
   "linter": {
     "enabled": true,
     "rules": {
