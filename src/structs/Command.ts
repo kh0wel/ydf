@@ -3,45 +3,95 @@ import { HandledEvents, DataFrom } from './Util.js';
 
 export interface CommandLocalizations {
 
+    /**
+     * Default to display
+     */
     default: string;
 
+    /**
+     * Localization to display
+     */
     [locale: string]: string;
 }
 
 export interface CommandPermissions {
 
+    /**
+     * Member permissions to display
+     */
     member?: bigint | null;
 
-    dm?:   boolean;
+    /**
+     * Display on DM channels
+     */
+    dm?: boolean;
+
+    /**
+     * Display on non NSFW channels
+     */
     nsfw?: boolean;
 }
 
 export interface ChatInputCommandDisplay {
 
+    /**
+     * Command type
+     * 
+     * More information on https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+     */
     type: number;
 
+    /**
+     * Command name
+     */
     name: CommandLocalizations;
 
+    /**
+     * Command description
+     */
     description: CommandLocalizations;
 
+    /**
+     * Command options
+     */
     options?: any[];
 
+    /**
+     * Command permissions
+     */
     permissions?: CommandPermissions;
 }
 
 export interface AnyContextMenuCommandDisplay {
 
+    /**
+     * Command type
+     * 
+     * More information on https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+     */
     type: number;
 
+    /**
+     * Command name
+     */
     name: CommandLocalizations;
 
+    /**
+     * Command description
+     */
     permissions?: CommandPermissions;
 }
 
 export interface CommandOptions <D extends ChatInputCommandDisplay | AnyContextMenuCommandDisplay> extends BaseOptions {
 
+    /**
+     * Command display
+     */
     display: Omit<D, 'type'>;
 
+    /**
+     * Used events
+     */
     events: HandledEvents;
 }
 
