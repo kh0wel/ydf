@@ -1,6 +1,6 @@
 import { Session } from '@biscuitland/core';
 
-import { ConfigurationBuilder } from './Config.js';
+import { ConfigBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
@@ -8,7 +8,7 @@ import { DataFrom, EventsGroup } from './Util.js';
 
 export interface ExecuteParameters {
 
-    config: ConfigurationBuilder;
+    config: ConfigBuilder;
 
     session: Session<boolean>;
 
