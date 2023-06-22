@@ -1,42 +1,25 @@
-export type UserContextMenuCommandDisplay = {
+import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents, CommandLocalizations, CommandPermissions } from './Util.js';
 
-    name: {
+export interface UserContextMenuCommandDisplay {
 
-        default: string;
+    type: number;
 
-        [locale: string]: string;
-    };
+    name: CommandLocalizations;
 
-    permissions?: {
-
-        member?: bigint | null;
-
-        dm?:   boolean;
-        nsfw?: boolean;
-    };
-};
-
-export interface UserContextMenuCommandOptions {
-
-    intents?: number;
-
-    display: UserContextMenuCommandDisplay;
-
-    events: { [event: string]: (parameters: any) => Promise<void> | void };
+    permissions?: Partial<CommandPermissions>;
 }
 
-export class UserContextMenuCommandBuilder {
+export interface UserContextMenuCommandOptions extends BaseOptions {
 
-    name: string = null!;
+    display: Omit<UserContextMenuCommandDisplay, 'type'>;
 
-    path: string = null!;
+    events: HandledEvents
+}
 
-    type: number = 4;
+export class UserContextMenuCommandBuilder extends BaseBuilder {
 
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents: number = 0; 
-
-    display: Required<UserContextMenuCommandDisplay> & { type: number } = {
+    display: Required<UserContextMenuCommandDisplay> = {
 
         // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 2,
@@ -51,11 +34,11 @@ export class UserContextMenuCommandBuilder {
         }
     };
 
-    events: { [event: string]: (parameters: any) => Promise<void> | void } = null!;
+    events: HandledEvents = null!;
 
     constructor (options: UserContextMenuCommandOptions) {
 
-        this.intents = options.intents ?? this.intents;
+        super (options);
 
         this.display.name = options.display.name;
 

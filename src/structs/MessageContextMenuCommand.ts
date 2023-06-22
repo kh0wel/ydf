@@ -1,42 +1,25 @@
-export type MessageContextMenuCommandDisplay = {
+import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents, CommandLocalizations, CommandPermissions } from './Util.js';
 
-    name: {
+export interface MessageContextMenuCommandDisplay {
 
-        default: string;
+    type: number;
 
-        [locale: string]: string;
-    };
+    name: CommandLocalizations;
 
-    permissions?: {
-
-        member?: bigint | null;
-
-        dm?:   boolean;
-        nsfw?: boolean;
-    };
-};
-
-export interface MessageContextMenuCommandOptions {
-
-    intents?: number;
-
-    display: MessageContextMenuCommandDisplay;
-
-    events: { [event: string]: (parameters: any) => Promise<void> | void };
+    permissions?: Partial<CommandPermissions>;
 }
 
-export class MessageContextMenuCommandBuilder {
+export interface MessageContextMenuCommandOptions extends BaseOptions {
 
-    name: string = null!;
+    display: Omit<MessageContextMenuCommandDisplay, 'type'>;
 
-    path: string = null!;
+    events: HandledEvents
+}
 
-    type: number = 5;
+export class MessageContextMenuCommandBuilder extends BaseBuilder {
 
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents: number = 0; 
-
-    display: Required<MessageContextMenuCommandDisplay> & { type: number } = {
+    display: Required<MessageContextMenuCommandDisplay> = {
 
         // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 3,
@@ -51,11 +34,11 @@ export class MessageContextMenuCommandBuilder {
         }
     };
 
-    events: { [event: string]: (parameters: any) => Promise<void> | void } = null!;
+    events: HandledEvents = null!;
 
     constructor (options: MessageContextMenuCommandOptions) {
 
-        this.intents = options.intents ?? this.intents;
+        super (options);
 
         this.display.name = options.display.name;
 

@@ -1,27 +1,19 @@
-export interface ServiceOptions {
+import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents } from './Util.js';
 
-    intents?: number;
+export interface ServiceOptions extends BaseOptions {
 
-    events: { [event: string]: (parameters: any) => Promise<void> | void };
+    events: HandledEvents
 }
 
-export class ServiceBuilder {
+export class ServiceBuilder extends BaseBuilder {
 
-    name: string = null!;
+    events: HandledEvents = null!;
 
-    path: string = null!;
+    constructor (options: ServiceOptions) {
 
-    type: number = 2;
+        super (options);
 
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents: number = 0;
-
-    events: { [event: string]: (parameters: any) => Promise<void> | void } = null!;
-
-    constructor (data: ServiceOptions) {
-
-        this.intents = data.intents ?? this.intents;
-
-        this.events = data.events;
+        this.events = options.events;
     }
 }

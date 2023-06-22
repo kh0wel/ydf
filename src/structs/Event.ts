@@ -1,8 +1,9 @@
 import { Session } from '@biscuitland/core';
 
 import { ConfigBuilder } from './Configuration.js';
+import { BaseOptions, BaseBuilder } from './Base.js';
 
-export type ExecuteParameters = {
+export interface ExecuteParameters {
 
     config: ConfigBuilder;
 
@@ -16,33 +17,22 @@ export type ExecuteParameters = {
 
     usedEvents;
     usedIntents;
-};
+}
 
 export type ExecuteFunction = (parameters: ExecuteParameters) => Promise<void> | void;
 
-export interface EventOptions {
-
-    intents?: number;
+export interface EventOptions extends BaseOptions {
 
     execute: ExecuteFunction;
 }
 
-export class EventBuilder {
-
-    name: string = null!;
-
-    path: string = null!;
-
-    type: number = 1;
-
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents: number = 0;
+export class EventBuilder extends BaseBuilder {
 
     execute: ExecuteFunction = null!;
 
     constructor (options: EventOptions) {
 
-        this.intents = options.intents ?? this.intents;
+        super (options);
 
         this.execute = options.execute;
     }
