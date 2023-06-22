@@ -1,6 +1,8 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
+import cac from 'cac';
+
 import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
 import findGateways from '../findGateways.js';
@@ -21,11 +23,11 @@ cli
 
     .action(async ({ project: projectPath }) => {
 
-        await fs.mkdir(path.resolve(projectPath, 'src', 'events'));
-        await fs.mkdir(path.resolve(projectPath, 'src', 'services'));
-        await fs.mkdir(path.resolve(projectPath, 'src', 'commands'));
+        await fs.mkdir(path.resolve(projectPath, 'src', 'events'),    { recursive: true });
+        await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
+        await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
-        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ deployer ({ usedIntents, usedPartials }) { return new Session({ intents: usedIntents, partials: usedPartials, token: \'BOT TOKEN\' }); } });\n');
+        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigurationBuilder } from \'ydf\';\n\nexport default new ConfigurationBuilder ({ deployer ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT TOKEN\' }); } });\n');
     });
 
 cli

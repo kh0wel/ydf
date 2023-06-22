@@ -1,29 +1,37 @@
 import { Session } from '@biscuitland/core';
 
-export type DeployerParameters = {
+import { EventBuilder } from './Event.js';
+import { ServiceBuilder } from './Service.js';
+import { ChatInputCommandBuilder } from './ChatInputCommand.js';
+import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
+import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
+import { EventsGroup } from './Util.js';
 
-    loadedEvents,
-    loadedServices,
-    loadedChatInputCommands,
-    loadedMessageContextMenuCommands,
-    loadedUserContextMenuCommands,
+export interface DeployerParameters {
 
-    usedEvents,
-    usedIntents
-};
+    loadedEvents:                     EventBuilder[],
+    loadedServices:                   ServiceBuilder[],
+    loadedChatInputCommands:          ChatInputCommandBuilder[],
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[],
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[],
+
+    usedEvents: EventsGroup,
+
+    usedIntents: number
+}
 
 export type DeployerFunction = (parameters: DeployerParameters) => Session<boolean>;
 
-export interface ConfigOptions {
+export interface ConfigurationOptions {
 
     deployer: DeployerFunction;
 
-    include?: Directories;
+    include?: Targets;
 
-    exclude?: Directories;
+    exclude?: Targets;
 }
 
-export interface Directories {
+export interface Targets {
 
     events: string[];
 
@@ -36,11 +44,11 @@ export interface Directories {
     messageContextMenuCommands: string[];
 }
 
-export class ConfigBuilder {
+export class ConfigurationBuilder {
 
     deployer: DeployerFunction = null!;
 
-    include: Directories = {
+    include: Targets = {
 
         events:                     [ 'src/**/*.event.*'           ],
         services:                   [ 'src/**/*.service.*'         ],
@@ -49,7 +57,7 @@ export class ConfigBuilder {
         messageContextMenuCommands: [ 'src/**/*.command.message.*' ]
     };
 
-    exclude: Directories = {
+    exclude: Targets = {
 
         events:                     [],
         services:                   [],
@@ -58,7 +66,7 @@ export class ConfigBuilder {
         messageContextMenuCommands: []
     };
 
-    constructor (options: ConfigOptions) {
+    constructor (options: ConfigurationOptions) {
 
         this.deployer = options.deployer;
 

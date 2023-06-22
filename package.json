@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "2.9.0",
+  "version": "2.9.2",
   "description": "🧿 A development tool for build Discord bots using biscuit.js",
   "type": "module",
   "main": "dist/index.js",
@@ -36,8 +36,7 @@
   },
   "dependencies": {
     "cac": "^6.7.14",
-    "fast-glob": "^3.2.12",
-    "picocolors": "^1.0.0"
+    "fast-glob": "^3.2.12"
   },
   "devDependencies": {
     "@biscuitland/core": "^3.0.4",
