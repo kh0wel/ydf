@@ -9,7 +9,7 @@
   "preview": true,
   "scripts": {
     "lint": "rome check \".\"",
-    "make": "swc src -d dist && tsc --project \".\""
+    "build": "swc src -d dist && tsc --project \".\""
   },
   "files": [
     "dist",
