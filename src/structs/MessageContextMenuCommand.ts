@@ -7,7 +7,7 @@ export interface MessageContextMenuCommandDisplay {
 
     name: CommandLocalizations;
 
-    permissions?: Partial<CommandPermissions>;
+    permissions?: CommandPermissions;
 }
 
 export interface MessageContextMenuCommandOptions extends BaseOptions {

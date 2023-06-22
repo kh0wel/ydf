@@ -1,51 +1,29 @@
-export type ChatInputCommandDisplay = {
+import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents, CommandLocalizations, CommandPermissions } from './Util.js';
 
-    name: {
+export interface ChatInputCommandDisplay {
 
-        default: string;
+    type: number;
 
-        [locale: string]: string;
-    };
+    name: CommandLocalizations;
 
-    description: {
+    description: CommandLocalizations;
 
-        default: string;
+    options: any[];
 
-        [locale: string]: string;
-    };
-
-    options?: any[];
-
-    permissions?: {
-
-        member?: bigint | null;
-
-        dm?:   boolean;
-        nsfw?: boolean;
-    };
-};
-
-export interface ChatInputCommandOptions {
-
-    intents?: number;
-
-    display: ChatInputCommandDisplay;
-
-    events: { [event: string]: (parameters: any) => Promise<void> | void };
+    permissions?: CommandPermissions;
 }
 
-export class ChatInputCommandBuilder {
+export interface ChatInputCommandOptions extends BaseOptions {
 
-    name: string = null!;
+    display: Omit<ChatInputCommandDisplay, 'type'>;
 
-    path: string = null!;
+    events: HandledEvents
+}
 
-    type: number = 3;
+export class ChatInputCommandBuilder extends BaseBuilder {
 
-    // https://discord.com/developers/docs/topics/gateway#gateway-intents
-    intents: number = 0; 
-
-    display: Required<ChatInputCommandDisplay> & { type: number } = {
+    display: Required<ChatInputCommandDisplay> = {
 
         // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 1,
@@ -62,16 +40,16 @@ export class ChatInputCommandBuilder {
         }
     };
 
-    events: { [event: string]: (parameters: any) => Promise<void> | void } = null!;
+    events: HandledEvents = null!;
 
     constructor (options: ChatInputCommandOptions) {
 
-        this.intents = options.intents ?? this.intents;
+        super (options);
 
         this.display.name        = options.display.name;
         this.display.description = options.display.description;
 
-        this.display.options = options.display.options ?? this.display.options;
+        this.display.options = options.display.options;
 
         this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
         this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;

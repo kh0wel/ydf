@@ -12,10 +12,10 @@ export interface CommandLocalizations {
 
 export interface CommandPermissions {
 
-    member: bigint | null;
+    member?: bigint | null;
 
-    dm:   boolean;
-    nsfw: boolean;
+    dm?:   boolean;
+    nsfw?: boolean;
 }
 
 export type HandledEvents = {

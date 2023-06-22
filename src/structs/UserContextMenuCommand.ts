@@ -7,7 +7,7 @@ export interface UserContextMenuCommandDisplay {
 
     name: CommandLocalizations;
 
-    permissions?: Partial<CommandPermissions>;
+    permissions?: CommandPermissions;
 }
 
 export interface UserContextMenuCommandOptions extends BaseOptions {
