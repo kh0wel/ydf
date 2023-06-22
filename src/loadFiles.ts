@@ -8,7 +8,7 @@ import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder } from './structs/ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './structs/UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './structs/MessageContextMenuCommand.js';
-import { BuilderFrom } from './structs/Util.js';
+import { DataFrom } from './structs/Util.js';
 
 export default async function (config: ConfigurationBuilder) {
 
@@ -31,7 +31,7 @@ export default async function (config: ConfigurationBuilder) {
 
         switch (data.from) {
 
-            case BuilderFrom.EVENT:
+            case DataFrom.EVENT:
 
                 loadedEvents.push({
 
@@ -44,7 +44,7 @@ export default async function (config: ConfigurationBuilder) {
 
                 break;
 
-            case BuilderFrom.SERVICE:
+            case DataFrom.SERVICE:
 
                 loadedServices.push({
 
@@ -57,7 +57,7 @@ export default async function (config: ConfigurationBuilder) {
 
                 break;
 
-            case BuilderFrom.CHAT_INPUT_COMMAND:
+            case DataFrom.CHAT_INPUT_COMMAND:
 
                 loadedChatInputCommands.push({
 
@@ -70,7 +70,7 @@ export default async function (config: ConfigurationBuilder) {
 
                 break;
 
-            case BuilderFrom.USER_CONTEXT_MENU_COMMAND:
+            case DataFrom.USER_CONTEXT_MENU_COMMAND:
 
                 loadedUserContextMenuCommands.push({
 
@@ -83,7 +83,7 @@ export default async function (config: ConfigurationBuilder) {
 
                 break;
 
-            case BuilderFrom.MESSAGE_CONTEXT_MENU_COMMAND:
+            case DataFrom.MESSAGE_CONTEXT_MENU_COMMAND:
 
                 loadedMessageContextMenuCommands.push({
 

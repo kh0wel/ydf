@@ -1,5 +1,5 @@
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEvents, CommandLocalizations, CommandPermissions, BuilderFrom } from './Util.js';
+import { HandledEvents, CommandLocalizations, CommandPermissions, DataFrom } from './Util.js';
 
 export interface UserContextMenuCommandDisplay {
 
@@ -19,7 +19,7 @@ export interface UserContextMenuCommandOptions extends BaseOptions {
 
 export class UserContextMenuCommandBuilder extends BaseBuilder {
 
-    from = BuilderFrom.USER_CONTEXT_MENU_COMMAND;
+    from = DataFrom.USER_CONTEXT_MENU_COMMAND;
 
     display: Required<UserContextMenuCommandDisplay> = {
 

@@ -1,5 +1,5 @@
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { BuilderFrom, HandledEvents } from './Util.js';
+import { DataFrom, HandledEvents } from './Util.js';
 
 export interface ServiceOptions extends BaseOptions {
 
@@ -8,7 +8,7 @@ export interface ServiceOptions extends BaseOptions {
 
 export class ServiceBuilder extends BaseBuilder {
 
-    from = BuilderFrom.SERVICE;
+    from = DataFrom.SERVICE;
 
     events: HandledEvents = null!;
 

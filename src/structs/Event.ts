@@ -2,7 +2,7 @@ import { Session } from '@biscuitland/core';
 
 import { ConfigurationBuilder } from './Configuration.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { BuilderFrom } from './Util.js';
+import { DataFrom } from './Util.js';
 
 export interface ExecuteParameters {
 
@@ -29,7 +29,7 @@ export interface EventOptions extends BaseOptions {
 
 export class EventBuilder extends BaseBuilder {
 
-    from = BuilderFrom.EVENT;
+    from = DataFrom.EVENT;
 
     execute: ExecuteFunction = null!;
 

@@ -1,5 +1,5 @@
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEvents, CommandLocalizations, CommandPermissions, BuilderFrom } from './Util.js';
+import { HandledEvents, CommandLocalizations, CommandPermissions, DataFrom } from './Util.js';
 
 export interface MessageContextMenuCommandDisplay {
 
@@ -19,7 +19,7 @@ export interface MessageContextMenuCommandOptions extends BaseOptions {
 
 export class MessageContextMenuCommandBuilder extends BaseBuilder {
 
-    from = BuilderFrom.MESSAGE_CONTEXT_MENU_COMMAND;
+    from = DataFrom.MESSAGE_CONTEXT_MENU_COMMAND;
 
     display: Required<MessageContextMenuCommandDisplay> = {
 

@@ -3,7 +3,7 @@ import { ChatInputCommandBuilder } from './ChatInputCommand.js';
 import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
 import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
 
-export enum BuilderFrom {
+export enum DataFrom {
 
     EVENT                        = 0,
     SERVICE                      = 1,
