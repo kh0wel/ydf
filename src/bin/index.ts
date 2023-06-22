@@ -39,11 +39,15 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-        const loadedEvents:                     EventBuilder[]                     = await loadFiles(config.include.events,                    config.exclude.events,                    EventBuilder);
-        const loadedServices:                   ServiceBuilder[]                   = await loadFiles(config.include.services,                  config.exclude.services,                  ServiceBuilder);
-        const loadedChatInputCommands:          ChatInputCommandBuilder[]          = await loadFiles(config.include.chatInputCommand,          config.exclude.chatInputCommand,          ChatInputCommandBuilder);
-        const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = await loadFiles(config.include.userContextMenuCommand,    config.exclude.userContextMenuCommand,    UserContextMenuCommandBuilder);
-        const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = await loadFiles(config.include.messageContextMenuCommand, config.exclude.messageContextMenuCommand, MessageContextMenuCommandBuilder);
+        const {
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands
+        }
+            = await loadFiles(config);
 
         const usedEvents = findEvents(
 
