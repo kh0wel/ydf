@@ -38,18 +38,11 @@ export interface AnyContextMenuCommandDisplay {
     permissions?: CommandPermissions;
 }
 
-export interface ChatInputCommandOptions extends BaseOptions {
+export interface CommandOptions <D extends ChatInputCommandDisplay | AnyContextMenuCommandDisplay> extends BaseOptions {
 
-    display: Omit<ChatInputCommandDisplay, 'type'>;
+    display: Omit<D, 'type'>;
 
-    events: HandledEvents
-}
-
-export interface AnyContextMenuCommandOptions extends BaseOptions {
-
-    display: Omit<AnyContextMenuCommandDisplay, 'type'>;
-
-    events: HandledEvents
+    events: HandledEvents;
 }
 
 export class ChatInputCommandBuilder extends BaseBuilder {
@@ -75,7 +68,7 @@ export class ChatInputCommandBuilder extends BaseBuilder {
 
     events: HandledEvents = null!;
 
-    constructor (options: ChatInputCommandOptions) {
+    constructor (options: CommandOptions<ChatInputCommandDisplay>) {
 
         super (options);
 
@@ -113,7 +106,7 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
 
     events: HandledEvents = null!;
 
-    constructor (options: AnyContextMenuCommandOptions) {
+    constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
 
         super (options);
 
@@ -148,7 +141,7 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
 
     events: HandledEvents = null!;
 
-    constructor (options: AnyContextMenuCommandOptions) {
+    constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
 
         super (options);
 
