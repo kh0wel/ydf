@@ -1,6 +1,6 @@
 import { Session } from '@biscuitland/core';
 
-import { ConfigurationBuilder } from './Configuration.js';
+import { ConfigurationBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';

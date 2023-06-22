@@ -20,7 +20,7 @@ export interface DeployerParameters {
 
 export type DeployerFunction = (parameters: DeployerParameters) => Session<boolean>;
 
-export interface ConfigurationOptions {
+export interface ConfigOptions {
 
     deployer: DeployerFunction;
 
@@ -29,7 +29,7 @@ export interface ConfigurationOptions {
     exclude?: string[];
 }
 
-export class ConfigurationBuilder {
+export class ConfigBuilder {
 
     deployer: DeployerFunction = null!;
 
@@ -44,7 +44,7 @@ export class ConfigurationBuilder {
 
     exclude: string[] = [];
 
-    constructor (options: ConfigurationOptions) {
+    constructor (options: ConfigOptions) {
 
         this.deployer = options.deployer;
 
