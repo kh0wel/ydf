@@ -2,22 +2,28 @@ import { Session } from '@biscuitland/core';
 
 import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
-import { ChatInputCommandBuilder } from './ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
+
+import {
+
+    ChatInputCommandBuilder,
+    UserContextMenuCommandBuilder,
+    MessageContextMenuCommandBuilder
+}
+    from './Command.js';
+
 import { EventsGroup } from './Util.js';
 
 export interface DeployerParameters {
 
-    loadedEvents:                     EventBuilder[],
-    loadedServices:                   ServiceBuilder[],
-    loadedChatInputCommands:          ChatInputCommandBuilder[],
-    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[],
-    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[],
+    loadedEvents:                     EventBuilder[];
+    loadedServices:                   ServiceBuilder[];
+    loadedChatInputCommands:          ChatInputCommandBuilder[];
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
 
-    usedEvents: EventsGroup,
+    usedEvents: EventsGroup;
 
-    usedIntents: number
+    usedIntents: number;
 }
 
 export type DeployerFunction = (parameters: DeployerParameters) => Session<boolean>;

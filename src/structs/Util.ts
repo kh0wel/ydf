@@ -1,7 +1,12 @@
 import { ServiceBuilder } from './Service.js';
-import { ChatInputCommandBuilder } from './ChatInputCommand.js';
-import { UserContextMenuCommandBuilder } from './UserContextMenuCommand.js';
-import { MessageContextMenuCommandBuilder } from './MessageContextMenuCommand.js';
+
+import {
+
+    ChatInputCommandBuilder,
+    UserContextMenuCommandBuilder,
+    MessageContextMenuCommandBuilder
+}
+    from './Command.js';
 
 export enum DataFrom {
 
@@ -10,21 +15,6 @@ export enum DataFrom {
     CHAT_INPUT_COMMAND           = 2,
     USER_CONTEXT_MENU_COMMAND    = 3,
     MESSAGE_CONTEXT_MENU_COMMAND = 4
-}
-
-export interface CommandLocalizations {
-
-    default: string;
-
-    [locale: string]: string;
-}
-
-export interface CommandPermissions {
-
-    member?: bigint | null;
-
-    dm?:   boolean;
-    nsfw?: boolean;
 }
 
 export type HandledEvents = {

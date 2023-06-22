@@ -1,7 +1,7 @@
 export interface BaseOptions {
 
     /**
-     * Intents used by file
+     * Used intents
      * 
      * More information on https://discord.com/developers/docs/topics/gateway#gateway-intents
      */
@@ -21,7 +21,7 @@ export class BaseBuilder {
     path: string = null!;
 
     /**
-     * Intents used by file
+     * Used intents
      * 
      * More information on https://discord.com/developers/docs/topics/gateway#gateway-intents
      */

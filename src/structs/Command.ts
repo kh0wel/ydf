@@ -1,0 +1,163 @@
+import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents, DataFrom } from './Util.js';
+
+export interface CommandLocalizations {
+
+    default: string;
+
+    [locale: string]: string;
+}
+
+export interface CommandPermissions {
+
+    member?: bigint | null;
+
+    dm?:   boolean;
+    nsfw?: boolean;
+}
+
+export interface ChatInputCommandDisplay {
+
+    type: number;
+
+    name: CommandLocalizations;
+
+    description: CommandLocalizations;
+
+    options?: any[];
+
+    permissions?: CommandPermissions;
+}
+
+export interface AnyContextMenuCommandDisplay {
+
+    type: number;
+
+    name: CommandLocalizations;
+
+    permissions?: CommandPermissions;
+}
+
+export interface ChatInputCommandOptions extends BaseOptions {
+
+    display: Omit<ChatInputCommandDisplay, 'type'>;
+
+    events: HandledEvents
+}
+
+export interface AnyContextMenuCommandOptions extends BaseOptions {
+
+    display: Omit<AnyContextMenuCommandDisplay, 'type'>;
+
+    events: HandledEvents
+}
+
+export class ChatInputCommandBuilder extends BaseBuilder {
+
+    from = DataFrom.CHAT_INPUT_COMMAND;
+
+    display: Required<ChatInputCommandDisplay> = {
+
+        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+        type: 1,
+
+        name: { default: null! }, description: { default: null! },
+
+        options: [],
+
+        permissions: {
+
+            member: null,
+
+            dm: false, nsfw: false
+        }
+    };
+
+    events: HandledEvents = null!;
+
+    constructor (options: ChatInputCommandOptions) {
+
+        super (options);
+
+        this.display.name        = options.display.name;
+        this.display.description = options.display.description;
+
+        this.display.options = options.display.options ?? this.display.options;
+
+        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
+        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
+        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+
+        this.events = options.events;
+    }
+}
+
+export class UserContextMenuCommandBuilder extends BaseBuilder {
+
+    from = DataFrom.USER_CONTEXT_MENU_COMMAND;
+
+    display: Required<AnyContextMenuCommandDisplay> = {
+
+        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+        type: 2,
+
+        name: { default: null! },
+
+        permissions: {
+
+            member: null,
+
+            dm: false, nsfw: false
+        }
+    };
+
+    events: HandledEvents = null!;
+
+    constructor (options: AnyContextMenuCommandOptions) {
+
+        super (options);
+
+        this.display.name = options.display.name;
+
+        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
+        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
+        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+
+        this.events = options.events;
+    }
+}
+
+export class MessageContextMenuCommandBuilder extends BaseBuilder {
+
+    from = DataFrom.MESSAGE_CONTEXT_MENU_COMMAND;
+
+    display: Required<AnyContextMenuCommandDisplay> = {
+
+        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+        type: 3,
+
+        name: { default: null! },
+
+        permissions: {
+
+            member: null,
+
+            dm: false, nsfw: false
+        }
+    };
+
+    events: HandledEvents = null!;
+
+    constructor (options: AnyContextMenuCommandOptions) {
+
+        super (options);
+
+        this.display.name = options.display.name;
+
+        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
+        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
+        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+
+        this.events = options.events;
+    }
+}

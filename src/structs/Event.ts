@@ -2,7 +2,17 @@ import { Session } from '@biscuitland/core';
 
 import { ConfigurationBuilder } from './Configuration.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { DataFrom } from './Util.js';
+import { ServiceBuilder } from './Service.js';
+
+import {
+
+    ChatInputCommandBuilder,
+    UserContextMenuCommandBuilder,
+    MessageContextMenuCommandBuilder
+}
+    from './Command.js';
+
+import { DataFrom, EventsGroup } from './Util.js';
 
 export interface ExecuteParameters {
 
@@ -10,14 +20,15 @@ export interface ExecuteParameters {
 
     session: Session<boolean>;
 
-    loadedEvents;
-    loadedServices;
-    loadedChatInputCommands;
-    loadedMessageContextMenuCommands;
-    loadedUserContextMenuCommands;
+    loadedEvents:                     EventBuilder[];
+    loadedServices:                   ServiceBuilder[];
+    loadedChatInputCommands:          ChatInputCommandBuilder[];
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
 
-    usedEvents;
-    usedIntents;
+    usedEvents: EventsGroup;
+
+    usedIntents: number;
 }
 
 export type ExecuteFunction = (parameters: ExecuteParameters) => Promise<void> | void;
