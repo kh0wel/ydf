@@ -1,6 +1,5 @@
-import fs from 'node:fs/promises';
-import path from 'node:path';
-
+import fs from 'unenv/runtime/node/fs/promises/index';
+import pathe from 'pathe';
 import cac from 'cac';
 
 import loadFiles from '../loadFiles.js';
@@ -17,11 +16,11 @@ cli
 
     .action(async ({ project: projectPath }) => {
 
-        await fs.mkdir(path.resolve(projectPath, 'src', 'events'),    { recursive: true });
-        await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
-        await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
+        await fs.mkdir(pathe.resolve(projectPath, 'src', 'events'),    { recursive: true });
+        await fs.mkdir(pathe.resolve(projectPath, 'src', 'services'),  { recursive: true });
+        await fs.mkdir(pathe.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
-        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tdeployer ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
+        await fs.writeFile(pathe.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tdeployer ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
     });
 
 cli
@@ -31,7 +30,7 @@ cli
 
     .action(async ({ config: configPath }) => {
 
-        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
+        const { default: config } = await import(`file:///${ pathe.resolve(configPath) }`);
 
         const {
 

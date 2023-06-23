@@ -24,31 +24,19 @@ export interface ConfigOptions {
 
     deployer: DeployerFunction;
 
-    include?: string[];
-
-    exclude?: string[];
+    target?: string;
 }
 
 export class ConfigBuilder {
 
     deployer: DeployerFunction = null!;
 
-    include: string[] = [
-
-        'src/**/*.event.*',
-        'src/**/*.service.*',
-        'src/**/*.command.chat.*',
-        'src/**/*.command.user.*',
-        'src/**/*.command.message.*'
-    ];
-
-    exclude: string[] = [];
+    target = 'src/**/*.{event,service,command.{chat,user,message}}.*';
 
     constructor (options: ConfigOptions) {
 
         this.deployer = options.deployer;
 
-        this.include = options.include ?? this.include;
-        this.exclude = options.exclude ?? this.exclude;
+        this.target = options.target ?? this.target;
     }
 }
