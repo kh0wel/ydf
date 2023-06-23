@@ -14,11 +14,11 @@ A development tool for build Discord bots using [biscuit.js](https://biscuitjs.c
 
 ## Features
 
-- 🧭 **Simplified**: Satisfies essentials.
-
-- 📚 **Documented**: Written on [TypeScript](https://www.typescriptlang.org).
+- 📚 **Typed**: Writed on [TypeScript](https://www.typescriptlang.org).
 
 - 💪🏻 **Productivity**: Recursive load.
+
+- 🧭 **Simplified**: Satisfies essentials.
 
 - ⚡ **Performance**: Intelligent management.
 

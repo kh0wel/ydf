@@ -1,5 +1,6 @@
-import tglob from 'tiny-glob';
-import pathe from 'pathe';
+import path from 'node:path';
+
+import glob from 'tiny-glob';
 
 import { ConfigBuilder } from './structs/Config.js';
 import { EventBuilder } from './structs/Event.js';
@@ -15,7 +16,7 @@ export default async function (config: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await tglob(config.target, { dot: true, absolute: true });
+    const mapedFiles = await glob(config.target, { dot: true, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 
@@ -29,7 +30,7 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: pathe.basename(mapedFile).replace(/\..+$/g, ''),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
                 });
@@ -42,7 +43,7 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: pathe.basename(mapedFile).replace(/\..+$/g, ''),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
                 });
@@ -55,7 +56,7 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: pathe.basename(mapedFile).replace(/\..+$/g, ''),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
                 });
@@ -68,7 +69,7 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: pathe.basename(mapedFile).replace(/\..+$/g, ''),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
                 });
@@ -81,7 +82,7 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: pathe.basename(mapedFile).replace(/\..+$/g, ''),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
                     path: mapedFile
                 });
