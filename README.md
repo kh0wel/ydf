@@ -10,7 +10,7 @@
 
 ## About
 
-A development tool for build Discord bots using [biscuit.js](https://biscuitjs.com).
+A development tool for build [Discord](https://discord.com) bots using [biscuit.js](https://biscuitjs.com).
 
 ## Features
 
