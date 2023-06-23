@@ -16,15 +16,17 @@ A development tool for build Discord bots using [biscuit.js](https://biscuitjs.c
 
 - 📚 **Typed**: Writed on [TypeScript](https://www.typescriptlang.org).
 
+- 🧭 **Simplified**: Satisfies essentials.
+
 - 💪🏻 **Productivity**: Recursive load.
 
-- 🧭 **Simplified**: Satisfies essentials.
+- 🍃 **Lightweight**: Reduced dependencies.
 
 - ⚡ **Performance**: Intelligent management.
 
-- 🔌 **Compatibility**: Support for various [biscuit.js](https://biscuitjs.com) versions.
-
 - 🧳 **Multiplatform**: Support with [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
+
+- 🔌 **Compatibility**: Support for various [biscuit.js](https://biscuitjs.com) versions.
 
 ## Installation
 
