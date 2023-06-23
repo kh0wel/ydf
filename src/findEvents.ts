@@ -1,15 +1,7 @@
 import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
-
-import {
-
-    EventsGroup,
-    GroupedCommand,
-    GroupedService,
-    GroupedAll
-}
-    from './structs/Util.js';
+import { EventsGroup, GroupedCommand, GroupedService, GroupedAll } from './structs/Util.js';
 
 export default function (
 
