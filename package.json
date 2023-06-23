@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "2.9.6",
+  "version": "2.9.7",
   "description": "🐱‍🐉 A development tool for build Discord bots using biscuit.js ",
   "type": "module",
   "main": "dist/index.js",

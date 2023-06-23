@@ -22,7 +22,7 @@ A development tool for build Discord bots using [biscuit.js](https://biscuitjs.c
 
 - 🍃 **Lightweight**: Reduced dependencies.
 
-- ⚡ **Performance**: Intelligent management.
+- ⚡ **Performance**: Intelligent data management.
 
 - 🧳 **Multiplatform**: Support with [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
 
