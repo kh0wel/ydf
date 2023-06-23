@@ -1,4 +1,5 @@
-import fs from 'unenv/runtime/node/fs/promises/index';
+import fs from 'node:fs/promises';
+
 import pathe from 'pathe';
 import cac from 'cac';
 
