@@ -116,6 +116,9 @@ export class ChatInputCommandBuilder extends BaseBuilder {
         }
     };
 
+    /**
+     * Necessary events (using their file name with excluded extensions).
+     */
     events: HandledEvents = null!;
 
     constructor (options: CommandOptions<ChatInputCommandDisplay>) {
@@ -154,6 +157,9 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
         }
     };
 
+    /**
+     * Necessary events (using their file name with excluded extensions).
+     */
     events: HandledEvents = null!;
 
     constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
@@ -189,6 +195,9 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
         }
     };
 
+    /**
+     * Necessary events (using their file name with excluded extensions).
+     */
     events: HandledEvents = null!;
 
     constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
