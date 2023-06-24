@@ -1,11 +1,12 @@
 import { Session } from '@biscuitland/core';
+import { Client } from '@discordjs/core';
 
 import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { EventsGroup } from './Util.js';
 
-export type SessionCallback = (parameters: {
+export type BotCallback = (parameters: {
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -16,11 +17,11 @@ export type SessionCallback = (parameters: {
     usedEvents: EventsGroup;
 
     usedIntents: number;
-}) => Session<boolean>;
+}) => Session | Client;
 
 export interface ConfigOptions {
 
-    session: SessionCallback;
+    bot: BotCallback;
 
     root?: string;
 
@@ -31,7 +32,7 @@ export interface ConfigOptions {
 
 export class ConfigBuilder {
 
-    session: SessionCallback = null!;
+    bot: BotCallback = null!;
 
     root: string = '.';
 
@@ -48,7 +49,7 @@ export class ConfigBuilder {
 
     constructor (options: ConfigOptions) {
 
-        this.session = options.session;
+        this.bot = options.bot;
 
         this.root    = options.root    ?? this.root;
         this.include = options.include ?? this.include;

@@ -1,4 +1,5 @@
 import { Session } from '@biscuitland/core';
+import { Client } from '@discordjs/core';
 
 import { ConfigBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
@@ -10,7 +11,7 @@ export type ExecuteCallback = (parameters: {
 
     config: ConfigBuilder;
 
-    session: Session<boolean>;
+    bot: Session | Client;
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];

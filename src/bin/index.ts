@@ -21,7 +21,7 @@ cli
         await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
         await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
-        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tdeployer ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
+        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
     });
 
 cli
@@ -40,8 +40,7 @@ cli
             loadedChatInputCommands,
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
-        }
-            = await loadFiles(config);
+        } = await loadFiles(config);
 
         const usedEvents = findEvents(
 
@@ -71,7 +70,7 @@ cli
                 usedEvents,
                 usedIntents,
 
-                session: config.session({
+                bot: config.bot({
 
                     loadedEvents,
                     loadedServices,
