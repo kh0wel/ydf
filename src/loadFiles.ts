@@ -16,7 +16,13 @@ export default async function (config: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await glob(config.include, { ignore: config.exclude, cwd: config.cwd, absolute: true });
+    const mapedFiles = await glob(config.include, {
+
+        ignore: config.exclude,
+        cwd:    config.cwd,
+
+        absolute: true
+    });
 
     for (const mapedFile of mapedFiles) {
 
