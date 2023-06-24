@@ -1,4 +1,6 @@
-import mapFiles from './mapFiles.js';
+import path from 'node:path';
+
+import glob from 'fast-glob';
 
 import { ConfigBuilder } from './structs/Config.js';
 import { EventBuilder } from './structs/Event.js';
@@ -14,11 +16,11 @@ export default async function (config: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await mapFiles(config.include, config.exclude, config.cwd);
+    const mapedFiles = await glob(config.include, { ignore: config.exclude, cwd: config.cwd, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 
-        const { default: data } = await import(`file:///${ mapedFile.path }`);
+        const { default: data } = await import(`file:///${ mapedFile }`);
 
         switch (data.from) {
 
@@ -28,9 +30,9 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: mapedFile.name.slice(0, mapedFile.name.length - mapedFile.extension.length),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                    path: mapedFile.path
+                    path: mapedFile
                 });
 
                 break;
@@ -41,9 +43,9 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: mapedFile.name.slice(0, mapedFile.name.length - mapedFile.extension.length),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                    path: mapedFile.path
+                    path: mapedFile
                 });
 
                 break;
@@ -54,9 +56,9 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: mapedFile.name.slice(0, mapedFile.name.length - mapedFile.extension.length),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                    path: mapedFile.path
+                    path: mapedFile
                 });
 
                 break;
@@ -67,9 +69,9 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: mapedFile.name.slice(0, mapedFile.name.length - mapedFile.extension.length),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                    path: mapedFile.path
+                    path: mapedFile
                 });
 
                 break;
@@ -80,9 +82,9 @@ export default async function (config: ConfigBuilder) {
 
                     ... data,
 
-                    name: mapedFile.name.slice(0, mapedFile.name.length - mapedFile.extension.length),
+                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                    path: mapedFile.path
+                    path: mapedFile
                 });
 
                 break;

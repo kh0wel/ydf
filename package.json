@@ -6,6 +6,7 @@
   "bin": "dist/bin/index.js",
   "main": "dist/index.js",
   "types": "typings/index.d.ts",
+  "preview": true,
   "scripts": {
     "lint": "rome check \".\"",
     "build": "swc src -d dist && tsc --project \".\""
@@ -38,7 +39,8 @@
     "bun": ">=0.6.*"
   },
   "dependencies": {
-    "cac": "^6.7.14"
+    "cac": "^6.7.14",
+    "fast-glob": "^3.2.12"
   },
   "devDependencies": {
     "@biscuitland/core": "^3.0.4",
