@@ -14,7 +14,7 @@ export class BaseBuilder {
     name: string = null!;
 
     /**
-     * File path
+     * File path (not relative)
      */
     path: string = null!;
 
