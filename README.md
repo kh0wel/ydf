@@ -16,13 +16,9 @@ A development tool for build [Discord](https://discord.com) bots using [biscuit.
 
 - 📚 **Typed**: Writed on [TypeScript](https://www.typescriptlang.org).
 
-- 🧭 **Simplified**: Satisfies essentials.
-
-- 💪🏻 **Productivity**: Recursive load.
+- ⚡ **Performance**: Intelligent data management.
 
 - 🍃 **Lightweight**: Reduced dependencies.
-
-- ⚡ **Performance**: Intelligent data management.
 
 - 🧳 **Multiplatform**: Support with [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
 
@@ -31,11 +27,11 @@ A development tool for build [Discord](https://discord.com) bots using [biscuit.
 ## Installation
 
 ```bash
-npm install ydf
+npm add ydf -D
 ```
 
 ```bash
-npm install @biscuitland/core
+npm add @biscuitland/core
 ```
 
 ## Examples
