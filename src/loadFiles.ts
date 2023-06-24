@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 import mapFiles from './mapFiles.js';
 
 import { ConfigBuilder } from './structs/Config.js';

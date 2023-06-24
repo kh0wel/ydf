@@ -3,37 +3,61 @@
 <div align="center">
 	<br />
 	<p>
-		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg?colorA=18181B&colorB=d8c449" /></a>
-		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg?colorA=18181B&colorB=d8c449" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg?colorA=820a8f&colorB=af2bbf" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg?colorA=820a8f&colorB=af2bbf" /></a>
 	</p>
 </div>
 
 ## About
 
-A development tool for build [Discord](https://discord.com) bots using [biscuit.js](https://biscuitjs.com).
+A development tool to make [Discord](https://discord.com) bots.
 
 ## Features
 
-- 📚 **Typed**: Writed on [TypeScript](https://www.typescriptlang.org).
+- 📚 Writed on [TypeScript](https://www.typescriptlang.org).
 
-- ⚡ **Performance**: Intelligent data management.
+- 🔥 Intelligent structure management.
 
-- 🍃 **Lightweight**: Reduced dependencies.
+- 🧳 Supported [Node](https://nodejs.org) and [Bun](https://bun.sh) runtime environments.
 
-- 🧳 **Multiplatform**: Support with [Bun](https://bun.sh) or [Node](https://nodejs.org) runtime environments.
+- 🔌 Supported various [discord.js](https://discord.js.org) and [biscuit.js](https://biscuitjs.com) versions.
 
-- 🔌 **Compatibility**: Support for various [biscuit.js](https://biscuitjs.com) versions.
+- 🧱 Implemented [Plug-in](https://en.wikipedia.org/wiki/Plug-in_%28computing%29) system.
+
+- 📋 Detailed console information.
+
+- 🍂 Reduced size and dependencies.
 
 ## Setup
 
-```bash
-npm add ydf -D
-```
+1. Install this project.
 
-```bash
-npm add @biscuitland/core
-```
+	```bash
+	npm add ydf -D
+	yarn add ydf -D
+	pnpm add ydf -D
+	```
+
+2. Install [discord.js](https://discord.js.org) or [biscuit.js](https://biscuitjs.com).
+
+	```bash
+	npm add @discordjs/core
+	yarn add @discordjs/core
+	pnpm add @discordjs/core
+	```
+	```bash
+	npm add @biscuitland/core
+	yarn add @biscuitland/core
+	pnpm add @biscuitland/core
+	```
+3. Create a new project.
+
+	```bash
+	npx ydf init
+	yarn ydf init
+	pnpm ydf init
+	```
 
 ## Examples
 
-See an example [here](https://github.com/kh0wel/kobalt).
+See an example (using [discord.js](https://discord.js.org)) [here](https://github.com/kh0wel/kobalt).
