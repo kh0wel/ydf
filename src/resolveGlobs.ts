@@ -7,11 +7,9 @@ const CHARS = {
     '[': ']'
 };
 
-const RELAXED = /\\(.)|(^!|[*?{}()[\]]|\(\?)/;
+function isGlob (target: string) {
 
-function isglob(target: string) {
-
-    const match = RELAXED.exec(target);
+    const match = /\\(.)|(^!|[*?{}()[\]]|\(\?)/.exec(target);
 
     let currectTarget = target;
 
@@ -54,7 +52,7 @@ function parent (target: string) {
 
     do { t }
 
-    while (isglob(t) || /(^|[^\\])([\{\[]|\([^\)]+$)/.test(t));
+    while (isGlob(t) || /(^|[^\\])([\{\[]|\([^\)]+$)/.test(t));
 
     // remove escape chars and return result
     return t.replace(/\\([\*\?\|\[\]\(\)\{\}])/g, '$1');
@@ -66,7 +64,7 @@ export default function (pattern: string) {
 
     let base = parent(normalizedPattern);
 
-    const isGlob = isglob(normalizedPattern);
+    const status = isGlob(normalizedPattern);
 
     let glob;
 
@@ -77,7 +75,7 @@ export default function (pattern: string) {
         if (glob.startsWith('/')) glob = glob.substring(1);
     } else glob = normalizedPattern;
 
-    if (!isGlob) {
+    if (!status) {
 
         base = path.dirname(normalizedPattern);
 
@@ -91,5 +89,5 @@ export default function (pattern: string) {
     if (glob.startsWith('./')) glob = glob.substring(2);
     if (glob.startsWith('/')) glob = glob.substring(1);
 
-    return { base, glob, isGlob };
+    return { base, glob, status };
 }
