@@ -22,7 +22,7 @@ A development tool to make [Discord](https://discord.com) bots.
 
 - 🧱 Supported [Plug-ins](https://en.wikipedia.org/wiki/Plug-in_%28computing%29).
 
-- 🔥 Intelligent structure management.
+- 🔥 Managed structure smartly
 
 - 📋 Detailed console information.
 
