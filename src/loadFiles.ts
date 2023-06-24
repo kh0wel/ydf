@@ -1,10 +1,10 @@
 import mapFiles from './mapFiles.js';
 
-import { ConfigBuilder } from './struc/Config.js';
-import { EventBuilder } from './struc/Event.js';
-import { ServiceBuilder } from './struc/Service.js';
-import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './struc/Command.js';
-import { DataFrom } from './struc/Util.js';
+import { ConfigBuilder } from './structs/Config.js';
+import { EventBuilder } from './structs/Event.js';
+import { ServiceBuilder } from './structs/Service.js';
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
+import { DataFrom } from './structs/Util.js';
 
 export default async function (config: ConfigBuilder) {
 
