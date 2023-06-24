@@ -117,7 +117,7 @@ export class ChatInputCommandBuilder extends BaseBuilder {
     };
 
     /**
-     * Necessary events (using their file name with excluded extensions).
+     * Necessary events (using their file name with excluded extensions)
      */
     events: HandledEvents = null!;
 
@@ -158,7 +158,7 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
     };
 
     /**
-     * Necessary events (using their file name with excluded extensions).
+     * Necessary events (using their file name with excluded extensions)
      */
     events: HandledEvents = null!;
 
@@ -196,7 +196,7 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
     };
 
     /**
-     * Necessary events (using their file name with excluded extensions).
+     * Necessary events (using their file name with excluded extensions)
      */
     events: HandledEvents = null!;
 

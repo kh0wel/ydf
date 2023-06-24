@@ -1,6 +1,6 @@
 import path from 'node:path';
 
-import glob from 'tiny-glob';
+import glob from 'fast-glob';
 
 import { ConfigBuilder } from './structs/Config.js';
 import { EventBuilder } from './structs/Event.js';
@@ -16,7 +16,7 @@ export default async function (config: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await glob(config.target, { dot: true, absolute: true });
+    const mapedFiles = await glob(config.include, { absolute: true, ignore: config.exclude });
 
     for (const mapedFile of mapedFiles) {
 
