@@ -71,7 +71,7 @@ cli
                 usedEvents,
                 usedIntents,
 
-                session: config.deployer({
+                session: config.session({
 
                     loadedEvents,
                     loadedServices,

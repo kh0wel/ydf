@@ -6,19 +6,7 @@ import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { DataFrom, EventsGroup } from './Util.js';
 
-export type ExecuteCallback = ({
-
-    config, session,
-
-    loadedEvents,
-    loadedServices,
-    loadedChatInputCommands,
-    loadedUserContextMenuCommands,
-    loadedMessageContextMenuCommands,
-
-    usedEvents,
-    usedIntents
-}: {
+export type ExecuteCallback = (parameters: {
 
     config: ConfigBuilder;
 
