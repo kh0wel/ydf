@@ -22,6 +22,8 @@ export interface ConfigOptions {
 
     session: SessionCallback;
 
+    root?: string;
+
     include?: string[];
 
     exclude?: string[];
@@ -30,6 +32,8 @@ export interface ConfigOptions {
 export class ConfigBuilder {
 
     session: SessionCallback = null!;
+
+    root = '.';
 
     include = [
 
@@ -46,6 +50,7 @@ export class ConfigBuilder {
 
         this.session = options.session;
 
+        this.root    = options.root    ?? this.root;
         this.include = options.include ?? this.include;
         this.exclude = options.exclude ?? this.exclude;
     }
