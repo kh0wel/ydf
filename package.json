@@ -1,7 +1,7 @@
 {
   "name": "ydf",
   "version": "2.10.0",
-  "description": "🐱‍🐉 A development tool for build Discord bots using biscuit.js ",
+  "description": "🐱‍💻 A development tool for build Discord bots using biscuit.js ",
   "type": "module",
   "bin": "dist/bin/index.js",
   "main": "dist/index.js",
@@ -25,6 +25,7 @@
   ],
   "author": "kh0wel",
   "license": "MIT",
+  "readme": "https://github.com/kh0wel/ydf#about",
   "repository": {
     "type": "git",
     "url": "https://github.com/kh0wel/ydf"

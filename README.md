@@ -24,7 +24,7 @@ A development tool for build [Discord](https://discord.com) bots using [biscuit.
 
 - 🔌 **Compatibility**: Support for various [biscuit.js](https://biscuitjs.com) versions.
 
-## Installation
+## Setup
 
 ```bash
 npm add ydf -D
