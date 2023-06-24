@@ -20,13 +20,13 @@ A development tool to make [Discord](https://discord.com) bots.
 
 - 🔌 Supported various [discord.js](https://discord.js.org) and [biscuit.js](https://biscuitjs.com) versions.
 
+- 🧱 Supported [Plug-ins](https://en.wikipedia.org/wiki/Plug-in_%28computing%29).
+
 - 🔥 Intelligent structure management.
 
 - 📋 Detailed console information.
 
 - 🍂 Reduced size and dependencies.
-
-- 🧱 Implemented [Plug-in](https://en.wikipedia.org/wiki/Plug-in_%28computing%29) system.
 
 ## Setup
 
