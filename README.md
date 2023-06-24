@@ -62,4 +62,4 @@ A development tool to make [Discord](https://discord.com) bots.
 
 ## Examples
 
-See an example (using [discord.js](https://discord.js.org)) [here](https://github.com/kh0wel/kobalt).
+See an example [here](https://github.com/kh0wel/kobalt).
