@@ -6,7 +6,19 @@ import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { DataFrom, EventsGroup } from './Util.js';
 
-export interface ExecuteParameters {
+export type ExecuteCallback = ({
+
+    config, session,
+
+    loadedEvents,
+    loadedServices,
+    loadedChatInputCommands,
+    loadedUserContextMenuCommands,
+    loadedMessageContextMenuCommands,
+
+    usedEvents,
+    usedIntents
+}: {
 
     config: ConfigBuilder;
 
@@ -21,16 +33,14 @@ export interface ExecuteParameters {
     usedEvents: EventsGroup;
 
     usedIntents: number;
-}
-
-export type ExecuteFunction = (parameters: ExecuteParameters) => Promise<void> | void;
+}) => Promise<void> | void;
 
 export interface EventOptions extends BaseOptions {
 
     /**
      * Function executed on deployment
      */
-    execute: ExecuteFunction;
+    execute: ExecuteCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -40,7 +50,7 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function executed on deployment
      */
-    execute: ExecuteFunction = null!;
+    execute: ExecuteCallback = null!;
 
     constructor (options: EventOptions) {
 

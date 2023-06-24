@@ -5,7 +5,17 @@ import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { EventsGroup } from './Util.js';
 
-export interface DeployerParameters {
+export type DeployCallback = ({
+
+    loadedEvents,
+    loadedServices,
+    loadedChatInputCommands,
+    loadedUserContextMenuCommands,
+    loadedMessageContextMenuCommands,
+
+    usedEvents,
+    usedIntents
+}: {
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -16,13 +26,11 @@ export interface DeployerParameters {
     usedEvents: EventsGroup;
 
     usedIntents: number;
-}
-
-export type DeployerFunction = (parameters: DeployerParameters) => Session<boolean>;
+}) => Session<boolean>;
 
 export interface ConfigOptions {
 
-    deployer: DeployerFunction;
+    deploy: DeployCallback;
 
     include?: string[];
 
@@ -31,7 +39,7 @@ export interface ConfigOptions {
 
 export class ConfigBuilder {
 
-    deployer: DeployerFunction = null!;
+    deploy: DeployCallback = null!;
 
     include = [
 
@@ -46,7 +54,7 @@ export class ConfigBuilder {
 
     constructor (options: ConfigOptions) {
 
-        this.deployer = options.deployer;
+        this.deploy = options.deploy;
 
         this.include = options.include ?? this.include;
         this.exclude = options.exclude ?? this.exclude;
