@@ -33,9 +33,9 @@ export class ConfigBuilder {
 
     session: SessionCallback = null!;
 
-    root = '.';
+    root: string = '.';
 
-    include = [
+    include: string[] = [
 
         'src/**/*.event.*',
         'src/**/*.service.*',
@@ -44,7 +44,7 @@ export class ConfigBuilder {
         'src/**/*.command.message.*'
     ];
 
-    exclude = [ '**/.*' ];
+    exclude: string[] = [ '**/.*' ];
 
     constructor (options: ConfigOptions) {
 
