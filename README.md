@@ -3,8 +3,8 @@
 <div align="center">
 	<br />
 	<p>
-		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg?colorA=820a8f&colorB=af2bbf" /></a>
-		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg?colorA=820a8f&colorB=af2bbf" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg?colorA=170019&colorB=9e04af" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg?colorA=170019&colorB=9e04af" /></a>
 	</p>
 </div>
 
