@@ -30,33 +30,35 @@ A development tool to make [Discord](https://discord.com) bots.
 
 ## Setup
 
-1. Install this project.
+1. Install [ydf](https://github.com/kh0wel/ydf).
 
-	```bash
-	npm add ydf -D
-	yarn add ydf -D
-	pnpm add ydf -D
-	```
+    ```bash
+    npm add ydf -D
+    yarn add ydf -D
+    pnpm add ydf -D
+    ```
 
 2. Install [discord.js](https://discord.js.org) or [biscuit.js](https://biscuitjs.com).
 
-	```bash
-	npm add @discordjs/core
-	yarn add @discordjs/core
-	pnpm add @discordjs/core
-	```
-	```bash
-	npm add @biscuitland/core
-	yarn add @biscuitland/core
-	pnpm add @biscuitland/core
-	```
+    ```bash
+    npm add @discordjs/core
+    yarn add @discordjs/core
+    pnpm add @discordjs/core
+    ```
+
+    ```bash
+    npm add @biscuitland/core
+    yarn add @biscuitland/core
+    pnpm add @biscuitland/core
+    ```
+
 3. Create a new project.
 
-	```bash
-	npx ydf init
-	yarn ydf init
-	pnpm ydf init
-	```
+    ```bash
+    npx ydf init
+    yarn ydf init
+    pnpm ydf init
+    ```
 
 ## Examples
 
