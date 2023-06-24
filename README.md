@@ -28,7 +28,7 @@ A development tool to make [Discord](https://discord.com) bots.
 
 - 🍂 Reduced size and dependencies.
 
-## Start
+## Setup
 
 1. Install [ydf](https://github.com/kh0wel/ydf).
 
