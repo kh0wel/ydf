@@ -14,7 +14,7 @@ export default async function (config: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await mapFiles(config.include, config.exclude, config.root);
+    const mapedFiles = await mapFiles(config.include, config.exclude, config.cwd);
 
     for (const mapedFile of mapedFiles) {
 

@@ -23,18 +23,20 @@ export interface ConfigOptions {
 
     bot: BotCallback;
 
-    root?: string;
+    cwd?: string;
 
     include?: string[];
 
     exclude?: string[];
+
+    plugins?: string[];
 }
 
 export class ConfigBuilder {
 
     bot: BotCallback = null!;
 
-    root: string = '.';
+    cwd: string = '.';
 
     include: string[] = [
 
@@ -47,11 +49,13 @@ export class ConfigBuilder {
 
     exclude: string[] = [ '**/.*' ];
 
+    plugins: string[] = [];
+
     constructor (options: ConfigOptions) {
 
         this.bot = options.bot;
 
-        this.root    = options.root    ?? this.root;
+        this.cwd     = options.cwd     ?? this.cwd;
         this.include = options.include ?? this.include;
         this.exclude = options.exclude ?? this.exclude;
     }
