@@ -16,17 +16,17 @@ A development tool to make [Discord](https://discord.com) bots.
 
 - 📚 Writed on [TypeScript](https://www.typescriptlang.org).
 
-- 🔥 Intelligent structure management.
-
 - 🧳 Supported [Node](https://nodejs.org) and [Bun](https://bun.sh) runtime environments.
 
 - 🔌 Supported various [discord.js](https://discord.js.org) and [biscuit.js](https://biscuitjs.com) versions.
 
-- 🧱 Implemented [Plug-in](https://en.wikipedia.org/wiki/Plug-in_%28computing%29) system.
+- 🔥 Intelligent structure management.
 
 - 📋 Detailed console information.
 
 - 🍂 Reduced size and dependencies.
+
+- 🧱 Implemented [Plug-in](https://en.wikipedia.org/wiki/Plug-in_%28computing%29) system.
 
 ## Setup
 
