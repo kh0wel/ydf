@@ -11,6 +11,9 @@ dependencies:
   fast-glob:
     specifier: ^3.2.12
     version: 3.2.12
+  kleur:
+    specifier: ^4.1.5
+    version: 4.1.5
 
 devDependencies:
   '@biscuitland/core':
@@ -755,6 +758,11 @@ packages:
     dependencies:
       json-buffer: 3.0.1
     dev: true
+
+  /kleur@4.1.5:
+    resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
+    engines: {node: '>=6'}
+    dev: false
 
   /lowercase-keys@2.0.0:
     resolution: {integrity: sha512-tqNXrS78oMOE73NMxK4EMLQsQowWf8jKooH9g7xPavRT706R6bkQJ6DY2Te7QukaZsulxa30wQ7bk0pm4XiHmA==}

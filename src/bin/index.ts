@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import cac from 'cac';
+import kleur from 'kleur';
 
 import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
@@ -15,13 +16,22 @@ cli
 
     .option('-P, --project <path>', 'Project directory path (default is "new-ydf-project")', { default: 'new-ydf-project' })
 
-    .action(async ({ project: projectPath }) => {
+    .action(({ project: projectPath }) => {
 
-        await fs.mkdir(path.resolve(projectPath, 'src', 'events'),    { recursive: true });
-        await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
-        await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
+        fs.access(path.resolve(projectPath))
 
-        await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
+            .then(() => console.log(kleur.red('Project already exists')))
+
+            .catch(async () => {
+
+                await fs.mkdir(path.resolve(projectPath, 'src', 'events'),    { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
+
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
+
+                console.log(kleur.bold().blue('GitHub:'), kleur.gray('https://github.com/kh0wel/ydf'));
+            });
     });
 
 cli
@@ -33,6 +43,8 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
+        console.log(kleur.gray('Loading files'));
+
         const {
 
             loadedEvents,
@@ -41,6 +53,8 @@ cli
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
         } = await loadFiles(config);
+
+        console.log(kleur.gray('Managin structures'));
 
         const usedEvents = findEvents(
 
@@ -53,11 +67,13 @@ cli
 
         const { usedIntents } = findGateways(loadedEvents, usedEvents);
 
+        console.log(kleur.gray('Running events'));
+
         for (const loadedEvent of loadedEvents) {
 
             if (!usedEvents[loadedEvent.name]) continue;
 
-            loadedEvent.execute({
+            await loadedEvent.execute({
 
                 config,
 
@@ -83,6 +99,8 @@ cli
                 })
             });
         }
+
+        console.log(kleur.green('Finished'));
     });
 
 cli.help();

@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "3.0.0",
+  "version": "2.10.1",
   "description": "🐱‍💻 A development tool to make Discord bots",
   "type": "module",
   "bin": "dist/bin/index.js",
@@ -40,6 +40,7 @@
   },
   "dependencies": {
     "cac": "^6.7.14",
+    "kleur": "^4.1.5",
     "fast-glob": "^3.2.12"
   },
   "devDependencies": {
