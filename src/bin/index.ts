@@ -43,8 +43,6 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-        console.log(kleur.gray('Loading files'));
-
         const {
 
             loadedEvents,
@@ -53,8 +51,6 @@ cli
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
         } = await loadFiles(config);
-
-        console.log(kleur.gray('Managin structures'));
 
         const usedEvents = findEvents(
 
@@ -65,9 +61,7 @@ cli
             loadedUserContextMenuCommands
         );
 
-        const { usedIntents } = findGateways(loadedEvents, usedEvents);
-
-        console.log(kleur.gray('Running events'));
+        const { usedIntents, usedPartials } = findGateways(loadedEvents, usedEvents);
 
         for (const loadedEvent of loadedEvents) {
 
@@ -85,6 +79,7 @@ cli
 
                 usedEvents,
                 usedIntents,
+                usedPartials,
 
                 bot: config.bot({
 
@@ -95,12 +90,32 @@ cli
                     loadedUserContextMenuCommands,
 
                     usedEvents,
-                    usedIntents
+                    usedIntents,
+                    usedPartials
                 })
             });
         }
 
-        console.log(kleur.green('Finished'));
+        console.log(kleur.bold().cyan('Used Files:'));
+
+        console.log();
+
+        console.log(kleur.gray('Events:                       '), loadedEvents.length);
+        console.log(kleur.gray('Services:                     '), loadedServices.length);
+        console.log(kleur.gray('Chat Input Commands:          '), loadedChatInputCommands.length);
+        console.log(kleur.gray('User Context Menu Commands:   '), loadedUserContextMenuCommands.length);
+        console.log(kleur.gray('Message Context Menu Commands:'), loadedMessageContextMenuCommands.length);
+
+        console.log();
+
+        console.log(kleur.bold().green('Used Gateways:'));
+
+        console.log();
+
+        console.log(kleur.gray('Intents:'), usedIntents);
+        console.log(kleur.gray('Partials:'), usedPartials);
+
+        console.log();
     });
 
 cli.help();

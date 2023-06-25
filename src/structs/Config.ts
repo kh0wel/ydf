@@ -17,6 +17,7 @@ export type BotCallback = (parameters: {
     usedEvents: EventsGroup;
 
     usedIntents: number;
+    usedPartials: number[];
 }) => Session | Client;
 
 export interface ConfigOptions {

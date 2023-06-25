@@ -22,6 +22,7 @@ export type ExecuteCallback = (parameters: {
     usedEvents: EventsGroup;
 
     usedIntents: number;
+    usedPartials: number[];
 }) => Promise<void> | void;
 
 export interface EventOptions extends BaseOptions {
