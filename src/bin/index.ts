@@ -2,7 +2,6 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import cac from 'cac';
-import kleur from 'kleur';
 
 import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
@@ -20,7 +19,7 @@ cli
 
         fs.access(path.resolve(projectPath))
 
-            .then(() => console.log(kleur.red('Project already exists')))
+            .then(() => console.log('Project already exists'))
 
             .catch(async () => {
 
@@ -29,8 +28,6 @@ cli
                 await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
                 await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
-
-                console.log(kleur.bold().blue('GitHub:'), kleur.gray('https://github.com/kh0wel/ydf'));
             });
     });
 
@@ -71,16 +68,6 @@ cli
 
                 config,
 
-                loadedEvents,
-                loadedServices,
-                loadedChatInputCommands,
-                loadedMessageContextMenuCommands,
-                loadedUserContextMenuCommands,
-
-                usedEvents,
-                usedIntents,
-                usedPartials,
-
                 bot: config.bot({
 
                     loadedEvents,
@@ -92,30 +79,19 @@ cli
                     usedEvents,
                     usedIntents,
                     usedPartials
-                })
+                }),
+
+                loadedEvents,
+                loadedServices,
+                loadedChatInputCommands,
+                loadedMessageContextMenuCommands,
+                loadedUserContextMenuCommands,
+
+                usedEvents,
+                usedIntents,
+                usedPartials
             });
         }
-
-        console.log(kleur.bold().cyan('Used Files:'));
-
-        console.log();
-
-        console.log(kleur.gray('Events:                       '), loadedEvents.length);
-        console.log(kleur.gray('Services:                     '), loadedServices.length);
-        console.log(kleur.gray('Chat Input Commands:          '), loadedChatInputCommands.length);
-        console.log(kleur.gray('User Context Menu Commands:   '), loadedUserContextMenuCommands.length);
-        console.log(kleur.gray('Message Context Menu Commands:'), loadedMessageContextMenuCommands.length);
-
-        console.log();
-
-        console.log(kleur.bold().green('Used Gateways:'));
-
-        console.log();
-
-        console.log(kleur.gray('Intents:'), usedIntents);
-        console.log(kleur.gray('Partials:'), usedPartials);
-
-        console.log();
     });
 
 cli.help();

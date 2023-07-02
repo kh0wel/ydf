@@ -1,7 +1,7 @@
 {
   "name": "ydf",
-  "version": "2.10.1",
-  "description": "🐱‍💻 A development tool to make Discord bots",
+  "version": "4.0.0",
+  "description": "🤪 A development tool to build Discord bots",
   "type": "module",
   "bin": "dist/bin/index.js",
   "main": "dist/index.js",
@@ -26,7 +26,6 @@
   ],
   "author": "kh0wel",
   "license": "MIT",
-  "readme": "https://github.com/kh0wel/ydf#about",
   "repository": {
     "type": "git",
     "url": "https://github.com/kh0wel/ydf"
@@ -34,13 +33,8 @@
   "bugs": {
     "url": "https://github.com/kh0wel/ydf/issues"
   },
-  "engines": {
-    "node": ">=18.16.*",
-    "bun": ">=0.6.*"
-  },
   "dependencies": {
     "cac": "^6.7.14",
-    "kleur": "^4.1.5",
     "fast-glob": "^3.2.12"
   },
   "devDependencies": {
@@ -51,17 +45,5 @@
     "@types/node": "^18.16.16",
     "rome": "^12.1.3",
     "typescript": "^5.1.3"
-  },
-  "peerDependencies": {
-    "@biscuitland/core": ">=1.3.1",
-    "@discordjs/core": ">=0.6.0"
-  },
-  "peerDependenciesMeta": {
-    "@biscuitland/core": {
-      "optional": false
-    },
-    "@discordjs/core": {
-      "optional": false
-    }
   }
 }
