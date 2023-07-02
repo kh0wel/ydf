@@ -1,12 +1,9 @@
-import { Session } from '@biscuitland/core';
-import { Client } from '@discordjs/core';
-
 import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { EventsGroup } from './Util.js';
 
-export type BotCallback = (parameters: {
+export type BotCallback = (_: {
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -18,7 +15,7 @@ export type BotCallback = (parameters: {
 
     usedIntents: number;
     usedPartials: number[];
-}) => Session | Client;
+}) => any;
 
 export interface ConfigOptions {
 

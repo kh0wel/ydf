@@ -3,7 +3,7 @@ import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextM
 
 export interface HandledEvents {
 
-    [event: string]: (parameters: any) => Promise<void> | void
+    [event: string]: (_: any) => Promise<void> | void
 }
 
 export type GroupedService = ServiceBuilder;
