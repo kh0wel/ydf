@@ -82,15 +82,15 @@ export interface AnyContextMenuCommandDisplay {
     permissions?: CommandPermissions;
 }
 
-export interface CommandOptions <D extends ChatInputCommandDisplay | AnyContextMenuCommandDisplay> extends BaseOptions {
+export interface CommandOptions <Display extends ChatInputCommandDisplay | AnyContextMenuCommandDisplay> extends BaseOptions {
 
     /**
      * Command display
      */
-    display: Omit<D, 'type'>;
+    display: Omit<Display, 'type'>;
 
     /**
-     * Used events
+     * Necessary events (using their file name with excluded extensions)
      */
     events: HandledEvents;
 }

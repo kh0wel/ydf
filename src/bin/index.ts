@@ -7,6 +7,11 @@ import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
 import findGateways from '../findGateways.js';
 
+import { ConfigBuilder } from '../structs/Config.js';
+import { EventBuilder } from '../structs/Event.js';
+import { ServiceBuilder } from '../structs/Service.js';
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from '../structs/Command.js';
+
 // @ts-expect-error
 const cli = cac();
 
@@ -23,9 +28,9 @@ cli
 
             .catch(async () => {
 
-                await fs.mkdir(path.resolve(projectPath, 'src', 'events'),    { recursive: true });
-                await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
-                await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'events'), { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'services'), { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'commands'), { recursive: true });
 
                 await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder({ bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT_TOKEN\' }); } });\n');
             });
@@ -38,7 +43,7 @@ cli
 
     .action(async ({ config: configPath }) => {
 
-        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
+        const config: ConfigBuilder = (await import(`file:///${ path.resolve(configPath) }`)).default;
 
         const [
 
@@ -49,11 +54,11 @@ cli
             loadedMessageContextMenuCommands
         ] = await Promise.all([
 
-            loadFiles(config.files.events,                     config.root),
-            loadFiles(config.files.services,                   config.root),
-            loadFiles(config.files.chatInputCommands,          config.root),
-            loadFiles(config.files.userContextMenuCommands,    config.root),
-            loadFiles(config.files.messageContextMenuCommands, config.root)
+            loadFiles<EventBuilder>(config.files.events, config.root),
+            loadFiles<ServiceBuilder>(config.files.services, config.root),
+            loadFiles<ChatInputCommandBuilder>(config.files.chatInputCommands, config.root),
+            loadFiles<UserContextMenuCommandBuilder>(config.files.userContextMenuCommands, config.root),
+            loadFiles<MessageContextMenuCommandBuilder>(config.files.messageContextMenuCommands, config.root)
         ]);
 
         const usedEvents = findEvents(
@@ -75,7 +80,7 @@ cli
 
                 config,
 
-                bot: config.bot({
+                bot: await config.bot({
 
                     loadedEvents,
                     loadedServices,

@@ -13,9 +13,9 @@ export type BotCallback = (_: {
 
     usedEvents: EventsGroup;
 
-    usedIntents: number;
+    usedIntents:  number;
     usedPartials: number[];
-}) => any;
+}) => Promise<any> | any;
 
 export interface ConfigOptions {
 
