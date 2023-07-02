@@ -1,7 +1,6 @@
 import { Session } from '@biscuitland/core';
 import { Client } from '@discordjs/core';
 
-import { ConfigBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
@@ -9,7 +8,7 @@ import { DataFrom, EventsGroup } from './Util.js';
 
 export type ExecuteCallback = (parameters: {
 
-    config: ConfigBuilder;
+    config: any;
 
     bot: Session | Client;
 

@@ -2,13 +2,12 @@ import path from 'node:path';
 
 import glob from 'fast-glob';
 
-import { ConfigBuilder } from './structs/Config.js';
 import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
 import { DataFrom } from './structs/Util.js';
 
-export default async function (config: ConfigBuilder) {
+export default async function ({ cwd, include, exclude }) {
 
     const loadedEvents:                     EventBuilder[]                     = [];
     const loadedServices:                   ServiceBuilder[]                   = [];
@@ -16,13 +15,7 @@ export default async function (config: ConfigBuilder) {
     const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
     const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
 
-    const mapedFiles = await glob(config.include, {
-
-        ignore: config.exclude,
-        cwd:    config.cwd,
-
-        absolute: true
-    });
+    const mapedFiles = await glob(include, { cwd, ignore: exclude, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 

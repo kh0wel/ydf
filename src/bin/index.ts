@@ -3,10 +3,6 @@ import path from 'node:path';
 
 import cac from 'cac';
 
-import loadFiles from '../loadFiles.js';
-import findEvents from '../findEvents.js';
-import findGateways from '../findGateways.js';
-
 // @ts-expect-error
 const cli = cac();
 
@@ -27,7 +23,7 @@ cli
                 await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
                 await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
-                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nexport default {\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n};\n');
             });
     });
 
@@ -39,59 +35,7 @@ cli
     .action(async ({ config: configPath }) => {
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
-
-        const {
-
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedUserContextMenuCommands,
-            loadedMessageContextMenuCommands
-        } = await loadFiles(config);
-
-        const usedEvents = findEvents(
-
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands
-        );
-
-        const { usedIntents, usedPartials } = findGateways(loadedEvents, usedEvents);
-
-        for (const loadedEvent of loadedEvents) {
-
-            if (!usedEvents[loadedEvent.name]) continue;
-
-            await loadedEvent.execute({
-
-                config,
-
-                bot: config.bot({
-
-                    loadedEvents,
-                    loadedServices,
-                    loadedChatInputCommands,
-                    loadedMessageContextMenuCommands,
-                    loadedUserContextMenuCommands,
-
-                    usedEvents,
-                    usedIntents,
-                    usedPartials
-                }),
-
-                loadedEvents,
-                loadedServices,
-                loadedChatInputCommands,
-                loadedMessageContextMenuCommands,
-                loadedUserContextMenuCommands,
-
-                usedEvents,
-                usedIntents,
-                usedPartials
-            });
-        }
+        
     });
 
 cli.help();

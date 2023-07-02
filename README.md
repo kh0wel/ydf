@@ -36,6 +36,29 @@ A development tool to build [Discord](https://discord.com) bots
     ydf init
     ```
 
+## Configuration
+
+```js
+export default {
+
+	bot () {
+
+
+	},
+
+	cwd: '.',
+
+	plugins: [
+
+		defaultLoader()
+	],
+
+	include: [],
+
+	exclude: []
+};
+```
+
 ## Plug-in
 
 
