@@ -3,7 +3,7 @@ import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextM
 
 export interface HandledEvents {
 
-    [event: string]: (_: any) => Promise<void> | void
+    [event: string]: (_: any) => Promise<void> | void;
 }
 
 export type GroupedService = ServiceBuilder;
@@ -14,14 +14,14 @@ export type GroupedAll = GroupedService | GroupedCommand;
 
 export interface GroupedEvent {
 
-    services: GroupedService[],
+    services: GroupedService[];
 
-    commands: GroupedCommand[]
+    commands: GroupedCommand[];
 
-    all: GroupedAll[]
+    all: GroupedAll[];
 }
 
 export interface EventsGroup {
 
-    [event: string]: GroupedEvent
+    [event: string]: GroupedEvent;
 }

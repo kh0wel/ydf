@@ -25,11 +25,11 @@ export interface ConfigOptions {
 
     files?: {
 
-        events?:                     string,
-        services?:                   string,
-        chatInputCommands?:          string,
-        userContextMenuCommands?:    string,
-        messageContextMenuCommands?: string
+        events?:                     string;
+        services?:                   string;
+        chatInputCommands?:          string;
+        userContextMenuCommands?:    string;
+        messageContextMenuCommands?: string;
     };
 
     plugins?: string[];
@@ -48,7 +48,7 @@ export class ConfigBuilder {
         chatInputCommands:          'src/**/*.command.chat.*',
         userContextMenuCommands:    'src/**/*.command.user.*',
         messageContextMenuCommands: 'src/**/*.command.message.*'
-    }
+    };
 
     plugins = [];
 
