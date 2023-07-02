@@ -27,7 +27,7 @@ cli
                 await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
                 await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
-                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nexport default { bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT TOKEN\' }); } };\n');
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder({ bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT_TOKEN\' }); } });\n');
             });
     });
 
@@ -40,11 +40,21 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-        const loadedEvents                     = await loadFiles(config.files.events,                     config.root);
-        const loadedServices                   = await loadFiles(config.files.services,                   config.root);
-        const loadedChatInputCommands          = await loadFiles(config.files.chatInputCommands,          config.root);
-        const loadedUserContextMenuCommands    = await loadFiles(config.files.userContextMenuCommands,    config.root);
-        const loadedMessageContextMenuCommands = await loadFiles(config.files.messageContextMenuCommands, config.root);
+        const [
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands
+        ] = await Promise.all([
+
+            loadFiles(config.files.events,                     config.root),
+            loadFiles(config.files.services,                   config.root),
+            loadFiles(config.files.chatInputCommands,          config.root),
+            loadFiles(config.files.userContextMenuCommands,    config.root),
+            loadFiles(config.files.messageContextMenuCommands, config.root)
+        ]);
 
         const usedEvents = findEvents(
 
