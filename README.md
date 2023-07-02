@@ -26,11 +26,11 @@ A development tool to build [Discord](https://discord.com) bots
 
 ## Starting
 
-1. Install this tool.
+1. Install [YDF](https://github.com/kh0wel/ydf).
 
-2. Install you favorite Discord library.
+2. Install [biscuit](https://biscuitjs.com) (or another library).
 
-3. Start a new project using this:
+3. Create a new project:
 
     ```bash
     ydf init
