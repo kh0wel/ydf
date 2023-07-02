@@ -1,5 +1,5 @@
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEvents, DataFrom } from './Util.js';
+import { HandledEvents } from './Util.js';
 
 export interface CommandLocalizations {
 
@@ -97,8 +97,6 @@ export interface CommandOptions <D extends ChatInputCommandDisplay | AnyContextM
 
 export class ChatInputCommandBuilder extends BaseBuilder {
 
-    from = DataFrom.CHAT_INPUT_COMMAND;
-
     display: Required<ChatInputCommandDisplay> = {
 
         // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
@@ -140,8 +138,6 @@ export class ChatInputCommandBuilder extends BaseBuilder {
 
 export class UserContextMenuCommandBuilder extends BaseBuilder {
 
-    from = DataFrom.USER_CONTEXT_MENU_COMMAND;
-
     display: Required<AnyContextMenuCommandDisplay> = {
 
         // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
@@ -177,8 +173,6 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
 }
 
 export class MessageContextMenuCommandBuilder extends BaseBuilder {
-
-    from = DataFrom.MESSAGE_CONTEXT_MENU_COMMAND;
 
     display: Required<AnyContextMenuCommandDisplay> = {
 

@@ -40,14 +40,11 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-        const {
-
-            loadedEvents,
-            loadedServices,
-            loadedChatInputCommands,
-            loadedUserContextMenuCommands,
-            loadedMessageContextMenuCommands
-        } = await loadFiles(config);
+        const loadedEvents                     = await loadFiles(config.source.events, config.root);
+        const loadedServices                   = await loadFiles(config.source.services, config.root);
+        const loadedChatInputCommands          = await loadFiles(config.source.chatInputCommands, config.root);
+        const loadedUserContextMenuCommands    = await loadFiles(config.source.userContextMenuCommands, config.root);
+        const loadedMessageContextMenuCommands = await loadFiles(config.source.messageContextMenuCommands, config.root);
 
         const usedEvents = findEvents(
 
@@ -68,16 +65,6 @@ cli
 
                 config,
 
-                loadedEvents,
-                loadedServices,
-                loadedChatInputCommands,
-                loadedMessageContextMenuCommands,
-                loadedUserContextMenuCommands,
-
-                usedEvents,
-                usedIntents,
-                usedPartials,
-
                 bot: config.bot({
 
                     loadedEvents,
@@ -89,7 +76,17 @@ cli
                     usedEvents,
                     usedIntents,
                     usedPartials
-                })
+                }),
+
+                loadedEvents,
+                loadedServices,
+                loadedChatInputCommands,
+                loadedMessageContextMenuCommands,
+                loadedUserContextMenuCommands,
+
+                usedEvents,
+                usedIntents,
+                usedPartials
             });
         }
     });

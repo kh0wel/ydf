@@ -5,7 +5,7 @@ import { ConfigBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
-import { DataFrom, EventsGroup } from './Util.js';
+import { EventsGroup } from './Util.js';
 
 export type ExecuteCallback = (parameters: {
 
@@ -34,8 +34,6 @@ export interface EventOptions extends BaseOptions {
 }
 
 export class EventBuilder extends BaseBuilder {
-
-    from = DataFrom.EVENT;
 
     /**
      * Function executed on deployment

@@ -24,11 +24,16 @@ export interface ConfigOptions {
 
     bot: BotCallback;
 
-    cwd?: string;
+    root?: string;
 
-    include?: string[];
+    source?: {
 
-    exclude?: string[];
+        events?:                     string,
+        services?:                   string,
+        chatInputCommands?:          string,
+        userContextMenuCommands?:    string,
+        messageContextMenuCommands?: string
+    };
 
     plugins?: string[];
 }
@@ -37,27 +42,29 @@ export class ConfigBuilder {
 
     bot: BotCallback = null!;
 
-    cwd: string = '.';
+    root = '.';
 
-    include: string[] = [
+    source = {
 
-        'src/**/*.event.*',
-        'src/**/*.service.*',
-        'src/**/*.command.chat.*',
-        'src/**/*.command.user.*',
-        'src/**/*.command.message.*'
-    ];
+        events:                     'src/**/*.event.*',
+        services:                   'src/**/*.service.*',
+        chatInputCommands:          'src/**/*.command.chat.*',
+        userContextMenuCommands:    'src/**/*.command.user.*',
+        messageContextMenuCommands: 'src/**/*.command.message.*'
+    }
 
-    exclude: string[] = [ '**/.*' ];
-
-    plugins: string[] = [];
+    plugins = [];
 
     constructor (options: ConfigOptions) {
 
         this.bot = options.bot;
 
-        this.cwd     = options.cwd     ?? this.cwd;
-        this.include = options.include ?? this.include;
-        this.exclude = options.exclude ?? this.exclude;
+        this.root = options.root ?? this.root;
+
+        this.source.events                     = options.source?.events                     ?? this.source.events;
+        this.source.services                   = options.source?.services                   ?? this.source.services;
+        this.source.chatInputCommands          = options.source?.chatInputCommands          ?? this.source.chatInputCommands;
+        this.source.userContextMenuCommands    = options.source?.userContextMenuCommands    ?? this.source.userContextMenuCommands;
+        this.source.messageContextMenuCommands = options.source?.messageContextMenuCommands ?? this.source.messageContextMenuCommands;
     }
 }
