@@ -3,6 +3,10 @@ import path from 'node:path';
 
 import cac from 'cac';
 
+import loadFiles from '../loadFiles.js';
+import findEvents from '../findEvents.js';
+import findGateways from '../findGateways.js';
+
 // @ts-expect-error
 const cli = cac();
 
@@ -35,7 +39,59 @@ cli
     .action(async ({ config: configPath }) => {
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
-        
+
+        const {
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands
+        } = await loadFiles(config);
+
+        const usedEvents = findEvents(
+
+            loadedEvents,
+            loadedServices,
+            loadedChatInputCommands,
+            loadedMessageContextMenuCommands,
+            loadedUserContextMenuCommands
+        );
+
+        const { usedIntents, usedPartials } = findGateways(loadedEvents, usedEvents);
+
+        for (const loadedEvent of loadedEvents) {
+
+            if (!usedEvents[loadedEvent.name]) continue;
+
+            await loadedEvent.execute({
+
+                config,
+
+                loadedEvents,
+                loadedServices,
+                loadedChatInputCommands,
+                loadedMessageContextMenuCommands,
+                loadedUserContextMenuCommands,
+
+                usedEvents,
+                usedIntents,
+                usedPartials,
+
+                bot: config.bot({
+
+                    loadedEvents,
+                    loadedServices,
+                    loadedChatInputCommands,
+                    loadedMessageContextMenuCommands,
+                    loadedUserContextMenuCommands,
+
+                    usedEvents,
+                    usedIntents,
+                    usedPartials
+                })
+            });
+        }
     });
 
 cli.help();

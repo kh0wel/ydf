@@ -36,35 +36,6 @@ A development tool to build [Discord](https://discord.com) bots
     ydf init
     ```
 
-## Configuration
-
-```js
-import { Client } from 'discord.js';
-
-export default {
-
-	bot ({ usedIntents, usedPartials }) {
-
-		return new Client({ intents: usedIntents, partials: usedPartials });
-	},
-
-	cwd: '.',
-
-	plugins: [],
-
-	include: [
-
-		'**/*.event.*',
-		'**/*.service.*',
-		'**/*.command.chat.*'
-		'**/*.command.user.*',
-		'**/*.command.message.*'
-	],
-
-	exclude: [ '**/.*' ]
-};
-```
-
 ## Plug-in
 
 
