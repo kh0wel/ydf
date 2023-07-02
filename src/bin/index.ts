@@ -61,7 +61,7 @@ cli
 
             if (!usedEvents[loadedEvent.name]) continue;
 
-            await loadedEvent.execute({
+            await loadedEvent.deploy({
 
                 config,
 

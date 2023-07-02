@@ -18,7 +18,7 @@ A development tool to build [Discord](https://discord.com) bots
 
 - 🧳 Supported for various runtime environments (tested on [Bun](https://bun.sh) and [Node](https://nodejs.org)).
 
-- 🔌 Designed for most libraries (tested on [biscuit](https://biscuitjs.com) and [discord.js](https://discord.js.org)).
+- 🚀 Designed for most libraries (tested on [biscuit](https://biscuitjs.com) and [discord.js](https://discord.js.org)).
 
 - 🧱 Implemented [Plug-in](https://en.wikipedia.org/wiki/Plug-in_%28computing%29) system.
 

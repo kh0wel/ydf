@@ -1,14 +1,14 @@
-import { ConfigBuilder } from './Config.js';
+import { ConfigBuilder, BotCallback } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 import { EventsGroup } from './Util.js';
 
-export type ExecuteCallback = (_: {
+export type DeployCallback = (_: {
 
     config: ConfigBuilder;
 
-    bot: any;
+    bot: ReturnType<BotCallback>;
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -18,7 +18,7 @@ export type ExecuteCallback = (_: {
 
     usedEvents: EventsGroup;
 
-    usedIntents: number;
+    usedIntents:  number;
     usedPartials: number[];
 }) => Promise<void> | void;
 
@@ -27,7 +27,7 @@ export interface EventOptions extends BaseOptions {
     /**
      * Function executed on deployment
      */
-    execute: ExecuteCallback;
+    deploy: DeployCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -35,12 +35,12 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function executed on deployment
      */
-    execute: ExecuteCallback = null!;
+    deploy: DeployCallback = null!;
 
     constructor (options: EventOptions) {
 
         super (options);
 
-        this.execute = options.execute;
+        this.deploy = options.deploy;
     }
 }

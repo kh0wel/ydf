@@ -18,19 +18,9 @@ export default function (
 
         const byServices: GroupedService[] = loadedServices.filter((serv) => serv.events[loadedEvent.name]);
 
-        const byCommands: GroupedCommand[] = [
+        const byCommands: GroupedCommand[] = [ ... loadedChatInputCommands, ... loadedUserContextMenuCommands, ... loadedMessageContextMenuCommands ].filter((comm) => comm.events[loadedEvent.name]);
 
-            ... loadedChatInputCommands,
-            ... loadedUserContextMenuCommands,
-            ... loadedMessageContextMenuCommands
-        ]
-            .filter((comm) => comm.events[loadedEvent.name]);
-
-        const byAll: GroupedAll[] = [
-
-            ... byServices,
-            ... byCommands
-        ];
+        const byAll: GroupedAll[] = [ ... byServices, ... byCommands ];
 
         if (!byAll.length) continue;
 
