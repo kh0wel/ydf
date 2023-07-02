@@ -40,11 +40,11 @@ cli
 
         const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
 
-        const loadedEvents                     = await loadFiles(config.source.events, config.root);
-        const loadedServices                   = await loadFiles(config.source.services, config.root);
-        const loadedChatInputCommands          = await loadFiles(config.source.chatInputCommands, config.root);
-        const loadedUserContextMenuCommands    = await loadFiles(config.source.userContextMenuCommands, config.root);
-        const loadedMessageContextMenuCommands = await loadFiles(config.source.messageContextMenuCommands, config.root);
+        const loadedEvents                     = await loadFiles(config.files.events,                     config.root);
+        const loadedServices                   = await loadFiles(config.files.services,                   config.root);
+        const loadedChatInputCommands          = await loadFiles(config.files.chatInputCommands,          config.root);
+        const loadedUserContextMenuCommands    = await loadFiles(config.files.userContextMenuCommands,    config.root);
+        const loadedMessageContextMenuCommands = await loadFiles(config.files.messageContextMenuCommands, config.root);
 
         const usedEvents = findEvents(
 

@@ -23,7 +23,7 @@ export interface ConfigOptions {
 
     root?: string;
 
-    source?: {
+    files?: {
 
         events?:                     string,
         services?:                   string,
@@ -41,7 +41,7 @@ export class ConfigBuilder {
 
     root = '.';
 
-    source = {
+    files = {
 
         events:                     'src/**/*.event.*',
         services:                   'src/**/*.service.*',
@@ -58,10 +58,10 @@ export class ConfigBuilder {
 
         this.root = options.root ?? this.root;
 
-        this.source.events                     = options.source?.events                     ?? this.source.events;
-        this.source.services                   = options.source?.services                   ?? this.source.services;
-        this.source.chatInputCommands          = options.source?.chatInputCommands          ?? this.source.chatInputCommands;
-        this.source.userContextMenuCommands    = options.source?.userContextMenuCommands    ?? this.source.userContextMenuCommands;
-        this.source.messageContextMenuCommands = options.source?.messageContextMenuCommands ?? this.source.messageContextMenuCommands;
+        this.files.events                     = options.files?.events                     ?? this.files.events;
+        this.files.services                   = options.files?.services                   ?? this.files.services;
+        this.files.chatInputCommands          = options.files?.chatInputCommands          ?? this.files.chatInputCommands;
+        this.files.userContextMenuCommands    = options.files?.userContextMenuCommands    ?? this.files.userContextMenuCommands;
+        this.files.messageContextMenuCommands = options.files?.messageContextMenuCommands ?? this.files.messageContextMenuCommands;
     }
 }

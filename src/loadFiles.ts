@@ -6,7 +6,7 @@ export default async function (target: string, cwd: string) {
 
     const loadedFiles: any[] = [];
 
-    const mapedFiles = await glob(target, { cwd, absolute: true });
+    const mapedFiles = await glob(target, { cwd, dot: true, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 

@@ -6,7 +6,6 @@
   "bin": "dist/bin/index.js",
   "main": "dist/index.js",
   "types": "typings/index.d.ts",
-  "preview": true,
   "scripts": {
     "lint": "rome check \".\"",
     "build": "swc src -d dist && tsc --project \".\""
