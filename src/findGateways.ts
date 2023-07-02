@@ -1,5 +1,5 @@
-import { EventBuilder } from './structs/Event.js';
 import { EventsGroup } from './structs/Util.js';
+import { EventBuilder } from './structs/Event.js';
 
 export default function (loadedEvents: EventBuilder[], usedEvents: EventsGroup) {
 

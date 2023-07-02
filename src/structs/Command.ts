@@ -1,5 +1,5 @@
-import { BaseOptions, BaseBuilder } from './Base.js';
 import { HandledEvents } from './Util.js';
+import { BaseOptions, BaseBuilder } from './Base.js';
 
 export interface CommandLocalizations {
 
