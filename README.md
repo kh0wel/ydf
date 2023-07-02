@@ -24,37 +24,23 @@ A development tool to build [Discord](https://discord.com) bots
 
 - 🍂 Reduced size and dependencies.
 
-## Setup
+## Starting
 
-1. Install [ydf](https://github.com/kh0wel/ydf).
+1. Install this tool.
 
-    ```bash
-    npm add ydf -D
-    yarn add ydf -D
-    pnpm add ydf -D
-    ```
+2. Install you favorite Discord library.
 
-2. Install [discord.js](https://discord.js.org) or [biscuit.js](https://biscuitjs.com).
+3. Start a new project using this:
 
     ```bash
-    npm add @discordjs/core
-    yarn add @discordjs/core
-    pnpm add @discordjs/core
+    ydf init
     ```
 
-    ```bash
-    npm add @biscuitland/core
-    yarn add @biscuitland/core
-    pnpm add @biscuitland/core
-    ```
+## Plug-in
 
-3. Create a new project.
 
-    ```bash
-    npx ydf init
-    yarn ydf init
-    pnpm ydf init
-    ```
+
+
 
 ## Examples
 
