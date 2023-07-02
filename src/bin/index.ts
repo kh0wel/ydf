@@ -23,7 +23,7 @@ cli
                 await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
                 await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
 
-                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nexport default {\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n};\n');
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Client } from \'discord.js\';\n\nexport default {\n\tbot ({ usedIntents }) {\n\n\t\treturn new Client({ intents: usedIntents, partials: usedPartials });\n\t}\n};\n');
             });
     });
 

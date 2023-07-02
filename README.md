@@ -39,23 +39,29 @@ A development tool to build [Discord](https://discord.com) bots
 ## Configuration
 
 ```js
+import { Client } from 'discord.js';
+
 export default {
 
-	bot () {
+	bot ({ usedIntents, usedPartials }) {
 
-
+		return new Client({ intents: usedIntents, partials: usedPartials });
 	},
 
 	cwd: '.',
 
-	plugins: [
+	plugins: [],
 
-		defaultLoader()
+	include: [
+
+		'**/*.event.*',
+		'**/*.service.*',
+		'**/*.command.chat.*'
+		'**/*.command.user.*',
+		'**/*.command.message.*'
 	],
 
-	include: [],
-
-	exclude: []
+	exclude: [ '**/.*' ]
 };
 ```
 
