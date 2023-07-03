@@ -1,4 +1,4 @@
-import { EventsGroup } from './Util.js';
+import { EventsUsed } from './Util.js';
 import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
@@ -11,7 +11,7 @@ export type BotCallback = (_: {
     loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
     loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
 
-    usedEvents: EventsGroup;
+    usedEvents: EventsUsed;
 
     usedIntents:  number;
     usedPartials: number[];

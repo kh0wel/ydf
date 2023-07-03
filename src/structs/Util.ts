@@ -1,24 +1,19 @@
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export type HandledCallback <Parameters> = (parameters: Parameters) => Promise<void> | void;
+export interface HandledEvents <Parameters, Callback extends (parameters: Parameters) => Promise<void> | void> {
 
-export type GroupedService = ServiceBuilder;
-
-export type GroupedCommand = ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder;
-
-export type GroupedAll = GroupedService | GroupedCommand;
-
-export interface GroupedEvent {
-
-    services: GroupedService[];
-
-    commands: GroupedCommand[];
-
-    all: GroupedAll[];
+    [event: string]: Callback;
 }
 
-export interface EventsGroup {
+export interface EventsUsed {
 
-    [event: string]: GroupedEvent;
+    [event: string]: {
+
+        services: Array<ServiceBuilder>;
+    
+        commands: Array<ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder>;
+    
+        all: Array<ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder>;
+    };
 }
