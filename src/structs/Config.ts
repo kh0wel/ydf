@@ -49,10 +49,19 @@ export interface ConfigOptions {
 
 export class ConfigBuilder {
 
+    /**
+     * Library client.
+     */
     bot: BotCallback = null!;
 
+    /**
+     * Project directory.
+     */
     project = '.';
 
+    /**
+     * Used files.
+     */
     files = {
 
         events:                     'src/**/*.event.*',
@@ -62,6 +71,9 @@ export class ConfigBuilder {
         messageContextMenuCommands: 'src/**/*.command.message.*'
     };
 
+    /**
+     * Used plugins.
+     */
     plugins = [];
 
     constructor (options: ConfigOptions) {
