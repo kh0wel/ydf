@@ -1,5 +1,6 @@
-import { HandledCallback, HandledEvents } from './Util.js';
+import { HandledEvents } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEventCallback, HandledEventCallbackParameters } from './Event.js';
 
 export interface CommandLocalizations {
 
@@ -88,7 +89,7 @@ export interface CommandOptions <
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: HandledEvents<HandledCallback<any>>;
+    events: HandledEvents<HandledEventCallbackParameters, HandledEventCallback>;
 }
 
 export class ChatInputCommandBuilder extends BaseBuilder {
@@ -112,7 +113,7 @@ export class ChatInputCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: HandledEvents<HandledCallback<any>> = null!;
+    events: HandledEvents<HandledEventCallbackParameters, HandledEventCallback> = null!;
 
     constructor (options: CommandOptions<ChatInputCommandDisplay>) {
 
@@ -161,7 +162,7 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: HandledEvents<HandledCallback<any>> = null!;
+    events: HandledEvents<HandledEventCallbackParameters, HandledEventCallback> = null!;
 
     constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
 
@@ -207,7 +208,7 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: HandledEvents<HandledCallback<any>> = null!;
+    events: HandledEvents<HandledEventCallbackParameters, HandledEventCallback> = null!;
 
     constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
 
