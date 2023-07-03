@@ -4,7 +4,7 @@ import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export type DeployCallback = (_: {
+export type DeploymentCallback = (_: {
 
     config: ConfigBuilder;
 
@@ -27,7 +27,7 @@ export interface EventOptions extends BaseOptions {
     /**
      * Function to execute (on deployment).
      */
-    deploy: DeployCallback;
+    deploy: DeploymentCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -35,7 +35,7 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function to execute (on deployment).
      */
-    deploy: DeployCallback = null!;
+    deploy: DeploymentCallback = null!;
 
     constructor (options: EventOptions) {
 
