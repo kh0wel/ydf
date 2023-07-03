@@ -1,15 +1,10 @@
-import { EventsGroup, HandledCallback } from './Util.js';
+import { EventsUsed, HandledCallback } from './Util.js';
 import { ConfigBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export interface HandledEvents <Callback extends Function> {
-
-    [event: string]: Callback;
-}
-
-export type EventCallback = HandledCallback<{
+export interface HandledEventParameters {
 
     config: ConfigBuilder;
 
@@ -21,18 +16,40 @@ export type EventCallback = HandledCallback<{
     loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
     loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
 
-    usedEvents: EventsGroup;
+    usedEvents: EventsUsed;
 
     usedIntents:  number;
     usedPartials: number[];
-}>;
+}
+
+export type HandledEventCallback = HandledCallback<HandledEventParameters>;
+
+export interface DeployEventParameters {
+
+    config: ConfigBuilder;
+
+    bot: any;
+
+    loadedEvents:                     EventBuilder[];
+    loadedServices:                   ServiceBuilder[];
+    loadedChatInputCommands:          ChatInputCommandBuilder[];
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
+
+    usedEvents: EventsUsed;
+
+    usedIntents:  number;
+    usedPartials: number[];
+}
+
+export type EventDeployCallback = HandledCallback<DeployEventParameters>;
 
 export interface EventOptions extends BaseOptions {
 
     /**
      * Function to execute (on deployment).
      */
-    deploy: EventCallback;
+    deploy: EventDeployCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -40,7 +57,7 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function to execute (on deployment).
      */
-    deploy: EventCallback = null!;
+    deploy: EventDeployCallback = null!;
 
     constructor (options: EventOptions) {
 

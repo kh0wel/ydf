@@ -1,7 +1,9 @@
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export interface HandledEvents <Parameters, Callback extends (parameters: Parameters) => Promise<void> | void> {
+export type HandledCallback <Parameters> = (parameters: Parameters) => Promise<void> | void;
+
+export interface HandledEvents <Parameters, Callback extends HandledCallback<Parameters>> {
 
     [event: string]: Callback;
 }
