@@ -20,8 +20,6 @@ A development tool to build [Discord](https://discord.com) bots
 
 - 🚀 Designed for most libraries (tested on [biscuit](https://biscuitjs.com) and [discord.js](https://discord.js.org)).
 
-- 🧱 Implemented [Plug-in](https://en.wikipedia.org/wiki/Plug-in_%28computing%29) system (coming soon).
-
 - 🍂 Reduced size and dependencies.
 
 ## Starting
@@ -35,12 +33,6 @@ A development tool to build [Discord](https://discord.com) bots
     ```bash
     ydf init
     ```
-
-## Plug-in
-
-
-
-
 
 ## Examples
 
