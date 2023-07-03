@@ -1,5 +1,6 @@
-import { HandledEvents } from './Util.js';
+import { HandledCallback } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents } from './Event.js';
 
 export interface CommandLocalizations {
 
@@ -88,7 +89,7 @@ export interface CommandOptions <
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: HandledEvents;
+    events: HandledEvents<HandledCallback<any>>;
 }
 
 export class ChatInputCommandBuilder extends BaseBuilder {
@@ -112,22 +113,33 @@ export class ChatInputCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: HandledEvents = null!;
+    events: HandledEvents<HandledCallback<any>> = null!;
 
     constructor (options: CommandOptions<ChatInputCommandDisplay>) {
 
         super (options);
 
-        this.display.name        = options.display.name;
-        this.display.description = options.display.description;
+        Object.assign(this, {
 
-        this.display.options = options.display.options ?? this.display.options;
+            display: {
 
-        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
-        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
-        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+                name:        options.display.name,
+                description: options.display.description,
 
-        this.events = options.events;
+                options: options.display.options ?? this.display.options,
+
+                permissions: {
+
+                    member: options.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                },
+
+                type: this.display.type
+            },
+
+            events: options.events
+        });
     }
 }
 
@@ -150,19 +162,30 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: HandledEvents = null!;
+    events: HandledEvents<HandledCallback<any>> = null!;
 
     constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
 
         super (options);
 
-        this.display.name = options.display.name;
+        Object.assign(this, {
 
-        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
-        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
-        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+            display: {
 
-        this.events = options.events;
+                name: options.display.name,
+
+                permissions: {
+
+                    member: options.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                },
+
+                type: this.display.type
+            },
+
+            events: options.events
+        });
     }
 }
 
@@ -185,18 +208,29 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: HandledEvents = null!;
+    events: HandledEvents<HandledCallback<any>> = null!;
 
     constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
 
         super (options);
 
-        this.display.name = options.display.name;
+        Object.assign(this, {
 
-        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
-        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
-        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+            display: {
 
-        this.events = options.events;
+                name: options.display.name,
+
+                permissions: {
+
+                    member: options.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                },
+
+                type: this.display.type
+            },
+
+            events: options.events
+        });
     }
 }

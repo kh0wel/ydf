@@ -1,10 +1,15 @@
-import { EventsGroup } from './Util.js';
+import { EventsGroup, HandledCallback } from './Util.js';
 import { ConfigBuilder } from './Config.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export type DeployCallback = (_: {
+export interface HandledEvents <Callback extends Function> {
+
+    [event: string]: Callback;
+}
+
+export type EventCallback = HandledCallback<{
 
     config: ConfigBuilder;
 
@@ -20,14 +25,14 @@ export type DeployCallback = (_: {
 
     usedIntents:  number;
     usedPartials: number[];
-}) => Promise<void> | void;
+}>;
 
 export interface EventOptions extends BaseOptions {
 
     /**
      * Function to execute (on deployment).
      */
-    deploy: DeployCallback;
+    deploy: EventCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -35,7 +40,7 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function to execute (on deployment).
      */
-    deploy: DeployCallback = null!;
+    deploy: EventCallback = null!;
 
     constructor (options: EventOptions) {
 

@@ -6,7 +6,7 @@ export interface BaseOptions {
     intents?: number;
 
     /**
-     * Necessary partials (using bitwise on array)
+     * Necessary partials (using array).
      */
     partials?: number[];
 }
@@ -29,13 +29,16 @@ export class BaseBuilder {
     intents: number = 0;
 
     /**
-     * Necessary partials (using bitwise on array).
+     * Necessary partials (using array).
      */
     partials: number[] = [];
 
     constructor (options: BaseOptions) {
 
-        this.intents  = options.intents  ?? this.intents;
-        this.partials = options.partials ?? this.partials;
+        Object.assign(this, {
+
+            intents:  options.intents  ?? this.intents,
+            partials: options.partials ?? this.partials
+        });
     }
 }

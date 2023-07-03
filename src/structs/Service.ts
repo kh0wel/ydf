@@ -1,12 +1,13 @@
-import { HandledEvents } from './Util.js';
+import { HandledCallback } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
+import { HandledEvents } from './Event.js';
 
 export interface ServiceOptions extends BaseOptions {
 
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: HandledEvents
+    events: HandledEvents<HandledCallback<any>>;
 }
 
 export class ServiceBuilder extends BaseBuilder {
@@ -14,12 +15,12 @@ export class ServiceBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: HandledEvents = null!;
+    events: HandledEvents<HandledCallback<any>> = null!;
 
     constructor (options: ServiceOptions) {
 
         super (options);
 
-        this.events = options.events;
+        Object.assign(this, { events: options.events });
     }
 }
