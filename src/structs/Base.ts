@@ -1,7 +1,7 @@
 export interface BaseOptions {
 
     /**
-     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents)
+     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
     intents?: number;
 
@@ -14,22 +14,22 @@ export interface BaseOptions {
 export class BaseBuilder {
 
     /**
-     * File name (excluding extensions)
+     * File name (excluding extensions).
      */
     name: string = null!;
 
     /**
-     * File path (not relative)
+     * File path (not relative).
      */
     path: string = null!;
 
     /**
-     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents)
+     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
     intents: number = 0;
 
     /**
-     * Necessary partials (using bitwise on array)
+     * Necessary partials (using bitwise on array).
      */
     partials: number[] = [];
 

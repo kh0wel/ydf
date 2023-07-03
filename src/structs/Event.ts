@@ -25,7 +25,7 @@ export type DeployCallback = (_: {
 export interface EventOptions extends BaseOptions {
 
     /**
-     * Function executed on deployment
+     * Function executed on deployment.
      */
     deploy: DeployCallback;
 }
@@ -33,7 +33,7 @@ export interface EventOptions extends BaseOptions {
 export class EventBuilder extends BaseBuilder {
 
     /**
-     * Function executed on deployment
+     * Function executed on deployment.
      */
     deploy: DeployCallback = null!;
 

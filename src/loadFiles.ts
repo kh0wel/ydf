@@ -6,9 +6,9 @@ import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
 
-export default async function <
+export default async function <Builder extends
 
-    Builder extends EventBuilder |
+    EventBuilder |
     ServiceBuilder |
     ChatInputCommandBuilder |
     UserContextMenuCommandBuilder |
