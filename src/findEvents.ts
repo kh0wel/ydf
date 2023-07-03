@@ -8,8 +8,8 @@ export default function (
     loadedEvents:                     EventBuilder[],
     loadedServices:                   ServiceBuilder[],
     loadedChatInputCommands:          ChatInputCommandBuilder[],
-    loadedMessageContextMenuCommands: UserContextMenuCommandBuilder[],
-    loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[]
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[],
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[]
 ) {
 
     const groupedEvents: EventsGroup = {};

@@ -19,10 +19,19 @@ export type BotCallback = (_: {
 
 export interface ConfigOptions {
 
+    /**
+     * Library client.
+     */
     bot: BotCallback;
 
-    root?: string;
+    /**
+     * Project directory.
+     */
+    project?: string;
 
+    /**
+     * Used files.
+     */
     files?: {
 
         events?:                     string;
@@ -32,6 +41,9 @@ export interface ConfigOptions {
         messageContextMenuCommands?: string;
     };
 
+    /**
+     * Used plugins.
+     */
     plugins?: string[];
 }
 
@@ -39,7 +51,7 @@ export class ConfigBuilder {
 
     bot: BotCallback = null!;
 
-    root = '.';
+    project = '.';
 
     files = {
 
@@ -56,7 +68,7 @@ export class ConfigBuilder {
 
         this.bot = options.bot;
 
-        this.root = options.root ?? this.root;
+        this.project = options.project ?? this.project;
 
         this.files.events                     = options.files?.events                     ?? this.files.events;
         this.files.services                   = options.files?.services                   ?? this.files.services;

@@ -54,11 +54,11 @@ cli
             loadedMessageContextMenuCommands
         ] = await Promise.all([
 
-            loadFiles<EventBuilder>(config.files.events, config.root),
-            loadFiles<ServiceBuilder>(config.files.services, config.root),
-            loadFiles<ChatInputCommandBuilder>(config.files.chatInputCommands, config.root),
-            loadFiles<UserContextMenuCommandBuilder>(config.files.userContextMenuCommands, config.root),
-            loadFiles<MessageContextMenuCommandBuilder>(config.files.messageContextMenuCommands, config.root)
+            loadFiles<EventBuilder>(config.files.events, config.project),
+            loadFiles<ServiceBuilder>(config.files.services, config.project),
+            loadFiles<ChatInputCommandBuilder>(config.files.chatInputCommands, config.project),
+            loadFiles<UserContextMenuCommandBuilder>(config.files.userContextMenuCommands, config.project),
+            loadFiles<MessageContextMenuCommandBuilder>(config.files.messageContextMenuCommands, config.project)
         ]);
 
         const usedEvents = findEvents(
@@ -66,8 +66,8 @@ cli
             loadedEvents,
             loadedServices,
             loadedChatInputCommands,
-            loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands
         );
 
         const { usedIntents, usedPartials } = findGateways(loadedEvents, usedEvents);
@@ -85,8 +85,8 @@ cli
                     loadedEvents,
                     loadedServices,
                     loadedChatInputCommands,
-                    loadedMessageContextMenuCommands,
                     loadedUserContextMenuCommands,
+                    loadedMessageContextMenuCommands,
 
                     usedEvents,
                     usedIntents,
@@ -96,8 +96,8 @@ cli
                 loadedEvents,
                 loadedServices,
                 loadedChatInputCommands,
-                loadedMessageContextMenuCommands,
                 loadedUserContextMenuCommands,
+                loadedMessageContextMenuCommands,
 
                 usedEvents,
                 usedIntents,
