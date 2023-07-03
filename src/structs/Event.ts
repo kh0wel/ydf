@@ -4,7 +4,7 @@ import { BaseOptions, BaseBuilder } from './Base.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export interface HandledEventParameters {
+export interface HandledEventCallbackParameters {
 
     config: ConfigBuilder;
 
@@ -22,9 +22,9 @@ export interface HandledEventParameters {
     usedPartials: number[];
 }
 
-export type HandledEventCallback = HandledCallback<HandledEventParameters>;
+export type HandledEventCallback = HandledCallback<HandledEventCallbackParameters>;
 
-export interface DeployEventParameters {
+export interface DeployCallbackParameters {
 
     config: ConfigBuilder;
 
@@ -42,14 +42,14 @@ export interface DeployEventParameters {
     usedPartials: number[];
 }
 
-export type EventDeployCallback = HandledCallback<DeployEventParameters>;
+export type DeployCallback = HandledCallback<DeployCallbackParameters>;
 
 export interface EventOptions extends BaseOptions {
 
     /**
      * Function to execute (on deployment).
      */
-    deploy: EventDeployCallback;
+    deploy: DeployCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -57,7 +57,7 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function to execute (on deployment).
      */
-    deploy: EventDeployCallback = null!;
+    deploy: DeployCallback = null!;
 
     constructor (options: EventOptions) {
 

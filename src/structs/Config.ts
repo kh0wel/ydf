@@ -1,9 +1,9 @@
-import { EventsUsed } from './Util.js';
+import { HandledCallback, EventsUsed } from './Util.js';
 import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export type BotCallback = (_: {
+export interface BotCallbackParameters {
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -15,7 +15,9 @@ export type BotCallback = (_: {
 
     usedIntents:  number;
     usedPartials: number[];
-}) => Promise<any> | any;
+}
+
+export type BotCallback = HandledCallback<BotCallbackParameters>;
 
 export interface ConfigOptions {
 
@@ -25,14 +27,14 @@ export interface ConfigOptions {
     bot: BotCallback;
 
     /**
-     * Project directory.
+     * Project path.
      */
     project?: string;
 
     /**
-     * Used files.
+     * Used source.
      */
-    files?: {
+    source?: {
 
         events?:                     string;
         services?:                   string;
@@ -40,11 +42,6 @@ export interface ConfigOptions {
         userContextMenuCommands?:    string;
         messageContextMenuCommands?: string;
     };
-
-    /**
-     * Used plugins.
-     */
-    plugins?: string[];
 }
 
 export class ConfigBuilder {
@@ -55,14 +52,14 @@ export class ConfigBuilder {
     bot: BotCallback = null!;
 
     /**
-     * Project directory.
+     * Project path.
      */
     project = '.';
 
     /**
-     * Used files.
+     * Used source.
      */
-    files = {
+    source = {
 
         events:                     'src/**/*.event.*',
         services:                   'src/**/*.service.*',
@@ -71,21 +68,22 @@ export class ConfigBuilder {
         messageContextMenuCommands: 'src/**/*.command.message.*'
     };
 
-    /**
-     * Used plugins.
-     */
-    plugins = [];
-
     constructor (options: ConfigOptions) {
 
-        this.bot = options.bot;
+        Object.assign(this, {
 
-        this.project = options.project ?? this.project;
+            bot: options.bot,
 
-        this.files.events                     = options.files?.events                     ?? this.files.events;
-        this.files.services                   = options.files?.services                   ?? this.files.services;
-        this.files.chatInputCommands          = options.files?.chatInputCommands          ?? this.files.chatInputCommands;
-        this.files.userContextMenuCommands    = options.files?.userContextMenuCommands    ?? this.files.userContextMenuCommands;
-        this.files.messageContextMenuCommands = options.files?.messageContextMenuCommands ?? this.files.messageContextMenuCommands;
+            project: options.project ?? this.project,
+
+            source: {
+
+                events:                     options.source?.events                     ?? this.source.events,
+                services:                   options.source?.services                   ?? this.source.services,
+                chatInputCommands:          options.source?.chatInputCommands          ?? this.source.chatInputCommands,
+                userContextMenuCommands:    options.source?.userContextMenuCommands    ?? this.source.userContextMenuCommands,
+                messageContextMenuCommands: options.source?.messageContextMenuCommands ?? this.source.messageContextMenuCommands
+            }
+        });
     }
 }
