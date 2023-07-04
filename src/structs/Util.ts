@@ -3,7 +3,11 @@ import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export interface CallbackParameters {
+export interface SharedParameters {
+
+    config: ConfigBuilder;
+
+    bot: ReturnType<BotCallback>;
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -17,43 +21,14 @@ export interface CallbackParameters {
     usedPartials: number[];
 }
 
-export interface EventCallbackParameters extends CallbackParameters {
+export type EventCallback = (parameters: SharedParameters) => Promise<void> | void;
 
-    config: ConfigBuilder;
+export type BotCallback = (parameters: Omit<SharedParameters, 'bot'>) => Promise<any> | any;
 
-    bot: any;
+export interface HandledEvents  {
+
+    [event: string]: EventCallback;
 }
-
-export type EventCallback = HandledCallback<EventCallbackParameters>;
-
-export interface DeployCallbackParameters extends CallbackParameters {
-
-    config: ConfigBuilder;
-
-    bot: any;
-}
-
-export type DeployCallback = HandledCallback<DeployCallbackParameters>;
-
-export interface BotCallbackParameters extends CallbackParameters {
-
-    config: ConfigBuilder;
-}
-
-export type BotCallback = HandledCallback<BotCallbackParameters>;
-
-export type HandledCallback <Parameters> = (parameters: Parameters) => Promise<void> | void;
-
-
-
-
-export interface HandledEvents <Parameters, Callback extends HandledCallback<Parameters>> {
-
-    [event: string]: Callback;
-}
-
-
-
 
 export interface EventsUsed {
 
