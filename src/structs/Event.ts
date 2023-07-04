@@ -1,48 +1,5 @@
-import { EventsUsed, HandledCallback } from './Util.js';
-import { ConfigBuilder } from './Config.js';
+import { DeployCallback } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { ServiceBuilder } from './Service.js';
-import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
-
-export interface HandledEventCallbackParameters {
-
-    config: ConfigBuilder;
-
-    bot: any;
-
-    loadedEvents:                     EventBuilder[];
-    loadedServices:                   ServiceBuilder[];
-    loadedChatInputCommands:          ChatInputCommandBuilder[];
-    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
-    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
-
-    usedEvents: EventsUsed;
-
-    usedIntents:  number;
-    usedPartials: number[];
-}
-
-export type HandledEventCallback = HandledCallback<HandledEventCallbackParameters>;
-
-export interface DeployCallbackParameters {
-
-    config: ConfigBuilder;
-
-    bot: any;
-
-    loadedEvents:                     EventBuilder[];
-    loadedServices:                   ServiceBuilder[];
-    loadedChatInputCommands:          ChatInputCommandBuilder[];
-    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
-    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
-
-    usedEvents: EventsUsed;
-
-    usedIntents:  number;
-    usedPartials: number[];
-}
-
-export type DeployCallback = HandledCallback<DeployCallbackParameters>;
 
 export interface EventOptions extends BaseOptions {
 

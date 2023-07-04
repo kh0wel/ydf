@@ -1,6 +1,5 @@
-import { HandledEvents } from './Util.js';
+import { HandledEvents, HandledEventCallback, HandledEventCallbackParameters } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEventCallback, HandledEventCallbackParameters } from './Event.js';
 
 export interface ServiceOptions extends BaseOptions {
 

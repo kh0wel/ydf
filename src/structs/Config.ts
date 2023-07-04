@@ -1,28 +1,9 @@
-import { HandledCallback, EventsUsed } from './Util.js';
-import { EventBuilder } from './Event.js';
-import { ServiceBuilder } from './Service.js';
-import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
-
-export interface BotCallbackParameters {
-
-    loadedEvents:                     EventBuilder[];
-    loadedServices:                   ServiceBuilder[];
-    loadedChatInputCommands:          ChatInputCommandBuilder[];
-    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
-    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
-
-    usedEvents: EventsUsed;
-
-    usedIntents:  number;
-    usedPartials: number[];
-}
-
-export type BotCallback = HandledCallback<BotCallbackParameters>;
+import { BotCallback } from './Util.js';
 
 export interface ConfigOptions {
 
     /**
-     * Library client.
+     * Created library client.
      */
     bot: BotCallback;
 
@@ -32,9 +13,9 @@ export interface ConfigOptions {
     project?: string;
 
     /**
-     * Used source.
+     * Project sources.
      */
-    source?: {
+    sources?: {
 
         events?:                     string;
         services?:                   string;
@@ -47,7 +28,7 @@ export interface ConfigOptions {
 export class ConfigBuilder {
 
     /**
-     * Library client.
+     * Created library client.
      */
     bot: BotCallback = null!;
 
@@ -57,9 +38,9 @@ export class ConfigBuilder {
     project = '.';
 
     /**
-     * Used source.
+     * Project sources.
      */
-    source = {
+    sources = {
 
         events:                     'src/**/*.event.*',
         services:                   'src/**/*.service.*',
@@ -78,11 +59,11 @@ export class ConfigBuilder {
 
             source: {
 
-                events:                     options.source?.events                     ?? this.source.events,
-                services:                   options.source?.services                   ?? this.source.services,
-                chatInputCommands:          options.source?.chatInputCommands          ?? this.source.chatInputCommands,
-                userContextMenuCommands:    options.source?.userContextMenuCommands    ?? this.source.userContextMenuCommands,
-                messageContextMenuCommands: options.source?.messageContextMenuCommands ?? this.source.messageContextMenuCommands
+                events:                     options.sources?.events                     ?? this.sources.events,
+                services:                   options.sources?.services                   ?? this.sources.services,
+                chatInputCommands:          options.sources?.chatInputCommands          ?? this.sources.chatInputCommands,
+                userContextMenuCommands:    options.sources?.userContextMenuCommands    ?? this.sources.userContextMenuCommands,
+                messageContextMenuCommands: options.sources?.messageContextMenuCommands ?? this.sources.messageContextMenuCommands
             }
         });
     }
