@@ -20,6 +20,6 @@ export class EventBuilder extends BaseBuilder {
 
         super (options);
 
-        this.deploy = options.deploy;
+        Object.assign(this, { deploy: options.deploy });
     }
 }

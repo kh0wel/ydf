@@ -54,11 +54,11 @@ cli
             loadedMessageContextMenuCommands
         ] = await Promise.all([
 
-            loadFiles<EventBuilder>(config.files.events, config.project),
-            loadFiles<ServiceBuilder>(config.files.services, config.project),
-            loadFiles<ChatInputCommandBuilder>(config.files.chatInputCommands, config.project),
-            loadFiles<UserContextMenuCommandBuilder>(config.files.userContextMenuCommands, config.project),
-            loadFiles<MessageContextMenuCommandBuilder>(config.files.messageContextMenuCommands, config.project)
+            loadFiles<EventBuilder>(config.sources.events, config.project),
+            loadFiles<ServiceBuilder>(config.sources.services, config.project),
+            loadFiles<ChatInputCommandBuilder>(config.sources.chatInputCommands, config.project),
+            loadFiles<UserContextMenuCommandBuilder>(config.sources.userContextMenuCommands, config.project),
+            loadFiles<MessageContextMenuCommandBuilder>(config.sources.messageContextMenuCommands, config.project)
         ]);
 
         const usedEvents = findEvents(
@@ -81,6 +81,8 @@ cli
                 config,
 
                 bot: await config.bot({
+
+                    config,
 
                     loadedEvents,
                     loadedServices,
