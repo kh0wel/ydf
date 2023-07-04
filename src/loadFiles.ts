@@ -10,7 +10,7 @@ export default async function <Builder extends EventBuilder | ServiceBuilder | C
 
     const loadedFiles: Builder[] = [];
 
-    const mapedFiles = await glob(source, { cwd, dot: true, absolute: true });
+    const mapedFiles = await glob(source, { cwd, dot: false, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 
