@@ -6,20 +6,11 @@ import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
 
-export default async function <
-
-    Builder extends
-
-    EventBuilder |
-    ServiceBuilder |
-    ChatInputCommandBuilder |
-    UserContextMenuCommandBuilder |
-    MessageContextMenuCommandBuilder
-> (target: string, cwd: string) {
+export default async function <Builder extends EventBuilder | ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder> (source: string, cwd: string) {
 
     const loadedFiles: Builder[] = [];
 
-    const mapedFiles = await glob(target, { cwd, dot: true, absolute: true });
+    const mapedFiles = await glob(source, { cwd, dot: true, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 
