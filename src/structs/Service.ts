@@ -1,4 +1,4 @@
-import { HandledEvents, EventCallback, EventParameters } from './Util.js';
+import { EventCallback } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 
 export interface ServiceOptions extends BaseOptions {
@@ -6,7 +6,7 @@ export interface ServiceOptions extends BaseOptions {
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: HandledEvents<EventParameters, EventCallback>;
+    events: EventCallback;
 }
 
 export class ServiceBuilder extends BaseBuilder {
@@ -14,7 +14,7 @@ export class ServiceBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: HandledEvents<EventParameters, EventCallback> = null!;
+    events: EventCallback = null!;
 
     constructor (options: ServiceOptions) {
 
