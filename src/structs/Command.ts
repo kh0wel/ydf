@@ -1,4 +1,4 @@
-import { EventCallback } from './Util.js';
+import { HandledEvents } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 
 export interface CommandLocalizations {
@@ -36,7 +36,7 @@ export interface CommandPermissions {
     nsfw?: boolean;
 }
 
-export interface ChatInputCommandDisplay {
+export interface SharedCommandDisplay {
 
     /**
      * Command type.
@@ -68,17 +68,7 @@ export interface ChatInputCommandDisplay {
     permissions?: CommandPermissions;
 }
 
-export interface AnyContextMenuCommandDisplay extends Omit<ChatInputCommandDisplay, 'description' | 'options'> {
-
-}
-
-export interface CommandOptions <
-
-    Display extends
-
-    ChatInputCommandDisplay |
-    AnyContextMenuCommandDisplay
-> extends BaseOptions {
+export interface SharedCommandOptions <Display> extends BaseOptions {
 
     /**
      * Command display.
@@ -88,12 +78,12 @@ export interface CommandOptions <
     /**
      * Necessary events (using their file name with excluded extensions).
      */
-    events: EventCallback;
+    events: HandledEvents;
 }
 
 export class ChatInputCommandBuilder extends BaseBuilder {
 
-    display: Required<ChatInputCommandDisplay> = {
+    display: Required<SharedCommandDisplay> = {
 
         type: 1,
 
@@ -112,9 +102,9 @@ export class ChatInputCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: EventCallback = null!;
+    events: HandledEvents = null!;
 
-    constructor (options: CommandOptions<ChatInputCommandDisplay>) {
+    constructor (options: SharedCommandOptions<SharedCommandDisplay>) {
 
         super (options);
 
@@ -144,7 +134,7 @@ export class ChatInputCommandBuilder extends BaseBuilder {
 
 export class UserContextMenuCommandBuilder extends BaseBuilder {
 
-    display: Required<AnyContextMenuCommandDisplay> = {
+    display: Required<Omit<SharedCommandDisplay, 'description' | 'options'>> = {
 
         type: 2,
 
@@ -161,9 +151,9 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: EventCallback = null!;
+    events: HandledEvents = null!;
 
-    constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
+    constructor (options: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
 
         super (options);
 
@@ -190,7 +180,7 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
 
 export class MessageContextMenuCommandBuilder extends BaseBuilder {
 
-    display: Required<AnyContextMenuCommandDisplay> = {
+    display: Required<Omit<SharedCommandDisplay, 'description' | 'options'>> = {
 
         type: 3,
 
@@ -207,9 +197,9 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
     /**
      * Necessary events (using their file name with excluded extensions)
      */
-    events: EventCallback = null!;
+    events: HandledEvents = null!;
 
-    constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
+    constructor (options: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
 
         super (options);
 
