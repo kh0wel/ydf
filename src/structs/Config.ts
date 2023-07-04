@@ -8,7 +8,7 @@ export interface ConfigOptions {
     bot: BotCallback;
 
     /**
-     * Project path.
+     * Project directory path.
      */
     project?: string;
 
@@ -33,7 +33,7 @@ export class ConfigBuilder {
     bot: BotCallback = null!;
 
     /**
-     * Project path.
+     * Project directory path.
      */
     project = '.';
 
