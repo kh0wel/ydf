@@ -21,13 +21,13 @@ export interface SharedParameters {
     usedPartials: number[];
 }
 
-export type EventCallback = (parameters: SharedParameters) => Promise<void> | void;
+export type DeployCallback = (parameters: SharedParameters) => Promise<void> | void;
 
 export type BotCallback = (parameters: Omit<SharedParameters, 'bot'>) => Promise<any> | any;
 
 export interface HandledEvents  {
 
-    [event: string]: EventCallback;
+    [event: string]: (parameters: any) => Promise<any> | any;
 }
 
 export interface EventsUsed {

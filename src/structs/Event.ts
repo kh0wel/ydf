@@ -1,4 +1,4 @@
-import { EventCallback } from './Util.js';
+import { DeployCallback } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
 
 export interface EventOptions extends BaseOptions {
@@ -6,7 +6,7 @@ export interface EventOptions extends BaseOptions {
     /**
      * Function to execute (on deployment).
      */
-    deploy: EventCallback;
+    deploy: DeployCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
@@ -14,7 +14,7 @@ export class EventBuilder extends BaseBuilder {
     /**
      * Function to execute (on deployment).
      */
-    deploy: EventCallback = null!;
+    deploy: DeployCallback = null!;
 
     constructor (options: EventOptions) {
 
