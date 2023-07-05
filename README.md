@@ -22,11 +22,11 @@ A development tool for building bots of [Discord](https://discord.com), [Telegra
 
 - 🍂 Reduced size and dependencies.
 
-## Plug-ins
+## Resources
 
-> Se incluyen los plugins testeados en este proyecto, pueden existir mejores sin probar.
+- [symp](https://github.com/kh0wel/symp) for creating Discord clients.
 
-- [symp](https://github.com/kh0wel/symp) para crear un cliente en Discord.
+> NOTE: These are only resources used to develop this project.
 
 ## Examples
 
