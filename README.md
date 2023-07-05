@@ -10,7 +10,7 @@
 
 ## About
 
-A development tool for building bots of [Discord](https://discord.com).
+A development tool for building [Discord](https://discord.com) bots.
 
 ## Features
 
