@@ -1,33 +1,39 @@
-![banner](https://raw.githubusercontent.com/kh0wel/yacf/main/assets/banner.png)
+![banner](https://raw.githubusercontent.com/kh0wel/ydf/main/assets/banner.png)
 
 <div align="center">
 	<br />
 	<p>
-		<a href="https://www.npmjs.com/package/yacf"><img src="https://img.shields.io/npm/v/yacf.svg" /></a>
-		<a href="https://www.npmjs.com/package/yacf"><img src="https://img.shields.io/npm/dt/yacf.svg" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/v/ydf.svg" /></a>
+		<a href="https://www.npmjs.com/package/ydf"><img src="https://img.shields.io/npm/dt/ydf.svg" /></a>
 	</p>
 </div>
 
 ## About
 
-A development tool for building bots of [Discord](https://discord.com), [Telegram](https://telegram.org), [WhatsApp](https://www.whatsapp.com) and more.
+A development tool to build [Discord](https://discord.com) bots
 
 ## Features
 
 - 📚 Writed on [TypeScript](https://www.typescriptlang.org).
 
-- 🧳 Supported for various runtime environments.
+- 🧳 Supported for various runtime environments (tested on [Bun](https://bun.sh) and [Node](https://nodejs.org)).
 
-- 🚀 Designed for most libraries.
+- 🚀 Designed for most libraries (tested on [biscuit](https://biscuitjs.com) and [discord.js](https://discord.js.org)).
 
 - 🍂 Reduced size and dependencies.
 
-## Resources
+## Starting
 
-> NOTE: These are only resources used to develop this project.
+1. Install [ydf](https://github.com/kh0wel/ydf).
 
-- [symp](https://github.com/kh0wel/symp) for creating Discord clients.
+2. Install [biscuit](https://biscuitjs.com) (or another library).
+
+3. Create a new project:
+
+    ```bash
+    ydf init
+    ```
 
 ## Examples
 
-See an example [here](https://github.com/kh0wel/cobalt).
+See an example [here](https://github.com/kh0wel/kobalt).

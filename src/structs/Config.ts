@@ -1,23 +1,70 @@
-export interface Plugin {
-
-    deployer (config: ConfigBuilder): Promise<void> | void;
-}
+import { BotCallback } from './Util.js';
 
 export interface ConfigOptions {
 
-    cwd?: string;
+    /**
+     * Created library client.
+     */
+    bot: BotCallback;
 
-    plugins: Plugin[];
+    /**
+     * Project directory path.
+     */
+    project?: string;
+
+    /**
+     * Project sources.
+     */
+    sources?: {
+
+        events?:                     string;
+        services?:                   string;
+        chatInputCommands?:          string;
+        userContextMenuCommands?:    string;
+        messageContextMenuCommands?: string;
+    };
 }
 
 export class ConfigBuilder {
 
-    cwd = '.';
+    /**
+     * Created library client.
+     */
+    bot: BotCallback = null!;
 
-    plugins: Plugin[] = [];
+    /**
+     * Project directory path.
+     */
+    project = '.';
 
-    constructor (opts: ConfigOptions) {
+    /**
+     * Project sources.
+     */
+    sources = {
 
-        Object.assign(this, { cwd: opts.cwd ?? this.cwd });
+        events:                     'src/**/*.event.*',
+        services:                   'src/**/*.service.*',
+        chatInputCommands:          'src/**/*.command.chat.*',
+        userContextMenuCommands:    'src/**/*.command.user.*',
+        messageContextMenuCommands: 'src/**/*.command.message.*'
+    };
+
+    constructor (options: ConfigOptions) {
+
+        Object.assign(this, {
+
+            bot: options.bot,
+
+            project: options.project ?? this.project,
+
+            source: {
+
+                events:                     options.sources?.events                     ?? this.sources.events,
+                services:                   options.sources?.services                   ?? this.sources.services,
+                chatInputCommands:          options.sources?.chatInputCommands          ?? this.sources.chatInputCommands,
+                userContextMenuCommands:    options.sources?.userContextMenuCommands    ?? this.sources.userContextMenuCommands,
+                messageContextMenuCommands: options.sources?.messageContextMenuCommands ?? this.sources.messageContextMenuCommands
+            }
+        });
     }
 }

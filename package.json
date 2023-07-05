@@ -1,7 +1,7 @@
 {
-  "name": "yacf",
-  "version": "4.0.0",
-  "description": "🧶 A development tool for building bots of Discord, Telegram, WhatsApp and more",
+  "name": "ydf",
+  "version": "3.4.0",
+  "description": "🤪 A development tool to build Discord bots",
   "type": "module",
   "bin": "dist/bin/index.js",
   "main": "dist/index.js",
@@ -24,13 +24,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kh0wel/yacf"
+    "url": "https://github.com/kh0wel/ydf"
   },
   "bugs": {
-    "url": "https://github.com/kh0wel/yacf/issues"
+    "url": "https://github.com/kh0wel/ydf/issues"
   },
   "dependencies": {
-    "cac": "^6.7.14"
+    "cac": "^6.7.14",
+    "tiny-glob": "^0.2.9"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
