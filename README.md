@@ -10,7 +10,7 @@
 
 ## About
 
-A development tool to build [Discord](https://discord.com) bots
+A development tool for building bots of [Discord](https://discord.com), [Telegram](https://telegram.org), [WhatsApp](https://www.whatsapp.com) and more
 
 ## Features
 
@@ -22,17 +22,11 @@ A development tool to build [Discord](https://discord.com) bots
 
 - 🍂 Reduced size and dependencies.
 
-## Starting
+## Resources
 
-1. Install [ydf](https://github.com/kh0wel/ydf).
+> Se incluyen los plugins testeados en este proyecto, pueden existir mejores sin probar.
 
-2. Install [biscuit](https://biscuitjs.com) (or another library).
-
-3. Create a new project:
-
-    ```bash
-    ydf init
-    ```
+- [symp](https://github.com/kh0wel/symp) para crear un cliente en Discord.
 
 ## Examples
 

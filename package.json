@@ -1,7 +1,7 @@
 {
-  "name": "ydf",
-  "version": "3.3.1",
-  "description": "🤪 A development tool to build Discord bots",
+  "name": "yacf",
+  "version": "4.0.0",
+  "description": "🧶 A development tool for building bots of Discord, Telegram, WhatsApp and more",
   "type": "module",
   "bin": "dist/bin/index.js",
   "main": "dist/index.js",
@@ -16,25 +16,21 @@
   ],
   "keywords": [
     "bot",
+    "client",
     "framework",
-    "tool",
-    "discord",
-    "biscuit",
-    "node",
-    "bun"
+    "tool"
   ],
   "author": "kh0wel",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kh0wel/ydf"
+    "url": "https://github.com/kh0wel/yacf"
   },
   "bugs": {
-    "url": "https://github.com/kh0wel/ydf/issues"
+    "url": "https://github.com/kh0wel/yacf/issues"
   },
   "dependencies": {
-    "cac": "^6.7.14",
-    "tiny-glob": "^0.2.9"
+    "cac": "^6.7.14"
   },
   "devDependencies": {
     "@swc/cli": "^0.1.62",
