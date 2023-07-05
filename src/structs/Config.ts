@@ -1,11 +1,11 @@
-import { BotCallback } from './Util.js';
+import { ClientCallback } from './Util.js';
 
 export interface ConfigOptions {
 
     /**
-     * Created library client.
+     * Library client.
      */
-    bot: BotCallback;
+    client: ClientCallback;
 
     /**
      * Project directory path.
@@ -28,9 +28,9 @@ export interface ConfigOptions {
 export class ConfigBuilder {
 
     /**
-     * Created library client.
+     * Library client.
      */
-    bot: BotCallback = null!;
+    client: ClientCallback = null!;
 
     /**
      * Project directory path.
@@ -53,7 +53,7 @@ export class ConfigBuilder {
 
         Object.assign(this, {
 
-            bot: options.bot,
+            client: options.client,
 
             project: options.project ?? this.project,
 

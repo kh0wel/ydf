@@ -80,7 +80,7 @@ cli
 
                 config,
 
-                bot: await config.bot({
+                bot: await config.client({
 
                     config,
 

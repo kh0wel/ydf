@@ -7,7 +7,7 @@ export interface SharedParameters {
 
     config: ConfigBuilder;
 
-    bot: ReturnType<BotCallback>;
+    client: ReturnType<ClientCallback>;
 
     loadedEvents:                     EventBuilder[];
     loadedServices:                   ServiceBuilder[];
@@ -23,7 +23,7 @@ export interface SharedParameters {
 
 export type DeployCallback = (parameters: SharedParameters) => Promise<void> | void;
 
-export type BotCallback = (parameters: Omit<SharedParameters, 'bot'>) => Promise<any> | any;
+export type ClientCallback = (parameters: Omit<SharedParameters, 'bot'>) => Promise<any> | any;
 
 export interface HandledEvents  {
 

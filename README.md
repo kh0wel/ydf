@@ -10,7 +10,7 @@
 
 ## About
 
-A development tool to build [Discord](https://discord.com) bots
+A development tool for building bots of [Discord](https://discord.com).
 
 ## Features
 
@@ -22,7 +22,7 @@ A development tool to build [Discord](https://discord.com) bots
 
 - 🍂 Reduced size and dependencies.
 
-## Starting
+## Start
 
 1. Install [ydf](https://github.com/kh0wel/ydf).
 
@@ -36,4 +36,4 @@ A development tool to build [Discord](https://discord.com) bots
 
 ## Examples
 
-See an example [here](https://github.com/kh0wel/kobalt).
+See an example [here](https://github.com/kh0wel/cobalt).
