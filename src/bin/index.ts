@@ -8,7 +8,7 @@ import { ConfigBuilder } from '../structs/Config.js';
 const cli = cac();
 
 cli
-    .option('-C, --config <path>', 'Configuration file path (default ".ydf.config.js")', { default: '.ydf.config.js' })
+    .option('-C, --config <path>', 'Configuration file path (default ".yacf.config.js")', { default: '.yacf.config.js' })
 
     .action(async ({ config: configPath }) => {
 
