@@ -104,30 +104,30 @@ export class ChatInputCommandBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: SharedCommandOptions<SharedCommandDisplay>) {
+    constructor (opts: SharedCommandOptions<SharedCommandDisplay>) {
 
-        super (options);
+        super (opts);
 
         Object.assign(this, {
 
             display: {
 
-                name:        options.display.name,
-                description: options.display.description,
+                name:        opts.display.name,
+                description: opts.display.description,
 
-                options: options.display.options ?? this.display.options,
+                options: opts.display.options ?? this.display.options,
 
                 permissions: {
 
-                    member: options.display.permissions?.member ?? this.display.permissions.member,
-                    dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
-                    nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                    member: opts.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
                 },
 
                 type: this.display.type
             },
 
-            events: options.events
+            events: opts.events
         });
     }
 }
@@ -153,27 +153,27 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
+    constructor (opts: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
 
-        super (options);
+        super (opts);
 
         Object.assign(this, {
 
             display: {
 
-                name: options.display.name,
+                name: opts.display.name,
 
                 permissions: {
 
-                    member: options.display.permissions?.member ?? this.display.permissions.member,
-                    dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
-                    nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                    member: opts.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
                 },
 
                 type: this.display.type
             },
 
-            events: options.events
+            events: opts.events
         });
     }
 }
@@ -199,27 +199,27 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
+    constructor (opts: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
 
-        super (options);
+        super (opts);
 
         Object.assign(this, {
 
             display: {
 
-                name: options.display.name,
+                name: opts.display.name,
 
                 permissions: {
 
-                    member: options.display.permissions?.member ?? this.display.permissions.member,
-                    dm:     options.display.permissions?.dm     ?? this.display.permissions.dm,
-                    nsfw:   options.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                    member: opts.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
                 },
 
                 type: this.display.type
             },
 
-            events: options.events
+            events: opts.events
         });
     }
 }

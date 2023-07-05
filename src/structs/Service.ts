@@ -16,10 +16,10 @@ export class ServiceBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: ServiceOptions) {
+    constructor (opts: ServiceOptions) {
 
-        super (options);
+        super (opts);
 
-        Object.assign(this, { events: options.events });
+        Object.assign(this, { events: opts.events });
     }
 }

@@ -33,12 +33,12 @@ export class BaseBuilder {
      */
     partials: number[] = [];
 
-    constructor (options: BaseOptions) {
+    constructor (opts: BaseOptions) {
 
         Object.assign(this, {
 
-            intents:  options.intents  ?? this.intents,
-            partials: options.partials ?? this.partials
+            intents:  opts.intents  ?? this.intents,
+            partials: opts.partials ?? this.partials
         });
     }
 }

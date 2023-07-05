@@ -16,10 +16,10 @@ export class EventBuilder extends BaseBuilder {
      */
     deploy: DeployCallback = null!;
 
-    constructor (options: EventOptions) {
+    constructor (opts: EventOptions) {
 
-        super (options);
+        super (opts);
 
-        Object.assign(this, { deploy: options.deploy });
+        Object.assign(this, { deploy: opts.deploy });
     }
 }
