@@ -24,9 +24,9 @@ A development tool for building bots of [Discord](https://discord.com), [Telegra
 
 ## Resources
 
-- [symp](https://github.com/kh0wel/symp) for creating Discord clients.
-
 > NOTE: These are only resources used to develop this project.
+
+- [symp](https://github.com/kh0wel/symp) for creating Discord clients.
 
 ## Examples
 
