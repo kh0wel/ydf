@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "🔮 A development tool for building Discord bots",
   "type": "module",
   "bin": "dist/bin/index.js",
