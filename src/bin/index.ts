@@ -18,7 +18,7 @@ const cli = cac();
 cli
     .command('init', 'Create a new project')
 
-    .option('-P, --project <path>', 'Project path (default "new-ydf-project")', { default: 'new-ydf-project' })
+    .option('-P, --project <path>', 'Project directory path (default "new-ydf-project")', { default: 'new-ydf-project' })
 
     .action(({ project: projectPath }) => {
 

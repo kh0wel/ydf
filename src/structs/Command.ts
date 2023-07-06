@@ -68,12 +68,12 @@ export interface SharedCommandDisplay {
     permissions?: CommandPermissions;
 }
 
-export interface SharedCommandOptions <Display> extends BaseOptions {
+export interface SharedCommandOptions <CommandDisplay> extends BaseOptions {
 
     /**
      * Command display.
      */
-    display: Omit<Display, 'type'>;
+    display: Omit<CommandDisplay, 'type'>;
 
     /**
      * Necessary events (using their file name with excluded extensions).
