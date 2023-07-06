@@ -1,14 +1,14 @@
 name: Publisher
 
 on:
+
     release:
+
         types: [ published ]
 
 jobs:
 
     release:
-
-        name: aaa
 
         runs-on: ubuntu-latest
 
