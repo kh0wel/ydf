@@ -26,7 +26,7 @@ A development tool for building [Discord](https://discord.com) bots.
 
 1. Install [ydf](https://github.com/kh0wel/ydf).
 
-2. Install [biscuit](https://biscuitjs.com) (or another library).
+2. Install [biscuit](https://biscuitjs.com).
 
 3. Create a new project:
 

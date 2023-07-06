@@ -30,7 +30,7 @@ export class ConfigBuilder {
     /**
      * Library client.
      */
-    bot: BotCallback = null!;
+    bot: ReturnType<BotCallback> = null!;
 
     /**
      * Project path.

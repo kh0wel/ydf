@@ -18,7 +18,7 @@ const cli = cac();
 cli
     .command('init', 'Create a new project')
 
-    .option('-P, --project <path>', 'Project directory path (default is "new-ydf-project")', { default: 'new-ydf-project' })
+    .option('-P, --project <path>', 'Project path (default "new-ydf-project")', { default: 'new-ydf-project' })
 
     .action(({ project: projectPath }) => {
 
@@ -32,14 +32,14 @@ cli
                 await fs.mkdir(path.resolve(projectPath, 'src', 'services'), { recursive: true });
                 await fs.mkdir(path.resolve(projectPath, 'src', 'commands'), { recursive: true });
 
-                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({ bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT_TOKEN\' }); } });\n');
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nimport { Session } from \'@biscuitland/core\';\n\nexport default new ConfigBuilder ({ bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT_TOKEN\' }); } });\n');
             });
     });
 
 cli
-    .command('deploy', 'Deploy the bot')
+    .command('deploy', 'Deploy the framework')
 
-    .option('-C, --config <path>', 'Configuration file path (default is ".ydf.config.js")', { default: '.ydf.config.js' })
+    .option('-C, --config <path>', 'Configuration file path (default ".ydf.config.js")', { default: '.ydf.config.js' })
 
     .action(async ({ config: configPath }) => {
 
