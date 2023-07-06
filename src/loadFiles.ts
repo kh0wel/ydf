@@ -1,108 +1,28 @@
 import path from 'node:path';
 
-import glob from 'fast-glob';
+import glob from 'tiny-glob';
 
-import { ConfigBuilder } from './structs/Config.js';
 import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
-import { DataFrom } from './structs/Util.js';
 
-export default async function (config: ConfigBuilder) {
+export default async function <Builder extends EventBuilder | ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder> (source: string, cwd: string) {
 
-    const loadedEvents:                     EventBuilder[]                     = [];
-    const loadedServices:                   ServiceBuilder[]                   = [];
-    const loadedChatInputCommands:          ChatInputCommandBuilder[]          = [];
-    const loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[]    = [];
-    const loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[] = [];
+    const loadedFiles: Builder[] = [];
 
-    const mapedFiles = await glob(config.include, {
-
-        ignore: config.exclude,
-        cwd:    config.cwd,
-
-        absolute: true
-    });
+    const mapedFiles = await glob(source, { cwd, dot: false, absolute: true });
 
     for (const mapedFile of mapedFiles) {
 
-        const { default: data } = await import(`file:///${ mapedFile }`);
+        loadedFiles.push({
 
-        switch (data.from) {
+            ... (await import(`file:///${ mapedFile }`)).default,
 
-            case DataFrom.EVENT:
+            name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
-                loadedEvents.push({
-
-                    ... data,
-
-                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                    path: mapedFile
-                });
-
-                break;
-
-            case DataFrom.SERVICE:
-
-                loadedServices.push({
-
-                    ... data,
-
-                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                    path: mapedFile
-                });
-
-                break;
-
-            case DataFrom.CHAT_INPUT_COMMAND:
-
-                loadedChatInputCommands.push({
-
-                    ... data,
-
-                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                    path: mapedFile
-                });
-
-                break;
-
-            case DataFrom.USER_CONTEXT_MENU_COMMAND:
-
-                loadedUserContextMenuCommands.push({
-
-                    ... data,
-
-                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                    path: mapedFile
-                });
-
-                break;
-
-            case DataFrom.MESSAGE_CONTEXT_MENU_COMMAND:
-
-                loadedMessageContextMenuCommands.push({
-
-                    ... data,
-
-                    name: path.basename(mapedFile).replace(/\..+$/g, ''),
-
-                    path: mapedFile
-                });
-
-                break;
-        }
+            path: mapedFile
+        });
     }
 
-    return {
-
-        loadedEvents,
-        loadedServices,
-        loadedChatInputCommands,
-        loadedUserContextMenuCommands,
-        loadedMessageContextMenuCommands
-    };
+    return loadedFiles;
 }

@@ -1,63 +1,70 @@
-import { Session } from '@biscuitland/core';
-import { Client } from '@discordjs/core';
-
-import { EventBuilder } from './Event.js';
-import { ServiceBuilder } from './Service.js';
-import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
-import { EventsGroup } from './Util.js';
-
-export type BotCallback = (parameters: {
-
-    loadedEvents:                     EventBuilder[];
-    loadedServices:                   ServiceBuilder[];
-    loadedChatInputCommands:          ChatInputCommandBuilder[];
-    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
-    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
-
-    usedEvents: EventsGroup;
-
-    usedIntents: number;
-    usedPartials: number[];
-}) => Session | Client;
+import { BotCallback } from './Util.js';
 
 export interface ConfigOptions {
 
+    /**
+     * Library client.
+     */
     bot: BotCallback;
 
+    /**
+     * Base path.
+     */
     cwd?: string;
 
-    include?: string[];
+    /**
+     * Project sources.
+     */
+    sources?: {
 
-    exclude?: string[];
-
-    plugins?: string[];
+        events?:                     string;
+        services?:                   string;
+        chatInputCommands?:          string;
+        userContextMenuCommands?:    string;
+        messageContextMenuCommands?: string;
+    };
 }
 
 export class ConfigBuilder {
 
-    bot: BotCallback = null!;
+    /**
+     * Library client.
+     */
+    bot: ReturnType<BotCallback> = null!;
 
-    cwd: string = '.';
+    /**
+     * Base path.
+     */
+    cwd = '.';
 
-    include: string[] = [
+    /**
+     * Project sources.
+     */
+    sources = {
 
-        'src/**/*.event.*',
-        'src/**/*.service.*',
-        'src/**/*.command.chat.*',
-        'src/**/*.command.user.*',
-        'src/**/*.command.message.*'
-    ];
+        events:                     'src/**/*.event.*',
+        services:                   'src/**/*.service.*',
+        chatInputCommands:          'src/**/*.command.chat.*',
+        userContextMenuCommands:    'src/**/*.command.user.*',
+        messageContextMenuCommands: 'src/**/*.command.message.*'
+    };
 
-    exclude: string[] = [ '**/.*' ];
+    constructor (opts: ConfigOptions) {
 
-    plugins: string[] = [];
+        Object.assign(this, {
 
-    constructor (options: ConfigOptions) {
+            bot: opts.bot,
 
-        this.bot = options.bot;
+            cwd: opts.cwd ?? this.cwd,
 
-        this.cwd     = options.cwd     ?? this.cwd;
-        this.include = options.include ?? this.include;
-        this.exclude = options.exclude ?? this.exclude;
+            source: {
+
+                events:                     opts.sources?.events                     ?? this.sources.events,
+                services:                   opts.sources?.services                   ?? this.sources.services,
+                chatInputCommands:          opts.sources?.chatInputCommands          ?? this.sources.chatInputCommands,
+                userContextMenuCommands:    opts.sources?.userContextMenuCommands    ?? this.sources.userContextMenuCommands,
+                messageContextMenuCommands: opts.sources?.messageContextMenuCommands ?? this.sources.messageContextMenuCommands
+            }
+        });
     }
 }

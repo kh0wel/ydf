@@ -1,51 +1,25 @@
-import { Session } from '@biscuitland/core';
-import { Client } from '@discordjs/core';
-
-import { ConfigBuilder } from './Config.js';
+import { DeployCallback } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { ServiceBuilder } from './Service.js';
-import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
-import { DataFrom, EventsGroup } from './Util.js';
-
-export type ExecuteCallback = (parameters: {
-
-    config: ConfigBuilder;
-
-    bot: Session | Client;
-
-    loadedEvents:                     EventBuilder[];
-    loadedServices:                   ServiceBuilder[];
-    loadedChatInputCommands:          ChatInputCommandBuilder[];
-    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
-    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
-
-    usedEvents: EventsGroup;
-
-    usedIntents: number;
-    usedPartials: number[];
-}) => Promise<void> | void;
 
 export interface EventOptions extends BaseOptions {
 
     /**
-     * Function executed on deployment
+     * Function to execute (on deployment).
      */
-    execute: ExecuteCallback;
+    deploy: DeployCallback;
 }
 
 export class EventBuilder extends BaseBuilder {
 
-    from = DataFrom.EVENT;
-
     /**
-     * Function executed on deployment
+     * Function to execute (on deployment).
      */
-    execute: ExecuteCallback = null!;
+    deploy: DeployCallback = null!;
 
-    constructor (options: EventOptions) {
+    constructor (opts: EventOptions) {
 
-        super (options);
+        super (opts);
 
-        this.execute = options.execute;
+        Object.assign(this, { deploy: opts.deploy });
     }
 }

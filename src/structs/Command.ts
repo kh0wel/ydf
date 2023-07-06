@@ -1,15 +1,17 @@
+import { HandledEvents } from './Util.js';
 import { BaseOptions, BaseBuilder } from './Base.js';
-import { HandledEvents, DataFrom } from './Util.js';
 
 export interface CommandLocalizations {
 
     /**
-     * Default to display
+     * Default to display.
      */
     default: string;
 
     /**
-     * Localization to display
+     * Localization to display.
+     * 
+     * More information on https://discord.com/developers/docs/reference#locales.
      */
     [locale: string]: string;
 }
@@ -17,91 +19,72 @@ export interface CommandLocalizations {
 export interface CommandPermissions {
 
     /**
-     * Member permissions to display
+     * Member permissions to display.
+     * 
+     * More information on https://discord.com/developers/docs/topics/permissions.
      */
     member?: bigint | null;
 
     /**
-     * Display on DM channels
+     * Display on DM channels.
      */
     dm?: boolean;
 
     /**
-     * Display on non NSFW channels
+     * Display on non NSFW channels.
      */
     nsfw?: boolean;
 }
 
-export interface ChatInputCommandDisplay {
+export interface SharedCommandDisplay {
 
     /**
-     * Command type
+     * Command type.
      * 
-     * More information on https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+     * More information on https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types.
      */
     type: number;
 
     /**
-     * Command name
+     * Command name.
      */
     name: CommandLocalizations;
 
     /**
-     * Command description
+     * Command description.
      */
     description: CommandLocalizations;
 
     /**
-     * Command options
+     * Command options.
+     * 
+     * More information on https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-option-structure.
      */
     options?: any[];
 
     /**
-     * Command permissions
+     * Command permissions.
      */
     permissions?: CommandPermissions;
 }
 
-export interface AnyContextMenuCommandDisplay {
+export interface SharedCommandOptions <CommandDisplay> extends BaseOptions {
 
     /**
-     * Command type
-     * 
-     * More information on https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
+     * Command display.
      */
-    type: number;
+    display: Omit<CommandDisplay, 'type'>;
 
     /**
-     * Command name
-     */
-    name: CommandLocalizations;
-
-    /**
-     * Command description
-     */
-    permissions?: CommandPermissions;
-}
-
-export interface CommandOptions <D extends ChatInputCommandDisplay | AnyContextMenuCommandDisplay> extends BaseOptions {
-
-    /**
-     * Command display
-     */
-    display: Omit<D, 'type'>;
-
-    /**
-     * Used events
+     * Necessary events (using their file name with excluded extensions).
      */
     events: HandledEvents;
 }
 
 export class ChatInputCommandBuilder extends BaseBuilder {
 
-    from = DataFrom.CHAT_INPUT_COMMAND;
+    display: Required<SharedCommandDisplay> = {
 
-    display: Required<ChatInputCommandDisplay> = {
-
-        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 1,
 
         name: { default: null! }, description: { default: null! },
@@ -121,30 +104,38 @@ export class ChatInputCommandBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: CommandOptions<ChatInputCommandDisplay>) {
+    constructor (opts: SharedCommandOptions<SharedCommandDisplay>) {
 
-        super (options);
+        super (opts);
 
-        this.display.name        = options.display.name;
-        this.display.description = options.display.description;
+        Object.assign(this, {
 
-        this.display.options = options.display.options ?? this.display.options;
+            display: {
 
-        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
-        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
-        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+                name:        opts.display.name,
+                description: opts.display.description,
 
-        this.events = options.events;
+                options: opts.display.options ?? this.display.options,
+
+                permissions: {
+
+                    member: opts.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                },
+
+                type: this.display.type
+            },
+
+            events: opts.events
+        });
     }
 }
 
 export class UserContextMenuCommandBuilder extends BaseBuilder {
 
-    from = DataFrom.USER_CONTEXT_MENU_COMMAND;
+    display: Required<Omit<SharedCommandDisplay, 'description' | 'options'>> = {
 
-    display: Required<AnyContextMenuCommandDisplay> = {
-
-        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 2,
 
         name: { default: null! },
@@ -162,27 +153,35 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
+    constructor (opts: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
 
-        super (options);
+        super (opts);
 
-        this.display.name = options.display.name;
+        Object.assign(this, {
 
-        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
-        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
-        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+            display: {
 
-        this.events = options.events;
+                name: opts.display.name,
+
+                permissions: {
+
+                    member: opts.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                },
+
+                type: this.display.type
+            },
+
+            events: opts.events
+        });
     }
 }
 
 export class MessageContextMenuCommandBuilder extends BaseBuilder {
 
-    from = DataFrom.MESSAGE_CONTEXT_MENU_COMMAND;
+    display: Required<Omit<SharedCommandDisplay, 'description' | 'options'>> = {
 
-    display: Required<AnyContextMenuCommandDisplay> = {
-
-        // https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types
         type: 3,
 
         name: { default: null! },
@@ -200,16 +199,27 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
      */
     events: HandledEvents = null!;
 
-    constructor (options: CommandOptions<AnyContextMenuCommandDisplay>) {
+    constructor (opts: SharedCommandOptions<Omit<SharedCommandDisplay, 'description' | 'options'>>) {
 
-        super (options);
+        super (opts);
 
-        this.display.name = options.display.name;
+        Object.assign(this, {
 
-        this.display.permissions.member = options.display.permissions?.member ?? this.display.permissions.member;
-        this.display.permissions.dm     = options.display.permissions?.dm     ?? this.display.permissions.dm;
-        this.display.permissions.nsfw   = options.display.permissions?.nsfw   ?? this.display.permissions.nsfw;
+            display: {
 
-        this.events = options.events;
+                name: opts.display.name,
+
+                permissions: {
+
+                    member: opts.display.permissions?.member ?? this.display.permissions.member,
+                    dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
+                    nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
+                },
+
+                type: this.display.type
+            },
+
+            events: opts.events
+        });
     }
 }

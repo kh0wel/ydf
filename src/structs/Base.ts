@@ -1,12 +1,12 @@
 export interface BaseOptions {
 
     /**
-     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents)
+     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
     intents?: number;
 
     /**
-     * Necessary partials (using bitwise on array)
+     * Necessary partials (using array).
      */
     partials?: number[];
 }
@@ -14,28 +14,31 @@ export interface BaseOptions {
 export class BaseBuilder {
 
     /**
-     * File name (excluding extensions)
+     * File name (excluding extensions).
      */
     name: string = null!;
 
     /**
-     * File path (not relative)
+     * File path (not relative).
      */
     path: string = null!;
 
     /**
-     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents)
+     * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
     intents: number = 0;
 
     /**
-     * Necessary partials (using bitwise on array)
+     * Necessary partials (using array).
      */
     partials: number[] = [];
 
-    constructor (options: BaseOptions) {
+    constructor (opts: BaseOptions) {
 
-        this.intents  = options.intents  ?? this.intents;
-        this.partials = options.partials ?? this.partials;
+        Object.assign(this, {
+
+            intents:  opts.intents  ?? this.intents,
+            partials: opts.partials ?? this.partials
+        });
     }
 }

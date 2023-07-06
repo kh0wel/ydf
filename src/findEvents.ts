@@ -1,40 +1,30 @@
+import { EventsUsed } from './structs/Util.js';
 import { EventBuilder } from './structs/Event.js';
 import { ServiceBuilder } from './structs/Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './structs/Command.js';
-import { EventsGroup, GroupedCommand, GroupedService, GroupedAll } from './structs/Util.js';
 
 export default function (
 
     loadedEvents:                     EventBuilder[],
     loadedServices:                   ServiceBuilder[],
     loadedChatInputCommands:          ChatInputCommandBuilder[],
-    loadedMessageContextMenuCommands: UserContextMenuCommandBuilder[],
-    loadedUserContextMenuCommands:    MessageContextMenuCommandBuilder[]
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[],
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[]
 ) {
 
-    const groupedEvents: EventsGroup = {};
+    const usedEvents: EventsUsed = {};
 
     for (const loadedEvent of loadedEvents) {
 
-        const byServices: GroupedService[] = loadedServices.filter((serv) => serv.events[loadedEvent.name]);
+        const byServices = loadedServices.filter((serv) => serv.events[loadedEvent.name]);
 
-        const byCommands: GroupedCommand[] = [
+        const byCommands = [ ... loadedChatInputCommands, ... loadedUserContextMenuCommands, ... loadedMessageContextMenuCommands ].filter((comm) => comm.events[loadedEvent.name]);
 
-            ... loadedChatInputCommands,
-            ... loadedUserContextMenuCommands,
-            ... loadedMessageContextMenuCommands
-        ]
-            .filter((comm) => comm.events[loadedEvent.name]);
-
-        const byAll: GroupedAll[] = [
-
-            ... byServices,
-            ... byCommands
-        ];
+        const byAll = [ ... byServices, ... byCommands ];
 
         if (!byAll.length) continue;
 
-        groupedEvents[loadedEvent.name] = {
+        usedEvents[loadedEvent.name] = {
 
             services: byServices,
             commands: byCommands,
@@ -42,5 +32,5 @@ export default function (
         };
     }
 
-    return groupedEvents;
+    return usedEvents;
 }

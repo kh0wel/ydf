@@ -14,7 +14,8 @@
       },
       "suspicious": {
         "noRedeclare": "off",
-        "noExplicitAny": "off"
+        "noExplicitAny": "off",
+        "noEmptyInterface": "off"
       }
     }
   }

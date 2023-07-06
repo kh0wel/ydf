@@ -2,11 +2,15 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 
 import cac from 'cac';
-import kleur from 'kleur';
 
 import loadFiles from '../loadFiles.js';
 import findEvents from '../findEvents.js';
 import findGateways from '../findGateways.js';
+
+import { ConfigBuilder } from '../structs/Config.js';
+import { EventBuilder } from '../structs/Event.js';
+import { ServiceBuilder } from '../structs/Service.js';
+import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from '../structs/Command.js';
 
 // @ts-expect-error
 const cli = cac();
@@ -14,51 +18,56 @@ const cli = cac();
 cli
     .command('init', 'Create a new project')
 
-    .option('-P, --project <path>', 'Project directory path (default is "new-ydf-project")', { default: 'new-ydf-project' })
+    .option('-P, --project <path>', 'Project directory path (default "new-ydf-project")', { default: 'new-ydf-project' })
 
     .action(({ project: projectPath }) => {
 
         fs.access(path.resolve(projectPath))
 
-            .then(() => console.log(kleur.red('Project already exists')))
+            .then(() => console.log('Project already exists'))
 
             .catch(async () => {
 
-                await fs.mkdir(path.resolve(projectPath, 'src', 'events'),    { recursive: true });
-                await fs.mkdir(path.resolve(projectPath, 'src', 'services'),  { recursive: true });
-                await fs.mkdir(path.resolve(projectPath, 'src', 'commands'),  { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'events'), { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'services'), { recursive: true });
+                await fs.mkdir(path.resolve(projectPath, 'src', 'commands'), { recursive: true });
 
-                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { Session } from \'@biscuitland/core\';\n\nimport { ConfigBuilder } from \'ydf\';\n\nexport default new ConfigBuilder ({\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT TOKEN\' });\n\t}\n});\n');
-
-                console.log(kleur.bold().blue('GitHub:'), kleur.gray('https://github.com/kh0wel/ydf'));
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nimport { Session } from \'@biscuitland/core\';\n\nexport default new ConfigBuilder ({ bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT_TOKEN\' }); } });\n');
             });
     });
 
 cli
-    .command('deploy', 'Deploy the bot')
+    .command('deploy', 'Deploy the framework')
 
-    .option('-C, --config <path>', 'Configuration file path (default is ".ydf.config.js")', { default: '.ydf.config.js' })
+    .option('-C, --config <path>', 'Configuration file path (default ".ydf.config.js")', { default: '.ydf.config.js' })
 
     .action(async ({ config: configPath }) => {
 
-        const { default: config } = await import(`file:///${ path.resolve(configPath) }`);
+        const config: ConfigBuilder = (await import(`file:///${ path.resolve(configPath) }`)).default;
 
-        const {
+        const [
 
             loadedEvents,
             loadedServices,
             loadedChatInputCommands,
             loadedUserContextMenuCommands,
             loadedMessageContextMenuCommands
-        } = await loadFiles(config);
+        ] = await Promise.all([
+
+            loadFiles<EventBuilder>(config.sources.events, config.cwd),
+            loadFiles<ServiceBuilder>(config.sources.services, config.cwd),
+            loadFiles<ChatInputCommandBuilder>(config.sources.chatInputCommands, config.cwd),
+            loadFiles<UserContextMenuCommandBuilder>(config.sources.userContextMenuCommands, config.cwd),
+            loadFiles<MessageContextMenuCommandBuilder>(config.sources.messageContextMenuCommands, config.cwd)
+        ]);
 
         const usedEvents = findEvents(
 
             loadedEvents,
             loadedServices,
             loadedChatInputCommands,
-            loadedMessageContextMenuCommands,
-            loadedUserContextMenuCommands
+            loadedUserContextMenuCommands,
+            loadedMessageContextMenuCommands
         );
 
         const { usedIntents, usedPartials } = findGateways(loadedEvents, usedEvents);
@@ -67,55 +76,36 @@ cli
 
             if (!usedEvents[loadedEvent.name]) continue;
 
-            await loadedEvent.execute({
+            await loadedEvent.deploy({
 
                 config,
 
-                loadedEvents,
-                loadedServices,
-                loadedChatInputCommands,
-                loadedMessageContextMenuCommands,
-                loadedUserContextMenuCommands,
+                bot: await config.bot({
 
-                usedEvents,
-                usedIntents,
-                usedPartials,
-
-                bot: config.bot({
+                    config,
 
                     loadedEvents,
                     loadedServices,
                     loadedChatInputCommands,
-                    loadedMessageContextMenuCommands,
                     loadedUserContextMenuCommands,
+                    loadedMessageContextMenuCommands,
 
                     usedEvents,
                     usedIntents,
                     usedPartials
-                })
+                }),
+
+                loadedEvents,
+                loadedServices,
+                loadedChatInputCommands,
+                loadedUserContextMenuCommands,
+                loadedMessageContextMenuCommands,
+
+                usedEvents,
+                usedIntents,
+                usedPartials
             });
         }
-
-        console.log(kleur.bold().cyan('Used Files:'));
-
-        console.log();
-
-        console.log(kleur.gray('Events:                       '), loadedEvents.length);
-        console.log(kleur.gray('Services:                     '), loadedServices.length);
-        console.log(kleur.gray('Chat Input Commands:          '), loadedChatInputCommands.length);
-        console.log(kleur.gray('User Context Menu Commands:   '), loadedUserContextMenuCommands.length);
-        console.log(kleur.gray('Message Context Menu Commands:'), loadedMessageContextMenuCommands.length);
-
-        console.log();
-
-        console.log(kleur.bold().green('Used Gateways:'));
-
-        console.log();
-
-        console.log(kleur.gray('Intents:'), usedIntents);
-        console.log(kleur.gray('Partials:'), usedPartials);
-
-        console.log();
     });
 
 cli.help();

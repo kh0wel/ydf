@@ -1,36 +1,43 @@
+import { ConfigBuilder } from './Config.js';
+import { EventBuilder } from './Event.js';
 import { ServiceBuilder } from './Service.js';
 import { ChatInputCommandBuilder, UserContextMenuCommandBuilder, MessageContextMenuCommandBuilder } from './Command.js';
 
-export enum DataFrom {
+export interface SharedParameters {
 
-    EVENT                        = 0,
-    SERVICE                      = 1,
-    CHAT_INPUT_COMMAND           = 2,
-    USER_CONTEXT_MENU_COMMAND    = 3,
-    MESSAGE_CONTEXT_MENU_COMMAND = 4
+    config: ConfigBuilder;
+
+    bot: ReturnType<BotCallback>;
+
+    loadedEvents:                     EventBuilder[];
+    loadedServices:                   ServiceBuilder[];
+    loadedChatInputCommands:          ChatInputCommandBuilder[];
+    loadedUserContextMenuCommands:    UserContextMenuCommandBuilder[];
+    loadedMessageContextMenuCommands: MessageContextMenuCommandBuilder[];
+
+    usedEvents: EventsUsed;
+
+    usedIntents:  number;
+    usedPartials: number[];
 }
 
-export interface HandledEvents {
+export type DeployCallback = (parameters: SharedParameters) => Promise<void> | void;
 
-    [event: string]: (parameters: any) => Promise<void> | void
+export type BotCallback = (parameters: Omit<SharedParameters, 'bot'>) => Promise<any> | any;
+
+export interface HandledEvents  {
+
+    [event: string]: (parameters: any) => Promise<any> | any;
 }
 
-export type GroupedService = ServiceBuilder;
+export interface EventsUsed {
 
-export type GroupedCommand = ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder;
+    [event: string]: {
 
-export type GroupedAll = GroupedService | GroupedCommand;
-
-export interface GroupedEvent {
-
-    services: GroupedService[],
-
-    commands: GroupedCommand[]
-
-    all: GroupedAll[]
-}
-
-export interface EventsGroup {
-
-    [event: string]: GroupedEvent
+        services: Array<ServiceBuilder>;
+    
+        commands: Array<ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder>;
+    
+        all: Array<ServiceBuilder | ChatInputCommandBuilder | UserContextMenuCommandBuilder | MessageContextMenuCommandBuilder>;
+    };
 }
