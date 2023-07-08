@@ -1,6 +1,6 @@
 {
   "name": "ydf",
-  "version": "3.4.1",
+  "version": "3.4.5",
   "description": "🔮 A development tool for building Discord bots",
   "type": "module",
   "bin": "dist/bin/index.js",
@@ -8,7 +8,7 @@
   "types": "typings/index.d.ts",
   "scripts": {
     "lint": "rome check \".\"",
-    "build": "swc src -d dist && tsc --project \".\""
+    "build": "swc src -d dist && tsc -p \".\""
   },
   "files": [
     "dist",
