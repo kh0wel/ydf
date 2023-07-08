@@ -20,5 +20,5 @@ export default async function <Builder extends EventBuilder | ServiceBuilder | C
         });
     }
 
-    return loadedFiles;
+    return loadedFiles.sort((a, b) => a.level - b.level);
 }

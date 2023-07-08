@@ -6,6 +6,11 @@ export interface BaseOptions {
     name: string;
 
     /**
+     * File level.
+     */
+    level?: number;
+
+    /**
      * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
     intents?: number;
@@ -29,9 +34,14 @@ export class BaseBuilder {
     name: string = null!;
 
     /**
+     * File level.
+     */
+    level = 0;
+
+    /**
      * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
-    intents: number = 0;
+    intents = 0;
 
     /**
      * Necessary partials (using array).
@@ -44,6 +54,7 @@ export class BaseBuilder {
 
             name: opts.name,
 
+            level:    opts.level    ?? this.level,
             intents:  opts.intents  ?? this.intents,
             partials: opts.partials ?? this.partials
         });
