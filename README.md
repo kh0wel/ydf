@@ -34,6 +34,8 @@ A development tool for building [Discord](https://discord.com) bots.
     ydf init
     ```
 
+4. Configure `.ydf.config.js` file.
+
 ## Examples
 
 See an example [here](https://github.com/kh0wel/cobalt).
