@@ -1,6 +1,11 @@
 export interface BaseOptions {
 
     /**
+     * File name.
+     */
+    name: string;
+
+    /**
      * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
      */
     intents?: number;
@@ -14,14 +19,14 @@ export interface BaseOptions {
 export class BaseBuilder {
 
     /**
-     * File name (excluding extensions).
-     */
-    name: string = null!;
-
-    /**
-     * File path (not relative).
+     * File path.
      */
     path: string = null!;
+
+    /**
+     * File name.
+     */
+    name: string = null!;
 
     /**
      * Necessary intents (using bitwise with https://discord.com/developers/docs/topics/gateway#gateway-intents).
@@ -36,6 +41,8 @@ export class BaseBuilder {
     constructor (opts: BaseOptions) {
 
         Object.assign(this, {
+
+            name: opts.name,
 
             intents:  opts.intents  ?? this.intents,
             partials: opts.partials ?? this.partials

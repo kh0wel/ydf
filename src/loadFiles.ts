@@ -1,5 +1,3 @@
-import path from 'node:path';
-
 import glob from 'tiny-glob';
 
 import { EventBuilder } from './structs/Event.js';
@@ -17,8 +15,6 @@ export default async function <Builder extends EventBuilder | ServiceBuilder | C
         loadedFiles.push({
 
             ... (await import(`file:///${ mapedFile }`)).default,
-
-            name: path.basename(mapedFile).replace(/\..+$/g, ''),
 
             path: mapedFile
         });
