@@ -32,7 +32,7 @@ cli
                 await fs.mkdir(path.resolve(projectPath, 'src', 'services'), { recursive: true });
                 await fs.mkdir(path.resolve(projectPath, 'src', 'commands'), { recursive: true });
 
-                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nimport { Session } from \'@biscuitland/core\';\n\nexport default new ConfigBuilder ({ bot ({ usedIntents }) { return new Session({ intents: usedIntents, token: \'BOT_TOKEN\' }); } });\n');
+                await fs.writeFile(path.resolve(projectPath, '.ydf.config.js'), 'import { ConfigBuilder } from \'ydf\';\n\nimport { Session } from \'@biscuitland/core\';\n\nexport default new ConfigBuilder ({\n\n\tbot ({ usedIntents }) {\n\n\t\treturn new Session({ intents: usedIntents, token: \'BOT_TOKEN\' });\n\t}\n});\n');
             });
     });
 

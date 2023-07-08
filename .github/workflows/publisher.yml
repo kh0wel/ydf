@@ -8,32 +8,20 @@ on:
 
 jobs:
 
-    clean:
+  build:
 
-        runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-        steps:
+    steps:
 
-            - uses: actions/checkout@v3.5.3
+    - uses: actions/checkout@v3.5.3
 
-    publish:
+    - uses: actions/setup-node@v3.7.0
 
-        runs-on: ubuntu-latest
+      with:
 
-        steps:
+        node-version: latest
+    
+    - run: npm install
 
-            - uses: actions/setup-node@v3.7.0
-
-              with:
-
-                    node-version: latest
-
-            - run: npm install
-
-            - run: npm run build
-
-            - run: npm publish --access public
-
-              env:
-
-                    NODE_AUTH_TOKEN: ${{secrets.NPM_AUTH_TOKEN}}
+    - run: npm run build
