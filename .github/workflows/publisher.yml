@@ -34,12 +34,12 @@ jobs:
 
     - run: npm run build
 
-    publish:
+  publish:
 
-      runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
-      needs: build
+    needs: build
 
-      stepts:
+    stepts:
 
-        - run: npm publish --access public
+      - run: npm publish --access public
