@@ -112,6 +112,8 @@ export class ChatInputCommandBuilder extends BaseBuilder {
 
             display: {
 
+                type: this.display.type,
+
                 name:        opts.display.name,
                 description: opts.display.description,
 
@@ -122,9 +124,7 @@ export class ChatInputCommandBuilder extends BaseBuilder {
                     member: opts.display.permissions?.member ?? this.display.permissions.member,
                     dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
                     nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
-                },
-
-                type: this.display.type
+                }
             },
 
             events: opts.events
@@ -161,6 +161,8 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
 
             display: {
 
+                type: this.display.type,
+
                 name: opts.display.name,
 
                 permissions: {
@@ -168,9 +170,7 @@ export class UserContextMenuCommandBuilder extends BaseBuilder {
                     member: opts.display.permissions?.member ?? this.display.permissions.member,
                     dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
                     nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
-                },
-
-                type: this.display.type
+                }
             },
 
             events: opts.events
@@ -207,6 +207,8 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
 
             display: {
 
+                type: this.display.type,
+
                 name: opts.display.name,
 
                 permissions: {
@@ -214,9 +216,7 @@ export class MessageContextMenuCommandBuilder extends BaseBuilder {
                     member: opts.display.permissions?.member ?? this.display.permissions.member,
                     dm:     opts.display.permissions?.dm     ?? this.display.permissions.dm,
                     nsfw:   opts.display.permissions?.nsfw   ?? this.display.permissions.nsfw
-                },
-
-                type: this.display.type
+                }
             },
 
             events: opts.events

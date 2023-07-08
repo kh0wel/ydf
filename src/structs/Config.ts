@@ -42,11 +42,11 @@ export class ConfigBuilder {
      */
     sources = {
 
-        events:                     'src/**/*.event.*',
-        services:                   'src/**/*.service.*',
-        chatInputCommands:          'src/**/*.command.chat.*',
-        userContextMenuCommands:    'src/**/*.command.user.*',
-        messageContextMenuCommands: 'src/**/*.command.message.*'
+        events:                     'src/**/*.vnt.*',
+        services:                   'src/**/*.svc.*',
+        chatInputCommands:          'src/**/*.cic.*',
+        userContextMenuCommands:    'src/**/*.ucmc.*',
+        messageContextMenuCommands: 'src/**/*.mcmc.*'
     };
 
     constructor (opts: ConfigOptions) {
@@ -57,7 +57,7 @@ export class ConfigBuilder {
 
             cwd: opts.cwd ?? this.cwd,
 
-            source: {
+            sources: {
 
                 events:                     opts.sources?.events                     ?? this.sources.events,
                 services:                   opts.sources?.services                   ?? this.sources.services,
