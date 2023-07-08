@@ -18,7 +18,8 @@
     "bot",
     "client",
     "framework",
-    "tool"
+    "tool",
+    "session"
   ],
   "author": "kh0wel",
   "license": "MIT",
