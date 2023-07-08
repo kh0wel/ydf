@@ -16,25 +16,35 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    name: Build
 
-    needs: clean
+    runs-on: ubuntu-latest
 
     steps:
 
-      - uses: actions/checkout@v3.5.3
+      - name: Checkout repository
 
-      - uses: actions/setup-node@v3.7.0
+        uses: actions/checkout@v3.5.3
+
+      - name: Set up Node.js
+
+        uses: actions/setup-node@v3.7.0
 
         with:
 
           node-version: latest
 
-      - run: npm install
+      - name: Install dependencies
 
-      - run: npm run build
+        run: npm install
+
+      - name: Compile build
+
+        run: npm run build
 
   publish:
+
+    name: Publish
 
     runs-on: ubuntu-latest
 
@@ -42,7 +52,9 @@ jobs:
 
     steps:
 
-      - run: npm publish --access public
+      - name: Publish package
+
+        run: npm publish --access public
 
         env:
 
