@@ -24,11 +24,11 @@ jobs:
 
     steps:
 
-    - uses: actions/setup-node@v3.7.0
+      - uses: actions/setup-node@v3.7.0
 
-      with:
+        with:
 
-        node-version: latest
+          node-version: latest
 
     - run: npm install
 
@@ -40,6 +40,6 @@ jobs:
 
     needs: build
 
-    stepts:
+    steps:
 
       - run: npm publish --access public
